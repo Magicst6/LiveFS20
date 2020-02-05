@@ -173,7 +173,7 @@ if ($uploadOk == 0) {
 
                 while ($value = mysqli_fetch_array($result)) {
 
-                    if (($value['Zimmer'] == $Zimmer) and ($value['Start'] == $Start) and ($value['Ende'] == $Ende) and ($value['KursID'] == $KursID)) {
+                    if (($value['Zimmer'] == $Zimmer) and ($value['Start'] == $Start) and ($value['Ende'] == $Ende) and ($value['KursID'] == $KursID) and ($value['Lehrperson'] == $Lehrperson)) {
 
                         $isExisting = true;
 
@@ -184,8 +184,10 @@ if ($uploadOk == 0) {
 
 
                 }
-
-
+              
+				
+               if ($LP_ID<1 || !$LP_ID)
+			   {
 
                 $isEntryLPID = "Select ID From sv_Lehrpersonen Where Nachname='$Lehrperson'";
 
@@ -196,18 +198,20 @@ if ($uploadOk == 0) {
                 while ($valueLPID = mysqli_fetch_array($resultLPID)) {
 
                     $LP_ID = $valueLPID['ID'];
+					 echo $LP_ID;
 
                 }
+			   }
 
                 if ($Lehrperson <> "" and $LP_ID < 1) {
 
-                    echo "<script>alert('Lehrperson:" . $Lehrperson . " nicht bekannt oder falsch geschrieben');</script>";
+                    echo "<script>alert('Lehrperson:" . $Lehrperson .' '.$LP_ID. " nicht bekannt oder falsch geschrieben');</script>";
 
                     $isExisting = true;
 
                 }
 
-                $isEntryLPKurse = "SELECT Kurs1, Kurs2, Kurs3, Kurs4, Kurs5, Kurs6, Kurs7, Kurs8, Kurs9,Kurs10,Kurs11,Kurs12,Kurs13,Kurs14,Kurs15,Kurs16 From sv_Lehrpersonen Where  ID='$LP_ID' ";
+                $isEntryLPKurse = "SELECT Select Kurs1, Kurs2, Kurs3, Kurs4, Kurs5, Kurs6, Kurs7, Kurs8, Kurs9,Kurs10,Kurs11,Kurs12,Kurs13,Kurs14,Kurs15,Kurs16,Kurs17, Kurs18, Kurs19, Kurs20, Kurs21, Kurs22, Kurs23, Kurs24, Kurs25,Kurs26,Kurs27,Kurs28,Kurs29,Kurs30 From sv_Lehrpersonen Where  ID='$LP_ID' ";
 
                 $result = mysqli_query($con, $isEntryLPKurse);
 
@@ -272,6 +276,8 @@ if ($uploadOk == 0) {
 // In die DB-Tabelle eintragen
 
                     mysqli_query($con, $sql_befehl);
+					
+					echo "Termin eingetragen";
 
                 }
 
@@ -306,6 +312,8 @@ if ($uploadOk == 0) {
                     $sql_befehl = "INSERT INTO sv_Kurse (Kursname,Klasse,KursID,Lehrperson,Farbe) VALUES ('$Kursname','$Klasse','$KursID', '$LP_ID','$Farbe')";
 
                     mysqli_query($con, $sql_befehl);
+					
+					
 
                 }
 
@@ -496,6 +504,7 @@ if ($uploadOk == 0) {
     }
 
 }
+
 
 echo '<meta http-equiv="refresh" content="0; url=/kurstermine" />';
 

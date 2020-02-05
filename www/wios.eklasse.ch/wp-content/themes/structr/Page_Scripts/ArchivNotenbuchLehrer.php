@@ -60,7 +60,7 @@
 				var Gewichtungdt = data[ "Gewichtung" + i ];
 				var Datumdt = data[ "Datum" + i ];
 
-				if ( ( Notedt ) >= 1 && Notedt <= 6 ) {
+				if ( ( Notedt ) >= 1 && Notedt <= 100 ) {
 					var z = null;
 					var z = '<div class="details-container"><table cellpadding="5" cellspacing="0" border="0" class="details-table">'
 

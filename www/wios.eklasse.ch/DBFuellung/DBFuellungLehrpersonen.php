@@ -125,7 +125,7 @@ $sql_befehl3 = "UPDATE sv_Kurse SET Lehrperson = ''  where KursID ='$dbwert;' ";
 //Prüfungen wann welches Update ausgeführt wird
 
 if ("" == $Lehrer)  {
-echo "Fehler: Eintrag unvollständig. ";
+echo '<script type="text/javascript">alert("Eintrag unvollständig"); window.location.href = "\ksdlpsc";</script>';
 }
 else {
 mysqli_query($con,$sql_befehl1);
@@ -153,10 +153,12 @@ else {
 
 
 }}}}
-header('Location:'.$_SERVER['HTTP_REFERER']);
+
 
 }
 
 ?>
+	
+	<script>window.location.href = "\ksdlpsc";</script>
 </body>
 </html>

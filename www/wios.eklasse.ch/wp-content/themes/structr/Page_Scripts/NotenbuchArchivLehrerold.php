@@ -41,23 +41,27 @@
 <?
 include 'db.php';
 $Kursnme=base64_decode($_GET['q']);
+$sem=$_GET['sem'];
 
 
-$select='Select Nachname, Note1, Note2,Note3, Note4, Note5, Note6, Note7, Note8, Note9 From sv_LernenderKurs Where KursID="';
- $sel1=$Kursnme;
-		
+$lkArch=$sem.'_LernenderKurs';
+
+$select='Select Nachname, Note1, Note2,Note3, Note4, Note5, Note6, Note7, Note8, Note9 From ';
+$sel=' Where KursID="';
+$sel1=$Kursnme;
 $sel2= '" Group by Nachname';
- $isEntryUpd1 = "UPDATE sv_postmeta SET meta_value  = '$select$sel1$sel2' where post_id='18106' and meta_key='visualizer-db-query' ";
+ $isEntryUpd1 = "UPDATE sv_postmeta SET meta_value  = '$select$lkArch$sel$sel1$sel2' where post_id='18106' and meta_key='visualizer-db-query' ";
 	mysqli_query( $con1, $isEntryUpd1 );	
 
 
 
 
-$select='Select Nachname, Abwesenheiten From sv_LernenderKurs Where KursID="';
+$select='Select Nachname, Abwesenheiten From ';
+$sel=' Where KursID="';
  $sel1=$Kursnme;
 		
 $sel2= '" Group by Nachname';
- $isEntryUpd2 = "UPDATE sv_postmeta SET meta_value  = '$select$sel1$sel2' where post_id='18110' and meta_key='visualizer-db-query' ";
+ $isEntryUpd2 = "UPDATE sv_postmeta SET meta_value  = '$select$lkArch$sel$sel1$sel2' where post_id='18110' and meta_key='visualizer-db-query' ";
 	mysqli_query( $con1, $isEntryUpd2 );	
 
 ?>
@@ -70,7 +74,8 @@ $sel2= '" Group by Nachname';
 	var table3;
 	$(document).ready(function() {
  var urlParams = new URLSearchParams(window.location.search);
-		
+	
+
 tableshow();    
 	
 	});
@@ -526,8 +531,8 @@ function neueNote( data ) {
 		};
 
 
-		var new_url = "/wp-content/themes/structr/Page_Scripts/GetNotenValues.php?q=" + document.getElementById( "Kursname" ).value + "&s=" + document.getElementById( "semDB" ).value;
-		var new_url1 = "/wp-content/themes/structr/Page_Scripts/GetAbwValues.php?k=" + document.getElementById( "Kursname" ).value + "&s=" + document.getElementById( "semDB" ).value;
+		var new_url = "/wp-content/themes/structr/Page_Scripts/GetNotenValuesArchiv.php?q=" + document.getElementById( "Kursname" ).value + "&s=" + document.getElementById( "Semester" ).value;
+		var new_url1 = "/wp-content/themes/structr/Page_Scripts/GetAbwValuesArchiv.php?k=" + document.getElementById( "Kursname" ).value + "&s=" + document.getElementById( "Semester" ).value;
 
 
       
@@ -902,7 +907,31 @@ function tableshowne() {
 		}
 
 	}
+
+
+
+ 
 </script>
+
+	
+
+
+<html>
+<body>
+	
+<em>Hier können Sie Noten in den Semestern nachtragen</em>
+	
+	<br><br>
+<?php
+include 'db.php';
+
+
+?>
+	
+
+
+
+
 
 <?php
 
@@ -995,6 +1024,26 @@ $result = mysqli_query($con, $isEntry);
 ?>
 
 <br><br>
+	Semester:<br>
+<select id="Semester" name="Semester"  onchange="getLehrer(this.value)">
+	<option value="<? echo $sem;?>" selected><? echo $sem;?></option>
+    <?php
+
+    //Den aktuell eingeloggten Schüler anzeigen
+
+    $isEntry= "Select Semesterkuerzel From sv_SemesterArchiv";
+    $result = mysqli_query($con, $isEntry);
+    echo "<option>". $_GET['Semester']. "</option>";
+
+    while( $line3= mysqli_fetch_array($result))
+    {
+    $Semester = $line3['Semesterkuerzel'];
+    echo "<option>" . $Semester . "</option>";
+
+    }
+
+    ?>
+</select>
 
 
 <br><br>
@@ -1007,7 +1056,7 @@ Kursname:
 
     include 'db.php';
 
-    
+    $lp=$sem.'_Lehrpersonen';
 
     preg_match("/:(.*)/", $Lehrer, $output_array);
 
@@ -1023,13 +1072,13 @@ Kursname:
 
 
 
-    $isEntry= "Select Kurs1, Kurs2, Kurs3, Kurs4, Kurs5, Kurs6, Kurs7, Kurs8, Kurs9,Kurs10,Kurs11,Kurs12,Kurs13,Kurs14,Kurs15,Kurs16,Kurs17, Kurs18, Kurs19, Kurs20, Kurs21, Kurs22, Kurs23, Kurs24, Kurs25,Kurs26,Kurs27,Kurs28,Kurs29,Kurs30 From sv_Lehrpersonen Where ID = $Lehrer";
+    $isEntry= "Select Kurs1, Kurs2, Kurs3, Kurs4, Kurs5, Kurs6, Kurs7, Kurs8, Kurs9,Kurs10,Kurs11,Kurs12,Kurs13,Kurs14,Kurs15,Kurs16,Kurs17, Kurs18, Kurs19, Kurs20, Kurs21, Kurs22, Kurs23, Kurs24, Kurs25,Kurs26,Kurs27,Kurs28,Kurs29,Kurs30 From $lp Where ID = $Lehrer";
 
     $result = mysqli_query($con,$isEntry);
 
 
 
- echo "<option>" . $sel1 . "</option>";
+ echo "<option>" . $Kursnme . "</option>";
 
  
 
@@ -1059,8 +1108,7 @@ Kursname:
 
 
 </select>
-
-
+   
 <br><br>
 
 <?
@@ -1217,6 +1265,49 @@ Kurs:        <input id="Kurslb1" readonly><br><br>
 </div>
 
 <script>
+	function getLehrer(str){
+
+    
+        if (str == "") {
+
+            document.getElementById("Kursname").innerHTML = "";
+
+            return;
+
+        } else {
+
+            if (window.XMLHttpRequest) {
+
+                // code for IE7+, Firefox, Chrome, Opera, Safari
+
+                xmlhttp = new XMLHttpRequest();
+
+            } else {
+
+                // code for IE6, IE5
+
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+
+            }
+
+            xmlhttp.onreadystatechange = function() {
+
+                if (this.readyState == 4 && this.status == 200) {
+
+                    document.getElementById("Kursname").innerHTML = this.responseText;
+
+                }
+
+            };
+
+            xmlhttp.open("GET","/Ajax_Scripts/getKursnameLehrer.php?s="+str+"&q="+ document.getElementById( "lehrer" ).value,true);
+
+            xmlhttp.send();
+
+        }
+
+    }
+
 	
 	 function test(){
 
@@ -1245,7 +1336,7 @@ Kurs:        <input id="Kurslb1" readonly><br><br>
 
             };
 
-            xmlhttp.open("GET","/wp-content/themes/structr/Page_Scripts/GetNotenValues.php?q=" +  document.getElementById( "Kursname" ).value + "&s=" + document.getElementById( "semDB" ).value,true);
+            xmlhttp.open("GET","/wp-content/themes/structr/Page_Scripts/GetNotenValuesArchiv.php?q=" +  document.getElementById( "Kursname" ).value + "&s=" + document.getElementById( "Semester" ).value,true);
 
             xmlhttp.send();
 
@@ -1280,7 +1371,7 @@ Kurs:        <input id="Kurslb1" readonly><br><br>
 
             };
 
-            xmlhttp.open("GET","/wp-content/themes/structr/Page_Scripts/GetAbwValues.php?k=" +  document.getElementById( "Kursname" ).value + "&s=" + document.getElementById( "semDB" ).value,true);
+            xmlhttp.open("GET","/wp-content/themes/structr/Page_Scripts/GetAbwValuesArchiv.php?k=" +  document.getElementById( "Kursname" ).value + "&s=" + document.getElementById( "Semester" ).value,true);
 
             xmlhttp.send();
 
@@ -1313,11 +1404,12 @@ Kurs:        <input id="Kurslb1" readonly><br><br>
 		
     editor = new $.fn.dataTable.Editor( {
         ajax: {
-            url: "/wp-content/themes/structr/Page_Scripts/notenvalues.php",
+            url: "/wp-content/themes/structr/Page_Scripts/notenvaluesArchiv.php",
             type: 'POST',
             data: {
               'SchIDnr': str,
-				'KID': document . getElementById( "Kursname" ) . value 
+				'KID': document . getElementById( "Kursname" ) . value, 
+				'sem': document . getElementById( "Semester" ) . value 
 				
 			
 			}
@@ -1378,11 +1470,12 @@ Kurs:        <input id="Kurslb1" readonly><br><br>
 
 			dom: "Bfrtip",
         ajax:{
-            url: "/wp-content/themes/structr/Page_Scripts/notenvalues.php",
+            url: "/wp-content/themes/structr/Page_Scripts/notenvaluesArchiv.php",
             type: 'POST',
             data: {
                   'SchIDnr': str,
-				'KID': document . getElementById( "Kursname" ) . value 
+					'KID': document . getElementById( "Kursname" ) . value, 
+				'sem': document . getElementById( "Semester" ) . value 
 				
 			
 			}
@@ -1487,21 +1580,8 @@ Kurs:        <input id="Kurslb1" readonly><br><br>
 	
 
 	
-	function reloadpage()
-{
- 	 
-var Kursnme = document.getElementById( "Kursname" ).value;
-	
-var encrypted = btoa(Kursnme);
-	
-	test();
-	test1();
-	tableshow();
-//U2FsdGVkX18ZUVvShFSES21qHsQEqZXMxQ9zgHy+bu0=
 
-window.location.href= "/notenbuch-lehrer?q=" + encrypted;
 
-}
 	function reloadpage1()
 {
  	 
@@ -1514,7 +1594,7 @@ var encrypted = btoa(Kursnme);
 	tableshow();
 //U2FsdGVkX18ZUVvShFSES21qHsQEqZXMxQ9zgHy+bu0=
 
-window.location.href= "/notenbuch-lehrer?q=" + encrypted;
+window.location.href= "/notenbuch-lehrer-archiv?q="+  encrypted + "&sem=" +  document.getElementById( "Semester" ).value ;
 
 }
 	 function tableshow() {
@@ -1535,8 +1615,8 @@ window.location.href= "/notenbuch-lehrer?q=" + encrypted;
 		 table.destroy();
 			 }
 
-		 var url3 = "/wp-content/themes/structr/Page_Scripts/GetNotenValues.php?q=" + Kursname + "&s=" + document.getElementById( "semDB" ).value;
-		var url4 = "/wp-content/themes/structr/Page_Scripts/GetAbwValues.php?k=" +Kursname + "&s=" + document.getElementById( "semDB" ).value;
+		 var url3 = "/wp-content/themes/structr/Page_Scripts/GetNotenValuesArchiv.php?q=" + Kursname + "&s=" + document.getElementById( "Semester" ).value;
+		var url4 = "/wp-content/themes/structr/Page_Scripts/GetAbwValuesArchiv.php?k=" +Kursname + "&s=" + document.getElementById( "Semester" ).value;
          $.fn.dataTable.ext.errMode = 'throw';
     table = $( '.datatables' ).DataTable( {
 
@@ -1714,8 +1794,8 @@ window.location.href= "/notenbuch-lehrer?q=" + encrypted;
 		 table.destroy();
 			 }
 
-		 var url3 = "/wp-content/themes/structr/Page_Scripts/GetNotenValues.php?q=" + "-Select-" + "&s=" + document.getElementById( "semDB" ).value;
-		var url4 = "/wp-content/themes/structr/Page_Scripts/GetAbwValues.php?k=" + "-Select-" + "&s=" + document.getElementById( "semDB" ).value;
+		 var url3 = "/wp-content/themes/structr/Page_Scripts/GetNotenValuesArchiv.php?q=" + "-Select-" + "&s=" + document.getElementById( "Semester" ).value;
+		var url4 = "/wp-content/themes/structr/Page_Scripts/GetAbwValuesArchiv.php?k=" + "-Select-" + "&s=" + document.getElementById( "Semester" ).value;
          $.fn.dataTable.ext.errMode = 'throw';
     table = $( '.datatables' ).DataTable( {
 
@@ -1899,7 +1979,7 @@ function sendNote(){
 
 
 			
-			xmlhttp.open( "GET", "/Ajax_Scripts/createNote.php?q=" + document.getElementById( "Kursname" ).value+"&k="+ document.getElementById("schid").value +"&l=" +document.getElementById("Notecr").value +"&m="+ document.getElementById("Namecr").value +"&n=" +document.getElementById("Gewichtungcr").value +"&o="+document.getElementById("Datumcr").value, true );
+			xmlhttp.open( "GET", "/Ajax_Scripts/createNoteArchiv.php?q=" + document.getElementById( "Kursname" ).value+"&k="+ document.getElementById("schid").value +"&l=" +document.getElementById("Notecr").value +"&m="+ document.getElementById("Namecr").value +"&n=" +document.getElementById("Gewichtungcr").value +"&o="+document.getElementById("Datumcr").value+"&s="+document.getElementById("Semester").value, true );
 
 			xmlhttp.send();
 	
@@ -1953,7 +2033,7 @@ function sendNote(){
 
             };
 
-            xmlhttp.open("GET","/Ajax_Scripts/getKursnameLehrer.php?q="+ document.getElementById('lehrer').value + "&s="  +  document.getElementById('semester').value,true);
+            xmlhttp.open("GET","/Ajax_Scripts/getKursnameLehrer.php?q="+ document.getElementById('lehrer').value + "&s="  +  document.getElementById('Semester').value,true);
 
             xmlhttp.send();
 

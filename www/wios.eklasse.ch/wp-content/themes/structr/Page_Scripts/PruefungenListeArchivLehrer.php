@@ -36,12 +36,12 @@
 		
     editor = new $.fn.dataTable.Editor( {
         ajax: {
-            url: "/wp-content/themes/structr/Page_Scripts/pruefungenvalues.php",
+            url: "/wp-content/themes/structr/Page_Scripts/pruefungenvaluesArchiv.php",
             type: 'POST',
             data: {
              
-				'KID':  document.getElementById( "Kursname" ).value
-				
+				'KID':  document.getElementById( "Kursname" ).value,
+				'sem':  document.getElementById( "Semester" ).value
 			
 			}
         }, 
@@ -105,12 +105,7 @@
 		
 		  // Activate an inline edit on click of a table cell
     $('.datatables').on( 'click', 'tbody td:not(:first-child)', function (e) {
-        editor.inline( this, {
-            buttons: { label: '&gt;', fn: function () { this.submit();
-													  
-													  
-													  } }
-        } );
+       
     } );
 		
  
@@ -126,10 +121,11 @@ function loadtable(){
 
 			dom: "lBfrtip",
         ajax:{
-            url: "/wp-content/themes/structr/Page_Scripts/pruefungenvalues.php",
+            url: "/wp-content/themes/structr/Page_Scripts/pruefungenvaluesArchiv.php",
             type: 'POST',
             data: {
-				'KID':  document.getElementById( "Kursname" ).value
+				'KID':  document.getElementById( "Kursname" ).value,
+				'sem':  document.getElementById( "Semester" ).value
 				
 				
 			
@@ -213,9 +209,7 @@ function loadtable(){
 			select: true,
 				order: [[ 4, "desc" ]],
         buttons: [
-            { extend: "create", editor: editor ,text: 'Neue Prüfung' },
-            { extend: "edit",   editor: editor,text: 'Prüfung  bearbeiten' },
-            { extend: "remove", editor: editor,text: 'Prüfung löschen' }
+           
         ]
 
 		} );
@@ -269,7 +263,7 @@ function loadtable(){
 
 
 
-                    xmlhttp.open("GET", "/Ajax_Scripts/showschuelernotenliste.php?f=" + data['Klasse'] +  "&e=" + data['Gewichtung'] + "&g=" + data['KursID'] +"&h=" + data['Datum'] +"&i=" + data['Pruefungsname']  + "&k=" + data['Ende'] + "&n=" + data['Start'] + "&m=" + data['Zimmer'] +  "&o=" + data['Lehrperson'], true);
+                    xmlhttp.open("GET", "/Ajax_Scripts/showschuelernotenlisteArchiv.php?f=" + data['Klasse'] +  "&e=" + data['Gewichtung'] + "&g=" + data['KursID'] +"&h=" + data['Datum'] +"&i=" + data['Pruefungsname']  + "&k=" + data['Ende'] + "&n=" + data['Start'] + "&m=" + data['Zimmer'] +  "&o=" + data['Lehrperson'] +  "&sem=" + document.getElementById("Semester").value, true);
 
                     xmlhttp.send();
 	document.getElementById("myModal2").style.display = "block"; 
@@ -335,7 +329,92 @@ function tableshow() {
 }
 
   
+ function getKursnameAll(str){
 
+        location.reload;
+
+        if (str == "") {
+
+            document.getElementById("Kursname").innerHTML = "";
+
+            return;
+
+        } else {
+
+            if (window.XMLHttpRequest) {
+
+                // code for IE7+, Firefox, Chrome, Opera, Safari
+
+                xmlhttp = new XMLHttpRequest();
+
+            } else {
+
+                // code for IE6, IE5
+
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+
+            }
+
+            xmlhttp.onreadystatechange = function() {
+
+                if (this.readyState == 4 && this.status == 200) {
+
+                    document.getElementById("Kursname").innerHTML = this.responseText;
+
+                }
+
+            };
+
+            xmlhttp.open("GET","/Ajax_Scripts/getKursnameAllAll.php?s="+str,true);
+
+            xmlhttp.send();
+
+        }
+
+    }
+		
+		function getLehrer(str){
+
+    
+        if (str == "") {
+
+            document.getElementById("Kursname").innerHTML = "";
+
+            return;
+
+        } else {
+
+            if (window.XMLHttpRequest) {
+
+                // code for IE7+, Firefox, Chrome, Opera, Safari
+
+                xmlhttp = new XMLHttpRequest();
+
+            } else {
+
+                // code for IE6, IE5
+
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+
+            }
+
+            xmlhttp.onreadystatechange = function() {
+
+                if (this.readyState == 4 && this.status == 200) {
+
+                    document.getElementById("Kursname").innerHTML = this.responseText;
+
+                }
+
+            };
+
+            xmlhttp.open("GET","/Ajax_Scripts/getKursnameLehrer.php?s="+str+"&q="+ document.getElementById( "lehrer" ).value,true);
+
+            xmlhttp.send();
+
+        }
+
+    }
 
  
 </script>
@@ -346,79 +425,184 @@ function tableshow() {
 <html>
 <body>
 	
-<em>Hier können Verwaltungsmitarbeiter Noten für Prüfungen eintragen </em>
+<em>Hier können Lehrer Noten für Prüfungen in den Semestern nachtragen</em>
 	
 	<br><br>
 <?php
+
 include 'db.php';
 
+global $current_user;
+
+get_currentuserinfo();
+
+
+
+/* echo 'Username: ' . $current_user-&gt;user_login . "\n";
+
+echo 'User email: ' . $current_user-&gt;user_email . "\n";
+
+echo 'User level: ' . $current_user-&gt;user_level . "\n";
+
+echo 'User first name: ' . $current_user-&gt;user_firstname . "\n";
+
+echo 'User last name: ' . $current_user-&gt;user_lastname . "\n";
+
+echo 'User display name: ' . $current_user-&gt;display_name . "\n";
+
+echo 'User ID: ' . $current_user-&gt;ID . "\n";
+
+
+
+*/
+
+$heute=date("Y-m-d");
+?>
+
+
+<br><br>
+
+Lehrperson:
+
+<br>
+
+<?php
+
+
+
+$isEntry= "Select ID From sv_Lehrpersonen where User_ID=$current_user->ID";
+
+$result = mysqli_query($con, $isEntry);
+
+
+
+while( $line2= mysqli_fetch_assoc($result))
+
+{
+
+    $value=$line2['ID'];
+
+    $isEntry= "Select Nachname, Vorname From sv_Lehrpersonen WHERE ID='$value'";
+
+    $result = mysqli_query($con, $isEntry);
+
+    while( $line3= mysqli_fetch_array($result))
+
+    {
+
+        $Name = $line3['Nachname'];
+
+        $Vorname = $line3['Vorname'];
+
+
+
+    }
+
+
+    echo '<input  id="lehrer" name="lehrer" readonly="readonly" type="text" value="'.$Vorname .' '.$Name .' ID:'. $value .'" />' ;
+
+    $Lehrer=$Vorname .' '.$Name .' ID:'. $value;
+
+}
+
+
+
+		  $isEntry = "Select * From sv_Settings ";
+$result = mysqli_query($con, $isEntry);
+
+    while ($line1 = mysqli_fetch_array($result)) {
+
+        $semDB=$line1['Semesterkuerzel'];
+
+    }
 
 ?>
- 
-    Kursname:<br>
-    <select name="Kursname" onchange="tableshow()"  id="Kursname" >
 
-        <?php
-
-        $isEntry= "Select KursID From sv_LernenderKurs order by KursID asc";
-        $result = mysqli_query($con,$isEntry, MYSQLI_USE_RESULT);
-        $resultarr = array();
-            
-		
-
-        while( $line2= mysqli_fetch_assoc($result))
-        {
-            $resultarr[] = $line2['KursID'];
-        }
-        $uniquearr = array_unique($resultarr);
-
-        foreach ($uniquearr as $value) {
-            if ($value == $Kursname)
-            {
-                echo "<option>" . $Kursname . "</option>";
-            }
-            else{}
-
-        }
-		 echo "<option>-Select-</option>";
-        echo "<option>Alle</option>";
-        foreach ($uniquearr as $value)
-        {
-            echo "<option>" . $value . "</option>";
-        }
-
-        $isEntry1= "Select KursID From sv_ExtraKurse ";
-        $result1 = mysqli_query($con,$isEntry1);
-        $resultarr1 = array();
-
-
-        while( $line3= mysqli_fetch_assoc($result1))
-        {
-            $resultarr1[] = $line3['KursID'];
-        }
-        $uniquearr1 = array_unique($resultarr1);
-
-        foreach ($uniquearr1 as $value1) {
-            if ($value1 == $Kursname)
-            {
-                echo "<option>" . $Kursname . "</option>";
-            }
-            else{}
-
-        }
-        foreach ($uniquearr1 as $value1)
-        {
-            echo "<option>" . $value1 . "</option>";
-        }
-        echo '&nsbp;';
-
-        ?>
-
-
-    </select>
 <br><br>
-   
+	Semester:<br>
+<select id="Semester" name="Semester"  onchange="getLehrer(this.value)">
+	<option value="<? echo $sem;?>" selected><? echo $sem;?></option>
+    <?php
 
+    //Den aktuell eingeloggten 
+   
+ $isEntry= "Select Semesterkuerzel From sv_SemesterArchiv";
+    $result = mysqli_query($con, $isEntry);
+    echo "<option>". $_GET['Semester']. "</option>";
+
+    while( $line3= mysqli_fetch_array($result))
+    {
+    $Semester = $line3['Semesterkuerzel'];
+    echo "<option>" . $Semester . "</option>";
+
+    }
+
+    ?>
+</select>
+
+
+<br><br>
+Kursname:
+<br>
+ 
+<select id="Kursname" name="Kursname" required="required"  onchange="tableshow()">
+
+   <?php
+
+    include 'db.php';
+
+    $lp=$sem.'_Lehrpersonen';
+
+    preg_match("/:(.*)/", $Lehrer, $output_array);
+
+    $Lehrer=$output_array[1];
+
+
+
+    $y=0;
+
+
+
+
+
+
+
+    $isEntry= "Select Kurs1, Kurs2, Kurs3, Kurs4, Kurs5, Kurs6, Kurs7, Kurs8, Kurs9,Kurs10,Kurs11,Kurs12,Kurs13,Kurs14,Kurs15,Kurs16,Kurs17, Kurs18, Kurs19, Kurs20, Kurs21, Kurs22, Kurs23, Kurs24, Kurs25,Kurs26,Kurs27,Kurs28,Kurs29,Kurs30 From $lp Where ID = $Lehrer";
+
+    $result = mysqli_query($con,$isEntry);
+
+
+
+ echo "<option>" . $Kursnme . "</option>";
+
+ 
+
+
+    while( $line2= mysqli_fetch_array($result))
+
+    {
+
+        for($x = 1; $x <= 16; $x++)
+
+        {
+
+
+
+            $value = $line2['Kurs'.$x];
+
+            if ($value<>"") echo "<option>" . $value . "</option>";
+
+
+
+        }
+
+    }
+
+    ?>
+
+
+
+</select>
         
 
 	

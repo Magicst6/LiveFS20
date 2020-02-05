@@ -32,14 +32,11 @@ $result = mysqli_query($con, $isEntry);
 preg_match("/:(.*)/", $Lehrer, $output_array);
 $Lehrer=$output_array[1];
 
-if ($semester==$semDB){
-    $isEntry = "Select * From sv_LernenderKurs where KursID='$Kursname' order by Nachname asc ";
 
-} else{
 
     $isEntry = "Select * From $lkArch where KursID='$Kursname' order by Nachname asc ";
 
-}
+
 
 
     $result = mysqli_query($con, $isEntry);
@@ -61,16 +58,14 @@ $c=0;
 			 'IDSchueler' => $line1['SchülerID']
 			);
           
-		$isEntryUpdNull = "UPDATE sv_LernenderKurs SET Note1  = '',Note2  = '',Note3  = '',Note4  = '',Note5  = '',Note6  = '',Note7  = '',Note8  = '',Note9  = '' where SchülerID='$ID' and KursID ='$Kursname'";
+		$isEntryUpdNull = "UPDATE $lkArch SET Note1  = '',Note2  = '',Note3  = '',Note4  = '',Note5  = '',Note6  = '',Note7  = '',Note8  = '',Note9  = '' where SchülerID='$ID' and KursID ='$Kursname'";
 	mysqli_query( $con, $isEntryUpdNull );	
 
 
-        if ($semester==$semDB){
-            $isEntry1 = "Select * From sv_Noten where KursID='$Kursname' and SchuelerID='$ID' Order by Datum asc  ";
-        } else{
+       
 
             $isEntry1 = "Select * From $notenArch where KursID='$Kursname' and SchuelerID='$ID' Order by Datum asc ";
-        }
+        
 
 
     $result1 = mysqli_query($con, $isEntry1);
@@ -127,39 +122,39 @@ $c=0;
 			if ($NoteAK){ 
 			switch ($a) {
     case 1:
-      $isEntryUpd = "UPDATE sv_LernenderKurs SET Note1  = '$NoteAK' where SchülerID='$ID' and KursID ='$Kursname'";
+      $isEntryUpd = "UPDATE $lkArch SET Note1  = '$NoteAK' where SchülerID='$ID' and KursID ='$Kursname'";
 	mysqli_query( $con, $isEntryUpd );	
         break;
     case 2:
-       $isEntryUpd = "UPDATE sv_LernenderKurs SET Note2  = '$NoteAK' where SchülerID='$ID' and KursID ='$Kursname'";
+       $isEntryUpd = "UPDATE $lkArch SET Note2  = '$NoteAK' where SchülerID='$ID' and KursID ='$Kursname'";
 	mysqli_query( $con, $isEntryUpd );	
         break;
     case 3:
-       $isEntryUpd = "UPDATE sv_LernenderKurs SET Note3  = '$NoteAK' where SchülerID='$ID' and KursID ='$Kursname'";
+       $isEntryUpd = "UPDATE $lkArch SET Note3  = '$NoteAK' where SchülerID='$ID' and KursID ='$Kursname'";
 	mysqli_query( $con, $isEntryUpd );	
         break;
 	case 4:
-      $isEntryUpd = "UPDATE sv_LernenderKurs SET Note4  = '$NoteAK' where SchülerID='$ID' and KursID ='$Kursname'";
+      $isEntryUpd = "UPDATE $lkArch SET Note4  = '$NoteAK' where SchülerID='$ID' and KursID ='$Kursname'";
 	mysqli_query( $con, $isEntryUpd );	
         break;
     case 5:
-       $isEntryUpd = "UPDATE sv_LernenderKurs SET Note5  = '$NoteAK' where SchülerID='$ID' and KursID ='$Kursname'";
+       $isEntryUpd = "UPDATE $lkArch SET Note5  = '$NoteAK' where SchülerID='$ID' and KursID ='$Kursname'";
 	mysqli_query( $con, $isEntryUpd );	
         break;
     case 6:
-       $isEntryUpd = "UPDATE sv_LernenderKurs SET Note6  = '$NoteAK' where SchülerID='$ID' and KursID ='$Kursname'";
+       $isEntryUpd = "UPDATE $lkArch SET Note6  = '$NoteAK' where SchülerID='$ID' and KursID ='$Kursname'";
 	mysqli_query( $con, $isEntryUpd );	
         break;
 	case 7:
-      $isEntryUpd = "UPDATE sv_LernenderKurs SET Note7  = '$NoteAK' where SchülerID='$ID' and KursID ='$Kursname'";
+      $isEntryUpd = "UPDATE $lkArch SET Note7  = '$NoteAK' where SchülerID='$ID' and KursID ='$Kursname'";
 	mysqli_query( $con, $isEntryUpd );	
         break;
     case 8:
-       $isEntryUpd = "UPDATE sv_LernenderKurs SET Note8  = '$NoteAK' where SchülerID='$ID' and KursID ='$Kursname'";
+       $isEntryUpd = "UPDATE $lkArch SET Note8  = '$NoteAK' where SchülerID='$ID' and KursID ='$Kursname'";
 	mysqli_query( $con, $isEntryUpd );	
         break;
     case 9:
-       $isEntryUpd = "UPDATE sv_LernenderKurs SET Note9  = '$NoteAK' where SchülerID='$ID' and KursID ='$Kursname'";
+       $isEntryUpd = "UPDATE $lkArch SET Note9  = '$NoteAK' where SchülerID='$ID' and KursID ='$Kursname'";
 	mysqli_query( $con, $isEntryUpd );	
         break;
 }
@@ -204,6 +199,8 @@ $c=0;
 }
 $KN=$Kursname;
 
+
+//	mysqli_query( $con1, $isEntryUpd1 );	
 
 	echo json_encode($data);
 

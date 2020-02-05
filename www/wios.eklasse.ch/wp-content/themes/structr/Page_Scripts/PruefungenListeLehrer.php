@@ -104,6 +104,7 @@
             }
 				
         ]
+		
     } );
 		
 		
@@ -215,6 +216,7 @@ function loadtable(){
 					 
 			],
 			select: true,
+				order: [[ 4, "desc" ]],
         buttons: [
             { extend: "edit",   editor: editor,text: 'Prüfung  bearbeiten' },
             { extend: "remove", editor: editor,text: 'Prüfung löschen' }
