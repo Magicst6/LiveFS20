@@ -128,12 +128,13 @@ if( $_POST['Senden'])
     }
     if (!$isKursExisting)
     {
-        $sql_befehl = "INSERT INTO sv_Kurse (Kursname,Klasse,KursID,Lehrperson) VALUES ('$Kursname','$Klasse','$KursID', '$LP_ID')";
+        $sql_befehl = "INSERT INTO sv_Kurse (Kursname,Klasse,KursID,Lehrperson,Farbe) VALUES ('$Kursname','$Klasse','$KursID', '$LP_ID','$Farbe')";
         mysqli_query($con, $sql_befehl);
     }
     else
     {
-        $sql_befehl = "UPDATE sv_Kurse SET Kursname = '$Kursname', Klasse = '$Klasse',Lehrperson='$LP_ID'  where KursID ='$KursID' ";
+        $sql_befehl = "UPDATE sv_Kurse SET Kursname = '$Kursname', Klasse = '$Klasse',Lehrperson='$LP_ID', Farbe='$Farbe' where KursID ='$KursID' ";
+		 mysqli_query($con, $sql_befehl);
     }
 }
 

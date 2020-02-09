@@ -1,0 +1,23 @@
+Kursname;Kurskuerzel;Datum;Tag;Start;Ende;Lektionen;Zimmer;ZI_ID;Lehrperson;LP_ID
+Anwendungsanalyse;M475;19.08.2019;Montag; 18:30:00;21:45:00;4;4;;Giger;
+Anwendungsanalyse;M475;21.08.2019;Mittwoch; 18:30:00;21:45:00;4;4;;Giger;
+Anwendungsanalyse;M475;26.08.2019;Montag; 18:30:00;21:45:00;4;4;;Giger;
+Anwendungsanalyse;M475;28.08.2019;Mittwoch; 18:30:00;21:45:00;4;4;;Giger;
+Anwendungsanalyse;M475;02.09.2019;Montag; 18:30:00;21:45:00;4;4;;Giger;
+Anwendungsanalyse;M475;04.09.2019;Mittwoch; 18:30:00;21:45:00;4;4;;Giger;
+Umfeldanalyse;M496;09.09.2019;Montag; 18:30:00;21:45:00;4;4;;Friedli;
+Umfeldanalyse;M496;11.09.2019;Mittwoch; 18:30:00;21:45:00;4;4;;Friedli;
+Anwendungsanalyse;M475;16.09.2019;Montag; 18:30:00;21:45:00;4;4;;Giger;
+Anwendungsanalyse;M475;18.09.2019;Mittwoch; 18:30:00;20:00:00;2;4;;Giger;
+Umfeldanalyse;M496;23.09.2019;Montag; 18:30:00;21:45:00;4;4;;Friedli;
+Umfeldanalyse;M496;25.09.2019;Mittwoch; 18:30:00;21:45:00;4;4;;Friedli;
+Releasemanagement;M452;30.09.2019;Montag; 18:30:00;21:45:00;4;4;;Heim;
+Releasemanagement;M452;02.10.2019;Mittwoch; 18:30:00;21:45:00;4;4;;Heim;
+Releasemanagement;M452;07.10.2019;Montag; 18:30:00;21:45:00;4;4;;Heim;
+Releasemanagement;M452;09.10.2019;Mittwoch; 18:30:00;21:45:00;4;4;;Heim;
+Releasemanagement;M452;14.10.2019;Montag; 18:30:00;21:45:00;4;4;;Heim;
+Umfeldanalyse;M496;16.10.2019;Mittwoch; 18:30:00;21:45:00;4;4;;Friedli;
+Umfeldanalyse;M496;21.10.2019;Montag; 18:30:00;21:45:00;4;4;;Friedli;
+Releasemanagement;M452;23.10.2019;Mittwoch; 18:30:00;21:45:00;4;4;;Heim;
+Umfeldanalyse;M496;28.10.2019;Montag; 18:30:00;20:00:00;2;4;;Friedli;
+Releasemanagement;M452;30.10.2019;Mittwoch; 18:30:00;20:00:00;2;4;;Heim;

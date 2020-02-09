@@ -49,7 +49,7 @@ $lkArch=$sem.'_LernenderKurs';
 $select='Select Nachname, Note1, Note2,Note3, Note4, Note5, Note6, Note7, Note8, Note9 From ';
 $sel=' Where KursID="';
 $sel1=$Kursnme;
-$sel2= '" Group by Nachname';
+$sel2= '"';
  $isEntryUpd1 = "UPDATE sv_postmeta SET meta_value  = '$select$lkArch$sel$sel1$sel2' where post_id='18106' and meta_key='visualizer-db-query' ";
 	mysqli_query( $con1, $isEntryUpd1 );	
 
@@ -60,7 +60,7 @@ $select='Select Nachname, Abwesenheiten From ';
 $sel=' Where KursID="';
  $sel1=$Kursnme;
 		
-$sel2= '" Group by Nachname';
+$sel2= '" ';
  $isEntryUpd2 = "UPDATE sv_postmeta SET meta_value  = '$select$lkArch$sel$sel1$sel2' where post_id='18110' and meta_key='visualizer-db-query' ";
 	mysqli_query( $con1, $isEntryUpd2 );	
 

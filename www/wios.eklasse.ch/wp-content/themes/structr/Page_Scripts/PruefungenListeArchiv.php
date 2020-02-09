@@ -373,6 +373,68 @@ function tableshow() {
 
     }
 
+		function tableshow1(str) {
+	
+	if ( table ) {
+		table.destroy();
+	}
+	
+	if ( editor ) {
+		editor.destroy();
+	}
+	loadeditor();
+	
+	
+	loadtable();
+
+
+
+	editor . field( 'KursID' ) . def( document . getElementById( "Kursname" ) . value );
+	editor . submit();
+
+	
+	
+    showtable(str);
+
+	
+}
+
+		function showtable(str) {
+	
+	
+
+		
+		
+
+            if (window.XMLHttpRequest) {
+
+                // code for IE7+, Firefox, Chrome, Opera, Safari
+
+                xmlhttp = new XMLHttpRequest();
+
+            } else {
+
+                // code for IE6, IE5
+
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+
+            }
+
+            xmlhttp.onreadystatechange = function() {
+
+                if (this.readyState == 4 && this.status == 200) {
+
+                    document.getElementById("tabpruefungen").innerHTML = this.responseText;
+
+                }
+
+            };
+
+            xmlhttp.open("GET","/Ajax_Scripts/showtable.php?k="+str+"&s="+ document.getElementById( "Semester" ).value ,true);
+
+            xmlhttp.send();
+
+        }
  
 </script>
 
@@ -418,7 +480,7 @@ Semester:<br>
 <br><br>
  
     Kursname:<br>
-    <select name="Kursname" onchange="tableshow()"  id="Kursname" >
+    <select name="Kursname" onchange="tableshow1(this.value)"  id="Kursname" >
 		
 
 
@@ -746,7 +808,7 @@ Gewichtung:        <input id="Gewichtunglb1" readonly><br><br>
 	</div>
 </div>
 
-
+<div id="tabpruefungen"></div>
 		
 	</body>
 </html>

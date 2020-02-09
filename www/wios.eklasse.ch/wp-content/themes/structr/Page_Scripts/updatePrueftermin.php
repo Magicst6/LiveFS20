@@ -76,12 +76,13 @@ if(isset($_GET["f"]))
 
 
 if ($lp_id) {
+	
 
     $query = "UPDATE sv_Pruefungen  SET  Pruefungsname='$pruefungsname', Gewichtung= '$gewichtung' , Datum='$datum', Datum='$datum', Kursname= '$kursname', Start='$start', Ende='$end' ,KursID= '$kursid', Klasse='$klasse', Zimmer='$zimmer',Lehrperson= '$lehrperson', LP_ID='$lp_id', Farbe='$farbe',Lernziele='$lernziele'  WHERE id='$id'";
 
     mysqli_query($con, $query);
 
-    echo "Eintrag geändert!";
+    echo "<script> alert('Eintrag geändert!');</script>";
 
 
 

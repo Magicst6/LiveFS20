@@ -327,8 +327,30 @@ function tableshow() {
 	loadtable();
 
 
+ 
+	
+	
+
 
 	
+}
+function tableshow1(str) {
+	
+	if ( table ) {
+		table.destroy();
+	}
+	
+	if ( editor ) {
+		editor.destroy();
+	}
+	loadeditor();
+	
+	
+	loadtable();
+
+
+ 
+	showtable(str);
 	
 
 
@@ -336,6 +358,51 @@ function tableshow() {
 }
 
   
+	
+function showtable(str) {
+	
+	
+
+		
+		
+
+            if (window.XMLHttpRequest) {
+
+                // code for IE7+, Firefox, Chrome, Opera, Safari
+
+                xmlhttp = new XMLHttpRequest();
+
+            } else {
+
+                // code for IE6, IE5
+
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+
+            }
+
+            xmlhttp.onreadystatechange = function() {
+
+                if (this.readyState == 4 && this.status == 200) {
+
+                    document.getElementById("tabpruefungen").innerHTML = this.responseText;
+
+                }
+
+            };
+
+            xmlhttp.open("GET","/Ajax_Scripts/showtable.php?k="+str,true);
+
+            xmlhttp.send();
+
+        }
+	
+
+ 
+	
+	
+
+
+	
 
 
  
@@ -349,23 +416,44 @@ function tableshow() {
 	
 <em>Hier können Sie Ihre Prüfungsnoten eintragen und die Prüfungen editieren</em>
 	
+
 	<br><br>
 <?php
+
 include 'db.php';
 
+global $current_user;
+
+get_currentuserinfo();
 
 
 
-    global $current_user;
+/* echo 'Username: ' . $current_user-&gt;user_login . "\n";
 
-    get_currentuserinfo();
+echo 'User email: ' . $current_user-&gt;user_email . "\n";
+
+echo 'User level: ' . $current_user-&gt;user_level . "\n";
+
+echo 'User first name: ' . $current_user-&gt;user_firstname . "\n";
+
+echo 'User last name: ' . $current_user-&gt;user_lastname . "\n";
+
+echo 'User display name: ' . $current_user-&gt;display_name . "\n";
+
+echo 'User ID: ' . $current_user-&gt;ID . "\n";
 
 
 
-  ?>
-<body>
-<h4>Lehrperson:
-</h4>
+*/
+
+$heute=date("Y-m-d");
+?>
+
+
+<br><br>
+
+Lehrperson:
+
 <br>
 
 <?php
@@ -384,8 +472,6 @@ while( $line2= mysqli_fetch_assoc($result))
 
     $value=$line2['ID'];
 
-
-
     $isEntry= "Select Nachname, Vorname From sv_Lehrpersonen WHERE ID='$value'";
 
     $result = mysqli_query($con, $isEntry);
@@ -403,35 +489,31 @@ while( $line2= mysqli_fetch_assoc($result))
     }
 
 
-
-
-
-
-
-   
-
-
-
     echo '<input  id="lehrer1" name="lehrer1" readonly="readonly" type="text" value="'.$Vorname .' '.$Name .' ID:'. $value .'" />' ;
 
     $Lehrer=$Vorname .' '.$Name .' ID:'. $value;
+	
+	echo '<input  id="lehrer" name="lehrer" readonly="readonly" type="text" value="'. $value .'" />' ;
+
 
 }
-echo '<input  id="lehrer" name="lehrer" type="hidden" readonly="readonly" type="text" value="'.$value.'" />' ;
 
+
+
+		  $isEntry = "Select * From sv_Settings ";
+$result = mysqli_query($con, $isEntry);
+
+    while ($line1 = mysqli_fetch_array($result)) {
+
+        $semDB=$line1['Semesterkuerzel'];
+
+    }
 
 ?>
 
 <br><br>
-   
-
-        
-
-	
 
 
-	<html>
-		
 		</script>
 
 
@@ -745,6 +827,73 @@ Gewichtung:        <input id="Gewichtunglb1" readonly><br><br>
 	</div>
 </div>
 
+	<br><br>
+Kursname:
+<br>
+ 
+<select id="Kursname" name="Kursname" required="required"  onchange="tableshow1(this.value)">
+
+   <?php
+
+    include 'db.php';
+
+    $lp='sv_Lehrpersonen';
+
+    preg_match("/:(.*)/", $Lehrer, $output_array);
+
+    $Lehrer=$output_array[1];
+
+
+
+    $y=0;
+
+
+
+
+
+
+
+    $isEntry= "Select Kurs1, Kurs2, Kurs3, Kurs4, Kurs5, Kurs6, Kurs7, Kurs8, Kurs9,Kurs10,Kurs11,Kurs12,Kurs13,Kurs14,Kurs15,Kurs16,Kurs17, Kurs18, Kurs19, Kurs20, Kurs21, Kurs22, Kurs23, Kurs24, Kurs25,Kurs26,Kurs27,Kurs28,Kurs29,Kurs30 From $lp Where ID = $Lehrer";
+
+    $result = mysqli_query($con,$isEntry);
+
+
+
+ echo "<option>" . $Kursnme . "</option>";
+
+ 
+
+
+    while( $line2= mysqli_fetch_array($result))
+
+    {
+
+        for($x = 1; $x <= 16; $x++)
+
+        {
+
+
+
+            $value = $line2['Kurs'.$x];
+
+            if ($value<>"") echo "<option>" . $value . "</option>";
+
+
+
+        }
+
+    }
+
+    ?>
+
+
+
+</select>
+	<br>
+        
+	
+	
+	<div id="tabpruefungen"></div>
 
 		
 	</body>

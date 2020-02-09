@@ -1,0 +1,15 @@
+Kursname;Kurskuerzel;Datum;Tag;Start;Ende;Lektionen;Zimmer;ZI_ID;Lehrperson;LP_ID
+Investitionsrechnen;M314;03.02.2020;Montag; 18:30:00;21:45:00;4;4;;Christen;
+IT-Services;M498;05.02.2020;Mittwoch; 18:30:00;21:45:00;4;4;;Heim;
+Investitionsrechnen;M314;10.02.2020;Montag; 18:30:00;21:45:00;4;4;;Christen;
+IT-Services;M498;12.02.2020;Mittwoch; 18:30:00;21:45:00;4;4;;Heim;
+Investitionsrechnen;M314;17.02.2020;Montag; 18:30:00;21:45:00;4;4;;Christen;
+IT-Services;M498;19.02.2020;Mittwoch; 18:30:00;21:45:00;4;4;;Heim;
+Investitionsrechnen;M314;24.02.2020;Montag; 18:30:00;21:45:00;4;4;;Christen;
+IT-Services;M498;26.02.2020;Mittwoch; 18:30:00;21:45:00;4;4;;Heim;
+Investitionsrechnen;M314;02.03.2020;Montag; 18:30:00;21:45:00;4;4;;Christen;
+IT-Services;M498;05.03.2020;Mittwoch; 18:30:00;21:45:00;4;4;;Heim;
+Investitionsrechnen;M314;09.03.2020;Montag; 18:30:00;21:45:00;4;4;;Christen;
+IT-Services ;M498;11.03.2020;Mittwoch; 18:30:00;21:45:00;4;4;;Heim;
+Investitionsrechnen Modulpruefung;M314;16.03.2020;Montag; 18:30:00;20:30:00;2;4;;Christen;
+IT-Services Modulpruefung;M498;18.03.2020;Mittwoch; 18:20:00;21:45:00;2;4;;Heim;

@@ -71,6 +71,9 @@ if(isset($_GET["q"]))
     }
 
     if ($lp_id) {
+		
+		
+
 
         $query = "INSERT INTO sv_Pruefungen (Pruefungsname,Kursname,Datum, Start, Ende, KursID, Klasse, Zimmer, Lehrperson, LP_ID, Farbe, Gewichtung,Lernziele)  VALUES ('$pruefungsname','$kursname','$datum', '$start', '$end','$kursid','$klasse','$zimmer','$lehrperson','$lp_id','$farbe','$gewichtung','$lernziele')";
 

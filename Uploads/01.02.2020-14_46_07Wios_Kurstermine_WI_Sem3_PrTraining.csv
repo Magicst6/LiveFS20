@@ -1,0 +1,16 @@
+Kursname;Kurskuerzel;Datum;Tag;Start;Ende;Lektionen;Zimmer;ZI_ID;Lehrperson;LP_ID
+Pruefungstraining WI EFA;PT20PG;15.02.2020;Samstag;09:00:00;14:45:00;6;4;;Gerzner;
+Pruefungstraining WI EFA;PT20PG;22.02.2020;Samstag;09:00:00;14:45:00;6;4;;Gerzner;
+Pruefungstraining WI EFA;PT20JG;07.03.2020;Samstag;09:00:00;14:45:00;6;4;;Giger;
+Pruefungstraining WI EFA;PT20JG;14.03.2020;Samstag;09:00:00;14:45:00;6;4;;Giger;
+Pruefungstraining WI EFA;PT20MH;21.03.2020;Samstag;09:00:00;14:45:00;6;4;;Heim;
+Pruefungstraining WI EFA;PT20MH;28.03.2020;Samstag;09:00:00;14:45:00;6;4;;Heim;
+Pruefungstraining WI EFA;PT20JG;30.03.2020;Montag;18:30:00;21:00:00;3;4;;Giger;
+Pruefungstraining WI EFA;PT20JG;01.04.2020;Mittwoch;18:30:00;21:00:00;3;4;;Giger;
+Pruefungstraining WI EFA;PT20JG;04.04.2020;Samstag;09:00:00;14:45:00;6;4;;Giger;
+Simulationspruefung WI EFA;PT20Sim;20.04.2020;Montag;18:30:00;21:30:00;3;4;;Altwegg;
+Simulationspruefung WI EFA;PT20Sim;22.04.2020;Mittwoch;18:30:00;21:30:00;3;4;;Altwegg;
+Simulationspruefung WI EFA;PT20Sim;25.04.2020;Samstag;08:00:00;15:00:00;8;4;;Altwegg;
+Pruefungstraining WI EFA;PT20MH;29.04.2020;Mittwoch;18:30:00;21:45:00;4;4;;Heim;
+Pruefungstraining WI EFA;PT20MH;02.05.2020;Samstag;08:30:00;11:45:00;4;4;;Heim;
+Diplomapero;DPLWI20;06.05.2020;Samstag;18:00:00;;;;;;
