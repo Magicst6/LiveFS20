@@ -75,7 +75,7 @@ if( $_POST['Senden'])
         echo "<script>alert('Lehrperson:".$Lehrperson." nicht bekannt oder falsch geschrieben');</script>";
         $isExisting=false;
     }
-    $isEntryLPKurse = "SELECT Kurs1, Kurs2, Kurs3, Kurs4, Kurs5, Kurs6, Kurs7, Kurs8, Kurs9,Kurs10,Kurs11,Kurs12,Kurs13,Kurs14,Kurs15,Kurs16 From sv_Lehrpersonen Where  ID='$LP_ID' ";
+    $isEntryLPKurse = "SELECT Kurs1, Kurs2, Kurs3, Kurs4, Kurs5, Kurs6, Kurs7, Kurs8, Kurs9,Kurs10,Kurs11,Kurs12,Kurs13,Kurs14,Kurs15,Kurs16,Kurs17, Kurs18, Kurs19, Kurs20, Kurs21, Kurs22, Kurs23, Kurs24, Kurs25,Kurs26,Kurs27,Kurs28,Kurs29,Kurs30 From sv_Lehrpersonen Where  ID='$LP_ID' ";
     $result = mysqli_query($con, $isEntryLPKurse);
 
 
@@ -181,9 +181,12 @@ while ($row2 = mysqli_fetch_array($result2)) {
     $ProfilReg=$output_array2[0];
     preg_match("/.itplus./", $Kursname, $output_array3);
     $KursnameReg1=$output_array3[0];
-    preg_match("/it/", $Profil1, $output_array4);
-    $ProfilReg1=$output_array4[0];
-    if ((($KursnameReg=='.fz.') and ($ProfilReg=='e')) or (($KursnameReg<>'.fz.') and ($KursnameReg1<>'.itplus.')) or (($KursnameReg1=='.itplus.') and ($ProfilReg1=='it'))) {
+           preg_match("/.it./", strtolower($Kursname), $output_array3);
+$KursnameReg2=$output_array3[0];
+preg_match("/it/", strtolower($Profil1), $output_array4);
+$ProfilReg1=$output_array4[0];
+
+if ((($KursnameReg=='.fz.') and ($ProfilReg=='e')) or (($KursnameReg<>'.fz.') and (($KursnameReg1<>'.itplus.') and ($KursnameReg2 <> '.it.'))) or ((($KursnameReg1=='.itplus.') or ($KursnameReg2 == '.it.')) and ($ProfilReg1=='it'))) {
 
         $isEntry4= "Select SchülerID, Vorname, Nachname, KursID From sv_LernenderKurs";
         $result4 = mysqli_query($con, $isEntry4);

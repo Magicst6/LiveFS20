@@ -35,7 +35,14 @@
     <script src='/wp-content/themes/structr/Page_Scripts/fullcalendar/locale-all.js'></script>
 
     <link rel='stylesheet' href='/wp-content/themes/structr/Page_Scripts/fullcalendar/fullcalendar.css' />
-	
+	<script src="https://cdn.tiny.cloud/1/p4y59yu91l1ttdi8h066ovomyunbzi9p44zqccnlmn9ly5ge/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+    <script>
+      tinymce.init({
+        selector: '#lernziele',
+		  height:600
+      });
+    </script>
 	
 
     <?php
@@ -472,7 +479,7 @@ if (str == "") {
                                     };
  
 
- var text = document.getElementById('lernziele').value;
+ var text = tinyMCE.activeEditor.getContent();
               text = text.replace(/\r/g, '!^');
 					text = text.replace(/\n/g, '~!');
 									text = text.replace(/&/g, '§§§');
@@ -720,7 +727,7 @@ if (str == "") {
 								
 		
 							
-						    document.getElementById('lernziele').value =text1;
+						     tinymce.get('lernziele').setContent(text1); 
 							
 								
 							 document.getElementById('kidhidden').value=event.kursid;
@@ -820,7 +827,7 @@ if (str == "") {
 
                                 };
 
-  var text = document.getElementById('lernziele').value;
+  var text = tinyMCE.activeEditor.getContent();
             text = text.replace(/\r/g, '!^');
 					text = text.replace(/\n/g, '~!');
 					
@@ -828,6 +835,8 @@ text = text.replace(/&/g, '§§§');
 		text = text.replace(/\+/g, '!!!!!');
 			
 			text = text.replace(/#/g, '|||||');
+										
+										alert(text);
                                 xmlhttp.open("GET", "/wp-content/themes/structr/Page_Scripts/updatePrueftermin.php?q=" + title.val() + "&k=" + startCustdate.val() + "T" + startCusttime.val() + "&g=" + endCustdate.val() + "T" + endCusttime.val()+  "&f=" + event.id  + "&kursid=" + document.getElementById('kursid').value   + "&zimmer=" + document.getElementById('zimmer').value + "&l=" + document.getElementById('lehrperson').value + "&klasse=" + document.getElementById('klasse').value + "&color=" + farbe + "&gewichtung=" + document.getElementById('gewicht').value + "&lernziele=" + text, true);
 
                                 xmlhttp.send();
@@ -1047,7 +1056,7 @@ text = text.replace(/&/g, '§§§');
 
             };
 
-             var text = document.getElementById('lernziele').value;
+            var text = tinyMCE.activeEditor.getContent();
             text = text.replace(/\r/g, '!^');
 					text = text.replace(/\n/g, '~!');
 			text = text.replace(/&/g, '§§§');
@@ -1297,7 +1306,7 @@ text = text.replace(/&/g, '§§§');
                                     };
 
 
- var text = document.getElementById('lernziele').value;
+ var text = tinyMCE.activeEditor.getContent();
               text = text.replace(/\r/g, '!^');
 					text = text.replace(/\n/g, '~!');
 								text = text.replace(/&/g, '§§§');

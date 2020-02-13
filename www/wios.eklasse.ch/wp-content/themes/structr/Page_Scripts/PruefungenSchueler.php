@@ -35,6 +35,16 @@
     <script src='/wp-content/themes/structr/Page_Scripts/fullcalendar/fullcalendar.js'></script>
 
     <script src='/wp-content/themes/structr/Page_Scripts/fullcalendar/locale-all.js'></script>
+	<script src="https://cdn.tiny.cloud/1/p4y59yu91l1ttdi8h066ovomyunbzi9p44zqccnlmn9ly5ge/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+    <script>
+      tinymce.init({
+        selector: '#lernziele',
+		  readonly : 1,
+		  menubar: false,
+		  height:600
+      });
+    </script>
 
     <?php
 	include "db.php";
@@ -709,9 +719,12 @@ while( $line2= mysqli_fetch_assoc($result))
                           var text1 = event.lernziele;
                     text1 = text1.replace( /!^/g,'\r');
 					text1 = text1.replace( /~!/g,'\n');			
-		
+		 
+								text1 = text1.replace(/§§§/g, '&');
+			text1 = text1.replace(/!!!!!/g, '+');
+			text1 = text1.replace(/\|\|\|\|\|/g, '#');
 							
-						    document.getElementById('lernziele').value =text1;
+						    tinymce.get('lernziele').setContent(text1); 
 
                                 document.getElementById('farbe').value = event.color;
 								

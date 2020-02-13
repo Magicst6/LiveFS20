@@ -189,9 +189,12 @@ while( $row5= mysqli_fetch_array($result1))
         $ProfilReg=$output_array2[0];
         preg_match("/.itplus./", $Kursname, $output_array3);
         $KursnameReg1=$output_array3[0];
-        preg_match("/it/", $Profil1, $output_array4);
-        $ProfilReg1=$output_array4[0];
-        if ((($KursnameReg=='.fz.') and ($ProfilReg=='e')) or (($KursnameReg<>'.fz.') and ($KursnameReg1<>'.itplus.')) or (($KursnameReg1=='.itplus.') and ($ProfilReg1=='it'))) {
+              preg_match("/.it./", strtolower($Kursname), $output_array3);
+$KursnameReg2=$output_array3[0];
+preg_match("/it/", strtolower($Profil1), $output_array4);
+$ProfilReg1=$output_array4[0];
+
+if ((($KursnameReg=='.fz.') and ($ProfilReg=='e')) or (($KursnameReg<>'.fz.') and (($KursnameReg1<>'.itplus.') and ($KursnameReg2 <> '.it.'))) or ((($KursnameReg1=='.itplus.') or ($KursnameReg2 == '.it.')) and ($ProfilReg1=='it'))) {
 
             $isEntry4= "Select SchülerID, Vorname, Nachname, KursID From sv_LernenderKurs";
             $result4 = mysqli_query($con, $isEntry4);

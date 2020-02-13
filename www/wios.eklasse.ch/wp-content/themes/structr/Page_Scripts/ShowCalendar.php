@@ -1383,8 +1383,9 @@ function getcolor(str1){
     </form>
 
 </div>
-
-<br>
+	
+<input name="myBtn2 id="myBtn2" type="button" value="Heutige Kurstermine als Terminboard anzeigen" onclick="window.location.href='https://wios.eklasse.ch/wp-content/themes/structr/Page_Scripts/Terminboard.php'" />
+<br><br>
 
 <input name="myBtn1" id="myBtn1" type="button" value="Mail versenden"  />
 <br><br>

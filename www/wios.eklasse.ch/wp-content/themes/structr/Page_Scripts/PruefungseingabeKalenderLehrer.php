@@ -36,7 +36,14 @@
 
     <link rel='stylesheet' href='/wp-content/themes/structr/Page_Scripts/fullcalendar/fullcalendar.css' />
 	
-	
+<script src="https://cdn.tiny.cloud/1/p4y59yu91l1ttdi8h066ovomyunbzi9p44zqccnlmn9ly5ge/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+    <script>
+      tinymce.init({
+        selector: '#lernziele',
+		  height: 600
+      });
+    </script>
 
     <?php
 
@@ -408,7 +415,7 @@ $IDLP=$value;
                                     };
 
 
- var text = document.getElementById('lernziele').value;
+var text = tinyMCE.activeEditor.getContent();
                   text = text.replace(/\r/g, '!^');
 					text = text.replace(/\n/g, '~!');
 text = text.replace(/&/g, '§§§');
@@ -653,6 +660,7 @@ text = text.replace(/&/g, '§§§');
                             
 							
                           var text1 = event.lernziele;
+							var text1 = event.lernziele;
                   text1 = text1.replace( /!^/g,'\r');
 					text1 = text1.replace( /~!/g,'\n');	
 								text1 = text1.replace(/§§§/g, '&');
@@ -661,7 +669,7 @@ text = text.replace(/&/g, '§§§');
 			
 		
 							
-						    document.getElementById('lernziele').value =text1;
+						    tinymce.get('lernziele').setContent(text1); 
 
 								
 							
@@ -758,7 +766,7 @@ text = text.replace(/&/g, '§§§');
 
                                 };
 
- var text = document.getElementById('lernziele').value;
+ var text = tinyMCE.activeEditor.getContent();
               text = text.replace(/\r/g, '!^');
 					text = text.replace(/\n/g, '~!');	
 								text = text.replace(/&/g, '§§§');
@@ -988,7 +996,7 @@ text = text.replace(/&/g, '§§§');
             };
 
 
- var text = document.getElementById('lernziele').value;
+ var text = tinyMCE.activeEditor.getContent();
               text = text.replace(/\r/g, '!^');
 					text = text.replace(/\n/g, '~!');	
 				text = text.replace(/&/g, '§§§');
@@ -1237,7 +1245,7 @@ text = text.replace(/&/g, '§§§');
 
 
 
- var text = document.getElementById('lernziele').value;
+ var text = tinyMCE.activeEditor.getContent();
                text = text.replace(/\r/g, '!^');
 					text = text.replace(/\n/g, '~!');	
 					text = text.replace(/&/g, '§§§');
@@ -1400,7 +1408,7 @@ text = text.replace(/&/g, '§§§');
       <td style="width: 150px; font-size: 12px; font-weight: bold;">Kurs:</td>
       <td colspan="2"><select type="text" name="kursid" id="kursid" value=""   onChange="getcolor(this.value)" class="text ui-widget-content ui-corner-all" >
 	<?	  	
-$isEntrylp= "Select Kurs1, Kurs2, Kurs3, Kurs4, Kurs5, Kurs6, Kurs7, Kurs8, Kurs9,Kurs10,Kurs11,Kurs12,Kurs13,Kurs14,Kurs15,Kurs16 From sv_Lehrpersonen Where ID = '$IDLP'";
+$isEntrylp= "Select Kurs1, Kurs2, Kurs3, Kurs4, Kurs5, Kurs6, Kurs7, Kurs8, Kurs9,Kurs10,Kurs11,Kurs12,Kurs13,Kurs14,Kurs15,Kurs16,Kurs17, Kurs18, Kurs19, Kurs20, Kurs21, Kurs22, Kurs23, Kurs24, Kurs25,Kurs26,Kurs27,Kurs28,Kurs29,Kurs30 From sv_Lehrpersonen Where ID = '$IDLP'";
 $resultlp = mysqli_query($con,$isEntrylp);
 
 
