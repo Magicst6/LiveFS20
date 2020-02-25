@@ -64,7 +64,7 @@ $c=0;
 
        
 
-            $isEntry1 = "Select * From $notenArch where KursID='$Kursname' and SchuelerID='$ID' Order by Datum asc ";
+            $isEntry1 = "Select * From $notenArch where KursID='$Kursname' and SchuelerID='$ID'   ";
         
 
 
@@ -80,8 +80,9 @@ $c=0;
 		$data11 = null;
     while ($line2 = mysqli_fetch_array($result1)) {
 		if ($a<9){
-		$a++;
 		
+		
+			$a++;
 					$Dateb = "Datum"; 
 					$Noteb = "Note";
 					$Gewb = "Gewichtung";
@@ -159,6 +160,7 @@ $c=0;
         break;
 }
 	
+		
 		}
 		}
     }

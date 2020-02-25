@@ -1,7 +1,7 @@
 <? 
 	include "db.php";
 	$heute= date("Y-m-d");
-    //$heute= '2020-02-18';
+    //$heute= '2020-03-02';
 	
 	$isEntry = "SELECT * From sv_KurseAll Where Datum='$heute' Order by Start asc";
 
@@ -12,8 +12,13 @@ $z=0;
 
         {
 			$z++;
+		
 		}
-	$height=960/$z;
+	$height=850/$z;
+
+if ($height > 90){
+	$height=90;
+}
 	?>
 
 
@@ -139,16 +144,17 @@ h2 small {
 <? 
 	include "db.php";
 	$heute= date("Y-m-d");
-	//$heute= '2020-02-18';
+	//$heute= '2020-03-02';
 	
 	$isEntry = "SELECT * From sv_KurseAll Where Datum='$heute' Order by Start asc";
 
         $result = mysqli_query($con,$isEntry);
-
+$t=0;
 
         while( $value= mysqli_fetch_array($result))
 
         {
+			$t++;
 			$farbe=$value['Farbe'];
 			$Kursname=$value['Kursname'];
 			$Start=$value['Start'];
@@ -164,15 +170,17 @@ h2 small {
 				$farbe='#3483eb';
 			}
 			
-            if ($farbe=='#FFFFFF'){
+            
 				
 				$tcolor='#000000';
+			if ($t % 2 != 0){
+			$bcolor='#F2F2F2';
 			}
-			else{
-				$tcolor='#FFFFFF';
-			}
+	else{
+		$bcolor='#81BEF7';
+	}
 			
-			echo '<li class="table-row" style="background-color: '.$farbe.';color:'.$tcolor.'";>';
+			echo '<li class="table-row" style="border: 5px solid '.$farbe.'; line-height: 1.8em;color:'.$tcolor.';background-color:'.$bcolor.'";>';
             echo '<div class="col col-1" data-label="Kursname">'.$Kursname.'</div>';
             echo '<div class="col col-2" data-label="Start">'.$Start.'</div>';
 			echo '<div class="col col-3" data-label="Ende">'.$Ende.'</div>';

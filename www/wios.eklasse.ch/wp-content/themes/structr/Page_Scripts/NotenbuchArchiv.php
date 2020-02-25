@@ -523,8 +523,9 @@ tableshow();
 		}
 
 function neueNote( data ) {
-			 document.getElementById("Schuelerlb1").value=data['Vorname'] +' '+data['Nachname'];
-				document.getElementById("Kurslb1").value = document.getElementById("Kursname").value; 
+
+			 document.getElementById("Schuelerlb2").value=data['Vorname'] +' '+data['Nachname'];
+				document.getElementById("Kurslb2").value = document.getElementById("Kursname").value; 
 
 			 document.getElementById("schid").value=data['IDSchueler'];
 				document.getElementById("myModal2").style.display = "block"; 
@@ -1323,8 +1324,8 @@ while ($line1 = mysqli_fetch_array($result)) {
     <div class="modal-content">
        
 
-Schüler:     <input id="Schuelerlb1" readonly>                       
-Kurs:        <input id="Kurslb1" readonly><br><br>
+Schüler:     <input id="Schuelerlb2" readonly>                       
+Kurs:        <input id="Kurslb2" readonly><br><br>
             
           
 
@@ -1551,6 +1552,7 @@ Kurs:        <input id="Kurslb1" readonly><br><br>
             data: {
               'SchIDnr': str,
 				'KID': document . getElementById( "Kursname" ) . value, 
+				'UID': 1, 
 				'sem': document . getElementById( "Semester" ) . value 
 				
 			
@@ -1616,7 +1618,8 @@ Kurs:        <input id="Kurslb1" readonly><br><br>
             type: 'POST',
             data: {
                   'SchIDnr': str,
-					'KID': document . getElementById( "Kursname" ) . value, 
+					'KID': document . getElementById( "Kursname" ) . value,
+				'UID': 1, 
 				'sem': document . getElementById( "Semester" ) . value 
 				
 			

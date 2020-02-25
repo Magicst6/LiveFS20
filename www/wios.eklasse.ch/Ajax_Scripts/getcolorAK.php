@@ -24,7 +24,7 @@ if($color==""){
 echo '<input name="farbe" id="farbe" type="color" value='.$farbe.'>';
 }
    else{ 
-	   echo '<input name="farbe" id="farbe" type="color" value="#'.$color.'">';
+	   echo '<input name="farbe" id="farbe" type="color" value="'.$farbe.'">';
    }
 ?>
 

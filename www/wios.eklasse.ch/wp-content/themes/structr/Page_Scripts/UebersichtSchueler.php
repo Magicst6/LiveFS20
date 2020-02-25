@@ -125,7 +125,7 @@ $sel32= '") Group by KursID';
 
 
 
-$selecty='Select Pruefungsname,Datum As Prüfungsdatum, Start,Ende,Zimmer,Gewichtung,KursID from sv_Pruefungen where KursID  in (Select KursID from sv_LernenderKurs where SchülerID="';
+$selecty='Select Pruefungsname,Datum As Prüfungsdatum, Start,Ende,Zimmer,Gewichtung,KursID,Kommentar from sv_Pruefungen where KursID  in (Select KursID from sv_LernenderKurs where SchülerID="';
  $sel1=$value;
 		
 $sely2= '")';

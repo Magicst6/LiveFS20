@@ -41,7 +41,7 @@ if ($semester==$semDB){
 
 }
 
-
+ 
 
     $result = mysqli_query($con, $isEntry);
     $events = array();
@@ -64,7 +64,11 @@ $c=0;
 			);
 
         if ($semester==$semDB){
-            $isEntry1 = "Select * From sv_Noten where KursID='$Kursname' and SchuelerID='$ID'  ";
+            $isEntry1 = "Select * From sv_Noten where KursID='$Kursname' and SchuelerID='$ID' ";
+			
+			
+			
+			
         } else{
 
             $isEntry1 = "Select * From $notenArch where KursID='$Kursname' and SchuelerID='$ID'  ";
@@ -84,8 +88,9 @@ $c=0;
 		$data11 = null;
     while ($line2 = mysqli_fetch_array($result1)) {
 		if ($a<9){
-		$a++;
 		
+		
+			$a++;
 					$Dateb = "Datum"; 
 					$Noteb = "Note";
 					$Gewb = "Gewichtung";
@@ -123,6 +128,7 @@ $c=0;
 				'data' . $a
 			} );
 		}
+		
 		
 		}
 		

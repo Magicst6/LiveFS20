@@ -981,7 +981,7 @@ while( $line2= mysqli_fetch_assoc($result))
 
 }
 
-
+ echo '<input  id="lehrerID" name="lehrer" readonly="readonly" type="hidden" value="'. $value .'" />' ;
 
 		  $isEntry = "Select * From sv_Settings ";
 $result = mysqli_query($con, $isEntry);
@@ -1310,6 +1310,8 @@ Kurs:        <input id="Kurslb1" readonly><br><br>
 	}
 	
 		function loadeditor(str){	
+			
+			
 		
     editor = new $.fn.dataTable.Editor( {
         ajax: {
@@ -1317,7 +1319,9 @@ Kurs:        <input id="Kurslb1" readonly><br><br>
             type: 'POST',
             data: {
               'SchIDnr': str,
-				'KID': document . getElementById( "Kursname" ) . value 
+				'KID': document . getElementById( "Kursname" ) . value ,
+				'UID': document . getElementById( "lehrerID" ) . value 
+					
 				
 			
 			}
@@ -1382,8 +1386,8 @@ Kurs:        <input id="Kurslb1" readonly><br><br>
             type: 'POST',
             data: {
                   'SchIDnr': str,
-				'KID': document . getElementById( "Kursname" ) . value 
-				
+				'KID': document . getElementById( "Kursname" ) . value ,
+				'UID': document . getElementById( "lehrerID" ) . value 
 			
 			}
         }, 

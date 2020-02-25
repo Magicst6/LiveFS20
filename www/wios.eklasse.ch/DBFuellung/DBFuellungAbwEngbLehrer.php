@@ -118,7 +118,7 @@ $Update=1;
 
 if ($Update==0){
 
-$sql_befehl = "INSERT INTO sv_AbwesenheitenKompakt (Klasse, Kursname, SchülerID, Datum, Kommentar, Abwesenheitsdauer, Nachname, Vorname) VALUES ('$Klassenname','$Kursname', '$ID', '$Datum', '$Kommentar','$Dauer', '$Nachname', '$Vorname')";
+$sql_befehl = "INSERT INTO sv_AbwesenheitenKompakt (Klasse, Kursname, SchülerID, Datum, Kommentar, Abwesenheitsdauer, Nachname, Vorname,Lehrer) VALUES ('$Klassenname','$Kursname', '$ID', '$Datum', '$Kommentar','$Dauer', '$Nachname', '$Vorname','$Lehrer')";
 
 //echo $sql_befehl1;
 
@@ -134,7 +134,7 @@ $sql_befehl = "UPDATE sv_AbwesenheitenKompakt SET Kommentar='', Abwesenheitsdaue
 
 else{
 
-$sql_befehl = "UPDATE sv_AbwesenheitenKompakt SET Kommentar='$Kommentar', Abwesenheitsdauer='$Dauer' Where Kursname='$Kursname' and Datum='$Datum' and SchülerID='$ID' ";
+$sql_befehl = "UPDATE sv_AbwesenheitenKompakt SET Kommentar='$Kommentar', Abwesenheitsdauer='$Dauer',Lehrer='$Lehrer' Where Kursname='$Kursname' and Datum='$Datum' and SchülerID='$ID'   ";
 
 }
 

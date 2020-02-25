@@ -18,7 +18,8 @@ include 'db.php';
 
 $Kursnme= $_GET['g'];
 $datum=$_GET['h'];
-	$Semester=$_GET['sem'];
+$Semester=$_GET['sem'];
+	
 ?>
 
 
@@ -264,11 +265,12 @@ $LM=$Semester.'_LernendeModule';
 $Noten=$Semester.'_Noten';
 $LK=$Semester.'_LernenderKurs';
 	 $Pruefungsname=$_GET['i'];
-	  $isEntry = "SELECT Kommentar,Gewichtung From $pruefungen Where Pruefungsname='$Pruefungsname' and Datum='$datum' and KursID='$Kursnme' ";
+	  $isEntry = "SELECT Kommentar,Gewichtung,Start From $pruefungen Where Pruefungsname='$Pruefungsname' and Datum='$datum' and KursID='$Kursnme' ";
     $result = mysqli_query($con, $isEntry);
     $y = 0;
     while ($value1 = mysqli_fetch_array($result)) {
 		$Comment=$value1['Kommentar'];
+		$Start=$value1['Start'];
 	}
 
  $isEntry2 = "Select Klasse From $kurse Where KursID='$Kursnme' ";
@@ -277,10 +279,9 @@ $LK=$Semester.'_LernenderKurs';
     while ($value2 = mysqli_fetch_array($result2)) {
 		$Klasse=$value2['Klasse'];
 	}
-	?>
-	 Kommentar zur Prüfung:
-     <textarea name="Comment"><?php echo $Comment;?></textarea>
-<?php
+	if ($Start<date("Y-m-d H:i:s")){
+	echo ' Kommentar zur Prüfung:';
+    echo ' <textarea name="Comment"> '.$Comment.'</textarea>';
 if ($Kursnme<>'' && $Kursnme<>"-Select-") {
     
     echo '<br>';
@@ -290,7 +291,7 @@ if ($Kursnme<>'' && $Kursnme<>"-Select-") {
 
     echo '<br>';
 
-    $isEntry = "SELECT Name, Vorname, ID,Profil  From $LM Where Modul1='$Klasse' or Modul2='$Klasse' or Modul3='$Klasse' or Modul4='$Klasse' or Modul5='$Klasse' or Modul6='$Klasse' or Modul7='$Klasse' or Modul8='$Klasse' or Modul9='$Klasse' or Modul10='$Klasse' or Modul11='$Klasse' or Modul12='$Klasse'  Order By Name asc";
+    $isEntry = "SELECT Name, Vorname, ID,Profil From $LM Where Modul1='$Klasse' or Modul2='$Klasse' or Modul3='$Klasse' or Modul4='$Klasse' or Modul5='$Klasse' or Modul6='$Klasse' or Modul7='$Klasse' or Modul8='$Klasse' or Modul9='$Klasse' or Modul10='$Klasse' or Modul11='$Klasse' or Modul12='$Klasse'  Order By Name asc";
     $result = mysqli_query($con, $isEntry);
     
     while ($value1 = mysqli_fetch_array($result)) {
@@ -307,14 +308,40 @@ if ($Kursnme<>'' && $Kursnme<>"-Select-") {
 	
 	if (($value2['Nachname']==$value1['Name']) and ($value2['Vorname']==$value1['Vorname']))
 	{
-	
-	 
-	
-
-
-            $isEntry1 = "SELECT Note, Datum,SchuelerID From $Noten Where Name='$Pruefungsname' and KursID='$Kursnme' and SchuelerID='$ID'  ";
+	 $isEntry1 = "SELECT Zeit From sv_Noten Where Name='$Pruefungsname' and KursID='$Kursnme' and SchuelerID='$ID' ORDER BY Zeit ASC ";
 
             $result1 = mysqli_query($con, $isEntry1);
+		
+		$Zeit='0000-00-00 00:00:00';
+            while ($value3 = mysqli_fetch_array($result1)) {
+			
+			if ($value3['Zeit']>$Zeit  )
+			{
+			       
+				$Zeit=$value3['Zeit'];
+				
+			}
+			
+				
+			}
+		
+
+	
+if ($Zeit=='0000-00-00 00:00:00'){
+
+            $isEntry1 = "SELECT Note, Datum,SchuelerID From sv_Noten Where Name='$Pruefungsname' and KursID='$Kursnme' and SchuelerID='$ID'   ORDER BY Zeit ASC ";
+}
+		
+		else 
+
+{
+	$isEntry1 = "SELECT Note, Datum,SchuelerID From sv_Noten Where Name='$Pruefungsname' and KursID='$Kursnme' and SchuelerID='$ID' and  Zeit='$Zeit'  ORDER BY Zeit ASC ";
+	}
+
+
+            $result1 = mysqli_query($con, $isEntry1);
+		
+		
 
             while ($value3 = mysqli_fetch_array($result1)) {
 
@@ -365,6 +392,6 @@ if ($Kursnme<>'' && $Kursnme<>"-Select-") {
 
 mysqli_close($con);
 
+ echo  ' <input name="Senden" type="submit" value="Senden" onclick="checkKurs(Kursnm.value)" />';
+	}
 ?>
-
-    <input name="Senden" type="submit" value="Senden" onclick="checkKurs(Kursnm.value)" />

@@ -836,7 +836,7 @@ text = text.replace(/&/g, '§§§');
 			
 			text = text.replace(/#/g, '|||||');
 										
-										alert(text);
+										
                                 xmlhttp.open("GET", "/wp-content/themes/structr/Page_Scripts/updatePrueftermin.php?q=" + title.val() + "&k=" + startCustdate.val() + "T" + startCusttime.val() + "&g=" + endCustdate.val() + "T" + endCusttime.val()+  "&f=" + event.id  + "&kursid=" + document.getElementById('kursid').value   + "&zimmer=" + document.getElementById('zimmer').value + "&l=" + document.getElementById('lehrperson').value + "&klasse=" + document.getElementById('klasse').value + "&color=" + farbe + "&gewichtung=" + document.getElementById('gewicht').value + "&lernziele=" + text, true);
 
                                 xmlhttp.send();

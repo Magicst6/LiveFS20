@@ -1,35 +1,38 @@
 
 <html>
-<head>
+
 
 	
+	<head>
+
+
+
 	<link rel="stylesheet" type="text/css" href="/wp-content/themes/structr/Page_Scripts/DataTables-1.10.19/media/css/jquery.dataTables.css">
 	<link rel="stylesheet" type="text/css" href="/wp-content/themes/structr/Page_Scripts/DataTables-1.10.19/examples/resources/syntax/shCore.css">
-		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
-	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css">
-<!--	<link rel="stylesheet" type="text/css" href="/wp-content/themes/structr/Page_Scripts/DataTables-1.10.19/examples/resources/demo.css">-->
+	<link rel="stylesheet" type="text/css" href="/wp-content/themes/structr/Page_Scripts/DataTablesEditor/css/editor.dataTables.min.css">
+	<!--	<link rel="stylesheet" type="text/css" href="/wp-content/themes/structr/Page_Scripts/DataTables-1.10.19/examples/resources/demo.css">-->
 	<style type="text/css" class="init">
-	
+
 	</style>
-	
-	
 	<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 	<script type="text/javascript" language="javascript" src="/wp-content/themes/structr/Page_Scripts/DataTables-1.10.19/media/js/jquery.dataTables.js"></script>
 	<script type="text/javascript" language="javascript" src="/wp-content/themes/structr/Page_Scripts/DataTables-1.10.19/examples/resources/syntax/shCore.js"></script>
 	<script type="text/javascript" language="javascript" src="/wp-content/themes/structr/Page_Scripts/DataTables-1.10.19/examples/resources/demo.js"></script>
-	<script type="text/javascript" language="javascript" class="init"></script>
-	
-		<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
-	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" language="javascript" src="/wp-content/themes/structr/Page_Scripts/DataTablesEditor/js/dataTables.editor.min.js"></script>
 	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
 	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.flash.min.js"></script>
-	<script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-	<script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-	<script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
-	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/select/1.3.0/js/dataTables.select.min.js"></script>
 	
+	
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+
+
+	
+	<script type="text/javascript" language="javascript" class="init">
+	</script>
 </head>
+
 <!--
 			<div class="demo-html width=50%"></div>
 			<table id="example" class="display" style="width:50%">
@@ -47,151 +50,123 @@
 </html>-->
 	
 	<script>
-	 var table;
-		var table1;
-	$(document).ready(function() {
-  
- 
-	//var data= [{"Note":"6","Name":"dsgs","Gewichtung":"0","Datum":"2019-06-16"},{"Note":"2","Name":"dsgs","Gewichtung":"0","Datum":"2019-06-16"},{"Note":"3.7","Name":"dsgs","Gewichtung":"25","Datum":"2019-06-16"}]  ;
 	
- 
-  
- // function format (data) {
-//	  var i;  
-//	  var note=null;
-//	  
-//	  for(i=1; i<10; i++){
-//		var Notedt= data["Note"+i];
-//		var  Namedt=data["Name"+i];
-//		var  Gewichtungdt= data["Gewichtung"+i];
-//		var  Datumdt=data["Datum"+i];
-//		 
-//		if ((Notedt)>1 && Notedt<=6){
-//	  var z=null;
-//	 var z= '<div class="details-container"><table cellpadding="5" cellspacing="0" border="0" class="details-table">'
-//            
-//		  +'<tr>'+
-//                  '<td class="title">Note'+i+':</td>'+
-//                  '<td>'+Notedt+'</td>'+
-//		     '<td class="title">Notenname:</td>'+
-//		  '<td>'+Namedt+'</td>'+
-//		    '<td class="title">Gewichtung:</td>'+
-//		   '<td>'+Gewichtungdt+'</td>'+
-//		   '<td class="title">Datum:</td>'+
-//		   '<td>'+Datumdt+'</td></tr>'+
-//			 
-//          '</table>'+
-//     
-//
-//		    '</div>';
-//		if (note==null){
-//	       note=z;
-//		}
-//			else note=note+z;
-//		  }
-//		  
-//  }
-//	  
-//	  return note;
-//  };
-//  
-		var new_url= "/wp-content/themes/structr/Page_Scripts/GetAbwesenheitenKompakt_Archiv.php?q="+document.getElementById("Semester").value;
-		//	var new_url1= "/wp-content/themes/structr/Page_Scripts/GetLernende_Archiv.php?q="+document.getElementById("Semester").value;
-                   
-		
-      $.fn.dataTable.ext.errMode = 'throw';
-  table = $('.datatables').DataTable({
-	      dom: 'lBfrtip',
-        buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
-        ],
-      
-	
-	    ajax: {
-			
-			url: new_url,
-			
-            dataSrc: ""
-			
-        },
-    columns : [
-      {
-        className      : 'details-control',
-        defaultContent : '',
-        data           : null,
-        orderable      : false
-      },
-      {data : 'Klasse'},
-		{data : 'Kursname'},
-		{data : 'Datum'},
-		{data : 'Kommentar'},
-		{data : 'KommentVer'},
-		{data : 'Abwesenheitsdauer'},
-		{data : 'Nachname'},
-		{data : 'Vorname'},
-		{data : 'Lehrer'},
-		{data : 'Entschuldigt'}
-		
-			 
-			
-	
-    
-			
-		
-    ],
-    
-  
-  });
-
-    });
-
+  var editor; // use a global for the submit and return data rendering in the examples
+ var table2;
+	var table1;
+	var table;
   function loadtable(){
-        var new_url= "/wp-content/themes/structr/Page_Scripts/GetAbwesenheitenKompakt_Archiv.php?q="+document.getElementById("Semester").value;
-        //	var new_url1= "/wp-content/themes/structr/Page_Scripts/GetLernende_Archiv.php?q="+document.getElementById("Semester").value;
+    
 
 
-        $.fn.dataTable.ext.errMode = 'throw';
-        table = $('.datatables').DataTable({
-            dom: 'lBfrtip',
-            buttons: [
-                'copy', 'csv', 'excel', 'pdf', 'print'
-            ],
-
-
-            ajax: {
-
-                url: new_url,
-
-                dataSrc: ""
-
+    editor = new $.fn.dataTable.Editor( {
+        ajax: { url: "/wp-content/themes/structr/Page_Scripts/getAbwEdit.php",
+            type: 'POST',
+            data: {
+                  
+				
+				'sem': document . getElementById( "Semester" ) . value 
+			
+			}
+        }, 
+        table: ".datatables",
+        fields: [ 
+               
+			
+			 {
+                label: "Klasse:",
+                name: "Klasse"
             },
-            columns : [
-                {
-                    className      : 'details-control',
-                    defaultContent : '',
-                    data           : null,
-                    orderable      : false
-                },
-                {data : 'Klasse'},
-                {data : 'Kursname'},
-                {data : 'Datum'},
-                {data : 'Kommentar'},
-                {data : 'KommentVer'},
-                {data : 'Abwesenheitsdauer'},
-                {data : 'Nachname'},
-                {data : 'Vorname'},
-                {data : 'Lehrer'},
-                {data : 'Entschuldigt'}
+			{
+                label: "Kursname:",
+                name: "Kursname"
+            }, {
+                label: "Datum:",
+                name: "Datum",
+				type: "date"
+            },
+			{
+                label: "Kommentar:",
+                name: "Kommentar"
+            }, {
+                label: "KommentVerw:",
+                name: "KommentVerw"
+            },
+			{
+                label: "Abwesenheitsdauer:",
+                name: "Abwesenheitsdauer"
+            }, {
+                label: "Nachname:",
+                name: "Nachname"
+            },
+			 {
+               label: "Vorname:",
+                name: "Vorname"
+			 }
+			, {
+                label: "Lehrer:",
+                name: "Lehrer"
+            },
+			 {
+               label: "Entschuldigt:",
+                name: "Entschuldigt"
+			 }
+        ]
+    } );
+ 
+    // Activate an inline edit on click of a table cell
+    $('.datatables').on( 'click', 'tbody td:not(:first-child)', function (e) {
+        editor.inline( this, {
+            buttons: { label: '&gt;', fn: function () { this.submit(); } }
+        } );
+    } );
+  $.fn.dataTable.ext.errMode = 'throw';
+     table2 = $('.datatables').DataTable( {
+        dom: "lBfrtip",
+        ajax:     { 
+			url: "/wp-content/themes/structr/Page_Scripts/getAbwEdit.php",
+            type: 'POST',
+            data: {
+                  
+				
+				'sem': document . getElementById( "Semester" ) . value 
+			
+			}
+        }, 
+        order: [[ 1, 'asc' ]],
+        columns: [
+            {
+                data: null,
+                defaultContent: '',
+                className: 'select-checkbox',
+                orderable: false
+            },
+			
+			{ data: "Klasse"},
+			{ data: "Kursname"},
+			{ data: "Datum"},
+			{ data: "Kommentar"},
+			{ data: "KommentVerw"},
+			{ data: "Abwesenheitsdauer"},
+			{ data: "Nachname"},
+			{ data: "Vorname"},
+			{ data: "Lehrer"},
+			{ data: "Entschuldigt"}
+           
+          
+        ],
+        select: {
+            style:    'os',
+            selector: 'td:first-child'
+        },
+        buttons: [
+            { extend: "create", editor: editor, text:"Neue Abwesenheit" },
+            { extend: "edit",   editor: editor, text:"Abwesenheit bearbeiten" },
+            { extend: "remove", editor: editor, text:"Abwesenheit löschen" }
+        ]
+    } );
 
-
-
-
-
-
-
-            ],
-
-        });
+ 
         }
  
 //  $('.datatables tbody').on('click', 'td.details-control', function () {
@@ -215,14 +190,15 @@
 
 		
 function tableshow(){
-		var new_url= "/wp-content/themes/structr/Page_Scripts/GetAbwesenheitenKompakt_Archiv.php?q="+document.getElementById("Semester").value;
-	//var new_url1= "/wp-content/themes/structr/Page_Scripts/GetLernende_Archiv.php?q="+document.getElementById("Semester").value;
+	
 
-
-
-        if ( table ) {
-            table.destroy();
+        if ( table2 ) {
+            table2.destroy();
         }
+	 if ( editor ) {
+           editor.destroy();
+        }
+
 
 
 
@@ -232,7 +208,7 @@ function tableshow(){
 
 
 
-    table.ajax.url( new_url ).load();
+   
 //	table1.ajax.url( new_url1 ).load();
 }		
 		
@@ -442,7 +418,7 @@ Semester:<br>
             <th>Kursname</th>
 			<th>Datum</th>
 	        <th>Kommentar</th>
-			  <th>KommentVer</th>
+			  <th>KommentVerw</th>
             <th>Abwesenheitsdauer</th>
 			<th>Nachname</th>
 	        <th>Vorname</th>
@@ -458,19 +434,10 @@ Semester:<br>
 
 
 </form>&nbsp;
-
 <style>
-
-    body {
-        font-family:"Dosis", "Helvetica Neue", sans-serif;
-        color:#232323;
-    }
-
-    #calendar {
-        max-width: 900px;
-        margin: 0 auto;
-    }
-
-</style>
+	 button {
+          color: white;
+        }
+	</style>
 
 

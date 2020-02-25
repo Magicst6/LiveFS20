@@ -2,6 +2,12 @@
 
 <?php
 include '../Ajax_Scripts/db.php';
+
+global $current_user;
+
+get_currentuserinfo();
+
+
 if ($_POST['Senden']) {
     $Anzahl = $_POST['Schueler'];
     $Pruefungsname= $_POST['title'];
@@ -44,7 +50,14 @@ $LK=$Semester.'_LernenderKurs';
            
                  $Update = 0;
                 
-				
+					global $current_user;
+
+                    get_currentuserinfo();
+					
+					$User_ID =$current_user->ID;
+					
+					$Zeit= date("Y-m-d H:i:s");
+                   
 				
                 $isEntry1 = "SELECT  Datum,Name From $Noten where KursID='$Kursname' and SchuelerID='$ID' ";
                 $result1 = mysqli_query($con, $isEntry1);
@@ -57,20 +70,20 @@ $LK=$Semester.'_LernenderKurs';
                     $NameAK = $value1['Name'];
                     echo $NameAK;
                     if ( ($Datum == $DatumAK) and ($Pruefungsname == $NameAK)) {
-						   $sql_befehl = "UPDATE $Noten SET Note='$Note' Where KursID='$Kursname' and Datum='$Datum' and SchuelerID='$ID' and Name='$NameAK'";
+						   $sql_befehl = "UPDATE $Noten SET Note='$Note', User_ID='$User_ID', Zeit='$Zeit' Where KursID='$Kursname' and Datum='$Datum' and SchuelerID='$ID' and Name='$NameAK'";
                         $Update = 1;
                     }
                 }
                 
                 if ($Update == 0) {
 					
-                   
-                                $sql_befehl = "Insert Into $Noten (Note, Name,Gewichtung,Datum,KursID,SchuelerID) VALUES ('$Note','$Pruefungsname','$Gewicht','$Datum','$Kursname','$ID') ";
+                                $sql_befehl = "Insert Into $Noten (Note, Name,Gewichtung,Datum,KursID,SchuelerID,User_ID,Zeit) VALUES ('$Note','$Pruefungsname','$Gewicht','$Datum','$Kursname','$ID','$User_ID','$Zeit') ";
                               
                            
                         }
 
                     
+                
                 
 
 //echo $sql_befehl1;

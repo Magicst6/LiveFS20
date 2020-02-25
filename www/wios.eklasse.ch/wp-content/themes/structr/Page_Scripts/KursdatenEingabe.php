@@ -185,14 +185,14 @@ $result = mysqli_query($con, $isEntry);
         if ($semakt==$semDB)
 		{
 
-        echo "<tr>";
-        echo '<td><input name="ID1' . $y . '" style="width: 100px" type="text"  value=' . $ID . '  readonly></td>';
-        echo '<td><input name="KursID1' . $y . '" style="width: 240px" type="text"  value=' . $KursID . '  required="required"  ></td>';
-        echo '<td><input name="Kursname1' . $y . '" style="width: 240px" required="required" type="text" value=' . $Kursname . '    ></td>';
-        echo '<td><input name="Startdatum1' . $y . '" type="date" style="width: 100px" value=' . $Startdatum . ' required="required" ></td>';
-        echo '<td><input name="Enddatum1' . $y . '" type="date" style="width: 240px" value=' . $Enddatum . ' required="required" ></td>';
-        echo '<td><input name="Zimmer1' . $y . '" type="text" style="width: 240px" value=' . $Zimmer . '  ></td>';
-        echo '<td><input name="Uhrzeit1' . $y . '"  required="required" type="text" style="width: 240px" value=' . $Uhrzeit . '  ></td>';
+         echo "<tr>";
+        echo '<td><input name="ID1' . $y . '" style="width: 100px" type="text"  value="' . $ID . '"  readonly></td>';
+        echo '<td><input name="KursID1' . $y . '" style="width: 240px" type="text"  value="' . $KursID . '"  required="required"  ></td>';
+        echo '<td><input name="Kursname1' . $y . '" style="width: 240px" required="required" type="text" value="' . $Kursname . '"    ></td>';
+        echo '<td><input name="Startdatum1' . $y . '" type="date" style="width: 100px" value="' . $Startdatum . '" required="required" ></td>';
+        echo '<td><input name="Enddatum1' . $y . '" type="date" style="width: 240px" value="' . $Enddatum . '" required="required" ></td>';
+        echo '<td><input name="Zimmer1' . $y . '" type="text" style="width: 240px" value="' . $Zimmer . '"  ></td>';
+        echo '<td><input name="Uhrzeit1' . $y . '"  required="required" type="text" style="width: 240px" value="' . $Uhrzeit . '"  ></td>';
 
 
 

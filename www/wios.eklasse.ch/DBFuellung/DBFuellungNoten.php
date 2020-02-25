@@ -39,6 +39,14 @@ if ($_POST['Senden']) {
                  $Update = 0;
                 
 				
+					global $current_user;
+
+                    get_currentuserinfo();
+					
+					$User_ID =$current_user->ID;
+					
+					$Zeit= date("Y-m-d H:i:s");
+                   
 				
                 $isEntry1 = "SELECT  Datum,Name From sv_Noten where KursID='$Kursname' and SchuelerID='$ID' ";
                 $result1 = mysqli_query($con, $isEntry1);
@@ -51,15 +59,14 @@ if ($_POST['Senden']) {
                     $NameAK = $value1['Name'];
                     echo $NameAK;
                     if ( ($Datum == $DatumAK) and ($Pruefungsname == $NameAK)) {
-						   $sql_befehl = "UPDATE sv_Noten SET Note='$Note' Where KursID='$Kursname' and Datum='$Datum' and SchuelerID='$ID' and Name='$NameAK'";
+						   $sql_befehl = "UPDATE sv_Noten SET Note='$Note', User_ID='$User_ID', Zeit='$Zeit' Where KursID='$Kursname' and Datum='$Datum' and SchuelerID='$ID' and Name='$NameAK'";
                         $Update = 1;
                     }
                 }
                 
                 if ($Update == 0) {
 					
-                   
-                                $sql_befehl = "Insert Into sv_Noten (Note, Name,Gewichtung,Datum,KursID,SchuelerID) VALUES ('$Note','$Pruefungsname','$Gewicht','$Datum','$Kursname','$ID') ";
+                                $sql_befehl = "Insert Into sv_Noten (Note, Name,Gewichtung,Datum,KursID,SchuelerID,User_ID,Zeit) VALUES ('$Note','$Pruefungsname','$Gewicht','$Datum','$Kursname','$ID','$User_ID','$Zeit') ";
                               
                            
                         }

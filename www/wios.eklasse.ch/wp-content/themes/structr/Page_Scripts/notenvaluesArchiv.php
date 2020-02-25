@@ -5,6 +5,11 @@ $Kursname=$_POST['KID'];
 $semester=$_POST['sem'];
 
 
+$UserID=$_POST['UID'];
+					
+					
+					$Zeit= date("Y-m-d H:i:s");
+
 	 preg_match("/:(.*)/", $Schueler, $output_array);
     $Schueler=$output_array[1];
 
@@ -55,7 +60,15 @@ Editor::inst( $db, $semester.'_Noten' )
 	 Field::inst( 'Datum' )
 	  ->validator( Validate::dateFormat( 'Y-m-d' ) )
             ->getFormatter( Format::dateSqlToFormat( 'Y-m-d' ) )
-            ->setFormatter( Format::dateFormatToSql('Y-m-d' ) )
+            ->setFormatter( Format::dateFormatToSql('Y-m-d' ) ),
+	
+		Field::inst( 'Zeit' )
+	->setValue($Zeit),
+	
+	
+	Field::inst( 'User_ID' )
+	->setValue($UserID)
+	
    
        
     )

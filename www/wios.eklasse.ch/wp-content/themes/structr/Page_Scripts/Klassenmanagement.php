@@ -395,7 +395,7 @@ var	editor1;
         include 'db.php';
 
 
-        $isEntry= "Select Klasse From sv_Lernende";
+        $isEntry= "Select Klasse From sv_Lernende order by Klasse asc";
 
         $result1 = mysqli_query($con, $isEntry);
 

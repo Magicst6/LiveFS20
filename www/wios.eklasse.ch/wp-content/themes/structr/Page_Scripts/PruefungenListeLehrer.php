@@ -493,7 +493,7 @@ while( $line2= mysqli_fetch_assoc($result))
 
     $Lehrer=$Vorname .' '.$Name .' ID:'. $value;
 	
-	echo '<input  id="lehrer" name="lehrer" readonly="readonly" type="text" value="'. $value .'" />' ;
+	echo '<input  id="lehrer" name="lehrer" readonly="readonly" type="hidden" value="'. $value .'" />' ;
 
 
 }
@@ -827,6 +827,10 @@ Gewichtung:        <input id="Gewichtunglb1" readonly><br><br>
 	</div>
 </div>
 
+	
+	
+	<br><br>
+	<h4>Für eine Notenüberbersicht der Prüfungen bitte Kurs wählen...</h4>
 	<br><br>
 Kursname:
 <br>

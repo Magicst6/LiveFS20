@@ -64,12 +64,20 @@ $c=0;
 		$isEntryUpdNull = "UPDATE sv_LernenderKurs SET Note1  = '',Note2  = '',Note3  = '',Note4  = '',Note5  = '',Note6  = '',Note7  = '',Note8  = '',Note9  = '' where SchülerID='$ID' and KursID ='$Kursname'";
 	mysqli_query( $con, $isEntryUpdNull );	
 
+		
 
-        if ($semester==$semDB){
-            $isEntry1 = "Select * From sv_Noten where KursID='$Kursname' and SchuelerID='$ID' Order by Datum asc  ";
+         if ($semester==$semDB){
+            
+			 
+			 $isEntry1 = "Select * From sv_Noten where KursID='$Kursname' and SchuelerID='$ID'   ";
+			
+			
+			
+			
         } else{
 
-            $isEntry1 = "Select * From $notenArch where KursID='$Kursname' and SchuelerID='$ID' Order by Datum asc ";
+            $isEntry1 = "Select * From $notenArch where KursID='$Kursname' and SchuelerID='$ID'  ";
+
         }
 
 
@@ -83,10 +91,17 @@ $c=0;
 	
 	$a=0;
 		$data11 = null;
-    while ($line2 = mysqli_fetch_array($result1)) {
-		if ($a<9){
-		$a++;
 		
+		
+		
+    while ($line2 = mysqli_fetch_array($result1)) {
+		
+		
+	
+		if ($a<9){
+		
+				
+		$a++;
 					$Dateb = "Datum"; 
 					$Noteb = "Note";
 					$Gewb = "Gewichtung";
@@ -165,8 +180,9 @@ $c=0;
 }
 	
 		}
-		}
+		
     }
+	}
 		
 			do {
 				$a++;
@@ -200,6 +216,7 @@ $c=0;
 		$data[] = array_merge( $data0,$data11,$data10,$data12);
 			
 	}
+	
 
 }
 $KN=$Kursname;

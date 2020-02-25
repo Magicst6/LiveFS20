@@ -56,8 +56,8 @@ include 'db.php';
             type: 'POST',
             data: {
               'SchID': document . getElementById( "Schueler" ) . value,
-				'KID':  document.getElementById( "Kursname" ).value
-				
+				'KID':  document.getElementById( "Kursname" ).value,
+				'UID': 1
 			
 			}
         }, 
@@ -122,7 +122,8 @@ function loadtable(){
             type: 'POST',
             data: {
                   'SchID': document . getElementById( "Schueler" ) . value,
-				'KID':  document.getElementById( "Kursname" ).value
+				'KID':  document.getElementById( "Kursname" ).value,
+				'UID': 1
 				
 				
 			
