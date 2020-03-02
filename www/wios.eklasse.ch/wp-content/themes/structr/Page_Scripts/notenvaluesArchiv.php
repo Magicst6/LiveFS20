@@ -7,7 +7,7 @@ $semester=$_POST['sem'];
 
 $UserID=$_POST['UID'];
 					
-					
+				date_default_timezone_set('CET');	
 					$Zeit= date("Y-m-d H:i:s");
 
 	 preg_match("/:(.*)/", $Schueler, $output_array);

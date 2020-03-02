@@ -68,7 +68,10 @@
 				'sem': document . getElementById( "Semester" ) . value 
 			
 			}
-        }, 
+        },
+		  language: {
+            "url": "https://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/German.json"
+        },
         table: ".datatables",
         fields: [ 
                
@@ -111,7 +114,45 @@
                label: "Entschuldigt:",
                 name: "Entschuldigt"
 			 }
-        ]
+        ],
+		  i18n: {
+            remove: {
+                button: "Löschen",
+                title:  "Eintrag löschen",
+                submit: "Endgültig Löschen",
+                confirm: {
+                    _: 'Sind Sie sicher, dass Sie die %d ausgwählten Zeilen löschen wollen?',
+                    1: 'Sind Sie sicher, dass Sie die ausgewählte Zeile löschen wollen?'
+                }
+            },
+            edit: {
+                button: "Bearbeiten",
+                title:  "Eintrag bearbeiten",
+                submit: "Änderungen speichern"
+            },
+            create: {
+                button: "Neuer Eintrag",
+                title:  "Neuen Eintrag anlegen",
+                submit: "Neuen Eintrag speichern"
+            },
+            datetime: {
+                    previous: 'Zurück',
+                    next:     'Weiter',
+                    months:   [ 'Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember' ],
+                    weekdays: [ 'So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa' ],
+                    amPm:     [ 'am', 'pm' ],
+                    unknown:  '-'
+            },
+            error: {            
+                    system: "Ein Systemfehler ist aufgetreten (<a target=\"_blank\" href=\"//datatables.net/tn/12\">Für mehr Informationen</a>)."
+            },
+            multi: {
+                    title: "Mehrere Werte",         
+                    info: "Die ausgewählten Elemente enthalten verschiedene Werte für das Feld. Um alle Elemente für diess Feld auf den gleichen Wert zu setzen, klicken Sie bitte hier. Ansonsten werden die Elemente ihren jeweiligen Wert behalten.",
+                    restore: "Änderungen rückgängig machen",
+                    noMulti: "Dieses Feld kann einzeln bearbeitet werden, aber nicht als Teil einer Gruppe."
+            },
+        }      
     } );
  
     // Activate an inline edit on click of a table cell
@@ -122,6 +163,9 @@
     } );
   $.fn.dataTable.ext.errMode = 'throw';
      table2 = $('.datatables').DataTable( {
+		   "language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/German.json"
+        },
         dom: "lBfrtip",
         ajax:     { 
 			url: "/wp-content/themes/structr/Page_Scripts/getAbwEdit.php",

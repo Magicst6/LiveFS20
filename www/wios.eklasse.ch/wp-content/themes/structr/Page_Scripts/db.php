@@ -34,4 +34,21 @@ if($verbunden)
 else
     die('DB-Verbindung fehlgeschlagen! ');
 
+date_default_timezone_set('CET');
+
+global $current_user;
+
+get_currentuserinfo();
+
+$actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+$UserID=$current_user->ID;
+
+$Zeit= date("Y-m-d H:i:s");
+
+$sql_befehl = "INSERT INTO sv_Log (URL,User_ID,Datum) VALUES ('$actual_link','$UserID','$Zeit')";
+
+mysqli_query($con, $sql_befehl);
+
+                
 ?>

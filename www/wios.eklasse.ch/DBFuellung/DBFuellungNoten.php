@@ -1,6 +1,7 @@
 
 
 <?php
+date_default_timezone_set('CET');
 include '../Ajax_Scripts/db.php';
 if ($_POST['Senden']) {
     $Anzahl = $_POST['Schueler'];

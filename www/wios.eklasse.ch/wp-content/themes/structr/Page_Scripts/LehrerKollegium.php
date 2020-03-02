@@ -36,141 +36,9 @@ var editor; // use a global for the submit and return data rendering in the exam
 	var table1;
 	var table;
 $(document).ready(function() {
-    editor = new $.fn.dataTable.Editor( {
-        ajax: "/wp-content/themes/structr/Page_Scripts/getLehrpersonenEdit.php",
-        table: "#dtbl",
-        fields: [ 
-               
-			
-			{
-                label: "Vorname:",
-                name: "Vorname"
-            }, {
-                label: "Nachname:",
-                name: "Nachname"
-            }
-        ],i18n: {
-            remove: {
-                button: "Löschen",
-                title:  "Eintrag löschen",
-                submit: "Endgültig Löschen",
-                confirm: {
-                    _: 'Sind Sie sicher, dass Sie die %d ausgwählten Zeilen löschen wollen?',
-                    1: 'Sind Sie sicher, dass Sie die ausgewählte Zeile löschen wollen?'
-                }
-            },
-            edit: {
-                button: "Bearbeiten",
-                title:  "Eintrag bearbeiten",
-                submit: "Änderungen speichern"
-            },
-            create: {
-                button: "Neuer Eintrag",
-                title:  "Neuen Eintrag anlegen",
-                submit: "Neuen Eintrag speichern"
-            },
-            datetime: {
-                    previous: 'Zurück',
-                    next:     'Weiter',
-                    months:   [ 'Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember' ],
-                    weekdays: [ 'So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa' ],
-                    amPm:     [ 'am', 'pm' ],
-                    unknown:  '-'
-            },
-            error: {            
-                    system: "Ein Systemfehler ist aufgetreten (<a target=\"_blank\" href=\"//datatables.net/tn/12\">Für mehr Informationen</a>)."
-            },
-            multi: {
-                    title: "Mehrere Werte",         
-                    info: "Die ausgewählten Elemente enthalten verschiedene Werte für das Feld. Um alle Elemente für diess Feld auf den gleichen Wert zu setzen, klicken Sie bitte hier. Ansonsten werden die Elemente ihren jeweiligen Wert behalten.",
-                    restore: "Änderungen rückgängig machen",
-                    noMulti: "Dieses Feld kann einzeln bearbeitet werden, aber nicht als Teil einer Gruppe."
-            },
-        }      
-    } );
- 
-    // Activate an inline edit on click of a table cell
-    $('#dtbl').on( 'click', 'tbody td:not(:first-child)', function (e) {
-        editor.inline( this, {
-            buttons: { label: '&gt;', fn: function () { this.submit(); } }
-        } );
-    } );
-  $.fn.dataTable.ext.errMode = 'throw';
-     table2 = $('#dtbl').DataTable( {
-        dom: "lBfrtip",
-        ajax: "/wp-content/themes/structr/Page_Scripts/getLehrpersonenEdit.php",
-        order: [[ 1, 'asc' ]],
-        columns: [
-            {
-                data: null,
-                defaultContent: '',
-                className: 'select-checkbox',
-                orderable: false
-            },
-			 { data: "ID" },
-            { data: "Vorname" },
-            { data: "Nachname" },
-            { data: "User_ID" },
-            { data: "EMAIL" },
-            { data: "Loginname" }
-          
-        ],
-        select: {
-            style:    'os',
-            selector: 'td:first-child'
-        },
-        buttons: [
-            { extend: "create", editor: editor, text:"Neue Lehrperson" },
-            { extend: "edit",   editor: editor, text:"Lehrperson bearbeiten" },
-            { extend: "remove", editor: editor, text:"Lehrperson löschen" }
-        ],
-		  "language": {
-            "decimal": ",",
-            "thousands": ".",
-            "info": "Anzeige _START_ bis _END_ von _TOTAL_ Einträgen",
-            "infoEmpty": "Keine Einträge",
-            "infoPostFix": "",
-            "infoFiltered": "(gefiltert aus insgesamt _MAX_ Einträgen)",
-            "loadingRecords": "keine Daten vorhanden oder es werden Daten geladen...",
-            "lengthMenu": "Anzeigen von _MENU_ Einträgen",
-            "paginate": {
-                "first": "Erste",
-                "last": "Letzte",
-                "next": "Nächste",
-                "previous": "Zurück"
-            },
-            "processing": "Verarbeitung läuft ...",
-            "search": "Suche:",
-            "searchPlaceholder": "Suchbegriff",
-            "zeroRecords": "Keine Daten! Bitte ändern Sie Ihren Suchbegriff.",
-            "emptyTable": "Keine Daten vorhanden",
-            "aria": {
-                "sortAscending":  ": aktivieren, um Spalte aufsteigend zu sortieren",
-                "sortDescending": ": aktivieren, um Spalte absteigend zu sortieren"
-            },
-            //only works for built-in buttons, not for custom buttons
-            "buttons": {
-                "create": "Neu",
-                "edit": "Ändern",
-                "remove": "Löschen",
-                "copy": "Kopieren",
-                "csv": "CSV-Datei",
-                "excel": "Excel-Tabelle",
-                "pdf": "PDF-Dokument",
-                "print": "Drucken",
-                "colvis": "Spalten Auswahl",
-                "collection": "Auswahl",
-                "upload": "Datei auswählen...."
-            },
-            "select": {
-                "rows": {
-                    _: '%d Zeilen ausgewählt',
-                    0: 'Zeile anklicken um auszuwählen',
-                    1: 'Eine Zeile ausgewählt'
-                }
-            }
-        }            
-    } );
+	
+	
+   
 
  
 	//var data= [{"Note":"6","Name":"dsgs","Gewichtung":"0","Datum":"2019-06-16"},{"Note":"2","Name":"dsgs","Gewichtung":"0","Datum":"2019-06-16"},{"Note":"3.7","Name":"dsgs","Gewichtung":"25","Datum":"2019-06-16"}]  ;
@@ -222,17 +90,32 @@ $(document).ready(function() {
             dataSrc: ""
 			
         },
+	  
+	  
     columns : [
-      {
-        className      : 'details-control',
+        
+		 {
+        className      : '',
         defaultContent : '',
         data           : null,
         orderable      : false
       },
+      {
+        className      : 'details-control',
+        defaultContent : '',
+        data           : 'cb',
+        orderable      : false
+      },
       {data : 'Vorname'},
-		{data : 'Nachname'},
-		{data : 'EMAIL'},
-		{data : 'Loginname'}
+	  {data : 'Nachname'},
+      {data : 'EMAIL',
+		 'render': function(data, type, full, meta) {
+   return '<a href="mailto:' + full.EMAIL + '?">'+full.EMAIL+'</a>';
+  }
+		 
+		}
+		
+		
 		
 			 
 			
@@ -240,7 +123,21 @@ $(document).ready(function() {
     
 			
 		
-    ], "language": {
+    ],
+	  order : [[ 1, "asc"]],
+                    columnDefs : [
+                        {
+                            orderable : false,
+                            className : 'select-checkbox',
+                            targets : 0
+                        },
+                    ],
+                    retrieve : true,
+                    select: {
+                        style: 'os',
+                        selector: 'td:first-child'
+                    },
+	   "language": {
             "decimal": ",",
             "thousands": ".",
             "info": "Anzeige _START_ bis _END_ von _TOTAL_ Einträgen",
@@ -289,7 +186,19 @@ $(document).ready(function() {
     
   
   });
+	
+	
+     
+ 
+	
+   
+  
+
+	
+			
+			
 		
+	
  
   $('.datatables tbody').on('click', 'td.details-control', function () {
      var tr  = $(this).closest('tr'),
@@ -310,6 +219,25 @@ $(document).ready(function() {
 
 	
 } );
+	
+	
+	function sendMail() {
+     var MultiMail='';
+		
+	  var data = table.rows({selected:  true}).data();
+      
+        for (var i=0; i < data.length ;i++){
+           
+	 	MultiMail= MultiMail + data[i].EMAIL+';';
+			
+           
+        }
+		//alert (MultiMail);
+
+	window.location.href = "mailto:" +MultiMail;
+			
+		
+}
 
 </script>
 
@@ -320,19 +248,7 @@ $(document).ready(function() {
         }
 	</style>
 
-<table id="dtbl" class="display" cellspacing="0" width="100%">
-        <thead>
-            <tr>
-                <th></th>
-				<th>ID</th>
-                <th>Vorname</th>
-                <th>Nachname</th>
-                <th>User ID</th>
-                <th>Email</th>
-                <th>Loginname</th>
-            </tr>
-        </thead>
-    </table>
+
 
 
 <script>
@@ -370,134 +286,12 @@ $(document).ready(function() {
          return kurs;
      }
 
-     function loadtable(){
-
-     var new_url= "/wp-content/themes/structr/Page_Scripts/GetLehrpersonen_Archiv.php?q="+document.getElementById("Semester").value;
-     //	var new_url1= "/wp-content/themes/structr/Page_Scripts/GetLernende_Archiv.php?q="+document.getElementById("Semester").value;
-
-
-     $.fn.dataTable.ext.errMode = 'throw';
-     table = $('.datatables').DataTable({
-       
-        dom: 'lrftip',
-
-         ajax: {
-
-             url: new_url,
-
-             dataSrc: ""
-
-         },
-         columns : [
-             {
-                 className      : 'details-control',
-                 defaultContent : '',
-                 data           : null,
-                 orderable      : false
-             },
-             {data : 'Vorname'},
-             {data : 'Nachname'},
-             {data : 'EMAIL'},
-             {data : 'Loginname'}
-
-
-
-
-
-
-
-         ], "language": {
-            "decimal": ",",
-            "thousands": ".",
-            "info": "Anzeige _START_ bis _END_ von _TOTAL_ Einträgen",
-            "infoEmpty": "Keine Einträge",
-            "infoPostFix": "",
-            "infoFiltered": "(gefiltert aus insgesamt _MAX_ Einträgen)",
-            "loadingRecords": "keine Daten vorhanden oder es werden Daten geladen...",
-            "lengthMenu": "Anzeigen von _MENU_ Einträgen",
-            "paginate": {
-                "first": "Erste",
-                "last": "Letzte",
-                "next": "Nächste",
-                "previous": "Zurück"
-            },
-            "processing": "Verarbeitung läuft ...",
-            "search": "Suche:",
-            "searchPlaceholder": "Suchbegriff",
-            "zeroRecords": "Keine Daten! Bitte ändern Sie Ihren Suchbegriff.",
-            "emptyTable": "Keine Daten vorhanden",
-            "aria": {
-                "sortAscending":  ": aktivieren, um Spalte aufsteigend zu sortieren",
-                "sortDescending": ": aktivieren, um Spalte absteigend zu sortieren"
-            },
-            //only works for built-in buttons, not for custom buttons
-            "buttons": {
-                "create": "Neu",
-                "edit": "Ändern",
-                "remove": "Löschen",
-                "copy": "Kopieren",
-                "csv": "CSV-Datei",
-                "excel": "Excel-Tabelle",
-                "pdf": "PDF-Dokument",
-                "print": "Drucken",
-                "colvis": "Spalten Auswahl",
-                "collection": "Auswahl",
-                "upload": "Datei auswählen...."
-            },
-            "select": {
-                "rows": {
-                    _: '%d Zeilen ausgewählt',
-                    0: 'Zeile anklicken um auszuwählen',
-                    1: 'Eine Zeile ausgewählt'
-                }
-            }
-        }            
-
-
-     });
-
-
-     $('.datatables tbody').on('click', 'td.details-control', function () {
-         var tr  = $(this).closest('tr'),
-             row = table.row(tr);
-
-         if (row.child.isShown()) {
-             tr.next('tr').removeClass('details-row');
-             row.child.hide();
-             tr.removeClass('shown');
-         }
-         else {
-             row.child(format(row.data())).show();
-             tr.next('tr').addClass('details-row');
-             tr.addClass('shown');
-         }
-     });
-
-
-
-     
-     }
-		
-function tableshow(){
-		var new_url= "/wp-content/themes/structr/Page_Scripts/GetLehrpersonen_Archiv.php?q="+document.getElementById("Semester").value;
-	//var new_url1= "/wp-content/themes/structr/Page_Scripts/GetLernende_Archiv.php?q="+document.getElementById("Semester").value;
-
-   
- table.clear()
-		.draw();
-
-	table.ajax.url( new_url ).load();
-//	table1.ajax.url( new_url1 ).load();
-}		
-		
-		
-	</script>
-	
-	
+    
+</script>
 
 	
 	
-	</html>
+
 	<style>
 .container {
   margin-top: 15px;
@@ -650,7 +444,7 @@ $heute=date("Y-m-d");
 
 ?>
 
-<br><br>
+
 
 
 
@@ -675,13 +469,13 @@ $heute=date("Y-m-d");
 
 <input type="hidden" id="Semester" value="<? echo $Semester; ?>">
 
-<br><br>
+<button id="sendmail"  onclick="sendMail()">Mail an Auswahl senden</button>
 
 
 
-<br><br>
 
-<h4>Kurse der Lehrpersonen (mit + Liste anzeigen)</h4>
+
+<h4>mit + Liste der Kurse anzeigen</h4>
 <div class="container">
   <div class="row">
     <form class="col-md4"></form>
@@ -691,11 +485,12 @@ $heute=date("Y-m-d");
       <table class="table table-striped table-hover datatables">
         <thead>
           <tr>
+			 <th></th>
             <th></th>
             <th>Vorname</th>
             <th>Nachname</th>
-			<th>EMAIL</th>
-	        <th>Loginname</th>
+			  <th>EMAIL</th>
+			 
           </tr>
         </thead>
         <tbody></tbody>

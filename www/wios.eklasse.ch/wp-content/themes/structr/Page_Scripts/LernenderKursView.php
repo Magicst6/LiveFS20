@@ -166,7 +166,44 @@ var editor; // use a global for the submit and return data rendering in the exam
                 name: "KursID",
 			    type: "readonly"
             }
-        ]
+        ], i18n: {
+            remove: {
+                button: "Löschen",
+                title:  "Eintrag löschen",
+                submit: "Endgültig Löschen",
+                confirm: {
+                    _: 'Sind Sie sicher, dass Sie die %d ausgwählten Zeilen löschen wollen?',
+                    1: 'Sind Sie sicher, dass Sie die ausgewählte Zeile löschen wollen?'
+                }
+            },
+            edit: {
+                button: "Bearbeiten",
+                title:  "Eintrag bearbeiten",
+                submit: "Änderungen speichern"
+            },
+            create: {
+                button: "Neuer Eintrag",
+                title:  "Neuen Eintrag anlegen",
+                submit: "Neuen Eintrag speichern"
+            },
+            datetime: {
+                    previous: 'Zurück',
+                    next:     'Weiter',
+                    months:   [ 'Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember' ],
+                    weekdays: [ 'So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa' ],
+                    amPm:     [ 'am', 'pm' ],
+                    unknown:  '-'
+            },
+            error: {            
+                    system: "Ein Systemfehler ist aufgetreten (<a target=\"_blank\" href=\"//datatables.net/tn/12\">Für mehr Informationen</a>)."
+            },
+            multi: {
+                    title: "Mehrere Werte",         
+                    info: "Die ausgewählten Elemente enthalten verschiedene Werte für das Feld. Um alle Elemente für diess Feld auf den gleichen Wert zu setzen, klicken Sie bitte hier. Ansonsten werden die Elemente ihren jeweiligen Wert behalten.",
+                    restore: "Änderungen rückgängig machen",
+                    noMulti: "Dieses Feld kann einzeln bearbeitet werden, aber nicht als Teil einer Gruppe."
+            },
+        }      
     } );
 	
     // Activate an inline edit on click of a table cell
@@ -212,7 +249,52 @@ var editor; // use a global for the submit and return data rendering in the exam
             
             { extend: "edit",   editor: editor, text:"Schüler bearbeiten" },
             { extend: "remove", editor: editor, text:"Schüler löschen" }
-        ]
+        ],"language": {
+            "decimal": ",",
+            "thousands": ".",
+            "info": "Anzeige _START_ bis _END_ von _TOTAL_ Einträgen",
+            "infoEmpty": "Keine Einträge",
+            "infoPostFix": "",
+            "infoFiltered": "(gefiltert aus insgesamt _MAX_ Einträgen)",
+            "loadingRecords": "keine Daten vorhanden oder es werden Daten geladen...",
+            "lengthMenu": "Anzeigen von _MENU_ Einträgen",
+            "paginate": {
+                "first": "Erste",
+                "last": "Letzte",
+                "next": "Nächste",
+                "previous": "Zurück"
+            },
+            "processing": "Verarbeitung läuft ...",
+            "search": "Suche:",
+            "searchPlaceholder": "Suchbegriff",
+            "zeroRecords": "Keine Daten! Bitte ändern Sie Ihren Suchbegriff.",
+            "emptyTable": "Keine Daten vorhanden",
+            "aria": {
+                "sortAscending":  ": aktivieren, um Spalte aufsteigend zu sortieren",
+                "sortDescending": ": aktivieren, um Spalte absteigend zu sortieren"
+            },
+            //only works for built-in buttons, not for custom buttons
+            "buttons": {
+                "create": "Neu",
+                "edit": "Ändern",
+                "remove": "Löschen",
+                "copy": "Kopieren",
+                "csv": "CSV-Datei",
+                "excel": "Excel-Tabelle",
+                "pdf": "PDF-Dokument",
+                "print": "Drucken",
+                "colvis": "Spalten Auswahl",
+                "collection": "Auswahl",
+                "upload": "Datei auswählen...."
+            },
+            "select": {
+                "rows": {
+                    _: '%d Zeilen ausgewählt',
+                    0: 'Zeile anklicken um auszuwählen',
+                    1: 'Eine Zeile ausgewählt'
+                }
+            }
+        }            
     } );
 		
 	  

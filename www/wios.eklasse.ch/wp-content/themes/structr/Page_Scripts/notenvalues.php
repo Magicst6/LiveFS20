@@ -5,7 +5,7 @@ $Kursname=$_POST['KID'];
 
 $UserID=$_POST['UID'];
 					
-					
+			date_default_timezone_set('CET');		
 					$Zeit= date("Y-m-d H:i:s");
 
 

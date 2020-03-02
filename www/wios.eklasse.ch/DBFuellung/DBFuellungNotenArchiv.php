@@ -7,6 +7,7 @@ global $current_user;
 
 get_currentuserinfo();
 
+date_default_timezone_set('CET');
 
 if ($_POST['Senden']) {
     $Anzahl = $_POST['Schueler'];

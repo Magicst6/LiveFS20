@@ -131,6 +131,52 @@ tableshow();
                 title:'Neue Note erstellen'
             },
         ],
+		"language": {
+            "decimal": ",",
+            "thousands": ".",
+            "info": "Anzeige _START_ bis _END_ von _TOTAL_ Einträgen",
+            "infoEmpty": "Keine Einträge",
+            "infoPostFix": "",
+            "infoFiltered": "(gefiltert aus insgesamt _MAX_ Einträgen)",
+            "loadingRecords": "keine Daten vorhanden oder es werden Daten geladen...",
+            "lengthMenu": "Anzeigen von _MENU_ Einträgen",
+            "paginate": {
+                "first": "Erste",
+                "last": "Letzte",
+                "next": "Nächste",
+                "previous": "Zurück"
+            },
+            "processing": "Verarbeitung läuft ...",
+            "search": "Suche:",
+            "searchPlaceholder": "Suchbegriff",
+            "zeroRecords": "Keine Daten! Bitte ändern Sie Ihren Suchbegriff.",
+            "emptyTable": "Keine Daten vorhanden",
+            "aria": {
+                "sortAscending":  ": aktivieren, um Spalte aufsteigend zu sortieren",
+                "sortDescending": ": aktivieren, um Spalte absteigend zu sortieren"
+            },
+            //only works for built-in buttons, not for custom buttons
+            "buttons": {
+                "create": "Neu",
+                "edit": "Ändern",
+                "remove": "Löschen",
+                "copy": "Kopieren",
+                "csv": "CSV-Datei",
+                "excel": "Excel-Tabelle",
+                "pdf": "PDF-Dokument",
+                "print": "Drucken",
+                "colvis": "Spalten Auswahl",
+                "collection": "Auswahl",
+                "upload": "Datei auswählen...."
+            },
+            "select": {
+                "rows": {
+                    _: '%d Zeilen ausgewählt',
+                    0: 'Zeile anklicken um auszuwählen',
+                    1: 'Eine Zeile ausgewählt'
+                }
+            }
+        }            
 
     } );
     table1 = $( '.datatables1' ).DataTable( {
@@ -165,7 +211,52 @@ tableshow();
             }
 
 
-        ],
+        ],"language": {
+            "decimal": ",",
+            "thousands": ".",
+            "info": "Anzeige _START_ bis _END_ von _TOTAL_ Einträgen",
+            "infoEmpty": "Keine Einträge",
+            "infoPostFix": "",
+            "infoFiltered": "(gefiltert aus insgesamt _MAX_ Einträgen)",
+            "loadingRecords": "keine Daten vorhanden oder es werden Daten geladen...",
+            "lengthMenu": "Anzeigen von _MENU_ Einträgen",
+            "paginate": {
+                "first": "Erste",
+                "last": "Letzte",
+                "next": "Nächste",
+                "previous": "Zurück"
+            },
+            "processing": "Verarbeitung läuft ...",
+            "search": "Suche:",
+            "searchPlaceholder": "Suchbegriff",
+            "zeroRecords": "Keine Daten! Bitte ändern Sie Ihren Suchbegriff.",
+            "emptyTable": "Keine Daten vorhanden",
+            "aria": {
+                "sortAscending":  ": aktivieren, um Spalte aufsteigend zu sortieren",
+                "sortDescending": ": aktivieren, um Spalte absteigend zu sortieren"
+            },
+            //only works for built-in buttons, not for custom buttons
+            "buttons": {
+                "create": "Neu",
+                "edit": "Ändern",
+                "remove": "Löschen",
+                "copy": "Kopieren",
+                "csv": "CSV-Datei",
+                "excel": "Excel-Tabelle",
+                "pdf": "PDF-Dokument",
+                "print": "Drucken",
+                "colvis": "Spalten Auswahl",
+                "collection": "Auswahl",
+                "upload": "Datei auswählen...."
+            },
+            "select": {
+                "rows": {
+                    _: '%d Zeilen ausgewählt',
+                    0: 'Zeile anklicken um auszuwählen',
+                    1: 'Eine Zeile ausgewählt'
+                }
+            }
+        }            
 
 
     } );
@@ -280,7 +371,52 @@ tableshow();
                 }
 
 
-            ],
+            ],"language": {
+            "decimal": ",",
+            "thousands": ".",
+            "info": "Anzeige _START_ bis _END_ von _TOTAL_ Einträgen",
+            "infoEmpty": "Keine Einträge",
+            "infoPostFix": "",
+            "infoFiltered": "(gefiltert aus insgesamt _MAX_ Einträgen)",
+            "loadingRecords": "keine Daten vorhanden oder es werden Daten geladen...",
+            "lengthMenu": "Anzeigen von _MENU_ Einträgen",
+            "paginate": {
+                "first": "Erste",
+                "last": "Letzte",
+                "next": "Nächste",
+                "previous": "Zurück"
+            },
+            "processing": "Verarbeitung läuft ...",
+            "search": "Suche:",
+            "searchPlaceholder": "Suchbegriff",
+            "zeroRecords": "Keine Daten! Bitte ändern Sie Ihren Suchbegriff.",
+            "emptyTable": "Keine Daten vorhanden",
+            "aria": {
+                "sortAscending":  ": aktivieren, um Spalte aufsteigend zu sortieren",
+                "sortDescending": ": aktivieren, um Spalte absteigend zu sortieren"
+            },
+            //only works for built-in buttons, not for custom buttons
+            "buttons": {
+                "create": "Neu",
+                "edit": "Ändern",
+                "remove": "Löschen",
+                "copy": "Kopieren",
+                "csv": "CSV-Datei",
+                "excel": "Excel-Tabelle",
+                "pdf": "PDF-Dokument",
+                "print": "Drucken",
+                "colvis": "Spalten Auswahl",
+                "collection": "Auswahl",
+                "upload": "Datei auswählen...."
+            },
+            "select": {
+                "rows": {
+                    _: '%d Zeilen ausgewählt',
+                    0: 'Zeile anklicken um auszuwählen',
+                    1: 'Eine Zeile ausgewählt'
+                }
+            }
+        }            
 
         } );
         table1 = $( '.datatables1' ).DataTable( {
@@ -315,7 +451,52 @@ tableshow();
                 }
 
 
-            ],
+            ],"language": {
+            "decimal": ",",
+            "thousands": ".",
+            "info": "Anzeige _START_ bis _END_ von _TOTAL_ Einträgen",
+            "infoEmpty": "Keine Einträge",
+            "infoPostFix": "",
+            "infoFiltered": "(gefiltert aus insgesamt _MAX_ Einträgen)",
+            "loadingRecords": "keine Daten vorhanden oder es werden Daten geladen...",
+            "lengthMenu": "Anzeigen von _MENU_ Einträgen",
+            "paginate": {
+                "first": "Erste",
+                "last": "Letzte",
+                "next": "Nächste",
+                "previous": "Zurück"
+            },
+            "processing": "Verarbeitung läuft ...",
+            "search": "Suche:",
+            "searchPlaceholder": "Suchbegriff",
+            "zeroRecords": "Keine Daten! Bitte ändern Sie Ihren Suchbegriff.",
+            "emptyTable": "Keine Daten vorhanden",
+            "aria": {
+                "sortAscending":  ": aktivieren, um Spalte aufsteigend zu sortieren",
+                "sortDescending": ": aktivieren, um Spalte absteigend zu sortieren"
+            },
+            //only works for built-in buttons, not for custom buttons
+            "buttons": {
+                "create": "Neu",
+                "edit": "Ändern",
+                "remove": "Löschen",
+                "copy": "Kopieren",
+                "csv": "CSV-Datei",
+                "excel": "Excel-Tabelle",
+                "pdf": "PDF-Dokument",
+                "print": "Drucken",
+                "colvis": "Spalten Auswahl",
+                "collection": "Auswahl",
+                "upload": "Datei auswählen...."
+            },
+            "select": {
+                "rows": {
+                    _: '%d Zeilen ausgewählt',
+                    0: 'Zeile anklicken um auszuwählen',
+                    1: 'Eine Zeile ausgewählt'
+                }
+            }
+        }            
 
 
         } );
@@ -1163,8 +1344,10 @@ while( $line2= mysqli_fetch_assoc($result))
 
 }
 
+$UID=	$current_user->ID;
   echo '<input  id="lehrerID" name="lehrer" readonly="readonly" type="hidden" value=":'. $value .'" />' ;
 
+	 echo '<input  id="UID" name="uid" readonly="readonly" type="hidden" value="'. $UID .'" />' ;
 		  $isEntry = "Select * From sv_Settings ";
 $result = mysqli_query($con, $isEntry);
 
@@ -1715,7 +1898,7 @@ Kurs:        <input id="Kurslb2" readonly><br><br>
             data: {
               'SchIDnr': str,
 				'KID': document . getElementById( "Kursname" ) . value,
-				'UID': document . getElementById( "lehrerID" ) . value,
+				'UID': document . getElementById( "UID" ) . value,
 				
 				'sem': document . getElementById( "Semester" ) . value 
 				
@@ -1752,7 +1935,45 @@ Kurs:        <input id="Kurslb2" readonly><br><br>
 				 type: "date"
             }
 				
-        ]
+        ],
+		 i18n: {
+            remove: {
+                button: "Löschen",
+                title:  "Eintrag löschen",
+                submit: "Endgültig Löschen",
+                confirm: {
+                    _: 'Sind Sie sicher, dass Sie die %d ausgwählten Zeilen löschen wollen?',
+                    1: 'Sind Sie sicher, dass Sie die ausgewählte Zeile löschen wollen?'
+                }
+            },
+            edit: {
+                button: "Bearbeiten",
+                title:  "Eintrag bearbeiten",
+                submit: "Änderungen speichern"
+            },
+            create: {
+                button: "Neuer Eintrag",
+                title:  "Neuen Eintrag anlegen",
+                submit: "Neuen Eintrag speichern"
+            },
+            datetime: {
+                    previous: 'Zurück',
+                    next:     'Weiter',
+                    months:   [ 'Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember' ],
+                    weekdays: [ 'So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa' ],
+                    amPm:     [ 'am', 'pm' ],
+                    unknown:  '-'
+            },
+            error: {            
+                    system: "Ein Systemfehler ist aufgetreten (<a target=\"_blank\" href=\"//datatables.net/tn/12\">Für mehr Informationen</a>)."
+            },
+            multi: {
+                    title: "Mehrere Werte",         
+                    info: "Die ausgewählten Elemente enthalten verschiedene Werte für das Feld. Um alle Elemente für diess Feld auf den gleichen Wert zu setzen, klicken Sie bitte hier. Ansonsten werden die Elemente ihren jeweiligen Wert behalten.",
+                    restore: "Änderungen rückgängig machen",
+                    noMulti: "Dieses Feld kann einzeln bearbeitet werden, aber nicht als Teil einer Gruppe."
+            },
+        }      
     } );
 		
 		
@@ -1783,7 +2004,7 @@ Kurs:        <input id="Kurslb2" readonly><br><br>
             data: {
                   'SchIDnr': str,
 					'KID': document . getElementById( "Kursname" ) . value, 
-				'UID': document . getElementById( "lehrerID" ) . value,
+				'UID': document . getElementById( "UID" ) . value,
 				'sem': document . getElementById( "Semester" ) . value 
 				
 			
@@ -1823,7 +2044,52 @@ Kurs:        <input id="Kurslb2" readonly><br><br>
 			select: true,
         buttons: [
            
-        ]
+        ],"language": {
+            "decimal": ",",
+            "thousands": ".",
+            "info": "Anzeige _START_ bis _END_ von _TOTAL_ Einträgen",
+            "infoEmpty": "Keine Einträge",
+            "infoPostFix": "",
+            "infoFiltered": "(gefiltert aus insgesamt _MAX_ Einträgen)",
+            "loadingRecords": "keine Daten vorhanden oder es werden Daten geladen...",
+            "lengthMenu": "Anzeigen von _MENU_ Einträgen",
+            "paginate": {
+                "first": "Erste",
+                "last": "Letzte",
+                "next": "Nächste",
+                "previous": "Zurück"
+            },
+            "processing": "Verarbeitung läuft ...",
+            "search": "Suche:",
+            "searchPlaceholder": "Suchbegriff",
+            "zeroRecords": "Keine Daten! Bitte ändern Sie Ihren Suchbegriff.",
+            "emptyTable": "Keine Daten vorhanden",
+            "aria": {
+                "sortAscending":  ": aktivieren, um Spalte aufsteigend zu sortieren",
+                "sortDescending": ": aktivieren, um Spalte absteigend zu sortieren"
+            },
+            //only works for built-in buttons, not for custom buttons
+            "buttons": {
+                "create": "Neu",
+                "edit": "Ändern",
+                "remove": "Löschen",
+                "copy": "Kopieren",
+                "csv": "CSV-Datei",
+                "excel": "Excel-Tabelle",
+                "pdf": "PDF-Dokument",
+                "print": "Drucken",
+                "colvis": "Spalten Auswahl",
+                "collection": "Auswahl",
+                "upload": "Datei auswählen...."
+            },
+            "select": {
+                "rows": {
+                    _: '%d Zeilen ausgewählt',
+                    0: 'Zeile anklicken um auszuwählen',
+                    1: 'Eine Zeile ausgewählt'
+                }
+            }
+        }            
 
 
 		} );
@@ -1948,7 +2214,44 @@ Kurs:        <input id="Kurslb2" readonly><br><br>
 				 
             }
 				
-        ]
+        ],i18n: {
+            remove: {
+                button: "Löschen",
+                title:  "Eintrag löschen",
+                submit: "Endgültig Löschen",
+                confirm: {
+                    _: 'Sind Sie sicher, dass Sie die %d ausgwählten Zeilen löschen wollen?',
+                    1: 'Sind Sie sicher, dass Sie die ausgewählte Zeile löschen wollen?'
+                }
+            },
+            edit: {
+                button: "Bearbeiten",
+                title:  "Eintrag bearbeiten",
+                submit: "Änderungen speichern"
+            },
+            create: {
+                button: "Neuer Eintrag",
+                title:  "Neuen Eintrag anlegen",
+                submit: "Neuen Eintrag speichern"
+            },
+            datetime: {
+                    previous: 'Zurück',
+                    next:     'Weiter',
+                    months:   [ 'Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember' ],
+                    weekdays: [ 'So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa' ],
+                    amPm:     [ 'am', 'pm' ],
+                    unknown:  '-'
+            },
+            error: {            
+                    system: "Ein Systemfehler ist aufgetreten (<a target=\"_blank\" href=\"//datatables.net/tn/12\">Für mehr Informationen</a>)."
+            },
+            multi: {
+                    title: "Mehrere Werte",         
+                    info: "Die ausgewählten Elemente enthalten verschiedene Werte für das Feld. Um alle Elemente für diess Feld auf den gleichen Wert zu setzen, klicken Sie bitte hier. Ansonsten werden die Elemente ihren jeweiligen Wert behalten.",
+                    restore: "Änderungen rückgängig machen",
+                    noMulti: "Dieses Feld kann einzeln bearbeitet werden, aber nicht als Teil einer Gruppe."
+            },
+        }      
     } );
 		
 		
@@ -2033,7 +2336,53 @@ Kurs:        <input id="Kurslb2" readonly><br><br>
         
         buttons: [
            
-        ]
+        ],
+				 "language": {
+            "decimal": ",",
+            "thousands": ".",
+            "info": "Anzeige _START_ bis _END_ von _TOTAL_ Einträgen",
+            "infoEmpty": "Keine Einträge",
+            "infoPostFix": "",
+            "infoFiltered": "(gefiltert aus insgesamt _MAX_ Einträgen)",
+            "loadingRecords": "keine Daten vorhanden oder es werden Daten geladen...",
+            "lengthMenu": "Anzeigen von _MENU_ Einträgen",
+            "paginate": {
+                "first": "Erste",
+                "last": "Letzte",
+                "next": "Nächste",
+                "previous": "Zurück"
+            },
+            "processing": "Verarbeitung läuft ...",
+            "search": "Suche:",
+            "searchPlaceholder": "Suchbegriff",
+            "zeroRecords": "Keine Daten! Bitte ändern Sie Ihren Suchbegriff.",
+            "emptyTable": "Keine Daten vorhanden",
+            "aria": {
+                "sortAscending":  ": aktivieren, um Spalte aufsteigend zu sortieren",
+                "sortDescending": ": aktivieren, um Spalte absteigend zu sortieren"
+            },
+            //only works for built-in buttons, not for custom buttons
+            "buttons": {
+                "create": "Neu",
+                "edit": "Ändern",
+                "remove": "Löschen",
+                "copy": "Kopieren",
+                "csv": "CSV-Datei",
+                "excel": "Excel-Tabelle",
+                "pdf": "PDF-Dokument",
+                "print": "Drucken",
+                "colvis": "Spalten Auswahl",
+                "collection": "Auswahl",
+                "upload": "Datei auswählen...."
+            },
+            "select": {
+                "rows": {
+                    _: '%d Zeilen ausgewählt',
+                    0: 'Zeile anklicken um auszuwählen',
+                    1: 'Eine Zeile ausgewählt'
+                }
+            }
+        }            
 } );
 
            
@@ -2141,6 +2490,52 @@ window.location.href= "/notenbuch-lehrer-archiv?q="+  encrypted + "&sem=" +  doc
                 title:'Neue Note erstellen'
             },
         ],
+		 "language": {
+            "decimal": ",",
+            "thousands": ".",
+            "info": "Anzeige _START_ bis _END_ von _TOTAL_ Einträgen",
+            "infoEmpty": "Keine Einträge",
+            "infoPostFix": "",
+            "infoFiltered": "(gefiltert aus insgesamt _MAX_ Einträgen)",
+            "loadingRecords": "keine Daten vorhanden oder es werden Daten geladen...",
+            "lengthMenu": "Anzeigen von _MENU_ Einträgen",
+            "paginate": {
+                "first": "Erste",
+                "last": "Letzte",
+                "next": "Nächste",
+                "previous": "Zurück"
+            },
+            "processing": "Verarbeitung läuft ...",
+            "search": "Suche:",
+            "searchPlaceholder": "Suchbegriff",
+            "zeroRecords": "Keine Daten! Bitte ändern Sie Ihren Suchbegriff.",
+            "emptyTable": "Keine Daten vorhanden",
+            "aria": {
+                "sortAscending":  ": aktivieren, um Spalte aufsteigend zu sortieren",
+                "sortDescending": ": aktivieren, um Spalte absteigend zu sortieren"
+            },
+            //only works for built-in buttons, not for custom buttons
+            "buttons": {
+                "create": "Neu",
+                "edit": "Ändern",
+                "remove": "Löschen",
+                "copy": "Kopieren",
+                "csv": "CSV-Datei",
+                "excel": "Excel-Tabelle",
+                "pdf": "PDF-Dokument",
+                "print": "Drucken",
+                "colvis": "Spalten Auswahl",
+                "collection": "Auswahl",
+                "upload": "Datei auswählen...."
+            },
+            "select": {
+                "rows": {
+                    _: '%d Zeilen ausgewählt',
+                    0: 'Zeile anklicken um auszuwählen',
+                    1: 'Eine Zeile ausgewählt'
+                }
+            }
+        }            
 
     } );
   
@@ -2241,6 +2636,52 @@ window.location.href= "/notenbuch-lehrer-archiv?q="+  encrypted + "&sem=" +  doc
 
 
         ],
+			  "language": {
+            "decimal": ",",
+            "thousands": ".",
+            "info": "Anzeige _START_ bis _END_ von _TOTAL_ Einträgen",
+            "infoEmpty": "Keine Einträge",
+            "infoPostFix": "",
+            "infoFiltered": "(gefiltert aus insgesamt _MAX_ Einträgen)",
+            "loadingRecords": "keine Daten vorhanden oder es werden Daten geladen...",
+            "lengthMenu": "Anzeigen von _MENU_ Einträgen",
+            "paginate": {
+                "first": "Erste",
+                "last": "Letzte",
+                "next": "Nächste",
+                "previous": "Zurück"
+            },
+            "processing": "Verarbeitung läuft ...",
+            "search": "Suche:",
+            "searchPlaceholder": "Suchbegriff",
+            "zeroRecords": "Keine Daten! Bitte ändern Sie Ihren Suchbegriff.",
+            "emptyTable": "Keine Daten vorhanden",
+            "aria": {
+                "sortAscending":  ": aktivieren, um Spalte aufsteigend zu sortieren",
+                "sortDescending": ": aktivieren, um Spalte absteigend zu sortieren"
+            },
+            //only works for built-in buttons, not for custom buttons
+            "buttons": {
+                "create": "Neu",
+                "edit": "Ändern",
+                "remove": "Löschen",
+                "copy": "Kopieren",
+                "csv": "CSV-Datei",
+                "excel": "Excel-Tabelle",
+                "pdf": "PDF-Dokument",
+                "print": "Drucken",
+                "colvis": "Spalten Auswahl",
+                "collection": "Auswahl",
+                "upload": "Datei auswählen...."
+            },
+            "select": {
+                "rows": {
+                    _: '%d Zeilen ausgewählt',
+                    0: 'Zeile anklicken um auszuwählen',
+                    1: 'Eine Zeile ausgewählt'
+                }
+            }
+        }            
 
 
     } );
@@ -2360,7 +2801,52 @@ window.location.href= "/notenbuch-lehrer-archiv?q="+  encrypted + "&sem=" +  doc
                 orderable: false,
                 title:'Neue Note erstellen'
             },
-        ],
+        ], "language": {
+            "decimal": ",",
+            "thousands": ".",
+            "info": "Anzeige _START_ bis _END_ von _TOTAL_ Einträgen",
+            "infoEmpty": "Keine Einträge",
+            "infoPostFix": "",
+            "infoFiltered": "(gefiltert aus insgesamt _MAX_ Einträgen)",
+            "loadingRecords": "keine Daten vorhanden oder es werden Daten geladen...",
+            "lengthMenu": "Anzeigen von _MENU_ Einträgen",
+            "paginate": {
+                "first": "Erste",
+                "last": "Letzte",
+                "next": "Nächste",
+                "previous": "Zurück"
+            },
+            "processing": "Verarbeitung läuft ...",
+            "search": "Suche:",
+            "searchPlaceholder": "Suchbegriff",
+            "zeroRecords": "Keine Daten! Bitte ändern Sie Ihren Suchbegriff.",
+            "emptyTable": "Keine Daten vorhanden",
+            "aria": {
+                "sortAscending":  ": aktivieren, um Spalte aufsteigend zu sortieren",
+                "sortDescending": ": aktivieren, um Spalte absteigend zu sortieren"
+            },
+            //only works for built-in buttons, not for custom buttons
+            "buttons": {
+                "create": "Neu",
+                "edit": "Ändern",
+                "remove": "Löschen",
+                "copy": "Kopieren",
+                "csv": "CSV-Datei",
+                "excel": "Excel-Tabelle",
+                "pdf": "PDF-Dokument",
+                "print": "Drucken",
+                "colvis": "Spalten Auswahl",
+                "collection": "Auswahl",
+                "upload": "Datei auswählen...."
+            },
+            "select": {
+                "rows": {
+                    _: '%d Zeilen ausgewählt',
+                    0: 'Zeile anklicken um auszuwählen',
+                    1: 'Eine Zeile ausgewählt'
+                }
+            }
+        }            
 		
 		
 		
@@ -2461,7 +2947,52 @@ window.location.href= "/notenbuch-lehrer-archiv?q="+  encrypted + "&sem=" +  doc
             },
 
 
-        ],
+        ], "language": {
+            "decimal": ",",
+            "thousands": ".",
+            "info": "Anzeige _START_ bis _END_ von _TOTAL_ Einträgen",
+            "infoEmpty": "Keine Einträge",
+            "infoPostFix": "",
+            "infoFiltered": "(gefiltert aus insgesamt _MAX_ Einträgen)",
+            "loadingRecords": "keine Daten vorhanden oder es werden Daten geladen...",
+            "lengthMenu": "Anzeigen von _MENU_ Einträgen",
+            "paginate": {
+                "first": "Erste",
+                "last": "Letzte",
+                "next": "Nächste",
+                "previous": "Zurück"
+            },
+            "processing": "Verarbeitung läuft ...",
+            "search": "Suche:",
+            "searchPlaceholder": "Suchbegriff",
+            "zeroRecords": "Keine Daten! Bitte ändern Sie Ihren Suchbegriff.",
+            "emptyTable": "Keine Daten vorhanden",
+            "aria": {
+                "sortAscending":  ": aktivieren, um Spalte aufsteigend zu sortieren",
+                "sortDescending": ": aktivieren, um Spalte absteigend zu sortieren"
+            },
+            //only works for built-in buttons, not for custom buttons
+            "buttons": {
+                "create": "Neu",
+                "edit": "Ändern",
+                "remove": "Löschen",
+                "copy": "Kopieren",
+                "csv": "CSV-Datei",
+                "excel": "Excel-Tabelle",
+                "pdf": "PDF-Dokument",
+                "print": "Drucken",
+                "colvis": "Spalten Auswahl",
+                "collection": "Auswahl",
+                "upload": "Datei auswählen...."
+            },
+            "select": {
+                "rows": {
+                    _: '%d Zeilen ausgewählt',
+                    0: 'Zeile anklicken um auszuwählen',
+                    1: 'Eine Zeile ausgewählt'
+                }
+            }
+        }            
 			
 
 
@@ -2538,7 +3069,7 @@ function sendNote(){
 
 
 			
-			xmlhttp.open( "GET", "/Ajax_Scripts/createNoteArchiv.php?q=" + document.getElementById( "Kursname" ).value+"&k="+ document.getElementById("schid").value +"&l=" +document.getElementById("Notecr").value +"&m="+ document.getElementById("Namecr").value +"&n=" +document.getElementById("Gewichtungcr").value +"&o="+document.getElementById("Datumcr").value+"&s="+document.getElementById("Semester").value, true );
+			xmlhttp.open( "GET", "/Ajax_Scripts/createNoteArchiv.php?q=" + document.getElementById( "Kursname" ).value+"&k="+ document.getElementById("schid").value +"&l=" +document.getElementById("Notecr").value +"&m="+ document.getElementById("Namecr").value +"&n=" +document.getElementById("Gewichtungcr").value +"&o="+document.getElementById("Datumcr").value+"&s="+document.getElementById("Semester").value +"&p="+document.getElementById("UID").value, true );
 
 			xmlhttp.send();
 	

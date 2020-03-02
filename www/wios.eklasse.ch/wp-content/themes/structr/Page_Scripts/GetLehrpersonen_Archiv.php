@@ -34,7 +34,7 @@ $KurseTab=$Semester."_Lehrpersonen";
 				
 
 
-    $isEntry = "Select * From $KurseTab  ";
+    $isEntry = "Select * From $KurseTab order by Nachname  ";
     $result = mysqli_query($con, $isEntry);
     $events = array();
 if ($Semester<>""){

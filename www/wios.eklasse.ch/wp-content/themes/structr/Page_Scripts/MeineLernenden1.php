@@ -136,7 +136,52 @@
 		
 			
 		
-    ],
+    ], "language": {
+            "decimal": ",",
+            "thousands": ".",
+            "info": "Anzeige _START_ bis _END_ von _TOTAL_ Einträgen",
+            "infoEmpty": "Keine Einträge",
+            "infoPostFix": "",
+            "infoFiltered": "(gefiltert aus insgesamt _MAX_ Einträgen)",
+            "loadingRecords": "keine Daten vorhanden oder es werden Daten geladen...",
+            "lengthMenu": "Anzeigen von _MENU_ Einträgen",
+            "paginate": {
+                "first": "Erste",
+                "last": "Letzte",
+                "next": "Nächste",
+                "previous": "Zurück"
+            },
+            "processing": "Verarbeitung läuft ...",
+            "search": "Suche:",
+            "searchPlaceholder": "Suchbegriff",
+            "zeroRecords": "Keine Daten! Bitte ändern Sie Ihren Suchbegriff.",
+            "emptyTable": "Keine Daten vorhanden",
+            "aria": {
+                "sortAscending":  ": aktivieren, um Spalte aufsteigend zu sortieren",
+                "sortDescending": ": aktivieren, um Spalte absteigend zu sortieren"
+            },
+            //only works for built-in buttons, not for custom buttons
+            "buttons": {
+                "create": "Neu",
+                "edit": "Ändern",
+                "remove": "Löschen",
+                "copy": "Kopieren",
+                "csv": "CSV-Datei",
+                "excel": "Excel-Tabelle",
+                "pdf": "PDF-Dokument",
+                "print": "Drucken",
+                "colvis": "Spalten Auswahl",
+                "collection": "Auswahl",
+                "upload": "Datei auswählen...."
+            },
+            "select": {
+                "rows": {
+                    _: '%d Zeilen ausgewählt',
+                    0: 'Zeile anklicken um auszuwählen',
+                    1: 'Eine Zeile ausgewählt'
+                }
+            }
+        }            
     
   
   });
