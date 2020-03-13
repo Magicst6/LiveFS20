@@ -29,7 +29,7 @@ $isEntry = "Update sv_LernendeModule SET Name='$Name', Vorname='$Vorname',Profil
  mysqli_query( $con, $isEntry);
 
 
-$isEntry = "Update sv_Lernende SET Name='$Name', Vorname='$Vorname',Profil='$Profil',Loginname='$Loginname', EMail='$EMail' where ID ='$ID'";
+$isEntry = "Update sv_Lernende SET Name='$Name', Vorname='$Vorname',Profil='$Profil',Loginname='$Loginname', EMail='$EMail' where Name='$Nameold' and Vorname='$Vornameold' and EMail='$EMailold'";
 if (mysqli_query( $con, $isEntry) === TRUE) {
 $isEntry= "Select * From sv_Lernende Order by ID asc ";
 

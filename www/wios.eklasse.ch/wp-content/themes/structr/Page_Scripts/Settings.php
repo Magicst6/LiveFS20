@@ -40,6 +40,14 @@ function empty12(){
 	
 	document.getElementById('f52').value=null;
 }	
+	
+	function subm(form) {
+	
+if (confirm("Möchten Sie die Einstellungen wirklich übernehmen?")) {
+form.submit();
+}
+	}
+	
 </script>
 <?php
 
@@ -89,7 +97,7 @@ while( $value= mysqli_fetch_array($result)) {
 
 <body>
 
-<form action="/DBFuellung/DBFuellungSettings.php" method="POST">
+<form action="/DBFuellung/DBFuellungSettings.php" id="Settings"  method="POST">
     <br>
     Bitte hier die entsprechenden Daten eintragen oder modifizieren. Diese Daten sind erforderlich und müssen am Anfang des Semesters eingetragen werden.
     <br>
@@ -156,7 +164,7 @@ while( $value= mysqli_fetch_array($result)) {
     <input name="Ferien5bis" id="f52" type="date" onclick="empty52()" value="<?php echo $Ferien5bis ?>" />
     <br>
     <br>
-    <input name="Senden" type="submit" value="Senden"  /></form>
+    <input name="Senden" type="button" onClick="subm(this.form);" value="Einstellungen übernehmen"   /></form>
 
 
 
@@ -167,6 +175,7 @@ while( $value= mysqli_fetch_array($result)) {
 
 <script>
 
+	
 function dbbackup(){
 
        

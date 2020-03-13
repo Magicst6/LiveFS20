@@ -117,7 +117,7 @@ define('DB_USER_EKL', 'heimmart_test');
 
 define('DB_PASSWORD_EKL', "Tab_12_3");
 
-$mydb = new wpdb('heimmart_test','Tab_12_3','heimmart_wioseklasse','mysql18j03.db.hostpoint.internal');
+$mydb = new wpdb(DB_USER_EKL,DB_PASSWORD_EKL,DB_NAME_EKL,DB_HOSTEKL);
 
 
 ?>

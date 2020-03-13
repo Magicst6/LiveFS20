@@ -30,6 +30,8 @@ $LArch=$semester."_Lernende";
 
  
 
+preg_match( "/:(.*)/", $Lehrer, $output_array );
+$ID = $output_array[ 1 ];
 
 
 if ($semester==$semDB){

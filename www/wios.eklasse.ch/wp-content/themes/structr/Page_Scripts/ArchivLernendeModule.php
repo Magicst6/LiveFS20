@@ -697,7 +697,7 @@ Semester:<br>
 
 <br><br>
 
-<h1>Lernende Module</h1>
+<h1>Lernende (Module)</h1>
 <div class="container">
   <div class="row">
     <form class="col-md4"></form>
@@ -731,7 +731,7 @@ Semester:<br>
 
 <br><br>
 
-<h1>Lernende</h1>
+<h1>Lernende in den Klassen</h1>
 
 <div class="container">
   <div class="row">

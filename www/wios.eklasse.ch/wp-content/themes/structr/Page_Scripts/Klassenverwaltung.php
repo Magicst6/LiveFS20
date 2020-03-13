@@ -430,7 +430,7 @@ document.getElementById("add").style.visibility = "hidden";
             margin: auto;
             padding: 20px;
             border: 1px solid #888;
-            width: 2400px;
+            width: 1400px;
         }
 
 
@@ -609,7 +609,7 @@ document.getElementById("add").style.visibility = "hidden";
     <div class="modal-content1">
      
     
-        <h2><strong>Klasse bearbeiten</strong></h2>
+        <h2><strong>Schüler bearbeiten</strong></h2>
 
     <br>
 
@@ -632,7 +632,7 @@ document.getElementById("add").style.visibility = "hidden";
 
         $resultarr1 = array();
 
-        echo "<option></option>";
+        echo "<option>Alle Schüler (unabhängig von der Klasse)</option>";
 
 
 

@@ -1,176 +1,183 @@
-<html>
+	<html>
 
 
 
-<head>
+	<head>
 
-</head>
+	</head>
 
 
 
-<body>
+	<body>
 
 
 
-	<link rel="stylesheet" type="text/css" href="/wp-content/themes/structr/Page_Scripts/DataTables-1.10.19/media/css/jquery.dataTables.css">
+		<link rel="stylesheet" type="text/css" href="/wp-content/themes/structr/Page_Scripts/DataTables-1.10.19/media/css/jquery.dataTables.css">
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"
 
-        type="text/javascript"></script><script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+			type="text/javascript"></script><script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
 
 
 
-<script type='text/javascript'>
+	<script type='text/javascript'>
 
-    <!--
+		<!--
 
-    $(document).ready( function () {
+		$(document).ready( function () {
 
-        $('#table_id').DataTable();
+			$('#table_id').DataTable();
 
-    } );
+		} );
 
 
 
-    //-->
-	
-	
-	
+		//-->
 
 
-</script>
 
 
 
+	</script>
 
 
 
 
 
-    <?php
-	
-	include "db.php";
 
-   
-        $Klassenname =  $_GET['k'];
 
-      
 
+		<?php
 
-        echo 'Klassenname: ';
+		include "db.php";
 
-        echo $Klassenname;
 
+			$Klassenname =  $_GET['k'];
 
 
-        echo '<table id="table_id" class="display">';
 
-        //Schreibe Spaltennamen
 
-        echo "<thead>";
 
-        echo "<tr>";
 
-        echo "<th width=80>".'ID'."</th>";
+			echo 'Klassenname: ';
 
-        echo "<th width=200>".'Nachname'. "</th>";
+			echo $Klassenname;
 
-        echo "<th width= 200>".'Vorname'. "</th>";
 
-        echo "<th width= 75>".'Profil'. "</th>";
 
-        echo "<th width=200>".'Loginname'. "</th>";
+			echo '<table id="table_id" class="display">';
 
-        echo "<th width= 220>".'E-Mail'. "</th>";
+			//Schreibe Spaltennamen
 
-        echo "</tr>";
+			echo "<thead>";
 
+			echo "<tr>";
 
+			echo "<th width=80>".'ID'."</th>";
 
-        echo "</thead>";
+			echo "<th width=200>".'Nachname'. "</th>";
 
+			echo "<th width= 200>".'Vorname'. "</th>";
 
+			echo "<th width= 75>".'Profil'. "</th>";
 
-        echo "<tbody>";
+			echo "<th width=200>".'Loginname'. "</th>";
 
-        include 'db.php';
+			echo "<th width= 220>".'E-Mail'. "</th>";
 
-        $isEntry = "SELECT ID, Name, Vorname, Loginname, EMail, Profil From sv_Lernende Where Klasse='$Klassenname' Order by Name";
+			echo "</tr>";
 
-        $result = mysqli_query($con,$isEntry);
 
-        $y=0;
 
+			echo "</thead>";
 
 
-        while( $value= mysqli_fetch_array($result))
 
-        {
+			echo "<tbody>";
 
+			include 'db.php';
 
+			 if ($Klassenname=='Alle Schüler (unabhängig von der Klasse)'){
+				  $isEntry = "SELECT ID, Name, Vorname, Loginname, EMail, Profil From sv_LernendeModule Order by Name";
+			 }
+		     else{
+			      $isEntry = "SELECT ID, Name, Vorname, Loginname, EMail, Profil From sv_Lernende Where Klasse='$Klassenname' Order by Name";
+			 }
+		
+			$result = mysqli_query($con,$isEntry);
 
+			$y=0;
 
 
-            $Name= $value['Name'];
 
-            $Vorname=$value['Vorname'];
+			while( $value= mysqli_fetch_array($result))
 
-            $Loginname=$value['Loginname'];
+			{
 
-            $ID=$value['ID'];
 
-            $EMail=$value['EMail'];
 
-            $Profil=$value['Profil'];
 
 
+				$Name= $value['Name'];
 
-            echo "<tr>";
+				$Vorname=$value['Vorname'];
 
-            echo '<td><input name="ID1'.$y.'"  id="ID1'.$y.'" style="width: 80px" type="text"  value='.$ID.'  readonly></td>';
+				$Loginname=$value['Loginname'];
 
-            echo '<td><input  name="Nachname1'.$y.'"  id="Nachname1'.$y.'" style="width: 200px" type="text"  value='.$Name.'   ></td>';
+				$ID=$value['ID'];
 
-            echo '<td><input name="Vorname1'.$y.'"  id="Vorname1'.$y.'" type="text" value='.$Vorname.' style="width: 200px"  ></td>';
+				$EMail=$value['EMail'];
 
-            echo '<td><input name="Profil'.$y.'" id="Profil'.$y.'" type="text" style="width: 75px" value='.$Profil.'  ></td>';
+				$Profil=$value['Profil'];
 
-            echo '<td><input name="Loginname1'.$y.'" id="Loginname1'.$y.'" type="text" style="width: 200px" value='.$Loginname.'  ></td>';
 
-            echo '<td><input name="EMail1'.$y.'" id="EMail1'.$y.'" type="text" style="width: 220px" value='.$EMail.'  ></td>';
-			 
-			echo '<td><input name="Delete'.$y.'" onclick="del('.$ID.')" type="button" value="Löschen"   style="width: 75px" ></td>';
-			
-			echo '<td><input name="Update'.$y.'" onclick="updateSchueler('.$y.')"  type="button" value="Update" style="width: 70px" ></td>';
 
+				echo "<tr>";
 
+				echo '<td><input name="ID1'.$y.'"  id="ID1'.$y.'" style="width: 80px" type="text"  value='.$ID.'  readonly></td>';
 
-            echo "</tr>";
+				echo '<td><input  name="Nachname1'.$y.'"  id="Nachname1'.$y.'" style="width: 200px" type="text"  value='.$Name.'   ></td>';
 
-            $y=$y+1;
+				echo '<td><input name="Vorname1'.$y.'"  id="Vorname1'.$y.'" type="text" value='.$Vorname.' style="width: 200px"  ></td>';
 
-        }
+				echo '<td><input name="Profil'.$y.'" id="Profil'.$y.'" type="text" style="width: 75px" value='.$Profil.'  ></td>';
 
-        echo "</tbody>";
+				echo '<td><input name="Loginname1'.$y.'" id="Loginname1'.$y.'" type="text" style="width: 200px" value='.$Loginname.'  ></td>';
 
-        echo "</table>";
+				echo '<td><input name="EMail1'.$y.'" id="EMail1'.$y.'" type="text" style="width: 220px" value='.$EMail.'  ></td>';
 
-        echo '<input name="Klassenname" type="hidden" value="'.$Klassenname.'" /> ';
+				echo '<td><input name="Delete'.$y.'" onclick="del('.$ID.')" type="button" value="Löschen"   style="width: 75px" ></td>';
 
-        echo '<input name="AnzahlSch" type="hidden" value="'.$y.'" /> ';
+				echo '<td><input name="Update'.$y.'" onclick="updateSchueler('.$y.')"  type="button" value="Update" style="width: 70px" ></td>';
 
 
 
+				echo "</tr>";
 
+				$y=$y+1;
 
-    
+			}
 
+			echo "</tbody>";
 
+			echo "</table>";
 
-    ?>
+			echo '<input name="Klassenname" type="hidden" value="'.$Klassenname.'" /> ';
 
-   
+			echo '<input name="AnzahlSch" type="hidden" value="'.$y.'" /> ';
 
-</body>
 
-</html>
+
+
+
+
+
+
+
+		?>
+
+
+
+	</body>
+
+	</html>

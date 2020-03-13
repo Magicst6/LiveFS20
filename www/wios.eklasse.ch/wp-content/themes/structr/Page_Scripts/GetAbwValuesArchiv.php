@@ -99,9 +99,15 @@ while ( $line2 = mysqli_fetch_array( $result ) ) {
 	while ( $line1 = mysqli_fetch_array( $result1 ) ) {
 
 		$EMail=$line1['EMail'];
+		$Vorname=$line1['Vorname'];
+		$Nachname=$line1['Name'];
+		$Klasse=$line1['Klasse'];
+	}
+	if ($EMail==''){
+		$EMail='nomail';
 	}
 
-	$isEntry1 = "Select * From $LM where EMail='$EMail'";
+	$isEntry1 = "Select * From $LM where EMail='$EMail' or ((Vorname='$Vorname' and Name='$Nachname' ) and (Modul1='$Klasse' or Modul2='$Klasse' or Modul3='$Klasse' or Modul4='$Klasse' or Modul5='$Klasse' or Modul6='$Klasse' or Modul7='$Klasse' or Modul8='$Klasse' or Modul9='$Klasse' or Modul10='$Klasse' or Modul11='$Klasse' or Modul12='$Klasse'))";
 	$result1 = mysqli_query( $con, $isEntry1 );
 	while ( $line1 = mysqli_fetch_array( $result1 ) ) {
       

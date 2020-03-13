@@ -174,13 +174,7 @@ if (str == "") {
     <br>
    
    
-    Kursname:
-
-    <br>
-
-	<input name="Kurs" id="Kurs" ><br />
-
-    <br>
+    
    
    
 

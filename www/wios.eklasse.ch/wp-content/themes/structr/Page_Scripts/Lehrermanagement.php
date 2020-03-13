@@ -48,6 +48,17 @@ $(document).ready(function() {
             }, {
                 label: "Nachname:",
                 name: "Nachname"
+            },
+			{
+                label: "EMail (optional):",
+                name: "EMAIL"
+            }, {
+                label: "UserID (optional):",
+                name: "User_ID"
+            },
+			{
+                label: "Loginname (optional):",
+                name: "Loginname"
             }
         ],i18n: {
             remove: {
@@ -121,7 +132,7 @@ $(document).ready(function() {
         },
         buttons: [
             { extend: "create", editor: editor, text:"Neue Lehrperson" },
-            { extend: "edit",   editor: editor, text:"Lehrperson bearbeiten" },
+            
             { extend: "remove", editor: editor, text:"Lehrperson löschen" }
         ],
 		  "language": {

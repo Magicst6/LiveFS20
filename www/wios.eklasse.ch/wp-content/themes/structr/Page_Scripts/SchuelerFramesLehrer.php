@@ -1,3 +1,5 @@
+
+
 <?
 include 'db.php';
  $isEntry0 = "Select * From sv_LernenderKurs group by KursID  ";
@@ -82,13 +84,13 @@ while ( $line2 = mysqli_fetch_array( $result ) ) {
 		$EMail='nomail';
 	}
 
-	$isEntry1 = "Select * From sv_LernendeModule where EMail='$EMail' or ((Vorname='$Vorname' and Name='$Nachname' ) and (Modul1='$Klasse' or Modul2='$Klasse' or Modul3='$Klasse' or Modul4='$Klasse' or Modul5='$Klasse' or Modul6='$Klasse' or Modul7='$Klasse' or Modul8='$Klasse' or Modul9='$Klasse' or Modul10='$Klasse' or Modul11='$Klasse' or Modul12='$Klasse'))";
-	$result1 = mysqli_query( $con, $isEntry1 );
-	while ( $line1 = mysqli_fetch_array( $result1 ) ) {
+	$isEntry3 = "Select * From sv_LernendeModule where EMail='$EMail' or ((Vorname='$Vorname' and Name='$Nachname' ) and (Modul1='$Klasse' or Modul2='$Klasse' or Modul3='$Klasse' or Modul4='$Klasse' or Modul5='$Klasse' or Modul6='$Klasse' or Modul7='$Klasse' or Modul8='$Klasse' or Modul9='$Klasse' or Modul10='$Klasse' or Modul11='$Klasse' or Modul12='$Klasse'))";
+	$result3 = mysqli_query( $con, $isEntry3 );
+	while ( $line3 = mysqli_fetch_array( $result3 ) ) {
       
-		$SchID=$line1['ID'];
+		$SchID=$line3['ID'];
 	}
-
+    
 	
 	$isEntryUpd = "UPDATE sv_LernenderKurs SET Abwesenheiten = '$abwges' where SchülerID='$SchID' and KursID ='$Kursname'";
 	mysqli_query( $con, $isEntryUpd );	
@@ -288,68 +290,30 @@ $c=0;
 
 }
 }
-?>
+
 	
 
 
-<?
-include 'db.php';
+
+
+	$schueler=$_GET['q'];				
+              
+					
+				
+
+                      
+
+        
+
+
+
+       
  
-	
-
-    global $current_user;
-
-    get_currentuserinfo();
 
 
+$schuelerarr=explode(":",$schueler);
 
-   
-
-$isEntry= "Select ID From sv_LernendeModule where User_ID=$current_user->ID";
-
-$result = mysqli_query($con, $isEntry);
-
-
-
-while( $line2= mysqli_fetch_assoc($result))
-
-{
-
-    $value=$line2['ID'];
-
-
-
-    $isEntry= "Select Name, Vorname From sv_LernendeModule WHERE ID='$value'";
-
-    $result = mysqli_query($con, $isEntry);
-
-    while( $line3= mysqli_fetch_array($result))
-
-    {
-
-        $Name = $line3['Name'];
-
-        $Vorname = $line3['Vorname'];
-
-
-
-    }
-
-
-
-
-
-
-
-
-
-
-    echo '<input  id="lehrer" name="lehrer" readonly="readonly" type="text" value="'.$Vorname .' '.$Name .' ID:'. $value .'" />' ;
-
-    $Lehrer=$Vorname .' '.$Name .' ID:'. $value;
-
-}
-
+$value=$schuelerarr[1];
 
 
 
@@ -462,4 +426,242 @@ $sel12='") or Klasse in (Select Modul12 from sv_LernendeModule where ID="';
 $sel13= '") Group by Klasse';
  $isEntryUpd2 = "UPDATE sv_postmeta SET meta_value  = '$select$sel1$sel2$sel1$sel3$sel1$sel4$sel1$sel5$sel1$sel6$sel1$sel7$sel1$sel8$sel1$sel9$sel1$sel10$sel1$sel11$sel1$sel12$sel1$sel13' where post_id='18119' and meta_key='visualizer-db-query' ";
 	mysqli_query( $con1, $isEntryUpd2 );
+
 ?>
+
+    
+
+<html>
+
+
+
+
+<script>
+
+	
+	
+		
+	function getSchueler(str){
+
+
+
+       
+	
+		window.location.href= "/uebersicht-der-schueler?q=" + str;
+
+    }
+	
+
+	
+	
+</script>
+
+
+<div class="first-column">
+    <?
+	include 'db.php';
+	
+echo "<br><br><strong>Schüler:<strong>";
+	
+$isEntry0 = "Select * From sv_LernendeModule order by Name ASC ";
+
+
+$schueler=$_GET['q'];		
+
+$result0 = mysqli_query( $con, $isEntry0 );
+
+ echo '<select class="link"  id="schueler" name="schueler" readonly="readonly"  onchange="getSchueler(this.value)" value="-Select-">' ;
+	echo '<option>-Select-</option>' ;
+
+while ( $line0 = mysqli_fetch_array( $result0 ) ) {
+	 
+	 $Name = $line0['Name'];
+
+        $Vorname = $line0['Vorname'];
+
+       $value = $line0['ID'];
+
+     $Email = $line0['EMail'];
+	
+	 $UserID= $line0['User_ID'];
+	
+	$Profil = $line0['Profil'];
+	
+	$Schulmail= $line0['SchulMail'];
+	
+	$Loginname= $line0['Loginname'];
+	
+	$Winlogin = $line0['WinLogin'];	 
+
+
+    echo '<option>'.$Vorname .' '.$Name .' ID:'. $value .'</option>' ;
+
+   
+
+}
+	echo '</select>';
+	 ?>
+   </div>
+   <div class="second-column" id="schmod">
+	<?  
+	   $schuelerarr=explode(":",$schueler);
+
+$value=$schuelerarr[1];
+	   $isEntry1 = "Select * From sv_LernendeModule where ID='$value' ";
+
+
+	
+
+$result1 = mysqli_query( $con, $isEntry1 );
+
+ 
+while ( $line1 = mysqli_fetch_array( $result1 ) ) {
+	 
+	 $Name = $line1['Name'];
+
+        $Vorname = $line1['Vorname'];
+
+     
+
+     $Email = $line1['EMail'];
+	
+	 $UserID= $line1['User_ID'];
+	
+	$Profil = $line1['Profil'];
+	
+	$Schulmail= $line1['SchulMail'];
+	
+	$Loginname= $line1['Loginname'];
+	
+	$Winlogin = $line1['WinLogin'];	 
+
+
+   
+   
+
+}
+ 
+  echo '<h4>'.$schueler.'</h4>';
+	   
+	   
+	   if ($schueler<>''){
+	   echo '<p1><u>Daten des Schülers: </u></p1>';
+	   echo '<br><p><strong>E-Mail Adresse: </strong>'.$Email; 
+	   echo '<br><strong>UserID EKlasse: </strong>'.$UserID; 
+	   echo '<br><strong>Lernendenprofil: </strong>'. $Profil; 
+	   echo '<br><strong>Schulmail: </strong>'. $Schulmail;
+	   echo '<p1><u> <br><br><strong>Rechnerdaten: </strong></u></p1><br>';
+	   echo '<strong>Loginname: </strong>'.$Loginname;
+	   echo '<br><strong>Win-Login: </strong>'.$Winlogin;'</p>';
+	   echo '<br>';
+	  
+	   
+	   
+	     echo  '<br><h3>Klassen(Module)</h3>';
+	  echo do_shortcode('[visualizer id="18119"]');
+
+	   
+	  echo  '<br><h3>Prüfungen</h3>';
+echo do_shortcode('[visualizer id="18121"]');
+ 
+ echo  '<br><br><h3>Lehrer</h3><br>';
+echo do_shortcode('[visualizer id="18116"]');
+	   
+	   echo do_shortcode('[visualizer id="18113"]');
+	   echo do_shortcode('[visualizer id="18504"]');
+	  
+	   }
+?>
+   </div>
+	
+	
+<style>
+        body {}
+
+	     .first-column {
+  width: 10%;
+			 height: auto;
+  float: left;
+}
+
+.second-column {
+  width: 80%;
+	height: auto;
+  float: right;
+}
+	p {
+  font-size: 16px;
+		font-style:normal;
+}
+	p1 {
+  font-size: 18px;
+		font-style:normal;
+		
+}
+	
+	input.link { background:none;border:none; }
+        .modal{
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 2000px; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+		.modal1{
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 1200px;
+			height:2000px;
+        }
+		
+		.modal-content1 {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 1400px;
+        }
+
+
+        /* The Close Button */
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        button {
+          color: white;
+        }
+    </style>

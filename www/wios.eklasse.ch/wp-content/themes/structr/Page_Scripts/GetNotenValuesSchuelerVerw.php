@@ -15,7 +15,9 @@ $Kursname=$_GET['q'];
 $ID=$_GET['k'];
 $Lehrer=$_GET['l'];
  
-preg_match("/:(.*)/", $Lehrer, $output_array);
+
+preg_match( "/:(.*)/", $Lehrer, $output_array );
+$ID = $output_array[ 1 ];
 
 $semester=$_GET['s'];
 $isEntry = "Select * From sv_Settings ";

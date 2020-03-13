@@ -1,3 +1,58 @@
+
+<script>
+function getSchueler(){
+
+
+
+        if (window.XMLHttpRequest) {
+
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+
+            xmlhttp = new XMLHttpRequest();
+
+        } else {
+
+            // code for IE6, IE5
+
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+
+        }
+
+        xmlhttp.onreadystatechange = function() {
+
+            if (this.readyState == 4 && this.status == 200) {
+
+                document.getElementById("schueler").innerHTML = this.responseText;
+
+            }
+
+        };
+
+        xmlhttp.open("GET","/Ajax_Scripts/getSchueler.php?q="+ document.getElementById('Kursname').value,true);
+
+        xmlhttp.send();
+	
+	
+
+    }
+	
+	
+	
+	function reloadpage1()
+{
+ 	 
+var schueler1 = document.getElementById( "schueler" ).value;
+	
+schueler = schueler1.split(':');
+	
+	schueler=schueler[1];
+	
+	
+
+window.location.href= "/uebersicht-der-schueler?q=" + schueler1;
+
+}
+</script>
 <?
 include 'db.php';
  $isEntry0 = "Select * From sv_LernenderKurs group by KursID  ";
@@ -89,6 +144,7 @@ while ( $line2 = mysqli_fetch_array( $result ) ) {
 		$SchID=$line1['ID'];
 	}
 
+	
 	
 	$isEntryUpd = "UPDATE sv_LernenderKurs SET Abwesenheiten = '$abwges' where SchülerID='$SchID' and KursID ='$Kursname'";
 	mysqli_query( $con, $isEntryUpd );	
@@ -292,64 +348,66 @@ $c=0;
 	
 
 
-<?
-include 'db.php';
+
+    Kursname:<br>
+    <select name="Kursname" onchange="getSchueler()"  id="Kursname" >
+
+        <?php
+
  
-	
+        $isEntry= "Select KursID From sv_LernenderKurs order by KursID asc";
+        $result = mysqli_query($con,$isEntry, MYSQLI_USE_RESULT);
+        $resultarr = array();
+            
+		
 
-    global $current_user;
+        while( $line2= mysqli_fetch_assoc($result))
+        {
+            $resultarr[] = $line2['KursID'];
+        }
+        $uniquearr = array_unique($resultarr);
 
-    get_currentuserinfo();
+       
+		 echo "<option>-Select-</option>";
+        echo "<option>Alle</option>";
+        foreach ($uniquearr as $value)
+        {
+            echo "<option>" . $value . "</option>";
+        }
 
-
-
-   
-
-$isEntry= "Select ID From sv_LernendeModule where User_ID=$current_user->ID";
-
-$result = mysqli_query($con, $isEntry);
-
-
-
-while( $line2= mysqli_fetch_assoc($result))
-
-{
-
-    $value=$line2['ID'];
+        
+        ?>
 
 
+    </select>
 
-    $isEntry= "Select Name, Vorname From sv_LernendeModule WHERE ID='$value'";
 
-    $result = mysqli_query($con, $isEntry);
-
-    while( $line3= mysqli_fetch_array($result))
-
-    {
-
-        $Name = $line3['Name'];
-
-        $Vorname = $line3['Vorname'];
+<br><br> Schüler:
 
 
 
-    }
+ <?
+
+	$schueler=$_GET['q'];				
+              
+					
+					echo '<br><select name="schueler" id="schueler" onchange="reloadpage1()" value="-Select-">';
+
+                      
+
+        
 
 
 
+       
+ echo '</select>';
 
+echo "<br><br><strong>Schüler:<strong>";
+echo "<h3>".$schueler."</h3>";
 
+$schuelerarr=explode(":",$schueler);
 
-
-
-
-
-    echo '<input  id="lehrer" name="lehrer" readonly="readonly" type="text" value="'.$Vorname .' '.$Name .' ID:'. $value .'" />' ;
-
-    $Lehrer=$Vorname .' '.$Name .' ID:'. $value;
-
-}
-
+$value=$schuelerarr[1];
 
 
 
@@ -369,7 +427,7 @@ $selectt='Select KursID, Abwesenheiten from sv_LernenderKurs where SchülerID="'
  $sel1=$value;
 		
 $selt2= '" Group by KursID';
- $isEntryUpd2 = "UPDATE sv_postmeta SET meta_value  = '$selectt$sel1$selt2' where post_id='18504' and meta_key='visualizer-db-query' ";
+ $isEntryUpd2 = "UPDATE sv_postmeta SET meta_value  = '$selectt$sel1$selt2' where post_id='18124' and meta_key='visualizer-db-query' ";
 	mysqli_query( $con1, $isEntryUpd2 );	
 
 

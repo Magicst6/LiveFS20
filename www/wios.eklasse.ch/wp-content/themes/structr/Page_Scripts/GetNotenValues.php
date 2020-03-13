@@ -32,7 +32,7 @@ $result = mysqli_query($con, $isEntry);
 preg_match("/:(.*)/", $Lehrer, $output_array);
 $Lehrer=$output_array[1];
 
-if ($semester==$semDB){
+if ($semester==$semDB || $semester==''){
     $isEntry = "Select * From sv_LernenderKurs where KursID='$Kursname' order by Nachname asc ";
 
 } else{

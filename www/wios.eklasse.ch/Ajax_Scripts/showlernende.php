@@ -72,6 +72,21 @@ if ($Kursnme<>'' && $Kursnme<>"-Select-") {
 $KursnameReg2=$output_array3[0];
 preg_match("/it/", strtolower($Profil), $output_array4);
 $ProfilReg1=$output_array4[0];
+		
+			$isEntry6 = "SELECT * From sv_LernenderKurs Where KursID='$Kursnme' ";
+$result6 = mysqli_query($con, $isEntry6);
+  $isinlk=0;
+while( $value6= mysqli_fetch_array($result6))
+{
+	$VornameLk=$value6['Vorname'];
+$NameLk =$value6['Nachname'];
+	if (($NameLk==$Name) and ($VornameLk==$Vorname))
+	{
+	  $isinlk=1;
+	}
+
+}
+if ($isinlk){	
 
 if ((($KursnameReg=='.fz.') and ($ProfilReg=='e')) or (($KursnameReg<>'.fz.') and (($KursnameReg1<>'.itplus.') and ($KursnameReg2 <> '.it.'))) or ((($KursnameReg1=='.itplus.') or ($KursnameReg2 == '.it.')) and ($ProfilReg1=='it'))) {
             $isEntry1 = "SELECT SchülerID, Kommentar, Abwesenheitsdauer,Datum From sv_AbwesenheitenKompakt Where Kursname='$Kursnme'  ";
@@ -125,6 +140,8 @@ if ((($KursnameReg=='.fz.') and ($ProfilReg=='e')) or (($KursnameReg<>'.fz.') an
             echo '<input name="Schueler" id="Schueler" type="hidden" value=' . $y . ' />';
         }
     }
+}
+	
 }
 mysqli_close($con);
 

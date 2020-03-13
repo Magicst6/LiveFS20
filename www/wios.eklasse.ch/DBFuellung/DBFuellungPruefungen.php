@@ -27,7 +27,7 @@ if( $_POST['Senden'])
 
     $kursid= $_POST['Kursname'];
 	
-	$kursname= $_POST['Kurs'];
+	
 
     $start =$_POST['Datum']."T".$_POST['Startzeit'];
 
@@ -62,7 +62,7 @@ if( $_POST['Senden'])
 
 
 
-        $query = "INSERT INTO sv_Pruefungen (Pruefungsname,Kursname, Start, Ende, KursID, Klasse, Zimmer, Lehrperson, LP_ID, Farbe, Gewichtung,Datum)  VALUES ('$pruefungsname','$kursname', '$start', '$end','$kursid','$klasse','$zimmer','$lehrperson','$lp_id','$farbe','$gewichtung','$datum')";
+        $query = "INSERT INTO sv_Pruefungen (Pruefungsname, Start, Ende, KursID, Klasse, Zimmer, Lehrperson, LP_ID, Farbe, Gewichtung,Datum)  VALUES ('$pruefungsname', '$start', '$end','$kursid','$klasse','$zimmer','$lehrperson','$lp_id','$farbe','$gewichtung','$datum')";
 
         mysqli_query($con, $query);
 

@@ -226,10 +226,10 @@ echo 'User Rolle2: ' . $current_user->roles[1] . "\n";
 
     <div id="zuordnen"><b></b></div>
 
-    <br>
-
+   
     <input name="button" type="button" onclick="zuordnen(Lehrpersonen.value,Loginname.value)" id="button" value="Zuordnen" />
 
+     <br><br>
 
 
 

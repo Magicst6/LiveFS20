@@ -1,5 +1,23 @@
+
 <?php
 include 'db.php';
+
+
+    $Semesterkuerzel = $_POST['Semesterkuerzel'];
+echo $Semesterkuerzel;
+    $Semesteranfang = $_POST['Semesteranfang'];
+    $Semesterende = $_POST['Semesterende'];
+    $Ferien1von = $_POST['Ferien1von'];
+    $Ferien1bis = $_POST['Ferien1bis'];
+    $Ferien2von = $_POST['Ferien2von'];
+    $Ferien2bis = $_POST['Ferien2bis'];
+    $Ferien3von = $_POST['Ferien3von'];
+    $Ferien3bis = $_POST['Ferien3bis'];
+    $Ferien4von = $_POST['Ferien4von'];
+    $Ferien4bis = $_POST['Ferien4bis'];
+    $Ferien5von = $_POST['Ferien5von'];
+    $Ferien5bis = $_POST['Ferien5bis'];
+
 
  $isEntry2 = "Select Semesterkuerzel From sv_Settings";
     $result2 = mysqli_query($con, $isEntry2);
@@ -7,6 +25,12 @@ include 'db.php';
     while ($value3 = mysqli_fetch_array($result2)) {
         $SemesterkuerzelDB = $value3['Semesterkuerzel'];
     }
+	
+if ($SemesterkuerzelDB==$Semesterkuerzel){
+	
+	
+}
+	else{
 $Sem_lernende= $SemesterkuerzelDB.'_Lernende';
 
 $query = "DROP TABLE $Sem_lernende";
@@ -245,22 +269,7 @@ $query5 = "INSERT INTO $Sem_Users SELECT * FROM sv_users";
 
 mysqli_query($con1,$query5);
 
-
-if ($_POST['Senden']) {
-    $Semesterkuerzel = $_POST['Semesterkuerzel'];
-
-    $Semesteranfang = $_POST['Semesteranfang'];
-    $Semesterende = $_POST['Semesterende'];
-    $Ferien1von = $_POST['Ferien1von'];
-    $Ferien1bis = $_POST['Ferien1bis'];
-    $Ferien2von = $_POST['Ferien2von'];
-    $Ferien2bis = $_POST['Ferien2bis'];
-    $Ferien3von = $_POST['Ferien3von'];
-    $Ferien3bis = $_POST['Ferien3bis'];
-    $Ferien4von = $_POST['Ferien4von'];
-    $Ferien4bis = $_POST['Ferien4bis'];
-    $Ferien5von = $_POST['Ferien5von'];
-    $Ferien5bis = $_POST['Ferien5bis'];
+	}
 
 echo $Ferien1von;
     $isEntry2 = "Select Semesterkuerzel From sv_Settings";
@@ -608,7 +617,7 @@ echo $Ferien1von;
     }
 
 
-}
+
 $con = @mysqli_connect(DB_HOST, DB_USER_EKL, DB_PASSWORD_EKL);
 
 if (!$con) {
@@ -645,7 +654,7 @@ $isEntry2 = "Select Semesterkuerzel From sv_Settings";
 $result2 = mysqli_query($con, $isEntry2);
 
 while ($value3 = mysqli_fetch_array($result2)) {
-    $SemesterkuerzelDB = $value3['Semesterkuerzel'];
+    $SemesterkuerzelDBnew = $value3['Semesterkuerzel'];
 }
 
 
@@ -655,13 +664,15 @@ $isFilled = false;
 while ($value3 = mysqli_fetch_array($result2)) {
     $SemesterkuerzelDBArchiv = $value3['Semesterkuerzel'];
 
-    if ($SemesterkuerzelDB == $SemesterkuerzelDBArchiv) {
+    if ($SemesterkuerzelDBnew == $SemesterkuerzelDBArchiv) {
         $isFilled = true;
     }
 }
 if (!$isFilled)
+	
 {
-        $sql_befehl2 = "INSERT INTO sv_SemesterArchiv (Semesterkuerzel) VALUES ('$SemesterkuerzelDB')";
+    
+	$sql_befehl2 = "INSERT INTO sv_SemesterArchiv (Semesterkuerzel) VALUES ('$SemesterkuerzelDBnew')";
         mysqli_query($con, $sql_befehl2);
 	$query1 = "Delete From sv_Pruefungen";
 
@@ -689,7 +700,14 @@ mysqli_query($con,$query1);
 	
 	
 }
+
 else{
+	
+	if ($SemesterkuerzelDB==$Semesterkuerzel){
+
+	
+}
+	else{
 	$Sem_Pruefungen= $Semesterkuerzel.'_Pruefungen';
 
 
@@ -1012,6 +1030,7 @@ mysqli_query($con1,$query4);
 $query5 = "INSERT INTO $Sem_Users SELECT * FROM sv_users";
 
 mysqli_query($con1,$query5);
+}
 
 header('Location:'.$_SERVER['HTTP_REFERER']);
 ?>
