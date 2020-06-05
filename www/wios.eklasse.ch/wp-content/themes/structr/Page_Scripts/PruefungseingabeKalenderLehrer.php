@@ -141,9 +141,7 @@ function getcolor(str1){
 
     <input type="hidden" name="curruser" id="curruser" value="<?php echo $current_user->ID ?>" class="text ui-widget-content ui-corner-all" readonly >
 
-    <br>
-
-    <br>
+   
 
   
 <body>
@@ -205,7 +203,7 @@ $IDLP=$value;
 
 ?>
 	
-	<input  id="lehrer" name="lehrer" readonly="readonly" type="text" value="<?php echo $Lehrer; ?>" />
+	<input  id="lehrer" name="lehrer" class="ninput" readonly="readonly" type="text" value="<?php echo $Lehrer; ?>" />
 
     <script>
 
@@ -1500,7 +1498,7 @@ if ($valuelp<>"") echo "<option>" . $valuelp. "</option>";
 
 
 
-<input name="myBtn1" id="myBtn1" type="button" value="Mail versenden"  />
+<input name="myBtn1" id="myBtn1" type="button" value="Mail versenden"  /><br><br>
 
 <div id="myModal1" class="modal">
 
@@ -1557,7 +1555,13 @@ if ($valuelp<>"") echo "<option>" . $valuelp. "</option>";
   width: 450px;
   height: 400px;
 }
+ input[type=text].ninput {
 
+            width:auto;
+
+           
+
+        }
 
 </style>
 

@@ -11,11 +11,15 @@
 </style>
 
 
-
 <?php
    include 'db.php';
 $Kursnme=$_GET['q'];
 $heute= $_GET['h'];
+$LektionenF=$_GET['j'];
+if ($LektionenF){
+		   $Lektionen=$LektionenF;
+	   }
+		
 if ($Kursnme<>'' && $Kursnme<>"-Select-"){
 $isEntry2 = "Select Stattgefunden,Kommentar From sv_Kurshistorie Where KursID='$Kursnme' and Datum='$heute'";
 $result2 = mysqli_query($con, $isEntry2);
@@ -38,12 +42,16 @@ echo '<div class="panel panel-default" style="background-color:aliceblue"><div c
     $result10 = mysqli_query($con, $isEntry10);
 
     while ($value10 = mysqli_fetch_array($result10)) {
-        $Lektionen=$value10['Lektionen'];
+       if ($LektionenF){
+		   $Lektionen=$LektionenF;
+	   }
+else		$Lektionen=$value10['Lektionen'];
+		
     }
 	echo '<br>';
     echo 'Lektionen:';
     echo '<br>';
-    echo '<input name="Lektionen" type="number" value=' . $Lektionen . ' min="0" max="999" required="required">';
+    echo '<input name="Lektionen" id="Lektionen" type="number" value=' . $Lektionen . ' min="0" max="999" onchange="test1()"" required="required">';
     echo '(anzugeben für die Stundenabrechung)';
     echo '<br>';
     echo '<br>';
@@ -55,7 +63,7 @@ echo '<textarea name="Comment">'.$Comment.'</textarea>';
 
 
 ?>
-Um die Abwesenheitsdauer nach Falscheingabe auf 0 zurück zu setzen bitte 99 eingeben
+
 
 <?php
 
@@ -120,13 +128,22 @@ if (($ID==$value2['SchülerID']) and ($value2['Datum']==$heute)){
 $y++;
 $z="Comment"."$y";
 $u="Dauer"."$y";
+$abw=$value2['Abwesenheitsdauer'];
+		$ab="abw"."$y";
+	
+echo '<input name="'.$ab.'" id="'.$ab.'" type="hidden" value="'.$abw.'">'; 
 echo '<br>';
 echo '<label for='.$ID.'><b>'.$Vorname.' '.$Name.'   </b></label>';
 echo '<input type="hidden" name='.$y.' value='.$ID.'><br>';
 echo '<br>';
-echo 'Abwesenheitsdauer:';
+echo 'Abwesenheitsdauer(Lektionen):';
 echo '<br>';
-echo '<input name='.$u.' type="number" value='.$value2['Abwesenheitsdauer'].' min="0" max="999">';
+for ($v=0;$v<=$Lektionen;$v++){
+	echo '<input name="'.$u.'" id="'.$u.'" type="radio" value="'.$v.'" ><label for="'.$u.'">'.$v.'</label> &nbsp &nbsp';
+}
+
+echo ''; 	
+echo ''; 	
 echo '<br>';
 echo 'Kommentar: ';
 echo '<br>';
@@ -135,6 +152,11 @@ echo '<textarea name='.$z.'>'.$value2['Kommentar'].'</textarea>';
 echo '<br>';
 echo '<hr>';
 $isfilled=1;
+	?>
+
+
+
+<?
 }
  }
 
@@ -143,13 +165,26 @@ if ($isfilled==0){
 $y++;
 $z="Comment"."$y";
 $u="Dauer"."$y";
+	
+$abw="0";
+$ab="abw"."$y";
+	
+echo '<input name="'.$ab.'" id="'.$ab.'" type="hidden" value="'.$abw.'">'; 
+	
 echo '<br>';
 echo '<label for='.$ID.'><b>'.$Vorname.' '.$Name.'   </b></label>';
 echo '<input type="hidden" name='.$y.' value='.$ID.'><br>';
 echo '<br>';
-echo 'Abwesenheitsdauer:';
+echo 'Abwesenheitsdauer(Lektionen):';
 echo '<br>';
-echo '<input name='.$u.' type="number" value="0" min="0" max="999">';
+	if ($Lektionen){
+for ($v=0;$v<=$Lektionen;$v++){
+	echo '<input name="'.$u.'" id="'.$u.'" type="radio" value="'.$v.'" ><label for="'.$u.'">'.$v.'</label> &nbsp &nbsp ';
+}
+	}
+	else {
+	}
+echo ''; 	
 echo '<br>';
 echo 'Kommentar: ';
 echo '<br>';
@@ -163,8 +198,14 @@ echo '<input name="Schueler" id="Schueler" type="hidden" value='.$y.' />';
 }
 }
 }
-
+echo '<input name="count" id="count" type="hidden" value="'.$y.'">'; 
+	
 
 mysqli_close($con);
 
 ?>
+
+
+ 
+
+

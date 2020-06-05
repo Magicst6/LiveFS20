@@ -2,9 +2,19 @@
 
 
 
+	 <link rel="shortcut icon" type="image/ico" href="http://www.datatables.net/favicon.ico">
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
+
 	<link rel="stylesheet" type="text/css" href="/wp-content/themes/structr/Page_Scripts/DataTables-1.10.19/media/css/jquery.dataTables.css">
 	<link rel="stylesheet" type="text/css" href="/wp-content/themes/structr/Page_Scripts/DataTables-1.10.19/examples/resources/syntax/shCore.css">
 	<link rel="stylesheet" type="text/css" href="/wp-content/themes/structr/Page_Scripts/DataTablesEditor/css/editor.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="/wp-content/themes/structr/Page_Scripts/DataTablesEditor/css/editor.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="/wp-content/themes/structr/Page_Scripts/DataTablesEditor/css/editor.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+	
+	
+	
 	<!--	<link rel="stylesheet" type="text/css" href="/wp-content/themes/structr/Page_Scripts/DataTables-1.10.19/examples/resources/demo.css">-->
 	<style type="text/css" class="init">
 
@@ -17,8 +27,11 @@
 	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
 	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.flash.min.js"></script>
 	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/select/1.3.0/js/dataTables.select.min.js"></script>
-	<script type="text/javascript" language="javascript" class="init">
-	</script>
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+	
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
+	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
 
 </head>
@@ -93,7 +106,14 @@ tableshow();
 
             dataSrc: ""
         },
-        columns: [ {
+        columns: [ 
+			{
+            className: '',
+            defaultContent: '',
+            data: null,
+            orderable: false
+        },
+			{
             className: 'details-control',
             defaultContent: '',
             data: null,
@@ -189,7 +209,14 @@ tableshow();
             dataSrc: ""
         },
 
-        columns: [ {
+        columns: [ 
+			{
+                className: '',
+                defaultContent: '',
+                data: null,
+                orderable: false
+            },
+			{
             className: 'details-control',
             defaultContent: '',
             data: null,
@@ -343,7 +370,14 @@ tableshow();
 
                 dataSrc: ""
             },
-            columns: [ {
+            columns: [ 
+				{
+                className: 'details-control',
+                defaultContent: '',
+                data: null,
+                orderable: false
+            },
+				{
                 className: 'details-control',
                 defaultContent: '',
                 data: null,
@@ -429,7 +463,15 @@ tableshow();
                 dataSrc: ""
             },
 
-            columns: [ {
+            columns: [ 
+				{
+                className: '',
+                defaultContent: '',
+                data: null,
+                orderable: false,
+
+            },
+				{
                 className: 'details-control',
                 defaultContent: '',
                 data: null,
@@ -1063,6 +1105,34 @@ p.start-editing {
 	tr.shown td.details-control2:before {
 		content: url(/plussmall.png);
 	}
+		.iconSettings,
+	td.details-control3:before,
+	tr.shown td.details-control3:before {
+		margin-top: 5px;
+		margin-bottom: 10px;
+		font-size: 12px;
+		position: relative;
+		top: 1px;
+		display: inline-block;
+		font-family: 'Glyphicons Halflings';
+		font-style: normal;
+		font-weight: 400;
+		line-height: 1;
+		-webkit-font-smoothing: antialiased;
+	}
+	
+	td.details-control3 {
+		cursor: pointer;
+		text-align: center;
+	}
+	
+	td.details-control3:before {
+		content: '+';
+	}
+	
+	tr.shown td.details-control3:before {
+		content:'-';
+	}
 
 </style>
 
@@ -1520,10 +1590,10 @@ while ($line1 = mysqli_fetch_array($result)) {
 	</div>
 	<div class="row">
 		<div class="col md12">
-			<table class="table table-striped table-hover datatables">
+			<table class="table table-striped table-hover datatables" width="1000px">
 				<thead>
 					<tr>
-						
+						<th></th>
 						<th></th>
 						<th>ID</th>
 	                    <th>Nachname</th>
@@ -1552,9 +1622,10 @@ while ($line1 = mysqli_fetch_array($result)) {
 	</div>
 	<div class="row">
 		<div class="col md12">
-			<table class="table table-striped table-hover datatables1">
+			<table class="table table-striped table-hover datatables1" width="1000px">
 				<thead>
 					<tr>
+						<th></th>
 						<th></th>
 						<th>ID</th>
 	                    <th>Nachname</th>
@@ -2012,7 +2083,8 @@ Kurs:        <input id="Kurslb2" readonly><br><br>
         }, 
 		
 				 columns: [
-           
+         
+
 				 {
                 data: null,
                 defaultContent: '',
@@ -2175,7 +2247,7 @@ Kurs:        <input id="Kurslb2" readonly><br><br>
 			
 			}
         }, 
-		
+		 
         table: ".datatablesmod3",
         fields: [ {
 			 label: "KursID:",
@@ -2277,7 +2349,7 @@ Kurs:        <input id="Kurslb2" readonly><br><br>
 	
 		
 			tableedit1 = $( '.datatablesmod3' ).DataTable( {
-
+            
 
 			dom: "lBfrtip",
         ajax:{
@@ -2444,14 +2516,25 @@ window.location.href= "/notenbuch-lehrer-archiv?q="+  encrypted + "&sem=" +  doc
          $.fn.dataTable.ext.errMode = 'throw';
     table = $( '.datatables' ).DataTable( {
 
-
+        responsive:true,
+		
         ajax: {
 
             url: url3,
 
             dataSrc: ""
         },
-        columns: [ {
+        columns: [ 
+			
+			{
+            className: '',
+            defaultContent: '',
+            data: null,
+            orderable: false
+			
+        },
+
+			{
             className: 'details-control',
             defaultContent: '',
             data: null,
@@ -2587,7 +2670,6 @@ window.location.href= "/notenbuch-lehrer-archiv?q="+  encrypted + "&sem=" +  doc
 		 
 		 table1 = $( '.datatables1' ).DataTable( {
 
-
         ajax: {
 
             url: url4,
@@ -2595,7 +2677,19 @@ window.location.href= "/notenbuch-lehrer-archiv?q="+  encrypted + "&sem=" +  doc
             dataSrc: ""
         },
 
-        columns: [ {
+			 responsive:true,
+        columns: [ 
+			
+			
+			{
+            className: '',
+            defaultContent: '',
+            data: null,
+            orderable: false
+			
+
+        },
+			{
             className: 'details-control',
             defaultContent: '',
             data: null,
@@ -2909,7 +3003,16 @@ window.location.href= "/notenbuch-lehrer-archiv?q="+  encrypted + "&sem=" +  doc
             dataSrc: ""
         },
 
-        columns: [ {
+        columns: [ 
+			{
+            className: '',
+            defaultContent: '',
+            data: null,
+            orderable: false
+			
+
+        },
+			{
             className: 'details-control',
             defaultContent: '',
             data: null,

@@ -3,31 +3,42 @@
 <head>
 
 	
+	 <link rel="shortcut icon" type="image/ico" href="http://www.datatables.net/favicon.ico">
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
+
 	<link rel="stylesheet" type="text/css" href="/wp-content/themes/structr/Page_Scripts/DataTables-1.10.19/media/css/jquery.dataTables.css">
 	<link rel="stylesheet" type="text/css" href="/wp-content/themes/structr/Page_Scripts/DataTables-1.10.19/examples/resources/syntax/shCore.css">
-		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
-	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css">
-<!--	<link rel="stylesheet" type="text/css" href="/wp-content/themes/structr/Page_Scripts/DataTables-1.10.19/examples/resources/demo.css">-->
+	<link rel="stylesheet" type="text/css" href="/wp-content/themes/structr/Page_Scripts/DataTablesEditor/css/editor.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="/wp-content/themes/structr/Page_Scripts/DataTablesEditor/css/editor.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="/wp-content/themes/structr/Page_Scripts/DataTablesEditor/css/editor.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+	
+	
+	
+	<!--	<link rel="stylesheet" type="text/css" href="/wp-content/themes/structr/Page_Scripts/DataTables-1.10.19/examples/resources/demo.css">-->
 	<style type="text/css" class="init">
-	
+
 	</style>
-	
-	
 	<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
 	<script type="text/javascript" language="javascript" src="/wp-content/themes/structr/Page_Scripts/DataTables-1.10.19/media/js/jquery.dataTables.js"></script>
 	<script type="text/javascript" language="javascript" src="/wp-content/themes/structr/Page_Scripts/DataTables-1.10.19/examples/resources/syntax/shCore.js"></script>
 	<script type="text/javascript" language="javascript" src="/wp-content/themes/structr/Page_Scripts/DataTables-1.10.19/examples/resources/demo.js"></script>
-	<script type="text/javascript" language="javascript" class="init"></script>
-	
-		<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
-	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" language="javascript" src="/wp-content/themes/structr/Page_Scripts/DataTablesEditor/js/dataTables.editor.min.js"></script>
 	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
 	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.flash.min.js"></script>
-	<script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-	<script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-	<script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/select/1.3.0/js/dataTables.select.min.js"></script>
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+	
 	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
 	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+
+	
+	<script type="text/javascript" language="javascript" class="init">
+		
+		</script>
 	
 </head>
 <!--
@@ -106,7 +117,8 @@
         buttons: [
             'copy', 'csv', 'excel', 'pdf', 'print'
         ],
-
+         
+	    responsive:true,
 	
 	    ajax: {
 			
@@ -211,12 +223,20 @@ function tableshow(){
 	var new_url1= "/wp-content/themes/structr/Page_Scripts/GetLernende.php?q="+document.getElementById("Kursname").value;
 	
 		
-                    
+        getMailArray();            
 		
 	
 	table1.ajax.url( new_url1 ).load();
 }		
+	
 		
+		function sendMail() {
+ 
+
+	window.location.href = "mailto:" + document.getElementById('Mails').value;
+			
+		
+}
 		
 	</script>
 	
@@ -325,6 +345,49 @@ tr.shown td.details-control:before {
     }
 
   
+	
+    function getMailArray(){
+
+      
+
+
+            if (window.XMLHttpRequest) {
+
+                // code for IE7+, Firefox, Chrome, Opera, Safari
+
+                xmlhttp = new XMLHttpRequest();
+
+            } else {
+
+                // code for IE6, IE5
+
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+
+            }
+
+            xmlhttp.onreadystatechange = function() {
+				
+
+                if (this.readyState == 4 && this.status == 200) {
+
+                    document.getElementById("Mails").value = this.responseText;
+					       
+                          
+
+                }
+
+            };
+
+		 
+            xmlhttp.open("GET","/Ajax_Scripts/getMailArray.php?q="+ document.getElementById('Kursname').value,true);
+
+            xmlhttp.send();
+
+        }
+
+    
+
+			
   
 
     function checkKurs(str){
@@ -340,6 +403,10 @@ tr.shown td.details-control:before {
     }
 
 </script>
+
+<input id="Mails" type="hidden">
+
+
 
 <?php
 
@@ -377,9 +444,7 @@ $heute=date("Y-m-d");
 
 ?>
 
-<br><br>
 
-<br><br>
 
 Lehrperson:
 
@@ -428,7 +493,7 @@ while( $line2= mysqli_fetch_assoc($result))
 
 <br><br>
 
-<br><br>
+
 Kursname:
 <br>
  
@@ -489,8 +554,8 @@ Kursname:
     ?>
 </select>
 
-
-
+<br><br>
+<button id=send onclick="sendMail()">Rundmail an Kursteilnehmer senden</button>
 	
 
 <br><br>
@@ -503,7 +568,7 @@ Kursname:
   </div>
   <div class="row">
     <div class="col md12">
-      <table class="table table-striped table-hover datatables1">
+      <table class="table table-striped table-hover datatables1" width="auto">
         <thead>
           <tr>
 			   <th></th>
@@ -543,6 +608,10 @@ Kursname:
         max-width: 900px;
         margin: 0 auto;
     }
+	
+	button {
+		color: white;
+	}
 
 </style>
 

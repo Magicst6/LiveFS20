@@ -1,6 +1,6 @@
 <form action="/DBFuellung/DBFuellungStundenplan.php" method="POST">
    
-    &nbsp;<br><br>
+   
     Bitte keine Leerzeichen oder mathematische Operatoren(+,-,...) in den Namen der Kurse verwenden
     &nbsp;<br><br>
     Klasse:

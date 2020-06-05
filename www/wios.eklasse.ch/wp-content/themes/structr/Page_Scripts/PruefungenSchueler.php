@@ -77,7 +77,7 @@
 
     <input type="hidden" name="curruser" id="curruser" value="<?php echo $current_user->ID ?>" class="text ui-widget-content ui-corner-all" readonly >
 
-	<br><br>
+	
 <body>
 <h4>Schüler:
 </h4>
@@ -125,7 +125,7 @@ while( $line2= mysqli_fetch_assoc($result))
 
 
 
-    echo '<input  id="lehrer" name="lehrer" readonly="readonly" type="text" value="'.$Vorname .' '.$Name .' ID:'. $value .'" />' ;
+    echo '<input  id="lehrer" class="ninput" name="lehrer" readonly="readonly" type="text" value="'.$Vorname .' '.$Name .' ID:'. $value .'" />' ;
 
     $Lehrer=$Vorname .' '.$Name .' ID:'. $value;
 
@@ -135,7 +135,7 @@ while( $line2= mysqli_fetch_assoc($result))
 
 ?>
 
-
+<br><br>
    <!-- </br>Klasse:<br>
 
     <select name="klassedrop" id="klassedrop" onchange="reload()" >
@@ -964,6 +964,13 @@ while( $line2= mysqli_fetch_assoc($result))
 
         }
 
+	 input[type=text].ninput {
+
+            width:auto;
+
+           
+
+        }
 
 
     </style>

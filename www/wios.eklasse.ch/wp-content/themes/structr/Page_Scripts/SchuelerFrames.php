@@ -394,10 +394,10 @@ $result=mysqli_query( $con, $isEntryPr );
 
 if ($is==1){
 
-$selecty='Select Pruefungsname,Datum As Prüfungsdatum, Start,Ende,Zimmer,Gewichtung,KursID,Kommentar from sv_Pruefungen where KursID  in (Select KursID from sv_LernenderKurs where SchülerID="';
+$selecty='Select Datum As Prüfungsdatum,Pruefungsname, Start,Ende,Zimmer,Gewichtung,KursID,Kommentar from sv_Pruefungen where KursID  in (Select KursID from sv_LernenderKurs where SchülerID="';
  $sel1=$value;
 		
-$sely2= '")';
+$sely2= '") order by Datum';
  $isEntryUpd2 = "UPDATE sv_postmeta SET meta_value  = '$selecty$sel1$sely2' where post_id='18121' and meta_key='visualizer-db-query' ";
 	mysqli_query( $con1, $isEntryUpd2 );
 }
@@ -599,68 +599,7 @@ echo do_shortcode('[visualizer id="18116"]');
 		
 }
 	
-	input.link { background:none;border:none; }
-        .modal{
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
-            padding-top: 100px; /* Location of the box */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 2000px; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgb(0,0,0); /* Fallback color */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-        }
-		.modal1{
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
-            padding-top: 100px; /* Location of the box */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgb(0,0,0); /* Fallback color */
-            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-        }
-
-
-        /* Modal Content */
-        .modal-content {
-            background-color: #fefefe;
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 1200px;
-			height:2000px;
-        }
-		
-		.modal-content1 {
-            background-color: #fefefe;
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 1400px;
-        }
-
-
-        /* The Close Button */
-        .close {
-            color: #aaaaaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: #000;
-            text-decoration: none;
-            cursor: pointer;
-        }
+	
         button {
           color: white;
         }

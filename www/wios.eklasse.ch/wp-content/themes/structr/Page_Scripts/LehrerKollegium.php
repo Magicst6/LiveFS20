@@ -1,10 +1,18 @@
 <head>
 
-
+ <link rel="shortcut icon" type="image/ico" href="http://www.datatables.net/favicon.ico">
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
 
 	<link rel="stylesheet" type="text/css" href="/wp-content/themes/structr/Page_Scripts/DataTables-1.10.19/media/css/jquery.dataTables.css">
 	<link rel="stylesheet" type="text/css" href="/wp-content/themes/structr/Page_Scripts/DataTables-1.10.19/examples/resources/syntax/shCore.css">
 	<link rel="stylesheet" type="text/css" href="/wp-content/themes/structr/Page_Scripts/DataTablesEditor/css/editor.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="/wp-content/themes/structr/Page_Scripts/DataTablesEditor/css/editor.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="/wp-content/themes/structr/Page_Scripts/DataTablesEditor/css/editor.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+	
+	
+	
 	<!--	<link rel="stylesheet" type="text/css" href="/wp-content/themes/structr/Page_Scripts/DataTables-1.10.19/examples/resources/demo.css">-->
 	<style type="text/css" class="init">
 
@@ -17,13 +25,12 @@
 	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
 	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.flash.min.js"></script>
 	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/select/1.3.0/js/dataTables.select.min.js"></script>
-	
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
 	
 	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
 	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
-
 
 	
 	<script type="text/javascript" language="javascript" class="init">
@@ -81,8 +88,8 @@ $(document).ready(function() {
   table = $('.datatables').DataTable({
 	      dom: 'lrftip',
         
-      
-	
+	  responsive:true,
+     
 	    ajax: {
 			
 			url: new_url,
@@ -482,7 +489,7 @@ $heute=date("Y-m-d");
   </div>
   <div class="row">
     <div class="col md12">
-      <table class="table table-striped table-hover datatables">
+      <table class="table table-striped table-hover datatables" width="auto" >
         <thead>
           <tr>
 			 <th></th>

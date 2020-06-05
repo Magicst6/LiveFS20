@@ -323,7 +323,7 @@ Wählen Sie das Semester aus :
 
         .modal{
             display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
+            position: absolute; /* Stay in place */
             z-index: 1; /* Sit on top */
             padding-top: 100px; /* Location of the box */
             left: 0;
@@ -355,7 +355,7 @@ Wählen Sie das Semester aus :
             margin: auto;
             padding: 20px;
             border: 1px solid #888;
-            width: 1200px;
+            width: 930px;
 			height: 1200px;
         }
 		

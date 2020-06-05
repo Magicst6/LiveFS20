@@ -138,7 +138,7 @@ function getcolor(str1){
 
     <input type="hidden" name="curruser" id="curruser" value="<?php echo $current_user->ID ?>" class="text ui-widget-content ui-corner-all" readonly >
 
-    <br>
+   
 
    
    <table  id="tab1 "width="1300" >

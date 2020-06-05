@@ -127,7 +127,7 @@ if( $_POST['Senden']) {
     $result2 = mysqli_query($con, $isEntry2);
 
     while ($value3 = mysqli_fetch_array($result2)) {
-        for ($y = 1; $y <= 16; $y++) {
+        for ($y = 1; $y <= 30; $y++) {
             $Kurs1 = "Kurs" . "$y";
             $dbwert = $value3[$Kurs1];
             $LP_ID=$value3['ID'];

@@ -7,6 +7,8 @@
 	<link rel="stylesheet" type="text/css" href="/wp-content/themes/structr/Page_Scripts/DataTables-1.10.19/examples/resources/syntax/shCore.css">
 		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
 <!--	<link rel="stylesheet" type="text/css" href="/wp-content/themes/structr/Page_Scripts/DataTables-1.10.19/examples/resources/demo.css">-->
 	<style type="text/css" class="init">
 	
@@ -28,6 +30,7 @@
 	<script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
 	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
 	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
 	
 </head>
 <!--
@@ -103,7 +106,18 @@
             buttons: [
                 'copy', 'csv', 'excel', 'pdf', 'print'
             ],
-
+              responsive: {
+			details: {
+				display: $.fn.dataTable.Responsive.display.modal( {
+					header: function ( row ) {
+						var data = row.data();
+						return 'Details for '+data[0]+' '+data[1];
+					}
+				} ),
+				renderer: $.fn.dataTable.Responsive.renderer.tableAll()
+			}
+		},
+        
 
             ajax: {
 
@@ -275,6 +289,7 @@
 //       tr.addClass('shown');
 //     }
 //  });
+
 
 
     });

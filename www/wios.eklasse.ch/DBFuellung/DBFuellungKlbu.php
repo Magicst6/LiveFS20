@@ -56,8 +56,10 @@ if ($_POST['Senden']) {
             $Kommentar = $_POST[$z];
             $u = "Dauer" . "$y";
             $Dauer = $_POST[$u];
+			
+			
 //Daten in DB speichern
-            if (($Kommentar <> '') or ($Dauer <> 0)) {
+           
 
                 $isEntry1 = "SELECT  SchülerID,Datum,Kursname From sv_AbwesenheitenKompakt ";
                 $result1 = mysqli_query($con, $isEntry1);
@@ -70,11 +72,11 @@ if ($_POST['Senden']) {
                         $Update = 1;
                     }
                 }
-                if ($Update == 0) {
+                if ($Update == 0 and $Dauer <> 0) {
                     $sql_befehl = "INSERT INTO sv_AbwesenheitenKompakt (Klasse, Kursname, SchülerID, Datum, Kommentar, Abwesenheitsdauer, Nachname, Vorname, Lehrer) VALUES ('$Klassenname','$Kursname', '$ID', '$Datum', '$Kommentar','$Dauer', '$Nachname', '$Vorname', '$Lehrer')";
 //echo $sql_befehl1;
                 } else {
-                    if ($Dauer == 99) {
+                    if ($Dauer == 0) {
                         $sql_befehl = "UPDATE sv_AbwesenheitenKompakt SET Kommentar='', Abwesenheitsdauer='0' Where Kursname='$Kursname' and Datum='$Datum' and SchülerID='$ID' ";
                     } else {
                         $sql_befehl = "UPDATE sv_AbwesenheitenKompakt SET Kommentar='$Kommentar', Abwesenheitsdauer='$Dauer' Where Kursname='$Kursname' and Datum='$Datum' and SchülerID='$ID' ";
@@ -89,8 +91,10 @@ if ($_POST['Senden']) {
                     echo '<meta http-equiv="refresh" content="0; url=/klassenbuch-der-lehrpersonen" />';
                 }
 
-            }
-        }
+			
+        
+		
+		}
     }
 }
 ?>

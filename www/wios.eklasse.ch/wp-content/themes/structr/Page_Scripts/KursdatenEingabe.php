@@ -88,7 +88,7 @@ $klasse=$_GET['Klasse'];
         ?>
 
 <form action="/DBFuellung/DBFuellungKursformular.php "method="POST">
-    <br>
+    
     Falls das Enddatum aller Kurse gleich (z.B. das Semesterende) ist bitte hier eingeben:
     <br>
     <input name="Enddatum" id="enddatum" type="date"  onchange="getKlasse(klasse.value)"  value="<?php echo $Semesterende; ?>" />

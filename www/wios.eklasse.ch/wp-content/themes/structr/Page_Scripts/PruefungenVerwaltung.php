@@ -70,9 +70,7 @@
 
     <input type="hidden" name="curruser" id="curruser" value="<?php echo $current_user->ID ?>" class="text ui-widget-content ui-corner-all" readonly >
 
-    <br>
-
-    <br>
+   
 
     </br><h5>Klasse:</h5>
 
@@ -1423,7 +1421,7 @@ mysqli_query($con,$delOlder);
 ?>
 
 
-<input name="myBtn1" id="myBtn1" type="button" value="Mail versenden"  />
+<input name="myBtn1" id="myBtn1" type="button" value="Mail versenden"  /><br><br>
 
 <div id="myModal1" class="modal">
 

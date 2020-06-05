@@ -430,10 +430,10 @@ $result=mysqli_query( $con, $isEntryPr );
 
 if ($is==1){
 
-$selecty='Select Pruefungsname,Datum As Prüfungsdatum, Start,Ende,Zimmer,Gewichtung,KursID,Kommentar from sv_Pruefungen where KursID  in (Select KursID from sv_LernenderKurs where SchülerID="';
+$selecty='Select Datum As Prüfungsdatum,Pruefungsname, Start,Ende,Zimmer,Gewichtung,KursID,Kommentar from sv_Pruefungen where KursID  in (Select KursID from sv_LernenderKurs where SchülerID="';
  $sel1=$value;
 		
-$sely2= '")';
+$sely2= '") order by Prüfungsdatum';
  $isEntryUpd2 = "UPDATE sv_postmeta SET meta_value  = '$selecty$sel1$sely2' where post_id='18121' and meta_key='visualizer-db-query' ";
 	mysqli_query( $con1, $isEntryUpd2 );
 }

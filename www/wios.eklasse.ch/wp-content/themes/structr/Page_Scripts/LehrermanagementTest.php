@@ -1,8 +1,6 @@
 <head>
 
-
-
-	 <link rel="shortcut icon" type="image/ico" href="http://www.datatables.net/favicon.ico">
+    <link rel="shortcut icon" type="image/ico" href="http://www.datatables.net/favicon.ico">
 	<meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
 
 	<link rel="stylesheet" type="text/css" href="/wp-content/themes/structr/Page_Scripts/DataTables-1.10.19/media/css/jquery.dataTables.css">
@@ -122,6 +120,12 @@ $(document).ready(function() {
         ajax: "/wp-content/themes/structr/Page_Scripts/getLehrpersonenEdit.php",
         order: [[ 1, 'asc' ]],
         columns: [
+			{
+                data: null,
+                defaultContent: '',
+                className: 'select-checkbox',
+                orderable: false
+            },
             {
                 data: null,
                 defaultContent: '',
@@ -140,7 +144,9 @@ $(document).ready(function() {
             style:    'os',
             selector: 'td:first-child'
         },
-		
+		 responsive:true,
+        
+	
 		 
 		 
         buttons: [
@@ -237,7 +243,8 @@ $(document).ready(function() {
   table = $('.datatables').DataTable({
 	      dom: 'lrftip',
         
-     
+       responsive: true,
+	
 	
 	    ajax: {
 			
@@ -247,20 +254,25 @@ $(document).ready(function() {
 			
         },
     columns : [
+		 {
+        className      : 'details-control',
+        defaultContent : '',
+        data           : null,
+        orderable      : false
+      },
       {
         className      : 'details-control',
         defaultContent : '',
         data           : null,
         orderable      : false
       },
-		
       {data : 'Vorname'},
 		{data : 'Nachname'},
 		{data : 'EMAIL'},
 		{data : 'Loginname'}
 		
 			 
-		  
+			
 	
     
 			
@@ -347,7 +359,7 @@ $(document).ready(function() {
 
 <table id="dtbl" class="display nowrap" cellspacing="0" width="100%">
         <thead>
-            <tr>
+            <tr><th></th>
                 <th></th>
 				<th>ID</th>
                 <th>Vorname</th>
@@ -716,6 +728,7 @@ $heute=date("Y-m-d");
       <table class="table table-striped table-hover datatables">
         <thead>
           <tr>
+			  <th></th>
             <th></th>
             <th>Vorname</th>
             <th>Nachname</th>

@@ -157,11 +157,11 @@
 
     ?>
 
-<br><br>
+<br>
 
     Lehrer:
 
-    <br><br>
+    <br>
 
     <select name="lehrer" onchange="getKursname(this.value)"  id="lehrer" >
 
@@ -229,7 +229,7 @@
 
     Kursname:
 
-    <br><br>
+    <br>
 
     <select name="Kursnm" id="Kursnm" onchange="test(this.value)" required="required" ></select>
 
@@ -237,7 +237,7 @@
 
     Aktuelles Datum:
 
-    <br><br>
+    <br>
 
     <input style="width: 145px;" name="date" id="date" type="date" value=<?php echo $heute;?>  onchange="testdate(this.value)"  required="required" />
 

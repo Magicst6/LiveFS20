@@ -110,16 +110,16 @@ echo "<option>" . $value . "</option>";
 ?>
 
 </select>
-<br>
+<br><br>
 Kursname:
 <br>
 <select name="Kursnm" id="Kursnm" onchange="test(this.value)" required="required" ></select>
-<br>
+<br><br>
 Aktuelles Datum:
 <br>
 <input style="width: 145px;" name="date" id="date" type="date" value=<?php echo $heute;?>  onchange="testdate(this.value)"  required="required" />
 
-
+<br><br>
 <div id="lernende"><b>Person info will be listed here...</b></div>
 
 

@@ -838,7 +838,7 @@ Datum:        <input id="Datumlb1" readonly><br><br>
 Gewichtung:        <input id="Gewichtunglb1" readonly><br><br>
 
             
-            <p>Bitte hier eine die Noten eintragen..</p>
+            <p>Bitte hier die Noten eintragen (erst nach Prüfungsdatum möglich)...</p>
 		   
 		   <div id="Noten"></div>
             
@@ -890,5 +890,18 @@ Gewichtung:        <input id="Gewichtunglb1" readonly><br><br>
 		
 	</body>
 </html>
+<script>
+	
+function myFunction3(str) {
+	  
+  if (str.value.indexOf(",")>0)
+    {
+	 x = str.value;
+  	 y = x.replace(",", ".");				  
+     alert( 'Bitte "." statt "," verwenden!');
+	 str.value=y;				  															 
+	}
+}
+	</script>
 	
 

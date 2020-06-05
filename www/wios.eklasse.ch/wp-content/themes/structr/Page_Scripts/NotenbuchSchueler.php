@@ -141,7 +141,8 @@
 
 		table = $( '.datatables' ).DataTable( {
 
-
+        
+			responsive:true,
 			ajax: {
 
 				url: new_url,
@@ -149,7 +150,14 @@
 				dataSrc: ""
 
 			},
-			columns: [ {
+			columns: [ 
+				{
+					className: '',
+					defaultContent: '',
+					data: null,
+					orderable: false
+				},
+				{
 					className: 'details-control',
 					defaultContent: '',
 					data: null,
@@ -212,6 +220,7 @@
 		} );
 		table1 = $( '.datatables1' ).DataTable( {
 
+			responsive:true,
 
 			ajax: {
 
@@ -220,7 +229,14 @@
 				dataSrc: ""
 
 			},
-			columns: [ {
+			columns: [ 
+				 {
+					className: '',
+					defaultContent: '',
+					data: null,
+					orderable: false
+				},
+				{
 					className: 'details-control',
 					defaultContent: '',
 					data: null,
@@ -610,6 +626,7 @@ Wählen Sie das Semester aus :
 				<thead>
 					<tr>
 						<th></th>
+						<th></th>
 						<th>Kursname</th>
 						<th>Notenschnitt</th>
 					</tr>
@@ -632,6 +649,7 @@ Wählen Sie das Semester aus :
 			<table class="table table-striped table-hover datatables1">
 				<thead>
 					<tr>
+						<th></th>
 						<th></th>
 						<th>Kursname</th>
 						<th>Abwesenheiten Gesamt</th>

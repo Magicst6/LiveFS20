@@ -67,7 +67,7 @@
 
     <input type="hidden" name="curruser" id="curruser" value="<?php echo $current_user->ID ?>" class="text ui-widget-content ui-corner-all" readonly >
 
-	<br><br>
+	
 <body>
 <h4>Lehrperson:
 </h4>
@@ -117,7 +117,7 @@ while( $line2= mysqli_fetch_assoc($result))
 
 
 
-    echo '<input  id="lehrer" name="lehrer" readonly="readonly" type="text" value="'.$Vorname .' '.$Name .' ID:'. $value .'" />' ;
+    echo '<input  id="lehrer" class="ninput" name="lehrer" readonly="readonly" type="text" value="'.$Vorname .' '.$Name .' ID:'. $value .'" />' ;
 
     $Lehrer=$Vorname .' '.$Name .' ID:'. $value;
 
@@ -1265,7 +1265,13 @@ input[type=text], select {
   border-radius: 4px;
 }
 
+ input[type=text].ninput {
 
+            width:auto;
+
+           
+
+        }
 
     </style>
 
@@ -1425,7 +1431,7 @@ mysqli_query($con,$delOlder);
 
 ?>
 
-<input name="myBtn1" id="myBtn1" type="button" value="Mail versenden"  />
+<input name="myBtn1" id="myBtn1" type="button" value="Mail versenden"  /><br><br>
 
 <div id="myModal1" class="modal">
 
