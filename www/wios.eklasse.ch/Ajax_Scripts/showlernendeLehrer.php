@@ -12,10 +12,16 @@
 
 
 <?php
+$Sg=5;
    include 'db.php';
 $Kursnme=$_GET['q'];
 $heute= $_GET['h'];
 $LektionenF=$_GET['j'];
+
+$Sg=$_GET['k'];
+	
+
+
 if ($LektionenF){
 		   $Lektionen=$LektionenF;
 	   }
@@ -29,12 +35,17 @@ while( $value3= mysqli_fetch_array($result2))
 $Stattgefunden=$value3['Stattgefunden'];
 $Comment=$value3['Kommentar'];
 }
-if ($Stattgefunden=='ja'){
-echo '<div class="panel panel-default" style="background-color:aliceblue"><div class="panel-body"><strong><span class="auto-style2">Kurs hat stattgefunden:</span></strong>   <input type="checkbox" name="tookplace" value="ja" checked="checked" class="auto-style1" ><br></div></div>';
+	if ($Sg=='false'){$Stattgefunden='nein';}
+if ($Stattgefunden=='ja' || $Sg=='true'){
+echo '<div class="panel panel-default" style="background-color:aliceblue"><div class="panel-body"><strong><span class="auto-style2">Kurs hat stattgefunden:</span></strong>   <input type="checkbox" id="tookplace" name="tookplace" value="ja" checked="checked" class="auto-style1" ><br></div></div>';
 }
+
+	else if ( $Stattgefunden=='nein' ){
+	echo '<div class="panel panel-default" style="background-color:aliceblue"><div class="panel-body"><strong><span class="auto-style2">Kurs hat stattgefunden:</span></strong>   <input type="checkbox" id="tookplace" name="tookplace" value="ja" class="auto-style1" ><br></div></div>';
+	}
 else
 {
-echo '<div class="panel panel-default" style="background-color:aliceblue"><div class="panel-body"><strong><span class="auto-style2">Kurs hat stattgefunden:</span></strong>   <input type="checkbox" name="tookplace" value="ja" class="auto-style1" ><br></div></div>';
+echo '<div class="panel panel-default" style="background-color:aliceblue"><div class="panel-body"><strong><span class="auto-style2">Kurs hat stattgefunden:</span></strong>   <input type="checkbox" id="tookplace" name="tookplace" value="ja" class="auto-style1" ><br></div></div>';
 }  
 	
 	$isEntry10 = "SELECT Lektionen From sv_Kurshistorie Where KursID='$Kursnme' and Datum='$heute'  ";

@@ -250,6 +250,22 @@ mysqli_query($con,$query4);
 $query5 = "INSERT INTO $Sem_Rechner SELECT * FROM sv_Rechner";
 
 mysqli_query($con,$query5);
+		
+
+$Sem_Profile= $SemesterkuerzelDB.'_Profile';
+
+$query3 = "DROP TABLE $Sem_Profile";
+
+mysqli_query($con,$query3);
+		
+		
+$query6 = "CREATE TABLE $Sem_Profile LIKE sv_Profile";
+
+mysqli_query($con,$query6);
+
+$query7 = "INSERT INTO $Sem_Profile SELECT * FROM sv_Profile";
+
+mysqli_query($con,$query7);
 
 
 
@@ -1012,7 +1028,21 @@ mysqli_query($con,$query4);
 $query5 = "INSERT INTO $Sem_Rechner SELECT * FROM sv_Rechner";
 
 mysqli_query($con,$query5);
+	
+	
+$Sem_Profile= $Semesterkuerzel.'_Profile';
 
+$query3 = "DROP TABLE $Sem_Profile";
+
+mysqli_query($con,$query3);	
+
+$query4 = "CREATE TABLE $Sem_Profile LIKE sv_Profile";
+
+mysqli_query($con,$query4);
+
+$query5 = "INSERT INTO $Sem_Profile SELECT * FROM sv_Profile";
+
+mysqli_query($con,$query5);
 
 
 $Sem_Users= $Semesterkuerzel.'_users';

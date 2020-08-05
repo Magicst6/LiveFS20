@@ -251,28 +251,61 @@ $query11 = "Update sv_LernendeModule Set $Modul='' Where Name='$Name' and Vornam
 
 
 
-            echo "<tr>";
+           echo "<tr>";
 
-            echo '<td><input name="ID1'.$y.'"  id="ID1'.$y.'" style="width: 80px" type="text"  value='.$ID.'  readonly></td>';
+				echo '<td><input name="ID1'.$y.'"  id="ID1'.$y.'" style="width: 80px" type="text"  value='.$ID.'  readonly></td>';
 
-            echo '<td><input  name="Nachname1'.$y.'"  id="Nachname1'.$y.'" style="width: 200px" type="text"  value='.$Name.'   ></td>';
+				echo '<td><input  name="Nachname1'.$y.'"  id="Nachname1'.$y.'" style="width: 200px" type="text"  value='.$Name.'   ></td>';
 
-            echo '<td><input name="Vorname1'.$y.'"  id="Vorname1'.$y.'" type="text" value='.$Vorname.' style="width: 200px"  ></td>';
+				echo '<td><input name="Vorname1'.$y.'"  id="Vorname1'.$y.'" type="text" value='.$Vorname.' style="width: 200px"  ></td>';
 
-            echo '<td><input name="Profil'.$y.'" id="Profil'.$y.'" type="text" style="width: 75px" value='.$Profil.'  ></td>';
-
-            echo '<td><input name="Loginname1'.$y.'" id="Loginname1'.$y.'" type="text" style="width: 200px" value='.$Loginname.'  ></td>';
-
-            echo '<td><input name="EMail1'.$y.'" id="EMail1'.$y.'" type="text" style="width: 220px" value='.$EMail.'  ></td>';
-			 
-			echo '<td><input name="Delete'.$y.'" onclick="del('.$ID.')" type="button" value="Löschen"   style="width: 75px" ></td>';
+				 echo '<td><select name="Profil1' . $y . '" id="Profil1'.$y.'"  type="text" style="width: 120px" onchange="setVal1(this.value,'.$y.')" >';
 			
-			echo '<td><input name="Update'.$y.'" onclick="updateSchueler('.$y.')"  type="button" value="Update" style="width: 70px" ></td>';
+			  $isEntry= "Select Profil From sv_Profile";
+
+    $result1 = mysqli_query($con,$isEntry);
 
 
 
-            echo "</tr>";
 
+
+    echo "<option>$Profil</option>";
+				
+	echo "<option></option>";
+
+
+
+    while( $line3= mysqli_fetch_array($result1))
+	{
+
+    
+
+
+            $value = $line3['Profil'];
+
+            if ($value<>"") echo "<option>" . $value . "</option>";
+
+
+
+        }
+
+    
+
+			
+			
+		echo '	</select></td>';
+
+				echo '<td><input name="Loginname1'.$y.'" id="Loginname1'.$y.'" type="text" style="width: 200px" value='.$Loginname.'  ></td>';
+
+				echo '<td><input name="EMail1'.$y.'" id="EMail1'.$y.'" type="text" style="width: 220px" value='.$EMail.'  ></td>';
+
+				echo '<td><input name="Delete'.$y.'" onclick="del('.$ID.')" type="button" value="Löschen"   style="width: 75px" ></td>';
+
+				echo '<td><input name="Update'.$y.'" onclick="updateSchueler('.$y.')"  type="button" value="Update" style="width: 70px" ></td>';
+
+
+
+				echo "</tr>";
             $y=$y+1;
 
         }
@@ -309,13 +342,16 @@ $query11 = "Update sv_LernendeModule Set $Modul='' Where Name='$Name' and Vornam
 
 <?php
 
-$isEntry= "Select KursID, Klasse From sv_Kurse";
+
+$isEntry= "Select KursID, Klasse, Profil From sv_Kurse";
 $result1 = mysqli_query($con, $isEntry);
 while( $row5= mysqli_fetch_array($result1))
 {
 
     $Klasse =  $row5['Klasse'];
     $Kursname =  $row5['KursID'];
+	
+	$Profil =  $row5['Profil'];
 
     $dontFill=0;
     $isEntry3= "Select KursID From sv_LernenderKurs";
@@ -344,24 +380,33 @@ while( $row5= mysqli_fetch_array($result1))
     $result2 = mysqli_query($con, $isEntry2);
 
     while ($row2 = mysqli_fetch_array($result2)) {
+		$isProfil=0;
         $dontFill=0;
         $SchuelerID= $row2['ID'];
         $Vorname= $row2['Vorname'];
         $Nachname= $row2['Name'];
         $Profil1= $row2['Profil'];
+		
+		$ProfKomma = explode(",", $Profil1);
+		
+		$ProfDash = explode("/", $Profil1);
+		
+		foreach ($ProfKomma as $val1) {
+            if ($val1==$Profil)
+			{
+				$isProfil=1;
+			}
+         }
+		
+		foreach ($ProfDash as $val2) {
+            if ($val2==$Profil)
+			{
+				$isProfil=1;
+			}
+         }
 
-        preg_match("/.fz./", $Kursname, $output_array1);
-        $KursnameReg=$output_array1[0];
-        preg_match("/e/", $Profil1, $output_array2);
-        $ProfilReg=$output_array2[0];
-        preg_match("/.itplus./", $Kursname, $output_array3);
-        $KursnameReg1=$output_array3[0];
-             preg_match("/.it./", strtolower($Kursname), $output_array3);
-$KursnameReg2=$output_array3[0];
-preg_match("/it/", strtolower($Profil1), $output_array4);
-$ProfilReg1=$output_array4[0];
-
-if ((($KursnameReg=='.fz.') and ($ProfilReg=='e')) or (($KursnameReg<>'.fz.') and (($KursnameReg1<>'.itplus.') and ($KursnameReg2 <> '.it.'))) or ((($KursnameReg1=='.itplus.') or ($KursnameReg2 == '.it.')) and ($ProfilReg1=='it'))) {
+       
+		if ($isProfil==1){
             $isEntry4= "Select SchülerID, Vorname, Nachname, KursID From sv_LernenderKurs";
             $result4 = mysqli_query($con, $isEntry4);
 

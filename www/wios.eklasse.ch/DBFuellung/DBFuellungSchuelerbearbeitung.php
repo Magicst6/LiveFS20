@@ -332,107 +332,71 @@ $query11 = "Update sv_LernendeModule Set $Modul='' Where Name='$Name' and Vornam
 
 
 
-$isEntry= "Select KursID, Klasse From sv_Kurse";
 
+$isEntry= "Select KursID, Klasse, Profil From sv_Kurse";
 $result1 = mysqli_query($con, $isEntry);
-
 while( $row5= mysqli_fetch_array($result1))
-
 {
 
-
-
     $Klasse =  $row5['Klasse'];
-
     $Kursname =  $row5['KursID'];
-
-
+	
+	$Profil =  $row5['Profil'];
 
     $dontFill=0;
-
     $isEntry3= "Select KursID From sv_LernenderKurs";
-
     $result3 = mysqli_query($con, $isEntry3);
-
     $resultarr3 = array();
 
-
-
     while( $row3= mysqli_fetch_assoc($result3))
-
     {
-
         $resultarr3[] = $row3['KursID'];
-
     }
-
-
 
     $uniquearr3 = array_unique($resultarr3);
-
     asort($uniquearr3);
 
-
-
     foreach ($uniquearr3 as $value) {
-
         if ($value==$Kursname)
-
         {
-
             $dontFill=1;
-
         }
-
     }
-
-
-
 
 
     $isEntry2= "Select Name, Vorname, ID, Profil From sv_LernendeModule Where Modul1='$Klasse' or Modul2='$Klasse' or Modul3='$Klasse' or Modul4='$Klasse' or Modul5='$Klasse' or Modul6='$Klasse' or Modul7='$Klasse' or Modul8='$Klasse' or Modul9='$Klasse' or Modul10='$Klasse' or Modul11='$Klasse' or Modul12='$Klasse' ";
 
 
-
-
-
     $result2 = mysqli_query($con, $isEntry2);
 
-
-
     while ($row2 = mysqli_fetch_array($result2)) {
-
+		$isProfil=0;
         $dontFill=0;
-
         $SchuelerID= $row2['ID'];
-
         $Vorname= $row2['Vorname'];
-
         $Nachname= $row2['Name'];
-
         $Profil1= $row2['Profil'];
+		
+		$ProfKomma = explode(",", $Profil1);
+		
+		$ProfDash = explode("/", $Profil1);
+		
+		foreach ($ProfKomma as $val1) {
+            if ($val1==$Profil)
+			{
+				$isProfil=1;
+			}
+         }
+		
+		foreach ($ProfDash as $val2) {
+            if ($val2==$Profil)
+			{
+				$isProfil=1;
+			}
+         }
 
-
-
-        preg_match("/.fz./", $Kursname, $output_array1);
-
-        $KursnameReg=$output_array1[0];
-
-        preg_match("/e/", $Profil1, $output_array2);
-
-        $ProfilReg=$output_array2[0];
-
-        preg_match("/.itplus./", $Kursname, $output_array3);
-
-        $KursnameReg1=$output_array3[0];
-
-              preg_match("/.it./", strtolower($Kursname), $output_array3);
-$KursnameReg2=$output_array3[0];
-preg_match("/it/", strtolower($Profil1), $output_array4);
-$ProfilReg1=$output_array4[0];
-
-if ((($KursnameReg=='.fz.') and ($ProfilReg=='e')) or (($KursnameReg<>'.fz.') and (($KursnameReg1<>'.itplus.') and ($KursnameReg2 <> '.it.'))) or ((($KursnameReg1=='.itplus.') or ($KursnameReg2 == '.it.')) and ($ProfilReg1=='it'))) {
-
+       
+		if ($isProfil==1 or $Profil==''){
 
 
             $isEntry4= "Select SchülerID, Vorname, Nachname, KursID From sv_LernenderKurs";
@@ -583,7 +547,9 @@ while( $row5= mysqli_fetch_array($result1))
 
     while ($row2 = mysqli_fetch_array($result2)) {
 
-        $dontFill=0;
+		$isProfil=0;
+        
+		$dontFill=0;
 
         $SchuelerID= $row2['ID'];
 
@@ -593,23 +559,26 @@ while( $row5= mysqli_fetch_array($result1))
 
         $Profil1= $row2['Profil'];
 
-        preg_match("/.fz./", $Kursname, $output_array1);
+        $ProfKomma = explode(",", $Profil1);
+		
+		$ProfDash = explode("/", $Profil1);
+		
+		foreach ($ProfKomma as $val1) {
+            if ($val1==$Profil)
+			{
+				$isProfil=1;
+			}
+         }
+		
+		foreach ($ProfDash as $val2) {
+            if ($val2==$Profil)
+			{
+				$isProfil=1;
+			}
+         }
 
-        $KursnameReg=$output_array1[0];
-
-        preg_match("/e/", $Profil1, $output_array2);
-
-        $ProfilReg=$output_array2[0];
-
-        preg_match("/.itplus./", $Kursname, $output_array3);
-
-        $KursnameReg1=$output_array3[0];
-
-        preg_match("/it/", $Profil1, $output_array4);
-
-        $ProfilReg1=$output_array4[0];
-
-        if ((($KursnameReg=='.fz.') and ($ProfilReg=='e')) or (($KursnameReg<>'.fz.') and ($KursnameReg1<>'.itplus.')) or (($KursnameReg1=='.itplus.') and ($ProfilReg1=='it'))) {
+       
+		if ($isProfil==1 or $Profil==''){
 
 
 

@@ -9,6 +9,7 @@ if( $_POST['Senden'])
     $Kursname =  $_POST['Kursname'];
     $Kurskuerzel =  $_POST['Kuerzel'];
 	$Farbe= $_POST['farbe'];
+	$Profil= $_POST['Profil'];
 	
     $dateExtra =  $_POST['Datum'];
     $Year = substr($dateExtra, 2, 2);
@@ -128,12 +129,12 @@ if( $_POST['Senden'])
     }
     if (!$isKursExisting)
     {
-        $sql_befehl = "INSERT INTO sv_Kurse (Kursname,Klasse,KursID,Lehrperson,Farbe) VALUES ('$Kursname','$Klasse','$KursID', '$LP_ID','$Farbe')";
+        $sql_befehl = "INSERT INTO sv_Kurse (Kursname,Klasse,KursID,Lehrperson,Farbe,Profil) VALUES ('$Kursname','$Klasse','$KursID', '$LP_ID','$Farbe','$Profil')";
         mysqli_query($con, $sql_befehl);
     }
     else
     {
-        $sql_befehl = "UPDATE sv_Kurse SET Kursname = '$Kursname', Klasse = '$Klasse',Lehrperson='$LP_ID', Farbe='$Farbe' where KursID ='$KursID' ";
+        $sql_befehl = "UPDATE sv_Kurse SET Kursname = '$Kursname', Klasse = '$Klasse',Lehrperson='$LP_ID', Farbe='$Farbe',Profil='$Profil' where KursID ='$KursID' ";
 		 mysqli_query($con, $sql_befehl);
     }
 }
@@ -168,25 +169,34 @@ $isEntry2= "Select Name, Vorname, ID, Profil From sv_LernendeModule Where Modul1
 
 $result2 = mysqli_query($con, $isEntry2);
 
-while ($row2 = mysqli_fetch_array($result2)) {
-    $dontFill=0;
-    $SchuelerID= $row2['ID'];
-    $Vorname= $row2['Vorname'];
-    $Nachname= $row2['Name'];
-    $Profil1= $row2['Profil'];
+    while ($row2 = mysqli_fetch_array($result2)) {
+		$isProfil=0;
+        $dontFill=0;
+        $SchuelerID= $row2['ID'];
+        $Vorname= $row2['Vorname'];
+        $Nachname= $row2['Name'];
+        $Profil1= $row2['Profil'];
+		
+		$ProfKomma = explode(",", $Profil1);
+		
+		$ProfDash = explode("/", $Profil1);
+		
+		foreach ($ProfKomma as $val1) {
+            if ($val1==$Profil)
+			{
+				$isProfil=1;
+			}
+         }
+		
+		foreach ($ProfDash as $val2) {
+            if ($val2==$Profil)
+			{
+				$isProfil=1;
+			}
+         }
 
-    preg_match("/.fz./", $Kursname, $output_array1);
-    $KursnameReg=$output_array1[0];
-    preg_match("/e/", $Profil1, $output_array2);
-    $ProfilReg=$output_array2[0];
-    preg_match("/.itplus./", $Kursname, $output_array3);
-    $KursnameReg1=$output_array3[0];
-           preg_match("/.it./", strtolower($Kursname), $output_array3);
-$KursnameReg2=$output_array3[0];
-preg_match("/it/", strtolower($Profil1), $output_array4);
-$ProfilReg1=$output_array4[0];
-
-if ((($KursnameReg=='.fz.') and ($ProfilReg=='e')) or (($KursnameReg<>'.fz.') and (($KursnameReg1<>'.itplus.') and ($KursnameReg2 <> '.it.'))) or ((($KursnameReg1=='.itplus.') or ($KursnameReg2 == '.it.')) and ($ProfilReg1=='it'))) {
+       
+		if ($isProfil==1 or $Profil==''){
 
         $isEntry4= "Select SchülerID, Vorname, Nachname, KursID From sv_LernenderKurs";
         $result4 = mysqli_query($con, $isEntry4);
