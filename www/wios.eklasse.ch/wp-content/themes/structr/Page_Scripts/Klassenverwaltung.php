@@ -333,7 +333,7 @@ document.getElementById("add").style.visibility = "hidden";
 		   
 		  
 
-            xmlhttp.open("GET","/Ajax_Scripts/UpdateSchueler.php?k="+document.getElementById("ID1"+y).value + "&l="+document.getElementById("Nachname1"+y).value +  "&m="+document.getElementById("Vorname1"+y).value+  "&n="+document.getElementById("Profil"+y).value+  "&o="+document.getElementById("Loginname1"+y).value+ "&p="+ document.getElementById("EMail1"+y).value +"&q="+document.getElementById("klasse2").value,true);
+            xmlhttp.open("GET","/Ajax_Scripts/UpdateSchueler.php?k="+document.getElementById("ID1"+y).value + "&l="+document.getElementById("Nachname1"+y).value +  "&m="+document.getElementById("Vorname1"+y).value+  "&n="+document.getElementById("Profil1"+y).value+  "&o="+document.getElementById("Loginname1"+y).value+ "&p="+ document.getElementById("EMail1"+y).value +"&q="+document.getElementById("klasse2").value,true);
 
             xmlhttp.send();
 
@@ -1156,6 +1156,88 @@ document.getElementById("klasse2").value = "";
 		
 		 location.reload();
     }
+
+ 
+	 strsave='';
+	
+	 nsave='dummy';
+ 
+	function setVal(str){
+		
+		var e = document.getElementById("Profiles");
+		if (str==''){ e.value='';
+		strsave='';
+					}
+		else{
+			
+		
+		
+			
+
+		var option = document.createElement('option');
+			if (strsave==''){
+        option.text = option.value =  str ;
+			}
+			else{
+        option.text = option.value =  str + ',' + strsave ;
+			}
+        e.add(option, 0);
+			
+			
+
+		
+		e.value=option.text;
+					 strsave=e.value;
+				 }
+			
+			 
+				 
+			
+				
+	}
+	
+	function setVal1(str,y){
+		
+		var e = document.getElementById("Profil1"+y);
+		
+		if (str==''){ e.value='';
+		strsave='';
+					}
+		else{
+			
+		
+		if (nsave==y || nsave=='dummy'){
+			
+
+		var option = document.createElement('option');
+			if (strsave==''){
+        option.text = option.value =  str ;
+			}
+			else{
+        option.text = option.value =  str + ',' + strsave ;
+			}
+        e.add(option, 0);
+			
+			
+
+		
+		e.value=option.text;
+					 strsave=e.value;
+			nsave=y;
+		}
+				 
+			
+			else{
+				nsave=y;
+				strsave=e.value;
+			} 
+				 
+		}
+			
+				
+	}
+	
+	
 
 
 		</script>   

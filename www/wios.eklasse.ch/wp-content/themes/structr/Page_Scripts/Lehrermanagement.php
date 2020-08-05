@@ -140,7 +140,8 @@ $(document).ready(function() {
             style:    'os',
             selector: 'td:first-child'
         },
-		
+		 
+	   
 		 
 		 
         buttons: [
@@ -237,7 +238,7 @@ $(document).ready(function() {
   table = $('.datatables').DataTable({
 	      dom: 'lrftip',
         
-     
+      	
 	
 	    ajax: {
 			

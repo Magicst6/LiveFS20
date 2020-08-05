@@ -159,8 +159,9 @@ $result = mysqli_query($con, $isEntry);
     echo "<th width= 240>".'Kursname'. "</th>";
     echo "<th width= 100>".'Startdatum'. "</th>";
     echo "<th width=240>".'Enddatum'. "</th>";
-   echo "<th width=240>".'Zimmer'. "</th>";
-   echo "<th width=240>".'Uhrzeit'. "</th>";
+   echo "<th width=120>".'Zimmer'. "</th>";
+   echo "<th width=70>".'Uhrzeit'. "</th>";
+	 echo "<th width=80>".'Profil'. "</th>";
 
     echo "</tr>";
 
@@ -176,6 +177,7 @@ $result = mysqli_query($con, $isEntry);
         $Enddatum=$line2['Enddatum'];
         $Zimmer = $line2['Zimmer'];
         $Uhrzeit=$line2['Uhrzeit'];
+		$Profil=$line2['Profil'];
 		
 		$semakt = substr($KursID, -4);
         if($EnddatumManual<>""){
@@ -191,9 +193,41 @@ $result = mysqli_query($con, $isEntry);
         echo '<td><input name="Kursname1' . $y . '" style="width: 240px" required="required" type="text" value="' . $Kursname . '"    ></td>';
         echo '<td><input name="Startdatum1' . $y . '" type="date" style="width: 100px" value="' . $Startdatum . '" required="required" ></td>';
         echo '<td><input name="Enddatum1' . $y . '" type="date" style="width: 240px" value="' . $Enddatum . '" required="required" ></td>';
-        echo '<td><input name="Zimmer1' . $y . '" type="text" style="width: 240px" value="' . $Zimmer . '"  ></td>';
-        echo '<td><input name="Uhrzeit1' . $y . '"  required="required" type="text" style="width: 240px" value="' . $Uhrzeit . '"  ></td>';
+        echo '<td><input name="Zimmer1' . $y . '" type="text" style="width: 120px" value="' . $Zimmer . '"  ></td>';
+        echo '<td><input name="Uhrzeit1' . $y . '"  required="required" type="text" style="width: 70px" value="' . $Uhrzeit . '"  ></td>';
+			echo '<td><select name="Profil1' . $y . '"   type="text" style="width: 60px" value="' . $Profil . '"  >';
+			
+			  $isEntry= "Select Profil From sv_Profile";
 
+    $result1 = mysqli_query($con,$isEntry);
+
+
+echo "<option>$Profil</option>";
+
+
+    echo "<option></option>";
+
+
+
+    while( $line3= mysqli_fetch_array($result1))
+	{
+
+    
+
+
+            $value = $line3['Profil'];
+
+            if ($value<>"") echo "<option>" . $value . "</option>";
+
+
+
+        }
+
+    
+
+			
+			
+		echo '	</select></td>';
 
 
         echo "</tr>";

@@ -971,34 +971,6 @@ p.start-editing {
 	tr.shown td.details-control2:before {
 		content: url(/plussmall.png);
 	}
-		.iconSettings,
-	td.details-control3:before,
-	tr.shown td.details-control3:before {
-		margin-top: 5px;
-		margin-bottom: 10px;
-		font-size: 12px;
-		position: relative;
-		top: 1px;
-		display: inline-block;
-		font-family: 'Glyphicons Halflings';
-		font-style: normal;
-		font-weight: 400;
-		line-height: 1;
-		-webkit-font-smoothing: antialiased;
-	}
-	
-	td.details-control3 {
-		cursor: pointer;
-		text-align: center;
-	}
-	
-	td.details-control3:before {
-		content: '+';
-	}
-	
-	tr.shown td.details-control3:before {
-		content:'-';
-	}
 
 </style>
 
@@ -1368,7 +1340,6 @@ while ($line1 = mysqli_fetch_array($result)) {
 				<thead>
 					<tr>
 						<th></th>
-						<th></th>
 						<th>ID</th>
 	                    <th>Nachname</th>
 						<th>Vorname</th>											 
@@ -1398,7 +1369,6 @@ while ($line1 = mysqli_fetch_array($result)) {
 			<table class="table table-striped table-hover datatables1" width="1000px">
 				<thead>
 					<tr>
-						<th></th>
 						<th></th>
 						<th>ID</th>
 	                    <th>Nachname</th>
@@ -1917,14 +1887,7 @@ window.location.href= "/notenbuch-lehrer?q=" + encrypted;
         columns: [ 
 			
 			{
-            className: '',
-            defaultContent: '',
-            data: null,
-            orderable: false
-			
-        },
-			{
-            className: 'details-control3',
+            className: 'details-control',
             defaultContent: '',
             data: null,
             orderable: false
@@ -2014,7 +1977,7 @@ window.location.href= "/notenbuch-lehrer?q=" + encrypted;
 		 
 		
 			 
-    $( '.datatables tbody' ).on( 'click', 'td.details-control3', function () {
+    $( '.datatables tbody' ).on( 'click', 'td.details-control', function () {
         var tr = $( this ).closest( 'tr' ),
             row = table.row( tr );
 
@@ -2070,15 +2033,7 @@ window.location.href= "/notenbuch-lehrer?q=" + encrypted;
         columns: [ 
 		
 			{
-            className: '',
-            defaultContent: '',
-            data: null,
-            orderable: false
-			
-
-        },
-			{
-            className: 'details-control3',
+            className: 'details-control',
             defaultContent: '',
             data: null,
             orderable: false
@@ -2204,7 +2159,7 @@ window.location.href= "/notenbuch-lehrer?q=" + encrypted;
             dataSrc: ""
         },
         columns: [ {
-            className: 'details-control3',
+            className: 'details-control',
             defaultContent: '',
             data: null,
             orderable: false
@@ -2357,8 +2312,7 @@ window.location.href= "/notenbuch-lehrer?q=" + encrypted;
         },
 
 			{
-           
-            className: 'details-control3',
+            className: 'details-control',
             defaultContent: '',
             data: null,
             orderable: false

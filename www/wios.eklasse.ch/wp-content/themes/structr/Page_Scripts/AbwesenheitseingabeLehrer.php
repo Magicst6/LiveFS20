@@ -83,7 +83,45 @@
             xmlhttp.send();
 
         }
+check();
+    }
+	function test1(){
 
+        
+
+            if (window.XMLHttpRequest) {
+
+                // code for IE7+, Firefox, Chrome, Opera, Safari
+
+                xmlhttp = new XMLHttpRequest();
+
+            } else {
+
+                // code for IE6, IE5
+
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+
+            }
+
+            xmlhttp.onreadystatechange = function() {
+
+                if (this.readyState == 4 && this.status == 200) {
+
+                    document.getElementById("lernende").innerHTML = this.responseText;
+
+                }
+
+            };
+
+            xmlhttp.open("GET","/Ajax_Scripts/showlernendeLehrer.php?q="+document.getElementById("Kursnm").value+"&k="+document.getElementById("lehrer").value+"&h="+document.getElementById("date").value+"&j="+document.getElementById("Lektionen").value +"&k="+document.getElementById("tookplace").checked,true);
+
+            xmlhttp.send();
+
+        
+
+		
+		check();
+		
     }
 
     function testdate(str){
@@ -125,6 +163,33 @@
             xmlhttp.send();
 
         }
+
+		check();
+    }
+	
+	 function check(){
+
+
+  setTimeout(function(){
+	  
+	  var count = document.getElementById("count").value;
+	  
+	  
+	  var i;
+	  
+	  for (i=1 ; i<=count ;i++){
+		  
+		  var radio= "Dauer"+i;
+		  var abw ="abw"+i;
+	      var abw= document.getElementById(abw).value;
+		  
+	  
+	  document.querySelector('input[name="'+ radio + '"][value="' + abw  + '"]').checked = true;
+	 
+	  }				   
+					   
+					   }, 1500);
+        
 
     }
 

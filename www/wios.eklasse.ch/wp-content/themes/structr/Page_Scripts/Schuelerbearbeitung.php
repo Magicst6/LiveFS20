@@ -232,7 +232,42 @@ location.reload();
 
             echo '<td><input name="Vorname1'.$y.'"  id="Vorname1'.$y.'" type="text" value='.$Vorname.' style="width: 240px"  ></td>';
 
-            echo '<td><input name="Profil'.$y.'" id="Profil'.$y.'" type="text" style="width: 100px" value='.$Profil.'  ></td>';
+             echo '<td><select name="Profil' . $y . '" id="Profil'.$y.'"  type="text" style="width: 120px" onchange="setVal1(this.value,'.$y.')" >';
+			
+			  $isEntry= "Select Profil From sv_Profile";
+
+    $result1 = mysqli_query($con,$isEntry);
+
+
+
+
+
+    echo "<option>$Profil</option>";
+				
+	echo "<option></option>";
+
+
+
+    while( $line3= mysqli_fetch_array($result1))
+	{
+
+    
+
+
+            $value = $line3['Profil'];
+
+            if ($value<>"") echo "<option>" . $value . "</option>";
+
+
+
+        }
+
+    
+
+			
+			
+		echo '	</select></td>';
+
 
             echo '<td><input name="Loginname1'.$y.'" id="Loginname1'.$y.'" type="text" style="width: 240px" value='.$Loginname.'  ></td>';
 

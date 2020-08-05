@@ -117,7 +117,7 @@
 
             };
 
-            xmlhttp.open("GET","/Ajax_Scripts/showlernendeLehrer.php?q="+document.getElementById("Kursnm").value+"&k="+document.getElementById("lehrer").value+"&h="+document.getElementById("date").value+"&j="+document.getElementById("Lektionen").value,true);
+            xmlhttp.open("GET","/Ajax_Scripts/showlernendeLehrer.php?q="+document.getElementById("Kursnm").value+"&k="+document.getElementById("lehrer").value+"&h="+document.getElementById("date").value+"&j="+document.getElementById("Lektionen").value + "&k="+document.getElementById("tookplace").checked,true);
 
             xmlhttp.send();
 

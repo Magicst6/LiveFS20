@@ -281,7 +281,72 @@ $result = mysqli_query($con, $isEntry);
     Lehrperson:
 <br>
 
-     <select name="lehrer" id="lehrer" ></select>
+     <select name="lehrer" id="lehrer"> 
+		 <?
+	  $isEntry= "Select ID,Nachname, Vorname From sv_Lehrpersonen ";
+
+            $result = mysqli_query($con, $isEntry);
+
+            while( $line3= mysqli_fetch_array($result))
+
+            {
+
+				$ID=$line3['ID'];
+				
+                $Name = $line3['Nachname'];
+
+                $Vorname = $line3['Vorname'];
+
+  echo "<option>". $Name ." ".$Vorname.":".$ID."</option>";
+
+            }
+
+          
+
+	?>
+	</select>
+<br>
+	
+	
+    Profil:
+<br>
+
+    <select name="Profil" id="Profil"  type="text" style="width: 120px"  >
+			<?
+			  $isEntry= "Select Profil From sv_Profile";
+
+    $result1 = mysqli_query($con,$isEntry);
+
+
+
+
+
+    echo "<option>$Profil</option>";
+				
+	echo "<option></option>";
+
+
+
+    while( $line3= mysqli_fetch_array($result1))
+	{
+
+    
+
+
+            $value = $line3['Profil'];
+
+            if ($value<>"") echo "<option>" . $value . "</option>";
+
+
+
+        }
+
+    
+
+			?>
+			
+			</select>
+
 <br>
   
 	Farbe <label id="lblcol">(Farbe wird von existierendem Kurs übernommen,falls ausgewählt)</label>:

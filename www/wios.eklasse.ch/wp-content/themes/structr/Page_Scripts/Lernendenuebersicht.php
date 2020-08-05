@@ -20,312 +20,37 @@
 </head>
 
 <script>
-var editor; // use a global for the submit and return data rendering in the examples
- var table;
+
 var	editor1;
 	var editor2;
 	var table2;
 	var table1;
 		$(document).ready(function() {
-			loadeditor();
+			
 			loadeditor1();
 		});
 			
 
 	
-	function loadeditor(){
-    editor = new $.fn.dataTable.Editor( {
-		 ajax:{
-            url:  "/wp-content/themes/structr/Page_Scripts/getKlassenEdit.php",
-            type: 'POST',
-            data: {
-                  'klasse': document . getElementById( "klasse1" ) . value
-			}
-        }, 
-        table: "#dtbl",
-        fields: [ {
-                label: "ID:",
-                name: "ID",
-			    type: "readonly"
-            },
-			
-			{
-                label: "Vorname:",
-                name: "Vorname"
-            }, {
-                label: "Nachname:",
-                name: "Name"
-            }, {
-                label: "Klasse:",
-                name: "Klasse",
-			    type: "readonly"
-            }, {
-                label: "User_ID:",
-                name: "User_ID",
-				  type: "readonly"
-            },
-				{
-                label: "Email:",
-                name: "EMail",
-					  type: "readonly"
-            }, {
-                label: "Loginname:",
-                name: "Loginname",
-				  type: "readonly"
-            },
-				 {
-                label: "Profil:",
-                name: "Profil"
-            }
-        ],
-		 i18n: {
-            remove: {
-                button: "Löschen",
-                title:  "Eintrag löschen",
-                submit: "Endgültig Löschen",
-                confirm: {
-                    _: 'Sind Sie sicher, dass Sie die %d ausgwählten Zeilen löschen wollen?',
-                    1: 'Sind Sie sicher, dass Sie die ausgewählte Zeile löschen wollen?'
-                }
-            },
-            edit: {
-                button: "Bearbeiten",
-                title:  "Eintrag bearbeiten",
-                submit: "Änderungen speichern"
-            },
-            create: {
-                button: "Neuer Eintrag",
-                title:  "Neuen Eintrag anlegen",
-                submit: "Neuen Eintrag speichern"
-            },
-            datetime: {
-                    previous: 'Zurück',
-                    next:     'Weiter',
-                    months:   [ 'Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember' ],
-                    weekdays: [ 'So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa' ],
-                    amPm:     [ 'am', 'pm' ],
-                    unknown:  '-'
-            },
-            error: {            
-                    system: "Ein Systemfehler ist aufgetreten (<a target=\"_blank\" href=\"//datatables.net/tn/12\">Für mehr Informationen</a>)."
-            },
-            multi: {
-                    title: "Mehrere Werte",         
-                    info: "Die ausgewählten Elemente enthalten verschiedene Werte für das Feld. Um alle Elemente für diess Feld auf den gleichen Wert zu setzen, klicken Sie bitte hier. Ansonsten werden die Elemente ihren jeweiligen Wert behalten.",
-                    restore: "Änderungen rückgängig machen",
-                    noMulti: "Dieses Feld kann einzeln bearbeitet werden, aber nicht als Teil einer Gruppe."
-            },
-        }      
-    } );
-	editor.on( 'edit', function ( e, json, data ) {
-    
-	if ( window.XMLHttpRequest ) {
-
-				// code for IE7+, Firefox, Chrome, Opera, Safari
-
-				xmlhttp = new XMLHttpRequest();
-
-			} else {
-
-				// code for IE6, IE5
-
-				xmlhttp = new ActiveXObject( "Microsoft.XMLHTTP" );
-
-			}
-
-
-			
-			xmlhttp.open( "GET", "/Ajax_Scripts/updateLernendeModule.php",true );
-
-			xmlhttp.send();
-} );
-	editor.on( 'create', function ( e, json, data ) {
-    
-	if ( window.XMLHttpRequest ) {
-
-				// code for IE7+, Firefox, Chrome, Opera, Safari
-
-				xmlhttp = new XMLHttpRequest();
-
-			} else {
-
-				// code for IE6, IE5
-
-				xmlhttp = new ActiveXObject( "Microsoft.XMLHTTP" );
-
-			}
-
-
-			
-			xmlhttp.open( "GET", "/Ajax_Scripts/updateLernendeModule.php",true );
-
-			xmlhttp.send();
-} );
-	
-	editor.on( 'remove', function ( e, json, data ) {
-    
-	if ( window.XMLHttpRequest ) {
-
-				// code for IE7+, Firefox, Chrome, Opera, Safari
-
-				xmlhttp = new XMLHttpRequest();
-
-			} else {
-
-				// code for IE6, IE5
-
-				xmlhttp = new ActiveXObject( "Microsoft.XMLHTTP" );
-
-			}
-
-
-			
-			xmlhttp.open( "GET", "/Ajax_Scripts/updateLernendeModule.php",true );
-
-			xmlhttp.send();
-} );
- 
-    // Activate an inline edit on click of a table cell
-    $('#dtbl').on( 'click', 'tbody td:not(:first-child)', function (e) {
-        editor.inline( this, {
-            buttons: { label: '&gt;', fn: function () { this.submit(); } }
-        } );
-    } );
-		
-	
- 
-   table= $('#dtbl').DataTable( {
-        dom: "lBfrtip",
-        ajax:{
-            url:  "/wp-content/themes/structr/Page_Scripts/getKlassenEdit.php",
-            type: 'POST',
-            data: {
-                  'klasse': document . getElementById( "klasse1" ) . value
-			}
-        }, 
-        order: [[ 1, 'asc' ]],
-        columns: [
-            {
-                data: null,
-                defaultContent: '',
-                className: 'select-checkbox',
-                orderable: false
-            },
-			 { data: "ID" },
-            { data: "Vorname" },
-            { data: "Name" },
-			{ data: "Klasse" },
-            { data: "User_ID" },
-            { data: "EMail" },
-            { data: "Loginname" },
-			{ data: "Profil" }
-          
-        ],
-        select: {
-            style:    'os',
-            selector: 'td:first-child'
-        },
-        buttons: [
-            { extend: "create", editor: editor, text:"Neuer Schüler" },
-            { extend: "edit",   editor: editor, text:"Schüler bearbeiten" },
-            { extend: "remove", editor: editor, text:"Schüler löschen" }
-        ],
-	    "language": {
-            "decimal": ",",
-            "thousands": ".",
-            "info": "Anzeige _START_ bis _END_ von _TOTAL_ Einträgen",
-            "infoEmpty": "Keine Einträge",
-            "infoPostFix": "",
-            "infoFiltered": "(gefiltert aus insgesamt _MAX_ Einträgen)",
-            "loadingRecords": "keine Daten vorhanden oder es werden Daten geladen...",
-            "lengthMenu": "Anzeigen von _MENU_ Einträgen",
-            "paginate": {
-                "first": "Erste",
-                "last": "Letzte",
-                "next": "Nächste",
-                "previous": "Zurück"
-            },
-            "processing": "Verarbeitung läuft ...",
-            "search": "Suche:",
-            "searchPlaceholder": "Suchbegriff",
-            "zeroRecords": "Keine Daten! Bitte ändern Sie Ihren Suchbegriff.",
-            "emptyTable": "Keine Daten vorhanden",
-            "aria": {
-                "sortAscending":  ": aktivieren, um Spalte aufsteigend zu sortieren",
-                "sortDescending": ": aktivieren, um Spalte absteigend zu sortieren"
-            },
-            //only works for built-in buttons, not for custom buttons
-            "buttons": {
-                "create": "Neu",
-                "edit": "Ändern",
-                "remove": "Löschen",
-                "copy": "Kopieren",
-                "csv": "CSV-Datei",
-                "excel": "Excel-Tabelle",
-                "pdf": "PDF-Dokument",
-                "print": "Drucken",
-                "colvis": "Spalten Auswahl",
-                "collection": "Auswahl",
-                "upload": "Datei auswählen...."
-            },
-            "select": {
-                "rows": {
-                    _: '%d Zeilen ausgewählt',
-                    0: 'Zeile anklicken um auszuwählen',
-                    1: 'Eine Zeile ausgewählt'
-                }
-            }
-        }            
-    } );
-		
-	  
-		
-	
-} 
-
-
-	
-	function tableshow() {
-	
-	if ( table ) {
-		table.destroy();
-	}
-	
-	if ( editor ) {
-		editor.destroy();
-	}
-	
-	
-	
-	
-	loadeditor();
-
-
-	
-		
-	
-	editor . field( 'Klasse' ) . def( document . getElementById( "klasse1" ) . value );
-	editor . submit();
-
 	
 
-	
-}
+
+
 	function loadeditor1(){
 	
 	 // Activate an inline edit on click of a table cell
-    $('#dtbl1').on( 'click', 'tbody td:not(:first-child)', function (e) {
+    /*$('#dtbl1').on( 'click', 'tbody td:not(:first-child)', function (e) {
         editor1.inline( this, {
             buttons: { label: '&gt;', fn: function () { this.submit(); } }
         } );
-    } );
+    } );*/
 		
 		 editor1 = new $.fn.dataTable.Editor( {
 		 ajax:{
             url:  "/wp-content/themes/structr/Page_Scripts/getlernendeModuleKw.php",
             type: 'POST',
             data: {
-                  'klasse': document . getElementById( "klasse1" ) . value
+                  
 			}
         }, 
         table: "#dtbl1",
@@ -447,11 +172,11 @@ var	editor1;
         }      
     } );
   // Activate an inline edit on click of a table cell
-    $('#dtbl1').on( 'click', 'tbody td:not(:first-child)', function (e) {
+   /* $('#dtbl1').on( 'click', 'tbody td:not(:first-child)', function (e) {
         editor1.inline( this, {
             buttons: { label: '&gt;', fn: function () { this.submit(); } }
         } );
-    } );
+    } );*/
 		
 			table1= $('#dtbl1').DataTable( {
         dom: "lBfrtip",
@@ -459,7 +184,7 @@ var	editor1;
             url:  "/wp-content/themes/structr/Page_Scripts/getlernendeModuleKw.php",
             type: 'POST',
             data: {
-                  'klasse': document . getElementById( "klasse1" ) . value
+                 
 			}
         }, 
         order: [[ 1, 'asc' ]],
@@ -481,7 +206,10 @@ var	editor1;
 
             return data; }
 			},
-            { data: "EMail" },
+            { data: "EMail",  'render': function(data, type, full, meta) {
+   return '<a href="mailto:' + data + '?">'+data+'</a>';
+  }
+		  },
 			{ data: "Profil" },
 			{ data: "Loginname" },
 			{ data: "Modul1" },
@@ -508,9 +236,7 @@ var	editor1;
             selector: 'td:first-child'
         },
         buttons: [
-            { extend: "create", editor: editor1, text:"Neuer Schüler" },
-            { extend: "edit",   editor: editor1, text:"Schüler bearbeiten" },
-            { extend: "remove", editor: editor1, text:"Schüler löschen" }
+           
         ], "language": {
             "decimal": ",",
             "thousands": ".",
@@ -570,72 +296,7 @@ var	editor1;
 	}
 	
 </script>
-<h3>Lernende in den Klassen</h3>
 
- Bestehende Klasse wählen:<br />
-
-    <br>
-
-    <select name="klasse1" id="klasse1" onchange="tableshow()" onload="tableshow()" required="required" >
-
-
-
-        <?php
-
-        include 'db.php';
-
-
-        $isEntry= "Select Klasse From sv_Lernende order by Klasse asc";
-
-        $result1 = mysqli_query($con, $isEntry);
-
-        $resultarr1 = array();
-
-        echo "<option></option>";
-
-
-
-        while( $line2= mysqli_fetch_assoc($result1))
-
-        {
-
-        $resultarr1[] = $line2['Klasse'];
-
-        }
-
-        $uniquearr1 = array_unique($resultarr1);
-
-        asort($uniquearr1);
-
-        echo "<option>" . '' . "</option>";
-
-
-
-
-
-        foreach ($uniquearr1 as $value)
-
-        {
-
-        if ($value == $_GET['klasse']){}
-
-        else
-
-        {
-
-        echo "<option>" . $value . "</option>";
-
-        }
-
-        }
-
-        ?>
-
-
-
-    </select>
-
-<br><br>
 
 <style>
 	 button {
@@ -645,25 +306,6 @@ var	editor1;
 
 
 
-
-<table id="dtbl" class="display" cellspacing="0" width="100%">
-        <thead>
-            <tr>
-                <th></th>
-				<th>ID</th>
-                <th>Vorname</th>
-                <th>Nachname</th>
-				<th>Klasse</th>
-                <th>User ID</th>
-                <th>Email</th>
-                <th>Loginname</th>
-				<th>Profil</th>
-            </tr>
-        </thead>
-    </table>
-
-<br><br>
-<h3>Module der Lernenden</h3>
 
 <table id="dtbl1" class="display" cellspacing="0" width="100%">
         <thead>
