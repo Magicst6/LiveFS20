@@ -70,7 +70,7 @@
 
         echo "<th width= 40>".'Vorname'. "</th>";
 	
-	$isEntry = "SELECT Pruefungsname,Datum From $DBPruefungen Where KursID='$KursID' Order by Datum asc";
+	$isEntry = "SELECT Name,Gewichtung,Datum From $DBNoten Where KursID='$KursID' Group by Name Order by Datum asc";
 
         $result = mysqli_query($con,$isEntry);
 
@@ -83,11 +83,15 @@
         {
 			$z++;
         $Datum=$value['Datum'];
-			${'PrName' . $z} =$value['Pruefungsname'];
+			${'PrName' . $z} =$value['Name'];
         echo "<th width= 100>".${'PrName' . $z}."</th>";
-       
+       	${'Gew' . $z} =$value['Gewichtung'];
+        echo "<th width= 20>".'Gew.'."</th>";
+			
 		}
 
+	     echo "<th width= 40>".'Durchschnitt(Ø)'. "</th>";    
+	
         echo "</tr>";
 
         echo "</thead>";
@@ -110,42 +114,62 @@
 			 $isEntry1 = "SELECT * From $DBLM Where ID='$ID'  ";
 
         $result1 = mysqli_query($con,$isEntry1);
-
+ 
         while( $value2= mysqli_fetch_array($result1))
-
-        {        
+          
+        {           
 
             $Name= $value2['Name'];
 
             $Vorname=$value2['Vorname'];
 			 echo '<td><strong>'.$Name.'</strong></td>';
 			 echo '<td><strong>'.$Vorname.'</strong></td>';
-         
-          $isEntry2 = "SELECT * From $DBNoten Where SchuelerID='$ID' and KursID='$KursID' and (Name= '$PrName1'";
-              for ($i=2;$i<=$z;$i++){
-	                                  $isent1= $isent1." or Name='${'PrName' . $i}' ";
-	                                }
-		
-		  $isent2=") order by Datum asc ";
+            $Notengesamt=0;
+            $Gewges=0;
+			for ($i=1;$i<=$z;$i++){
+          $isEntry2 = "SELECT * From $DBNoten Where SchuelerID='$ID' and KursID='$KursID' and Name= '${'PrName' . $i}' order by Datum asc ";
           $isentall=$isEntry2.$isent1.$isent2;
           $result2 = mysqli_query($con,$isentall);
 
           // echo $isentall;
+			
+			$u=0;
+			
 
           while( $value3= mysqli_fetch_array($result2))
-
-          {
- 
+           
+			{
+           $u++;
 		  $Note=$value3['Note'];
-		     
+			    $Gew=$value3['Gewichtung'];
+			  
+			  if ($Gew>0)
+			  {
+			  $Notengesamt=$Notengesamt+$Note*$Gew;
+			  $Gewges=$Gewges+$Gew;
+			  }
           echo '<td>'.$Note.'</td>';
+			  
+		echo '<td>'.$Gew.'</td>';
 			
+		 
+			
+		  }if ($u==0){
+			  echo '<td></td>';
+			  
+		echo '<td></td>';
+			  
 		  }
+			  
+			}
 			
+			$Schuelerschnitt=$Notengesamt/$Gewges;
+			echo '<td><strong>'.$Schuelerschnitt.'</strong></td>';
             echo "</tr>";
            
-		}
+		
         
+		}
 		}
 		   
 	         echo "<tr>";
@@ -175,7 +199,8 @@
 		                     $Schnitt=$NoteAll/$y;
 	                     }
 		  
-		    echo '<td>'.$Schnitt.'</td>';
+		    echo '<td><strong>'.$Schnitt.'</strong></td>';
+		   echo '<td></td>';
 	  }
             echo "</tr>";
 		
