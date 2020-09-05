@@ -116,11 +116,16 @@ Editor::inst( $db, 'sv_Pruefungen' )
                 ->message( 'LP_ID benötigt' )   ) ),
 
         Field::inst( 'Zimmer' ),
+	
+	  Field::inst( 'Farbe' ),
+	
+	  
 
        
-
+ Field::inst( 'Lernziele' ),
       
-
+ Field::inst( 'ID' ),
+      
 	
 
 	

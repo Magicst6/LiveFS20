@@ -60,7 +60,7 @@ if ($_POST['Senden']) {
                     $NameAK = $value1['Name'];
                     echo $NameAK;
                     if ( ($Datum == $DatumAK) and ($Pruefungsname == $NameAK)) {
-						   $sql_befehl = "UPDATE sv_Noten SET Note='$Note', User_ID='$User_ID', Zeit='$Zeit' Where KursID='$Kursname' and Datum='$Datum' and SchuelerID='$ID' and Name='$NameAK'";
+						   $sql_befehl = "UPDATE sv_Noten SET Note='$Note', User_ID='$User_ID',Gewichtung='$Gewicht', Zeit='$Zeit' Where KursID='$Kursname' and Datum='$Datum' and SchuelerID='$ID' and Name='$NameAK'";
                         $Update = 1;
                     }
                 }

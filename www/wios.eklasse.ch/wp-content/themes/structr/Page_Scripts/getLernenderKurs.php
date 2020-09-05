@@ -36,7 +36,8 @@ Editor::inst( $db, 'sv_LernenderKurs' )
         Field::inst( 'KursID' ),
      
         Field::inst( 'Klasse' ),
-	    Field::inst( 'Profil' )
+	    Field::inst( 'Profil' ),
+	 Field::inst( 'Notenschnitt' )
        
     )
     ->process( $_POST )
@@ -60,7 +61,8 @@ Editor::inst( $db, 'sv_LernenderKurs' )
         Field::inst( 'KursID' ),
      
         Field::inst( 'Klasse' ),
-	    Field::inst( 'Profil' )
+	    Field::inst( 'Profil' ),
+	 Field::inst( 'Notenschnitt' )
        
     )
 	->where( 'Klasse',$Klasse )

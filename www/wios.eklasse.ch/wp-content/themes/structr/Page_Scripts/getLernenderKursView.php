@@ -45,8 +45,11 @@ use
             ) ),
 		 Field::inst( 'KursID' )
             ->validator( Validate::notEmpty( ValidateOptions::inst()
-                ->message( 'Klasse muss angegeben werden' )  
-            ) )
+                ->message( 'Kurs muss angegeben werden' )  
+            ) ),
+		 Field::inst( 'Notenschnitt' )
+           
+             
         
        
     )

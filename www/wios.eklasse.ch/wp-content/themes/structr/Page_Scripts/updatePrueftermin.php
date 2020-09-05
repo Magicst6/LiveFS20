@@ -77,6 +77,15 @@ if(isset($_GET["f"]))
 
 if ($lp_id) {
 	
+	 $isEntry4 = "SELECT  Pruefungsname From sv_Pruefungen where KursID='$kursid' and id='$id'";
+                $result4 = mysqli_query($con, $isEntry4);
+
+                while ($value4 = mysqli_fetch_array($result4)) {
+				 $NamePr = $value4['Pruefungsname'];
+                   
+				}
+
+	
 
     $query = "UPDATE sv_Pruefungen  SET  Pruefungsname='$pruefungsname', Gewichtung= '$gewichtung' , Datum='$datum', Datum='$datum', Kursname= '$kursname', Start='$start', Ende='$end' ,KursID= '$kursid', Klasse='$klasse', Zimmer='$zimmer',Lehrperson= '$lehrperson', LP_ID='$lp_id', Farbe='$farbe',Lernziele='$lernziele'  WHERE id='$id'";
 
@@ -84,6 +93,24 @@ if ($lp_id) {
 
     echo "<script> alert('Eintrag geändert!');</script>";
 
+	 $isEntry1 = "SELECT  Datum,Name From sv_Noten where KursID='$kursid'";
+                $result1 = mysqli_query($con, $isEntry1);
+
+                while ($value1 = mysqli_fetch_array($result1)) {
+
+				
+                
+                    $IDAK = $value1['SchuelerID'];
+                    $DatumAK = $value1['Datum'];
+                    $NameAK = $value1['Name'];
+                   
+                  
+						   $sql_befehl = "UPDATE sv_Noten SET Name='$pruefungsname',Gewichtung='$gewichtung',Datum='$datum' Where KursID='$kursid' and Name='$NamePr'";
+                    
+                               mysqli_query($con, $sql_befehl);
+                        }
+
+                    
 
 
 }

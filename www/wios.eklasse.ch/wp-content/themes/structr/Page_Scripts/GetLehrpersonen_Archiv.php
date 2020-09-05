@@ -49,7 +49,7 @@ if ($Semester<>""){
 			'Nachname' => $line2['Nachname'],
 			'EMAIL' => $line2['EMAIL'],
 			'Loginname' => $line2['Loginname'],
-			'Kurs1' => $line2['Kurs1'],
+		'Kurs1' => $line2['Kurs1'],
 			'Kurs2' => $line2['Kurs2'],
 			'Kurs3' => $line2['Kurs3'],
 			'Kurs4' => $line2['Kurs4'],
@@ -64,7 +64,22 @@ if ($Semester<>""){
 			'Kurs13' => $line2['Kurs13'],
 			'Kurs14' => $line2['Kurs14'],
 			'Kurs15' => $line2['Kurs15'],
-			'Kurs16' => $line2['Kurs16']);
+			'Kurs16' => $line2['Kurs16'],
+			'Kurs10' => $line2['Kurs17'],
+			'Kurs11' => $line2['Kurs18'],
+			'Kurs12' => $line2['Kurs19'],
+			'Kurs13' => $line2['Kurs20'],
+			'Kurs14' => $line2['Kurs21'],
+			'Kurs15' => $line2['Kurs22'],
+			'Kurs16' => $line2['Kurs23'],
+			'Kurs10' => $line2['Kurs24'],
+			'Kurs11' => $line2['Kurs25'],
+			'Kurs12' => $line2['Kurs26'],
+			'Kurs13' => $line2['Kurs27'],
+			'Kurs14' => $line2['Kurs28'],
+			'Kurs15' => $line2['Kurs29'],
+			'Kurs16' => $line2['Kurs30']);
+           
            
 	
     }

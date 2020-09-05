@@ -21,11 +21,51 @@ while( $line2= mysqli_fetch_assoc($result))
 }
   
 if($color==""){
-echo '<input name="farbe" id="farbe" type="color" value='.$farbe.'>';
+	if ($farbe==""){
+	
+	$isEntry= "Select Farbe From sv_Pruefungen where KursID='$q'  ";
+$result1 = mysqli_query($con,$isEntry);
+$resultarr1 = array();
+
+
+while( $line3= mysqli_fetch_assoc($result1))
+	
+{
+	
+	$farbe = $line3['Farbe'];
 }
+	echo '<input name="farbe" id="farbe" type="color" value='.$farbe.'>';
+
+
+	}
+	
    else{ 
 	   echo '<input name="farbe" id="farbe" type="color" value="'.$farbe.'">';
    }
+
+}
+   else{ 
+	   	if ($farbe==""){
+	
+	$isEntry= "Select Farbe From sv_Pruefungen where KursID='$q'  ";
+$result1 = mysqli_query($con,$isEntry);
+$resultarr1 = array();
+
+
+while( $line3= mysqli_fetch_assoc($result1))
+	
+{
+	
+	$farbe = $line3['Farbe'];
+}
+	echo '<input name="farbe" id="farbe" type="color" value='.$farbe.'>';
+
+		}else{
+			
+	   echo '<input name="farbe" id="farbe" type="color" value="'.$farbe.'">';
+   }
+   }
+
 ?>
 
         

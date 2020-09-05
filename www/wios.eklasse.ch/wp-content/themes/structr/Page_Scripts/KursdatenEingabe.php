@@ -147,7 +147,7 @@ $result = mysqli_query($con, $isEntry);
 
     }
 
-    $isEntry= "Select * From sv_Kurse Where Klasse='$Klasse' ORDER BY Startdatum" ;
+    $isEntry= "Select * From sv_Kurse Where Klasse='$Klasse' and Stundenplan=1 ORDER BY Startdatum" ;
     $result = mysqli_query($con, $isEntry);
 
     echo '<table id="table_id" class="display">';

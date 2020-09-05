@@ -137,6 +137,7 @@ if( $_POST['Senden']) {
 
     }
 }
+     echo '<meta http-equiv="refresh"  content="0; url=/kursformular?Klasse='.$Klassenname.'" />';
 ?>
 
 

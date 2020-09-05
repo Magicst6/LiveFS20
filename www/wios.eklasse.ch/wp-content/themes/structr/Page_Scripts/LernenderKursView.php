@@ -34,6 +34,61 @@ include 'db.php';
 
     }
 
+	$isEntry5 = "SELECT * From sv_LernenderKurs";
+	
+			
+        $result5 = mysqli_query($con,$isEntry5);
+ 
+      
+        while( $value5= mysqli_fetch_array($result5)){
+			
+			$ID=$value5['SchülerID'];
+			
+			$KursID=$value5['KursID'];
+		 
+			
+          $isEntry2 = "SELECT * From sv_Noten Where SchuelerID='$ID' and KursID='$KursID'  order by Datum asc ";
+          $isentall=$isEntry2;
+          $result2 = mysqli_query($con,$isEntry2);
+
+          // echo $isentall;
+			
+			$u=0;
+			
+
+          while( $value3= mysqli_fetch_array($result2))
+           
+			{
+         
+		  $Note=$value3['Note'];
+			    $Gew=$value3['Gewichtung'];
+			  
+			  if ($Gew>0)
+			  {
+			  $Notengesamt=$Notengesamt+$Note*$Gew;
+			  $Gewges=$Gewges+$Gew;
+			  }
+        
+		 
+		
+			}
+			
+			
+			$Schuelerschnitt=$Notengesamt/$Gewges;
+			if ($Schuelerschnitt>0){
+				//echo $Schuelerschnitt;
+			  $sql_befehl = "Update sv_LernenderKurs SET Notenschnitt='$Schuelerschnitt' Where  KursID='$KursID' and SchülerID='$ID'";
+               
+                    mysqli_query($con, $sql_befehl);
+                 
+			}
+			
+            $Notengesamt='';
+           $Gewges='';
+		   $Schuelerschnitt='-';
+       
+		
+		}
 	
 	
 	
@@ -165,6 +220,10 @@ var editor; // use a global for the submit and return data rendering in the exam
                 label: "KursID:",
                 name: "KursID",
 			    type: "readonly"
+            }, {
+                label: "Notenschnitt:",
+                name: "Notenschnitt",
+			    type: "readonly"
             }
         ], i18n: {
             remove: {
@@ -237,7 +296,8 @@ var editor; // use a global for the submit and return data rendering in the exam
             { data: "Vorname" },
             { data: "Nachname" },
 			{ data: "Klasse" },
-			{ data: "KursID" }
+			{ data: "KursID" },
+			{ data: "Notenschnitt" }
             
           
         ],
@@ -689,6 +749,7 @@ Schüler dem ausgewählten Kurs hinzufügen:
                 <th>Nachname</th>
 				<th>Klasse</th>
                 <th>KursID</th>
+				<th>Notenschnitt</th>
             </tr>
         </thead>
     </table>

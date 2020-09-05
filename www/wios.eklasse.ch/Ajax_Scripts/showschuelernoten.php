@@ -81,11 +81,11 @@ table.timecard tr.even {
 }
 
 input[type=text], select {
-  width: 100%;
+  width: 200px;
  padding: 0px 0px;
   margin: 0px 0;
   display: inline-block;
-  border: 1px solid #FFFFFF;
+  border: 2px solid #FFFFFF;
   border-radius: 4px;
 }
 

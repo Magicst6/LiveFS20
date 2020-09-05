@@ -1,8 +1,17 @@
 
 <head>
- <link rel="shortcut icon" type="image/ico" href="http://www.datatables.net/favicon.ico">
-	<meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
+     <meta charset='utf-8' />
 
+
+
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>jQuery UI Dialog - Default functionality</title>
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	
 	<link rel="stylesheet" type="text/css" href="/wp-content/themes/structr/Page_Scripts/DataTables-1.10.19/media/css/jquery.dataTables.css">
 	<link rel="stylesheet" type="text/css" href="/wp-content/themes/structr/Page_Scripts/DataTables-1.10.19/examples/resources/syntax/shCore.css">
 	<link rel="stylesheet" type="text/css" href="/wp-content/themes/structr/Page_Scripts/DataTablesEditor/css/editor.dataTables.min.css">
@@ -10,14 +19,70 @@
 	<link rel="stylesheet" type="text/css" href="/wp-content/themes/structr/Page_Scripts/DataTablesEditor/css/editor.dataTables.min.css">
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
-	
-	
-	
-	<!--	<link rel="stylesheet" type="text/css" href="/wp-content/themes/structr/Page_Scripts/DataTables-1.10.19/examples/resources/demo.css">-->
-	<style type="text/css" class="init">
 
-	</style>
-	<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <!--<link rel="stylesheet" href="/resources/demos/style.css">-->
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+
+
+
+    <link rel='stylesheet' href='/wp-content/themes/structr/Page_Scripts/fullcalendar/fullcalendar.css' />
+
+    <!--<script src='/wp-content/themes/structr/Page_Scripts/fullcalendar/lib/jquery.min.js'></script>-->
+
+    <script src='/wp-content/themes/structr/Page_Scripts/fullcalendar/lib/moment.min.js'></script>
+
+    <script src='/wp-content/themes/structr/Page_Scripts/fullcalendar/fullcalendar.js'></script>
+
+    <script src='/wp-content/themes/structr/Page_Scripts/fullcalendar/locale-all.js'></script>
+	
+
+    <meta charset='utf-8' />
+
+
+
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>jQuery UI Dialog - Default functionality</title>
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	
+	<link rel="stylesheet" type="text/css" href="/wp-content/themes/structr/Page_Scripts/DataTables-1.10.19/media/css/jquery.dataTables.css">
+	<link rel="stylesheet" type="text/css" href="/wp-content/themes/structr/Page_Scripts/DataTables-1.10.19/examples/resources/syntax/shCore.css">
+	<link rel="stylesheet" type="text/css" href="/wp-content/themes/structr/Page_Scripts/DataTablesEditor/css/editor.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="/wp-content/themes/structr/Page_Scripts/DataTablesEditor/css/editor.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="/wp-content/themes/structr/Page_Scripts/DataTablesEditor/css/editor.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+
+    <!--<link rel="stylesheet" href="/resources/demos/style.css">-->
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+
+
+
+    <link rel='stylesheet' href='/wp-content/themes/structr/Page_Scripts/fullcalendar/fullcalendar.css' />
+
+    <!--<script src='/wp-content/themes/structr/Page_Scripts/fullcalendar/lib/jquery.min.js'></script>-->
+
+    <script src='/wp-content/themes/structr/Page_Scripts/fullcalendar/lib/moment.min.js'></script>
+
+    <script src='/wp-content/themes/structr/Page_Scripts/fullcalendar/fullcalendar.js'></script>
+
+    <script src='/wp-content/themes/structr/Page_Scripts/fullcalendar/locale-all.js'></script>
+	
+	<script src="https://cdn.tiny.cloud/1/p4y59yu91l1ttdi8h066ovomyunbzi9p44zqccnlmn9ly5ge/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+	
 	<script type="text/javascript" language="javascript" src="/wp-content/themes/structr/Page_Scripts/DataTables-1.10.19/media/js/jquery.dataTables.js"></script>
 	<script type="text/javascript" language="javascript" src="/wp-content/themes/structr/Page_Scripts/DataTables-1.10.19/examples/resources/syntax/shCore.js"></script>
 	<script type="text/javascript" language="javascript" src="/wp-content/themes/structr/Page_Scripts/DataTables-1.10.19/examples/resources/demo.js"></script>
@@ -29,15 +94,111 @@
 	
 	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
 	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
-	
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
-
 
 	
-</head>
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
 
+	
+
+   
+
+    <?php
+
+    global $current_user;
+
+    get_currentuserinfo();
+
+    
+
+    ?>
+      <input id="kidhidden" type="hidden">
+	
+	<input id="farbehid" type="hidden">
+    <script>
+
+function getKursname(str){
+	
+if (str == "") {
+       
+        return;
+    } else {
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("kursid").innerHTML = this.responseText;
+            }
+        };
+        xmlhttp.open("GET","/Ajax_Scripts/getKursnamewthoutselect.php?q="+str,true);
+        xmlhttp.send();
+       
+    }
+}
+		
+function getKursnamepre(str){
+	
+if (str == "") {
+       
+        return;
+    } else {
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("kursid").innerHTML = this.responseText;
+            }
+        };
+        xmlhttp.open("GET","/Ajax_Scripts/getKursnamewthoutselect.php?q="+str+"&k="+ document.getElementById('kursid').value ,true);
+        xmlhttp.send();
+       
+    }
+}
+		
+            function reload() {
+
+                var x = document.querySelector("#klassedrop").value;
+
+                var y = document.querySelector("#Lehrpersondrop").value;
+
+                window.location.href = "/pruefungen-verwaltung?&klasse=" + x + "&Lehrpersondr=" + y;
+
+            }
+
+function getcolor(str1){
+		
+		
+	 if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("farbediv").innerHTML = this.responseText ;
+            }
+        };
+        xmlhttp.open("GET","/Ajax_Scripts/getcolorAK.php?q="+str1+"&c="+document.getElementById('farbehid').value.substring(1,7),true);
+        xmlhttp.send();
+		
+	}
+
+    </script>
 
     <script type='text/javascript'>
+		
 		
 		
    var editor;
@@ -46,6 +207,8 @@
 		
 	
 	tableshow();
+		
+		showCalendar();
 	});
 		
 	function loadeditor(){	
@@ -66,6 +229,11 @@
         fields: [
 			
 			{
+			 label: "ID:",
+                name: "ID"
+                
+		},		
+			{
 			 label: "Pruefungsname:",
                 name: "Pruefungsname"
                 
@@ -78,7 +246,7 @@
 		}, {
                 label: "Datum:",
                 name: "Datum",
-				 type: "date"
+				 
             },	 {
                 label: "Start(Format: YYYY-MM-DD HH:mm:ss):",
                 name: "Start",
@@ -116,6 +284,16 @@
             }, {
                 label: "Kommentar:",
                 name: "Kommentar"
+               
+            },
+			 {
+                label: "Farbe:",
+                name: "Farbe"
+               
+            },
+			 {
+                label: "Lernziele:",
+                name: "Lernziele"
                
             }
 				
@@ -162,7 +340,7 @@
     } );
 		
 		
-		  // Activate an inline edit on click of a table cell
+	/*	  // Activate an inline edit on click of a table cell
     $('.datatables').on( 'click', 'tbody td:not(:first-child)', function (e) {
         editor.inline( this, {
             buttons: { label: '&gt;', fn: function () { this.submit();
@@ -173,7 +351,7 @@
     } );
 		
  
-	 
+	 */
 	}
 	
 		
@@ -209,10 +387,24 @@ function loadtable(){
                 defaultContent: '',
                 data: null,
                 orderable: false,
-                title:' '
+                title:'Noten'
 
 
             },
+					 {
+                className: 'details-control2',
+                defaultContent: '',
+                data: null,
+                orderable: false,
+                title:'Prüfung'
+
+
+            },
+					 {
+	
+					data: 'ID'
+				
+				},
 
 	{
 	
@@ -259,14 +451,23 @@ function loadtable(){
 		
 						  data: 'Kommentar'
 						 
+				},
+					   {
+		
+						  data: 'Farbe'
+						 
+				},
+					   {
+		
+						  data: 'Lernziele'
+						 
 				}
 					 
 			],
 			select: true,
 				order: [[ 4, "desc" ]],
         buttons: [
-            { extend: "edit",   editor: editor,text: 'Prüfung  bearbeiten' },
-            { extend: "remove", editor: editor,text: 'Prüfung löschen' }
+            
         ], "language": {
             "decimal": ",",
             "thousands": ".",
@@ -329,6 +530,21 @@ function loadtable(){
 
 
     } );
+	
+	
+	 $( '.datatables tbody' ).on( 'click', 'td.details-control2', function () {
+        var tr = $( this ).closest( 'tr' ),
+            row = table.row( tr );
+
+
+
+        row.child( pruefungedit(row.data() ) ).show();
+        tr.next( 'tr' ).addClass( 'details-row' );
+        tr.addClass( 'shown' );
+
+
+    } );
+	
 	
 }
  function neueNote( data ) {
@@ -546,7 +762,7 @@ $heute=date("Y-m-d");
 
 Lehrperson:
 
-<br>
+<br><br>
 
 <?php
 
@@ -610,6 +826,7 @@ $result = mysqli_query($con, $isEntry);
 
 
 <style>
+	
 	#tooltip {
   position: absolute;
   z-index: 1001;
@@ -783,11 +1000,11 @@ p.start-editing {
 	}
 	
 	td.details-control2:before {
-		content: url(/plussmall.png);
+		content: '✎';
 	}
 	
 	tr.shown td.details-control2:before {
-		content: url(/plussmall.png);
+		content:'✎';
 	}
 
 </style>
@@ -795,10 +1012,10 @@ p.start-editing {
 <style>
         body {}
 
-        .modal{
+        .modal3{
             display: none; /* Hidden by default */
             position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
+            z-index: 4; /* Sit on top */
             padding-top: 100px; /* Location of the box */
             left: 0;
             top: 0;
@@ -824,7 +1041,7 @@ p.start-editing {
 
 
         /* Modal Content */
-        .modal-content {
+        .modal-content3 {
             background-color: #fefefe;
             margin: auto;
             padding: 20px;
@@ -859,10 +1076,10 @@ p.start-editing {
           color: white;
         }
     </style>
-<div id="myModal2" class="modal">
+<div id="myModal2" class="modal3">
 
     <!-- Modal content -->
-    <div class="modal-content">
+    <div class="modal-content3">
      
 
 Prüfungsname:     <input id="Pruefunglb1" readonly>                       
@@ -897,7 +1114,9 @@ Gewichtung:        <input id="Gewichtunglb1" readonly><br><br>
 				<thead>
 					<tr>	
 						<th width= 1%></th>
-						<th width= 3%></th>
+						<th width= 3%>Noten</th>
+						<th width= 3%>Prüfung</th>
+						<th width= 3%>ID</th>
 						<th width= 12%>Pruefungsname</th>
 	                    <th width =11%>KursID</th>
 						<th width=7%>Datum</th>
@@ -907,6 +1126,8 @@ Gewichtung:        <input id="Gewichtunglb1" readonly><br><br>
 						<th width=5%>Zimmer</th>
 	                    <th width =4%>Gew.</th>
 						<th width= 17%>Kommentar</th>
+							<th width =6%>Farbe</th>
+						<th width= 17%>Lernziele</th>
 						
 						
 					</tr>
@@ -920,7 +1141,7 @@ Gewichtung:        <input id="Gewichtunglb1" readonly><br><br>
 	
 	
 	<br><br>
-	<h4>Für eine Notenüberbersicht der Prüfungen bitte Kurs wählen...</h4>
+	<h4>Für eine Notenüberbersicht bitte Kurs wählen...</h4>
 	<br><br>
 Kursname:
 <br>
@@ -1004,5 +1225,7 @@ function myFunction3(str) {
 	 str.value=y;				  															 
 	}
 }
+	
+	
 	</script>
 

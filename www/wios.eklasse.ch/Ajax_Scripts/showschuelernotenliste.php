@@ -136,7 +136,7 @@ input[type=text], select {
             
            
 
-            <input type="hidden" name="farbe" id="farbe" value="" class="text ui-widget-content ui-corner-all" readonly>
+            <input type="hidden" name="farbe" id="farbe2" value="" class="text ui-widget-content ui-corner-all" readonly>
 
 
 

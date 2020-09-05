@@ -683,6 +683,7 @@ tableshow();
 	 //When the user clicks on <span> (x), close the modal
      document.getElementById("span").onclick = function() {
        document.getElementById("myModal").style.display = "none";
+		reloadpage1();
 	
     }
 			
@@ -1384,7 +1385,7 @@ while ($line1 = mysqli_fetch_array($result)) {
 
 
 
-<div id="myModal" class="modal" onhide="tableshow()">
+<div id="myModal" class="modal"  onhide="tableshow()">
 
     <!-- Modal content -->
     <div class="modal-content">
