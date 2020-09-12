@@ -731,7 +731,8 @@ get_currentuserinfo();
 
 
 									open: function () {
-
+                                         
+									//	alert(event.klasse);
 
 										var startdate = $.fullCalendar.formatDate( event.start, "Y-MM-DD" );
 
@@ -1432,6 +1433,8 @@ get_currentuserinfo();
 						//	 calendar.fullCalendar('refetchEvents');
 
 						return;
+						
+						
 
 					},
 
@@ -1443,7 +1446,7 @@ get_currentuserinfo();
 
 				close: function () {
 
-					 calendar.fullCalendar('refetchEvents');
+					// calendar.fullCalendar('refetchEvents');
 					 
                    
 					return;
@@ -2389,7 +2392,7 @@ get_currentuserinfo();
 
 	<div id='lernende'></div>
 
-	<br><br><input name="pruefungerf" id="pruefungserf" type="button" value="Prüfung erfassen" onClick="pruefungerfassen()"/><br><br>
+	<br><br><input name="pruefungerf" id="pruefungserf" type="button" value="Prüfung erfassen" onClick="pruefungerfassen()"/><br>Bitte hier klicken um eine neue Prüfung zu erstellen. <br>
 
 </body>
 

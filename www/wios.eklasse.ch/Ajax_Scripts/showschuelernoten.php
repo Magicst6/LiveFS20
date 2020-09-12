@@ -278,23 +278,16 @@ if ($Kursnme<>'' && $Kursnme<>"-Select-") {
 
     echo '<br>';
 
-    $isEntry = "SELECT Name, Vorname, ID,Profil  From sv_LernendeModule Where Modul1='$Klasse' or Modul2='$Klasse' or Modul3='$Klasse' or Modul4='$Klasse' or Modul5='$Klasse' or Modul6='$Klasse' or Modul7='$Klasse' or Modul8='$Klasse' or Modul9='$Klasse' or Modul10='$Klasse' or Modul11='$Klasse' or Modul12='$Klasse'  Order By Name asc";
-    $result = mysqli_query($con, $isEntry);
+    $isEntry4 = "SELECT *  From sv_LernenderKurs Where KursID='$Kursnme'";
+    $result4 = mysqli_query($con, $isEntry4);
     
-    while ($value1 = mysqli_fetch_array($result)) {
-        $isfilled = 0;
-        $Vorname = $value1['Vorname'];
-        $Name = $value1['Name'];
-        $ID = $value1['ID'];
-        $Profil = $value1['Profil'];
-
-    $isEntry1 = "SELECT Nachname, Vorname  From sv_LernenderKurs Where KursID='$Kursnme'";
-    $result1 = mysqli_query($con, $isEntry1);
-    
-    while ($value2 = mysqli_fetch_array($result1)) {
+    while ($value2 = mysqli_fetch_array($result4)) {
+  $isfilled=0;
+	 $Vorname = $value2['Vorname'];
+        $Name = $value2['Nachname'];
+        $ID = $value2['SchülerID'];	
+		
 	
-	if (($value2['Nachname']==$value1['Name']) and ($value2['Vorname']==$value1['Vorname']))
-	{
 	
 	 $isEntry1 = "SELECT Zeit From sv_Noten Where Name='$Pruefungsname' and KursID='$Kursnme' and SchuelerID='$ID' ORDER BY Zeit ASC ";
 
@@ -375,13 +368,13 @@ if ($Zeit=='0000-00-00 00:00:00'){
             echo '<input name="Schueler" id="Schueler" type="hidden" value=' . $y . ' />';
         }
     }
+	
 	}
-}
 
 mysqli_close($con);
 
 
 
  echo  ' <input name="Senden" type="submit" value="Senden" onclick="checkKurs(Kursnm.value)" />';
-	}
+	
 ?>
