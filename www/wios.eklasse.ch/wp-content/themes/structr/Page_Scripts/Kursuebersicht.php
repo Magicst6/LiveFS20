@@ -48,7 +48,7 @@
 			</table>
 			
 </html>-->
-	
+	<br>Falls ein Kurs fehlerhaft eingetragen wurde, bitte den Kurs unten löschen und neu erstellen. Dies kann im <a href="/stundenplan-2">Stundenplan</a>, <a href="/ausserordentliche-kurseingabe">manuell</a> oder per <a href="/import">Import</a> gemacht werden.<br>
 	<script>
 	
   var editor1; // use a global for the submit and return data rendering in the examples
@@ -115,6 +115,10 @@
                 label: "Enddatum:",
                 name: "sv_Kurse.Enddatum",
 				type:"date"
+            },
+			{
+                label: "Profil:",
+                name: "sv_Kurse.Profil"
             },
 			{
                 label: "Lehrperson:",
@@ -201,6 +205,7 @@
 			{ data: "sv_Kurse.Uhrzeit"},
 			{ data: "sv_Kurse.Startdatum"},
 			{ data: "sv_Kurse.Enddatum"},
+			{ data: "sv_Kurse.Profil"},
 			{ data: "sv_Lehrpersonen.Nachname"},
 			{ data:  "sv_Kurse.ID",
          "render": function(data, type, row, meta){
@@ -218,9 +223,8 @@
             selector: 'td:first-child'
         },
         buttons: [
-            { extend: "create", editor: editor1, text:"Neuer Eintrag" },
-            { extend: "edit",   editor: editor1, text:"Eintrag bearbeiten" },
-            { extend: "remove", editor: editor1, text:"Eintrag löschen" }
+            
+            
         ]
     } );
 
@@ -1039,6 +1043,7 @@ tr.shown td.details-control:before {
             <th>Uhrzeit</th>
 			<th>Startdatum</th>
 			  <th>Enddatum</th>
+			  <th>Profil</th>
 			<th>Lehrperson</th>
 			  <th>Teilnehmer</th>
           </tr>

@@ -329,7 +329,7 @@ Wählen Sie das Semester aus :
             left: 0;
             top: 0;
             width: 100%; /* Full width */
-            height: 1400px; /* Full height */
+            height: 1700px; /* Full height */
             overflow: auto; /* Enable scroll if needed */
             background-color: rgb(0,0,0); /* Fallback color */
             background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
@@ -356,7 +356,7 @@ Wählen Sie das Semester aus :
             padding: 20px;
             border: 1px solid #888;
             width: 930px;
-			height: 1200px;
+			height: 1300px;
         }
 		
 		.modal-content1 {

@@ -1,8 +1,7 @@
 <?php
  $sem=$_POST['sem'];
 
-$K='sv_Kurse';
-$L='sv_Lehrpersonen';
+$KH='sv_Kurshistorie';
 
 /*
  * Example PHP implementation used for the index.html example
@@ -23,21 +22,15 @@ use
     DataTables\Editor\ValidateOptions;
  
 // Build our Editor instance and process the data coming from _POST
-Editor::inst( $db, 'sv_Kurse' )
+Editor::inst( $db, $KH )
     ->fields(
 	
-        Field::inst( 'sv_Kurse.ID' ),
-        Field::inst( 'sv_Kurse.Klasse' ),
-        Field::inst( 'sv_Kurse.Kursname' ),
-        Field::inst( 'sv_Kurse.KursID' ),
-	Field::inst( 'sv_Kurse.Uhrzeit' ),
-       
+        Field::inst( 'ID' ),
+        Field::inst( 'Stattgefunden' ),
+        Field::inst( 'KursID' ),
+        Field::inst( 'Lehrer' ),
            
-	 Field::inst( 'sv_Kurse.Startdatum' )
-	  ->validator( Validate::dateFormat( 'Y-m-d' ) )
-            ->getFormatter( Format::dateSqlToFormat( 'Y-m-d' ) )
-            ->setFormatter( Format::dateFormatToSql('Y-m-d' ) ),
-	 Field::inst( 'sv_Kurse.Enddatum' )
+	 Field::inst( 'Datum' )
 	  ->validator( Validate::dateFormat( 'Y-m-d' ) )
             ->getFormatter( Format::dateSqlToFormat( 'Y-m-d' ) )
             ->setFormatter( Format::dateFormatToSql('Y-m-d' ) ),
@@ -46,12 +39,11 @@ Editor::inst( $db, 'sv_Kurse' )
     
       
 	
-	  Field::inst( 'sv_Kurse.Tag' ),
-	  Field::inst( 'sv_Kurse.Profil' ),
-	  Field::inst( 'sv_Lehrpersonen.Nachname' )
+	  Field::inst( 'Kommentar' ),
+	  Field::inst( 'Lektionen' )
 	  
 	)
 	
-	->leftJoin( 'sv_Lehrpersonen', 'sv_Lehrpersonen.ID', '=', 'sv_Kurse.Lehrperson' )
+	
     ->process( $_POST )
     ->json();

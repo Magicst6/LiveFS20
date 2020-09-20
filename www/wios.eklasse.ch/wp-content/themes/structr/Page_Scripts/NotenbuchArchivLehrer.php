@@ -1169,19 +1169,25 @@ p.start-editing {
 
         /* Modal Content */
         .modal-content {
-            background-color: #fefefe;
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 1200px;
+           width: 85%;
+    padding: 25px;
+	background: #FFF;
+	max-width: 600px;
+    margin: 70px auto;
+	position: relative;
+	border-radius: 8px;
+	box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
         }
 		
 		.modal-content1 {
-            background-color: #fefefe;
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 1400px;
+             width: 85%;
+    padding: 25px;
+	background: #FFF;
+	max-width: 600px;
+    margin: 70px auto;
+	position: relative;
+	border-radius: 8px;
+	box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
         }
 
 
@@ -1583,7 +1589,7 @@ while ($line1 = mysqli_fetch_array($result)) {
 
 <h1>Noten</h1>
 
-
+<div class="left">
 <div class="container">
 	<div class="row">
 		<form class="col-md4"></form>
@@ -1608,12 +1614,13 @@ while ($line1 = mysqli_fetch_array($result)) {
 		</div>
 	</div>
 </div>
+</div>
 <br><br>
 
 
 <br><br>
 <h1>Abwesenheiten</h1>
-
+<div class="left">
 	<button id="buttonAbw" onclick="neueAbw1()" >Neue Abwesenheit hinzufügen</button>
 
 <div class="container">
@@ -1640,7 +1647,7 @@ while ($line1 = mysqli_fetch_array($result)) {
 		</div>
 	</div>
 </div>
-
+</div>
 
 
 <div id="myModal" class="modal" onhide="tableshow()">
@@ -1653,6 +1660,7 @@ while ($line1 = mysqli_fetch_array($result)) {
 		
 		   
             <p>Unten werden die Noten des Schülers angezeigt. In die Tabelle klicken um die jeweilige Note zu bearbeiten</p>
+		<div class="leftn">
 <div class="container">
 	<div class="row">
 		<form class="col-md4"></form>
@@ -1684,7 +1692,7 @@ while ($line1 = mysqli_fetch_array($result)) {
            
           
     </div>
-
+  </div>
 </div>
 	
 	
@@ -1698,6 +1706,7 @@ while ($line1 = mysqli_fetch_array($result)) {
 		
 		   
                        <p>Unten werden die Abwesenheiten des Schülers angezeigt. In die Tabelle klicken um die jeweilige Abwesenheit zu bearbeiten. Doppelclick auf eine Zeile löscht diese.</p>
+			<div class="leftn">
 <div class="container">
 	<div class="row">
 		<form class="col-md4"></form>
@@ -1731,7 +1740,7 @@ while ($line1 = mysqli_fetch_array($result)) {
         
           
     </div>
-
+	</div>
 </div>
 
 
@@ -2002,8 +2011,8 @@ Kurs:        <input id="Kurslb2" readonly><br><br>
                
             }, {
                 label: "Datum:",
-                name: "Datum",
-				 type: "date"
+                name: "Datum"
+				 
             }
 				
         ],
@@ -2516,7 +2525,7 @@ window.location.href= "/notenbuch-lehrer-archiv?q="+  encrypted + "&sem=" +  doc
          $.fn.dataTable.ext.errMode = 'throw';
     table = $( '.datatables' ).DataTable( {
 
-        responsive:true,
+        responsive:false,
 		
         ajax: {
 
@@ -2677,7 +2686,7 @@ window.location.href= "/notenbuch-lehrer-archiv?q="+  encrypted + "&sem=" +  doc
             dataSrc: ""
         },
 
-			 responsive:true,
+			 responsive:false,
         columns: [ 
 			
 			
@@ -3274,7 +3283,36 @@ function sendNote(){
 </script>
 
 
+
+	
 <style>
+	.left {
+  float: auto;
+  width: auto;
+  padding: 10px;
+  border: 2px solid #3e4ac9;
+  text-align: center;
+			overflow-y:auto;
+}
+	.leftn {
+  float: auto;
+  width: auto;
+  padding: 10px;
+  border: 0px solid;
+  text-align: center;
+		overflow-y:auto;
+}
+	body {
+		font-family: "Dosis", "Helvetica Neue", sans-serif;
+		color: #232323;
+	}
+	
+	#calendar {
+		max-width: 900px;
+		margin: 0 auto;
+	}
+
+
 	body {
 		font-family: "Dosis", "Helvetica Neue", sans-serif;
 		color: #232323;

@@ -11,7 +11,7 @@ if ($_POST['Senden']) {
 
     $Kursname = $_POST['Kursnm'];
     $Datum = $_POST['date'];
-    $Lehrer = $_POST['lehrer'];
+    $Lehrer = $_POST['lehrerklbu'];
     $Comment = $_POST['Comment'];
     $Lektionen = $_POST['Lektionen'];
 
@@ -43,7 +43,7 @@ if ($_POST['Senden']) {
             $y = $x + 1;
 
             $ID = $_POST[$y];
-            $isEntry = "SELECT  Vorname, Name,Klasse From sv_Lernende Where ID='$ID'";
+            $isEntry = "SELECT  Vorname, Name From sv_LernendeModule Where ID='$ID'";
             $result = mysqli_query($con, $isEntry);
 
 
@@ -82,13 +82,16 @@ if ($_POST['Senden']) {
                         $sql_befehl = "UPDATE sv_AbwesenheitenKompakt SET Kommentar='$Kommentar', Abwesenheitsdauer='$Dauer' Where Kursname='$Kursname' and Datum='$Datum' and SchülerID='$ID' ";
                     }
                 }
-                if (("" == $Klassenname) OR ("" == $Kursname) OR ("" == $Datum)) {
+                if ( ("" == $Kursname) OR ("" == $Datum)) {
+					echo $Klassenname;
+					echo $Kursname;
+					echo $Datum;
                     echo "Fehler: Eintrag unvollständig. Bitte neu beginnen!";
 //echo '<meta http-equiv="refresh" content="0; url=/klassenbuch-der-lehrpersonen-ajax" />';
                 } else {
                     mysqli_query($con, $sql_befehl);
                     echo "Eintrag hinzugefügt.";
-                    echo '<meta http-equiv="refresh" content="0; url=/klassenbuch-der-lehrpersonen" />';
+                   
                 }
 
 			
@@ -97,6 +100,8 @@ if ($_POST['Senden']) {
 		}
     }
 }
+header('Location:'.$_SERVER['HTTP_REFERER']);
 ?>
-<meta http-equiv="refresh" content="0; url=/klassenbuch-der-lehrpersonen"/>
+
+<!--<meta http-equiv="refresh" content="0; url=/klassenbuch-der-lehrpersonen"/>
 &nbsp;

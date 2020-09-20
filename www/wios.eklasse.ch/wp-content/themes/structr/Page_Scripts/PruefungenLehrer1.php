@@ -21,6 +21,14 @@ get_currentuserinfo();
 <input id="farbehid" type="hidden">
 
 <script>
+	
+	
+	if (window.innerWidth<800){
+		var wdth=350;
+	}
+	else var wdth=600;
+	
+	//alert(wdth);
 	function getKursname( str ) {
 
 		if ( str == "" ) {
@@ -413,9 +421,15 @@ get_currentuserinfo();
 
 						height: 800,
 
-						width: 600,
+						width: wdth,
 
 						modal: true,
+						
+						
+						
+						left:0,
+						
+						top:0,
 
 
 
@@ -708,25 +722,27 @@ get_currentuserinfo();
 				{
 
 
+
 					doConfirm( "Was möchten Sie tun?", function yes() {
 							// Save it!
-
+                              // alert(event.kursid);
 
 							var dialog1, form,
 
 								dialog1 = $( "#dialog-form1" ).dialog( {
 
 
-
 									autoOpen: false,
 
 									height: 800,
 
-									width: 600,
+									width: wdth,
 
 									modal: true,
 
-
+                                     top: 0,
+									
+									left:0,
 
 
 
@@ -734,15 +750,18 @@ get_currentuserinfo();
                                          
 									//	alert(event.klasse);
 
-										var startdate = $.fullCalendar.formatDate( event.start, "Y-MM-DD" );
+										var startdate = $.fullCalendar.formatDate( event.start, "YYYY-MM-DD" );
 
-										var enddate = $.fullCalendar.formatDate( event.end, "Y-MM-DD" );
+										
+										var enddate = $.fullCalendar.formatDate( event.end, "YYYY-MM-DD" );
 
 										var starttime = $.fullCalendar.formatDate( event.start, "HH:mm:ss" );
 
 										var endtime = $.fullCalendar.formatDate( event.end, "HH:mm:ss" );
 
-										var id = event.ID;
+									//	var id = event.ID;
+										
+										
 
 										document.getElementById( 'startdate' ).value = startdate;
 
@@ -764,7 +783,7 @@ get_currentuserinfo();
 
 										document.getElementById( 'lehrperson' ).value = event.lehrperson;
 
-										document.getElementById( 'farbe1' ).value = event.color;
+									//	document.getElementById( 'farbe' ).value = event.color;
 
 										document.getElementById( 'gewicht' ).value = event.gewichtung;
 
@@ -792,7 +811,6 @@ get_currentuserinfo();
 											}
 
 										};
-
 
 
 										xmlhttp.open( "GET", "/Ajax_Scripts/showschuelernoten.php?f=" + event.klasse + "&e=" + event.gewichtung + "&g=" + event.kursid + "&h=" + startdate + "&i=" + event.title + "&j=" + starttime + "&k=" + enddate + "&l=" + endtime + "&m=" + event.zimmer + "&n=" + event.kursname + "&o=" + event.lehrperson + "&p=" + event.color, true );
@@ -955,6 +973,8 @@ get_currentuserinfo();
 
 										calendar.fullCalendar( 'refetchEvents' );
 
+										   dialog1.dialog("close");
+										//document.getElementById( "dialog-form1" ).innerHTML = '';
 									}
 
 								} );
@@ -980,11 +1000,14 @@ get_currentuserinfo();
 
 									height: 800,
 
-									width: 600,
+									width: wdth,
 
 									modal: true,
 
-
+                                    top:0,
+									
+									left:0,
+									
 
 
 
@@ -1278,11 +1301,13 @@ get_currentuserinfo();
 				autoOpen: false,
 
 				height: 800,
-
-				width: 600,
+               
+				width: wdth,
 
 				modal: true,
-
+                 
+				top:0,
+				left:0,
 
 
 
@@ -1478,9 +1503,15 @@ get_currentuserinfo();
 
 									height: 800,
 
-									width: 600,
+									width:wdth,
 
 									modal: true,
+									
+									top:0,
+									
+									left: 0,
+									
+								
 
                                    
 
@@ -1895,7 +1926,7 @@ get_currentuserinfo();
 
 			}
 
-
+              
 
 			dialog = $( "#dialog-form" ).dialog( {
 
@@ -1903,7 +1934,7 @@ get_currentuserinfo();
 
 				height: 900,
 
-				width: 300,
+				width: wdth,
 
 				modal: true,
 
@@ -1962,7 +1993,7 @@ get_currentuserinfo();
 			padding-top: 400px; /* Location of the box */
 			left: 0;
 			top: 0;
-			width: 30%; /* Full width */
+			width: 100%; /* Full width */
 			height: 100%; /* Full height */
 			overflow: auto; /* Enable scroll if needed */
 			background-color: rgb(0, 0, 0); /* Fallback color */
@@ -1971,11 +2002,14 @@ get_currentuserinfo();
 		
 		/* Modal Content */
 		.modal-content {
-			background-color: #fefefe;
-			margin: auto;
-			padding: 20px;
-			border: 1px solid #888;
-			width: 80%;
+			  width: 85%;
+    padding: 25px;
+	background: #FFF;
+	max-width: 600px;
+    margin: 70px auto;
+	position: relative;
+	border-radius: 8px;
+	box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
 		}
 		
 		/* The Close Button */
@@ -2217,7 +2251,7 @@ get_currentuserinfo();
 	</div>
 
 
-	<div id="dialog-form" title="Prüfungsdaten">
+	<div id="dialog-form"  title="Prüfungsdaten">
 
 
 

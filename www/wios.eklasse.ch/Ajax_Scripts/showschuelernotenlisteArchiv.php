@@ -329,13 +329,13 @@ if ($Kursnme<>'' && $Kursnme<>"-Select-") {
 	
 if ($Zeit=='0000-00-00 00:00:00'){
 
-            $isEntry1 = "SELECT Note, Datum,SchuelerID From sv_Noten Where Name='$Pruefungsname' and KursID='$Kursnme' and SchuelerID='$ID'   ORDER BY Zeit ASC ";
+            $isEntry1 = "SELECT Note, Datum,SchuelerID From $Noten Where Name='$Pruefungsname' and KursID='$Kursnme' and SchuelerID='$ID'   ORDER BY Zeit ASC ";
 }
 		
 		else 
 
 {
-	$isEntry1 = "SELECT Note, Datum,SchuelerID From sv_Noten Where Name='$Pruefungsname' and KursID='$Kursnme' and SchuelerID='$ID' and  Zeit='$Zeit'  ORDER BY Zeit ASC ";
+	$isEntry1 = "SELECT Note, Datum,SchuelerID From $Noten Where Name='$Pruefungsname' and KursID='$Kursnme' and SchuelerID='$ID' and  Zeit='$Zeit'  ORDER BY Zeit ASC ";
 	}
 
 

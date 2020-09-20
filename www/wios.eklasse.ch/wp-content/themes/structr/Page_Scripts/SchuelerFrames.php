@@ -553,7 +553,13 @@ while ( $line1 = mysqli_fetch_array( $result1 ) ) {
 	   echo '<p1><u> <br><br><strong>Rechnerdaten: </strong></u></p1><br>';
 	   echo '<strong>Loginname: </strong>'.$Loginname;
 	   echo '<br><strong>Win-Login: </strong>'.$Winlogin;'</p>';
-	   echo '<br>';
+	  
+		    echo '<br><br>';
+		   echo '<u>Profilbild: </u><br>';
+	  echo get_avatar($UserID,100);
+		   
+		   
+		   echo '<br><br>';
 	  
 	   
 	   

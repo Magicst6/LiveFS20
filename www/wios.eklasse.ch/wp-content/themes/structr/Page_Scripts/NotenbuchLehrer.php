@@ -1008,19 +1008,25 @@ p.start-editing {
 
         /* Modal Content */
         .modal-content {
-            background-color: #fefefe;
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 1200px;
+           width: 85%;
+    padding: 25px;
+	background: #FFF;
+	max-width: 600px;
+    margin: 70px auto;
+	position: relative;
+	border-radius: 8px;
+	box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
         }
 		
 		.modal-content1 {
-            background-color: #fefefe;
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 1400px;
+             width: 85%;
+    padding: 25px;
+	background: #FFF;
+	max-width: 600px;
+    margin: 70px auto;
+	position: relative;
+	border-radius: 8px;
+	box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
         }
 
 
@@ -1330,7 +1336,7 @@ while ($line1 = mysqli_fetch_array($result)) {
 
 <h1>Noten</h1>
 
-
+<div class="left">
 <div class="container">
 	<div class="row">
 		<form class="col-md4"></form>
@@ -1354,13 +1360,14 @@ while ($line1 = mysqli_fetch_array($result)) {
 		</div>
 	</div>
 </div>
+</div>
 <br><br>
 
 
 <br><br>
 <h1>Abwesenheiten</h1>
 
-
+<div class="left">
 <div class="container">
 	<div class="row">
 		<form class="col-md4"></form>
@@ -1382,7 +1389,7 @@ while ($line1 = mysqli_fetch_array($result)) {
 		</div>
 	</div>
 </div>
-
+</div>
 
 
 <div id="myModal" class="modal"  onhide="tableshow()">
@@ -1395,6 +1402,8 @@ while ($line1 = mysqli_fetch_array($result)) {
 		
 		   
             <p>Unten werden die Noten des Schülers angezeigt. In die Tabelle klicken um die jeweilige Note zu bearbeiten</p>
+		
+<div class="leftn">
 <div class="container">
 	<div class="row">
 		<form class="col-md4"></form>
@@ -1418,7 +1427,7 @@ while ($line1 = mysqli_fetch_array($result)) {
 		</div>
 	</div>
 </div>
-            
+		</div>          
       <span class="close"  id="span">&times;</span>
     
           
@@ -1602,8 +1611,8 @@ Kurs:        <input id="Kurslb1" readonly><br><br>
                
             }, {
                 label: "Datum:",
-                name: "Datum",
-				 type: "date"
+                name: "Datum"
+				 
             }
 				
         ],i18n: {
@@ -1878,7 +1887,7 @@ window.location.href= "/notenbuch-lehrer?q=" + encrypted;
 
 
 		
-		responsive:true,
+		responsive:false,
         ajax: {
 
             url: url3,
@@ -2022,7 +2031,7 @@ window.location.href= "/notenbuch-lehrer?q=" + encrypted;
 		 
 		 table1 = $( '.datatables1' ).DataTable( {
 
-			responsive:true,
+			responsive:false,
 
         ajax: {
 
@@ -2497,6 +2506,23 @@ function sendNote(){
 
 
 <style>
+	.left {
+  float: auto;
+  width: auto;
+  padding: 10px;
+  border: 2px solid #3e4ac9;
+  text-align: center;
+			overflow-y:auto;
+}
+	.leftn {
+  float: auto;
+  width: auto;
+  padding: 10px;
+  border: 0px solid;
+  text-align: center;
+			overflow-y:auto;
+}
+}
 	body {
 		font-family: "Dosis", "Helvetica Neue", sans-serif;
 		color: #232323;

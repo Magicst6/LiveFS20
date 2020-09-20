@@ -85,7 +85,7 @@
         }
 check();
     }
-	function test1(){
+	function test11(){
 
         
 
@@ -228,7 +228,7 @@ check();
 
     <br>
 
-    <select name="lehrer" onchange="getKursname(this.value)"  id="lehrer" >
+    <select name="lehrerklbu" onchange="getKursname(this.value)"  id="lehrer" >
 
 
 

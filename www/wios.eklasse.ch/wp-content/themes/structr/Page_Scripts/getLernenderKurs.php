@@ -1,72 +1,71 @@
 <?php
- $Klasse=$_POST['klasse'];
-/*
- * Example PHP implementation used for the index.html example
+/**
+ * Created by PhpStorm.
+ * User: stefa
+ * Date: 30.11.2018
+ * Time: 12:09
  */
- 
-// DataTables PHP library
-include( "DataTablesEditor/DataTables.php" );
- 
-// Alias Editor classes so they are easy to use
-use
-    DataTables\Editor,
-    DataTables\Editor\Field,
-    DataTables\Editor\Format,
-    DataTables\Editor\Mjoin,
-    DataTables\Editor\Options,
-    DataTables\Editor\Upload,
-    DataTables\Editor\Validate,
-    DataTables\Editor\ValidateOptions;
- 
+include 'db.php';
+//$Lehrer=$_GET['lehrer'];
+//preg_match("/:(.*)/", $Lehrer, $output_array);
+//$Lehrer=$output_array[1];
 
-if ($Klasse==""){
-// Build our Editor instance and process the data coming from _POST
-Editor::inst( $db, 'sv_LernenderKurs' )
-    ->fields(
-	Field::inst( 'ID' ),
-        Field::inst( 'Vorname' )
-            ->validator( Validate::notEmpty( ValidateOptions::inst()
-                ->message( 'Vorname muss angegeben werden' ) 
-            ) ),
-        Field::inst( 'Nachname' )
-            ->validator( Validate::notEmpty( ValidateOptions::inst()
-                ->message( 'Nachname muss angegeben werden' )  
-            ) ),
-        Field::inst( 'SchülerID' ),
-        Field::inst( 'KursID' ),
-     
-        Field::inst( 'Klasse' ),
-	    Field::inst( 'Profil' ),
-	 Field::inst( 'Notenschnitt' )
-       
-    )
-    ->process( $_POST )
-    ->json();
-	
+$y=0;
+$Kursname=$_GET['q'];
+$KlasseInput=$_GET['k'];
+$Lehrer=$_GET['l'];
+
+
+
+preg_match("/:(.*)/", $Lehrer, $output_array);
+$Lehrer=$output_array[1];
+
+$semester=$_GET['s'];
+$isEntry = "Select * From sv_Settings ";
+$result = mysqli_query($con, $isEntry);
+
+while ($line1 = mysqli_fetch_array($result)) {
+
+    $semDB=$line1['Semesterkuerzel'];
+
 }
-	else{
-		// Build our Editor instance and process the data coming from _POST
-Editor::inst( $db, 'sv_LernenderKurs' )
-    ->fields(
-	Field::inst( 'ID' ),
-        Field::inst( 'Vorname' )
-            ->validator( Validate::notEmpty( ValidateOptions::inst()
-                ->message( 'Vorname muss angegeben werden' ) 
-            ) ),
-        Field::inst( 'Nachname' )
-            ->validator( Validate::notEmpty( ValidateOptions::inst()
-                ->message( 'Nachname muss angegeben werden' )  
-            ) ),
-        Field::inst( 'SchülerID' ),
-        Field::inst( 'KursID' ),
-     
-        Field::inst( 'Klasse' ),
-	    Field::inst( 'Profil' ),
-	 Field::inst( 'Notenschnitt' )
-       
-    )
-	->where( 'Klasse',$Klasse )
-    ->process( $_POST )
-    ->json();
+if ($semDB==$semester){
 	
-	}
+
+$Tab="sv_LernenderKurs";
+}
+else
+{ 
+$Tab=$semester."_LernenderKurs";
+}
+$TabN=$semester."_Noten";
+preg_match("/:(.*)/", $Lehrer, $output_array);
+$Lehrer=$output_array[1];
+
+
+
+  $isEntry = "Select * From $Tab where KursID='$Kursname' order by Nachname asc ";
+    $result = mysqli_query($con, $isEntry);
+    $events = array();
+if ($Kursname<>"-Select-"){
+	
+	
+    while ($line1 = mysqli_fetch_array($result)) {
+		
+		
+		$data = array(
+			
+		  'Vorname' => $line1['Vorname'],
+			 'Nachname' => $line1['Nachname'],
+			 'IDSchueler' => $line1['SchülerID'],
+			'Klasse' => $line1['Klasse']
+			);
+				
+
+
+
+}
+}
+
+
+	echo json_encode($data);

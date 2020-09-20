@@ -51,53 +51,95 @@
 
 		echo '<br>';
 
-		$isEntry = "SELECT Name, Vorname, ID,Profil  From sv_Lernende Where Klasse='$Klasse' Order By Name ";
-		$result = mysqli_query( $con, $isEntry );
-		$y = 0;
-		while ( $value1 = mysqli_fetch_array( $result ) ) {
-			$isfilled = 0;
-			$Vorname = $value1[ 'Vorname' ];
-			$Name = $value1[ 'Name' ];
-			$ID = $value1[ 'ID' ];
-			$Profil = $value1[ 'Profil' ];
+$isEntry= "Select KursID, Klasse, Profil From sv_Kurse where KursID='$Kursnme'";
+$result1 = mysqli_query($con, $isEntry);
+while( $row5= mysqli_fetch_array($result1))
+{
 
-			preg_match( "/.fz./", strtolower( $Kursnme ), $output_array1 );
-			$KursnameReg = $output_array1[ 0 ];
-			preg_match( "/e/", strtolower( $Profil ), $output_array2 );
-			$ProfilReg = $output_array2[ 0 ];
-			preg_match( "/.itplus./", strtolower( $Kursnme ), $output_array3 );
-			$KursnameReg1 = $output_array3[ 0 ];
-			preg_match( "/.it./", strtolower( $Kursnme ), $output_array3 );
-			$KursnameReg2 = $output_array3[ 0 ];
-			preg_match( "/it/", strtolower( $Profil ), $output_array4 );
-			$ProfilReg1 = $output_array4[ 0 ];
+    $Klasse =  $row5['Klasse'];
+    $Kursname =  $row5['KursID'];
+	
+	$Profil =  $row5['Profil'];
 
-			$isEntry6 = "SELECT * From sv_LernenderKurs Where KursID='$Kursnme' ";
-			$result6 = mysqli_query( $con, $isEntry6 );
-			$isinlk = 0;
-			while ( $value6 = mysqli_fetch_array( $result6 ) ) {
-				$VornameLk = $value6[ 'Vorname' ];
-				$NameLk = $value6[ 'Nachname' ];
-				if ( ( $NameLk == $Name )and( $VornameLk == $Vorname ) ) {
-					$isinlk = 1;
-				}
+    $dontFill=0;
+    $isEntry3= "Select KursID From sv_LernenderKurs";
+    $result3 = mysqli_query($con, $isEntry3);
+    $resultarr3 = array();
 
+    while( $row3= mysqli_fetch_assoc($result3))
+    {
+        $resultarr3[] = $row3['KursID'];
+    }
+
+    $uniquearr3 = array_unique($resultarr3);
+    asort($uniquearr3);
+
+    foreach ($uniquearr3 as $value) {
+        if ($value==$Kursname)
+        {
+            $dontFill=1;
+        }
+    }
+
+
+    $isEntry2= "Select * From sv_LernendeModule";
+
+
+    $result2 = mysqli_query($con, $isEntry2);
+
+    while ($row2 = mysqli_fetch_array($result2)) {
+		$isProfil=0;
+        $dontFill=0;
+        $SchuelerID= $row2['ID'];
+        $Vorname= $row2['Vorname'];
+        $Name= $row2['Name'];
+        $Profil1= $row2['Profil'];
+		$UserID= $row2['User_ID'];
+		
+		$ProfKomma = explode(",", $Profil1);
+		
+		$ProfDash = explode("/", $Profil1);
+		
+		foreach ($ProfKomma as $val1) {
+            if ($val1==$Profil)
+			{
+				$isProfil=1;
 			}
-			if ( $isinlk ) {
+         }
+		
+		foreach ($ProfDash as $val2) {
+            if ($val2==$Profil)
+			{
+				$isProfil=1;
+			}
+         }
 
-				if ( ( ( $KursnameReg == '.fz.' )and( $ProfilReg == 'e' ) )or( ( $KursnameReg <> '.fz.' )and( ( $KursnameReg1 <> '.itplus.' )and( $KursnameReg2 <> '.it.' ) ) )or( ( ( $KursnameReg1 == '.itplus.' )or( $KursnameReg2 == '.it.' ) )and( $ProfilReg1 == 'it' ) ) ) {
+       
+		if ($isProfil==1 or $Profil==''){
+		
+            $isEntry4= "Select SchülerID, Vorname, Nachname, KursID From sv_LernenderKurs where KursID='$Kursnme'";
+            $result4 = mysqli_query($con, $isEntry4);
+
+            while ($row4 = mysqli_fetch_array($result4)) {
+				$isfilled=0;
+                $ID= $row4['SchülerID'];
+                $KursnameAbw =  $row4['KursID'];
+                $VornameAbw= $row4['Vorname'];
+                $NachnameAbw= $row4['Nachname'];
+               
+                if ($SchuelerID==$ID)
+                {
 					$isEntry1 = "SELECT SchülerID, Kommentar, Abwesenheitsdauer,Datum From sv_AbwesenheitenKompakt Where Kursname='$Kursnme'  ";
 
 					$result1 = mysqli_query( $con, $isEntry1 );
 
 					while ( $value2 = mysqli_fetch_array( $result1 ) ) {
-
 						if ( ( $ID == $value2[ 'SchülerID' ] )and( $value2[ 'Datum' ] == $heute ) ) {
 							$y++;
 							$z = "Comment" . "$y";
 							$u = "Dauer" . "$y";
 							echo '<br>';
-							echo '<label for=' . $ID . '><b>' . $Vorname . ' ' . $Name . '   </b></label>';
+							echo '<label for=' . $ID . '><b>' . $Vorname . ' ' . $Name . ' '. get_avatar($UserID,50).'   </b></label>';
 							echo '<input type="hidden" name=' . $y . ' value=' . $ID . '><br>';
 							echo '<br>';
 							echo 'Abwesenheitsdauer:';
@@ -119,7 +161,7 @@
 						$z = "Comment" . "$y";
 						$u = "Dauer" . "$y";
 						echo '<br>';
-						echo '<label for=' . $ID . '><b>' . $Vorname . ' ' . $Name . '   </b></label>';
+						echo '<label for=' . $ID . '><b>' . $Vorname . ' ' . $Name . ' '. get_avatar($UserID,50).'   </b></label>';
 						echo '<input type="hidden" name=' . $y . ' value=' . $ID . '><br>';
 						echo '<br>';
 						echo 'Abwesenheitsdauer:';
@@ -140,6 +182,7 @@
 		}
 
 	}
-	mysqli_close( $con );
-
+}
+	
+	}
 	?>

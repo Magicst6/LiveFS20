@@ -952,19 +952,25 @@ p.start-editing {
 
         /* Modal Content */
         .modal-content {
-            background-color: #fefefe;
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 1200px;
+              width: 85%;
+    padding: 25px;
+	background: #FFF;
+	max-width: 600px;
+    margin: 70px auto;
+	position: relative;
+	border-radius: 8px;
+	box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
         }
 		
 		.modal-content1 {
-            background-color: #fefefe;
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 1400px;
+             width: 85%;
+    padding: 25px;
+	background: #FFF;
+	max-width: 600px;
+    margin: 70px auto;
+	position: relative;
+	border-radius: 8px;
+	box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
         }
 
 
@@ -982,6 +988,22 @@ p.start-editing {
             text-decoration: none;
             cursor: pointer;
         }
+	    .left {
+  float: auto;
+  width: auto;
+  padding: 10px;
+  border: 2px solid #3e4ac9;
+  text-align: center;
+			overflow-y:auto;
+}
+	.leftn {
+  float: auto;
+  width: auto;
+  padding: 10px;
+  border: 0px solid;
+  text-align: center;
+		overflow-y:auto;
+}
         button {
           color: white;
         }
@@ -1013,7 +1035,7 @@ Gewichtung:        <input id="Gewichtunglb1" readonly><br><br>
 
 </div>
 
-
+<div class="left"><h4>Prüfungsliste</h4>
 <div class="container">
 	<div class="row">
 		<form class="col-md4"></form>
@@ -1044,8 +1066,10 @@ Gewichtung:        <input id="Gewichtunglb1" readonly><br><br>
 		</div>
 	</div>
 </div>
-
-<div id="tabpruefungen"></div>
+</div>
+	
+	<br><br><br>
+	<div class="left" id="tabpruefungen"><h4>Notenblatt</h4></div>
 		
 	</body>
 </html>

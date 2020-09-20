@@ -48,7 +48,7 @@ while ( $line2 = mysqli_fetch_array( $result ) ) {
 	$Nachname=$line2['Name'];
     $Vorname=$line2['Vorname'];
 	$EMail=$line2['EMail'];
-	
+	$UserID=$line2['User_ID'];
 
 }
 ?>
@@ -74,6 +74,15 @@ while ( $line2 = mysqli_fetch_array( $result ) ) {
 
 <br><br>
 <h5>Stammdaten:</h5>
+
+
+		
+		   <u>Profilbild: </u><br>
+	<?  echo get_avatar($UserID,100);?>
+		   
+		   
+		   <br><br>
+	  
 
 Vorname:&nbsp;  <input id="Vorname" type="text" class="data" value="<? echo $Vorname; ?>">  &nbsp; &nbsp;&nbsp;     Nachname: &nbsp; <input id="Nachname" type="text" class="data" value="<? echo $Nachname; ?>"> &nbsp; &nbsp; &nbsp;   E-Mail:&nbsp;  <input id="EMail" type="text" class="datamail" value="<? echo $EMail; ?>"><br><br><hr /><br>
 Geburtsdatum:&nbsp;  <input id="Geburtstag" type="date" class="data" value="<? echo $Geburtstag; ?>"> &nbsp; &nbsp; &nbsp;  Nationalität: <input id="Nation" type="text" class="data" value="<? echo $Nation; ?>"><br><br><hr /><br>

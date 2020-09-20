@@ -89,7 +89,7 @@
 		
     }
 	
-	 function test1(){
+	 function test11(){
 
         
 
@@ -298,7 +298,7 @@ while( $line2= mysqli_fetch_assoc($result))
 
 
 
-    echo '<input  id="lehrer" name="lehrer" readonly="readonly" type="text" value="'.$Vorname .' '.$Name .' ID:'. $value .'" />' ;
+    echo '<input  id="lehrer" name="lehrerklbu" readonly="readonly" type="text" value="'.$Vorname .' '.$Name .' ID:'. $value .'" />' ;
 
     $Lehrer=$Vorname .' '.$Name .' ID:'. $value;
 

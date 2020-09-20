@@ -62,7 +62,7 @@ else		$Lektionen=$value10['Lektionen'];
 	echo '<br>';
     echo 'Lektionen:';
     echo '<br>';
-    echo '<input name="Lektionen" id="Lektionen" type="number" value=' . $Lektionen . ' min="0" max="999" onchange="test1()"" required="required">';
+    echo '<input name="Lektionen" id="Lektionen" type="number" value=' . $Lektionen . ' min="0" max="999" onchange="test11()"" required="required">';
     echo '(anzugeben für die Stundenabrechung)';
     echo '<br>';
     echo '<br>';
@@ -80,61 +80,89 @@ echo '<textarea name="Comment">'.$Comment.'</textarea>';
 
 echo '<br>';
 $Kursnme=$_GET['q'];
-$isEntry5 = "SELECT Klasse From sv_Kurse Where KursID='$Kursnme' ";
-$result5 = mysqli_query($con, $isEntry5);
-$y=0;
-while( $value5= mysqli_fetch_array($result5))
+$isEntry= "Select KursID, Klasse, Profil From sv_Kurse where KursID='$Kursnme'";
+$result1 = mysqli_query($con, $isEntry);
+while( $row5= mysqli_fetch_array($result1))
 {
-$isfilled=0;
-$Klasse=$value5['Klasse'];
+      
+    $Klasse =  $row5['Klasse'];
+    $Kursname =  $row5['KursID'];
 	
-}
-$isEntry4 = "SELECT Vorname,Name, Profil,ID From sv_Lernende Where Klasse='$Klasse' order by Name ";
-$result4 = mysqli_query($con, $isEntry4);
+	$Profil =  $row5['Profil'];
 
-while( $value4= mysqli_fetch_array($result4))
-{
-	$isfilled=0;
-$Vorname=$value4['Vorname'];
-$Name =$value4['Name'];
-$ID =$value4['ID'];
+    $dontFill=0;
+    $isEntry3= "Select KursID From sv_LernenderKurs";
+    $result3 = mysqli_query($con, $isEntry3);
+    $resultarr3 = array();
 
-$Profil=$value4['Profil'];
-	
+    while( $row3= mysqli_fetch_assoc($result3))
+    {
+        $resultarr3[] = $row3['KursID'];
+    }
+
+    $uniquearr3 = array_unique($resultarr3);
+    asort($uniquearr3);
+
+    foreach ($uniquearr3 as $value) {
+        if ($value==$Kursname)
+        {
+            $dontFill=1;
+        }
+    }
 
 
-preg_match("/.fz./", strtolower($Kursnme), $output_array1);
-$KursnameReg=$output_array1[0];
-preg_match("/e/", strtolower($Profil), $output_array2);
-$ProfilReg=$output_array2[0];
-preg_match("/.itplus./", strtolower($Kursnme), $output_array3);
-$KursnameReg1=$output_array3[0];
-preg_match("/.it./", strtolower($Kursnme), $output_array3);
-$KursnameReg2=$output_array3[0];
-preg_match("/it/", strtolower($Profil), $output_array4);
-$ProfilReg1=$output_array4[0];
-	
-	$isEntry6 = "SELECT * From sv_LernenderKurs Where KursID='$Kursnme' ";
-$result6 = mysqli_query($con, $isEntry6);
-  $isinlk=0;
-while( $value6= mysqli_fetch_array($result6))
-{
-	$VornameLk=$value6['Vorname'];
-$NameLk =$value6['Nachname'];
-	if (($NameLk==$Name) and ($VornameLk==$Vorname))
-	{
-	  $isinlk=1;
-	}
+    $isEntry2= "Select * From sv_LernendeModule";
 
-}
-if ($isinlk){	
-if ((($KursnameReg=='.fz.') and ($ProfilReg=='e')) or (($KursnameReg<>'.fz.') and (($KursnameReg1<>'.itplus.') and ($KursnameReg2 <> '.it.'))) or ((($KursnameReg1=='.itplus.') or ($KursnameReg2 == '.it.')) and ($ProfilReg1=='it')) )  {
+
+    $result2 = mysqli_query($con, $isEntry2);
+
+    while ($row2 = mysqli_fetch_array($result2)) {
+		$isProfil=0;
+        $dontFill=0;
+        $SchuelerID= $row2['ID'];
+        $Vorname= $row2['Vorname'];
+        $Name= $row2['Name'];
+        $Profil1= $row2['Profil'];
+		$UserID= $row2['User_ID'];
+		$ProfKomma = explode(",", $Profil1);
+		
+		$ProfDash = explode("/", $Profil1);
+		
+		foreach ($ProfKomma as $val1) {
+            if ($val1==$Profil)
+			{
+				$isProfil=1;
+			}
+         }
+		
+		foreach ($ProfDash as $val2) {
+            if ($val2==$Profil)
+			{
+				$isProfil=1;
+			}
+         }
+
+       
+		if ($isProfil==1 or $Profil==''){
+		
+            $isEntry4= "Select SchülerID, Vorname, Nachname, KursID From sv_LernenderKurs where KursID='$Kursnme'";
+            $result4 = mysqli_query($con, $isEntry4);
+
+            while ($row4 = mysqli_fetch_array($result4)) {
+				$isfilled=0;
+                $ID= $row4['SchülerID'];
+                $KursnameAbw =  $row4['KursID'];
+                $VornameAbw= $row4['Vorname'];
+                $NachnameAbw= $row4['Nachname'];
+                
+                if ($SchuelerID==$ID)
+                {
 $isEntry1 = "SELECT SchülerID, Kommentar, Abwesenheitsdauer,Datum From sv_AbwesenheitenKompakt Where Kursname='$Kursnme'";
 $result1 = mysqli_query($con, $isEntry1);
 
 while( $value2= mysqli_fetch_array($result1))
 {
-
+	
 if (($ID==$value2['SchülerID']) and ($value2['Datum']==$heute)){
 $y++;
 $z="Comment"."$y";
@@ -144,7 +172,7 @@ $abw=$value2['Abwesenheitsdauer'];
 	
 echo '<input name="'.$ab.'" id="'.$ab.'" type="hidden" value="'.$abw.'">'; 
 echo '<br>';
-echo '<label for='.$ID.'><b>'.$Vorname.' '.$Name.'   </b></label>';
+echo '<label for='.$ID.'><b>'.$Vorname.' '.$Name.' '. get_avatar($UserID,50).'   </b></label>';
 echo '<input type="hidden" name='.$y.' value='.$ID.'><br>';
 echo '<br>';
 echo 'Abwesenheitsdauer(Lektionen):';
@@ -163,13 +191,14 @@ echo '<textarea name='.$z.'>'.$value2['Kommentar'].'</textarea>';
 echo '<br>';
 echo '<hr>';
 $isfilled=1;
+	
 	?>
 
 
 
 <?
 }
- }
+}
 
 if ($isfilled==0){
 
@@ -183,7 +212,7 @@ $ab="abw"."$y";
 echo '<input name="'.$ab.'" id="'.$ab.'" type="hidden" value="'.$abw.'">'; 
 	
 echo '<br>';
-echo '<label for='.$ID.'><b>'.$Vorname.' '.$Name.'   </b></label>';
+echo '<label for='.$ID.'><b>'.$Vorname.' '.$Name.' '. get_avatar($UserID,50).'    </b></label>';
 echo '<input type="hidden" name='.$y.' value='.$ID.'><br>';
 echo '<br>';
 echo 'Abwesenheitsdauer(Lektionen):';
@@ -209,8 +238,10 @@ echo '<input name="Schueler" id="Schueler" type="hidden" value='.$y.' />';
 }
 }
 }
+}
+}
+
 echo '<input name="count" id="count" type="hidden" value="'.$y.'">'; 
-	
 
 mysqli_close($con);
 

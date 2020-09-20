@@ -52,7 +52,7 @@
 	
 	
 	
-        echo ' <br><br><br> <strong>Hier die Noten in den Prüfungen des Kurses:</strong>
+        echo '  <strong>Hier die Noten in den Prüfungen des Kurses:</strong>
 	<br>';
 
 
@@ -69,6 +69,71 @@
         echo "<th width=40>".'Nachname'. "</th>";
 
         echo "<th width= 40>".'Vorname'. "</th>";
+	
+		$isEntry1 = "SELECT Name,Gewichtung,Datum,SchuelerID From $DBNoten Where KursID='$KursID' order by SchuelerID asc";
+
+        $result1 = mysqli_query($con,$isEntry1);
+
+        $z=0;
+          
+         $t=0;
+$issent=0;
+	$u=0;
+	$f=0;
+        while( $value= mysqli_fetch_array($result1))
+
+        {
+			$IDSch=$value['SchuelerID'];
+			for($i=0;$i<=$t;$i++)
+			{
+				//echo "test";
+				if ($name[$i][0]==$value['Name'] and $name[$i][1]==$value['SchuelerID']){
+					$isEntry12 = "SELECT Name,Vorname From $DBLM Where ID='$IDSch'";
+					if ($u==0){
+						$namedbl[$u][0]=$value['Name'];
+			       $namedbl[$u][1]=$value['SchuelerID'];
+					$u++;
+					}
+                    if ($namedbl[$u-1][0]=$value['Name'] and  $namedbl[$u-1][1]=$value['SchuelerID']) {
+					}
+					else{
+					$namedbl[$u][0]=$value['Name'];
+			        $namedbl[$u][1]=$value['SchuelerID'];
+					$u++;
+					}
+        $result12 = mysqli_query($con,$isEntry12);
+
+    
+        while( $value12= mysqli_fetch_array($result12))
+
+        {
+			$NameDP=$value12['Name'];
+			$VornameDP=$value12['Vorname'];
+		}
+					$f=0;
+				for($j=0;$j<=$u;$j++)
+			{
+				//echo "test";
+				if ( $namedbl[$j][0]<>$value['Name'] and $namedbl[$j][1]<>$value['SchuelerID'] ){
+				
+							
+					echo "Notenname doppelt - bitte den Notennamen ".$value['Name']." beim Schüler ".$VornameDP." ".$NameDP." im Notenbuch ändern!<br>";
+						}
+				
+				
+				
+				}
+				}
+				
+			}
+			$name[$t][0]=$value['Name'];
+			$name[$t][1]=$value['SchuelerID'];
+	
+			$t++;
+		
+		}
+	
+	
 	
 	$isEntry = "SELECT Name,Gewichtung,Datum From $DBNoten Where KursID='$KursID' Group by Name Order by Datum asc";
 

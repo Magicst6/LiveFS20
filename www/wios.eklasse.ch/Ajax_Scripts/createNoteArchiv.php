@@ -19,6 +19,6 @@ date_default_timezone_set('CET');
 
 $isEntry= "Insert Into $Noten (KursID,SchuelerID,Note,Name,Gewichtung,Datum,Zeit,User_ID) VALUES ('$Kursname','$ID','$Note','$Name','$Gewicht','$Datum','$Zeit','$UserID') ";
  mysqli_query($con,$isEntry);
-
+echo 'Note erstellt!';
         
 ?>
