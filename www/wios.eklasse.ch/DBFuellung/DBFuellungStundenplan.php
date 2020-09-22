@@ -44,8 +44,23 @@ if( $_POST['Senden']) {
                 $Date1 = new Datetime($Startdatum);
                 $Datum1 = $Date1->format('Y-m-d');
                 $Kursname0 = strtolower($_POST['Text' . $x . $y]);
-                $Color = $_POST['color' . $x . $y];
-                $FieldID= $x.$y;
+                
+				 $isEntry10 = "Select * From sv_KurseStammdaten where KursKuerzel='$Kursname0' ";
+                    $result10 = mysqli_query($con, $isEntry10);
+                    
+                    while ($valuecol = mysqli_fetch_array($result10)) {
+						
+				
+				$Color = '#'.$valuecol['Farbe'];
+							$Lehrer = $valuecol['Lehrer'];
+						$KursnameStamm= $valuecol['Kursname'];
+						$Zimmer= $valuecol['Zimmer'];
+						//echo $KursnameStamm.'hhhhhhhhhhh';
+						  preg_match("/:(.*)/", $Lehrer, $output_array);
+
+        $LP_ID1=$output_array[1];
+					}
+						$FieldID= $x.$y;
                 if ($Kursname0==""){
                     $isEntry2 = "Select KursID From sv_Kurse where FieldID='$FieldID' and Tag='$Tag' and Klasse='$Klassenname' ";
                     $result2 = mysqli_query($con, $isEntry2);
@@ -53,6 +68,7 @@ if( $_POST['Senden']) {
                     while ($valueDel = mysqli_fetch_array($result2)) {
                         if(substr($valueDel['KursID'], -4)==$Semester) {
                             $KursIDDel=$valueDel['KursID'];
+							
                         }
                     }
                    if ($KursIDDel<>"") {
@@ -98,12 +114,12 @@ if( $_POST['Senden']) {
                                 mysqli_query($con, $sql_befehldel);
                             }
 
-                               $sql_befehl1 = "INSERT INTO sv_Kurse (KursID, Klasse, Uhrzeit, Tag, Startdatum, Farbe, FieldID,Stundenplan) VALUES ('$Kursname', '$Klassenname', '$UhrVal', '$Tag','$Datum1','$Color', '$FieldID','1')";
+                               $sql_befehl1 = "INSERT INTO sv_Kurse (KursID, Klasse, Uhrzeit, Tag, Startdatum, Farbe, FieldID,Stundenplan,Lehrperson, Kursname, Zimmer) VALUES ('$Kursname', '$Klassenname', '$UhrVal', '$Tag','$Datum1','$Color', '$FieldID','1','$LP_ID1','$KursnameStamm','$Zimmer')";
 
                            mysqli_query($con, $sql_befehl1);
                         }else
                         {
-                               $sql_befehl2 = "UPDATE sv_Kurse SET  Startdatum='$Datum1', Farbe='$Color' , Uhrzeit='$UhrVal'  Where Tag='$Tag' and FieldID='$FieldID'  and KursID='$Kursname' and Stundenplan='1'  ";
+                               $sql_befehl2 = "UPDATE sv_Kurse SET  Startdatum='$Datum1', Farbe='$Color' , Uhrzeit='$UhrVal', Lehrperson='$LP_ID1' ,Kursname='$KursnameStamm', Zimmer='$Zimmer' Where Tag='$Tag' and FieldID='$FieldID'  and KursID='$Kursname' and Stundenplan='1'  ";
 
                            mysqli_query($con, $sql_befehl2);
                         }

@@ -1414,7 +1414,7 @@ $resultlp = mysqli_query($con,$isEntrylp);
 
 while( $linelp= mysqli_fetch_array($resultlp))
 {
-for($x = 1; $x <= 16; $x++)
+for($x = 1; $x <= 30; $x++)
 {
 
 $valuelp = $linelp['Kurs'.$x];

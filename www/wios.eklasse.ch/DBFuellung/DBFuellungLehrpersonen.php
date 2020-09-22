@@ -78,15 +78,15 @@ while( $line= mysqli_fetch_assoc($result3))
 
     $Lehrperson=$line['Nachname'];
     $dbwert = $line[$Kurs];
-    $isEntry3 = "Select KursID From sv_KurseAll";
+    $isEntry3 = "Select KursID From sv_KurseAll where KursID='$wert'";
     $result3 = mysqli_query($con, $isEntry3);
 
     while( $value4= mysqli_fetch_array($result3))
     {
         $KursID=$value4['KursID'];
-        if ($wert ==$KursID){
-            $updateKALL = "UPDATE sv_KurseAll SET LP_ID = '$Lehrer', Lehrperson = '$Lehrperson'  where KursID ='$KursID' ";
-            }
+        
+            $updateKALL = "UPDATE sv_KurseAll SET LP_ID = '$Lehrer', Lehrperson = '$Lehrperson'  where KursID ='$wert' ";
+            
             if($wert == ""){
                 $updateKALL = "UPDATE sv_KurseAll SET LP_ID = '', Lehrperson = ''  where KursID ='$dbwert' ";
             }

@@ -7,13 +7,13 @@
     <br><br>
     <?php
    include 'db.php';
+	
+
+//echo $wochentage[$wochentag];
     ?>
     <script>
         function getKlasse(str){
-            if (str == "") {
-                document.getElementById("stundenplan").innerHTML = "";
-                return;
-            } else {
+            
                 if (window.XMLHttpRequest) {
                     // code for IE7+, Firefox, Chrome, Opera, Safari
                     xmlhttp = new XMLHttpRequest();
@@ -26,10 +26,10 @@
                         document.getElementById("stundenplan").innerHTML = this.responseText;
                     }
                 };
-                xmlhttp.open("GET","/Ajax_Scripts/showstundenplan.php?q="+document.getElementById("klasse").value +"&k="+document.getElementById("semester").value,true);
+                xmlhttp.open("GET","/Ajax_Scripts/showstundenplan.php?q="+document.getElementById("klasse").value +"&k="+document.getElementById("semester").value+"&d="+document.getElementById("datum").value,true);
                 xmlhttp.send();
             }
-        }
+        
 		
 function check(str){
 		
@@ -73,18 +73,24 @@ $result = mysqli_query($con, $isEntry);
     while ($line1 = mysqli_fetch_array($result)) {
 
         $semDB=$line1['Semesterkuerzel'];
+		  $semStart=$line1['Semesteranfang'];
 
     }
 
+		
 ?>
     </select>
     <br><br>
    Semester:
     <br>
     <input name="semester" id="semester" readonly  value="<? echo $semDB; ?>" required="required">
-        
-   
-    <br>
+	
+	 <br>
+    Startdatum des Semesters:
+	
+    <br>    
+      <input name="datum" id="datum" type="date"  value="<? echo $semStart; ?>"  onchange="getKlasse(this.value)">
+    <br> 
 
     <div id="stundenplan"><b></b></div>
  <br><br>

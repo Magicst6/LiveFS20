@@ -486,7 +486,7 @@ echo $Ferien1von;
 
                     $isKursExisting=false;
 
-                    for($x = 1; $x <= 16; $x++) {
+                    for($x = 1; $x <= 30; $x++) {
 
 
 

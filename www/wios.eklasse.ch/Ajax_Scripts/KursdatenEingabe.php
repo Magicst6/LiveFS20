@@ -28,7 +28,7 @@ $result = mysqli_query($con, $isEntry);
    echo "<th width=120>".'Zimmer'. "</th>";
    echo "<th width=70>".'Uhrzeit'. "</th>";
    echo "<th width=80>".'Profil'. "</th>";
-
+echo "<th width=80>".'Lehrer'. "</th>";
     echo "</tr>";
 
     echo "</thead>";
@@ -44,6 +44,7 @@ $result = mysqli_query($con, $isEntry);
         $Zimmer = $line2['Zimmer'];
         $Uhrzeit=$line2['Uhrzeit'];
 		$Profil=$line2['Profil'];
+		$LP_ID=$line2['Lehrperson'];
         if($EnddatumManual<>""){
 
             $Enddatum=$EnddatumManual;
@@ -93,6 +94,54 @@ echo "<option>$Profil</option>";
 
         }
 
+    
+
+			
+			
+		echo '	</select></td>';
+	echo '<td><select name="Lehrperson1' . $y . '"  type="text" style="width: 80px" value="' . $LP_ID . '"  >';
+			
+			 
+			
+		   $isEntry21= "Select Nachname, Vorname From sv_Lehrpersonen WHERE ID='$LP_ID'";
+
+            $result21 = mysqli_query($con, $isEntry21);
+
+            while( $line31= mysqli_fetch_array($result21))
+
+            {
+
+                $Name = $line31['Nachname'];
+
+                $Vorname = $line31['Vorname'];
+
+
+
+            }
+
+            echo "<option>" . $Vorname .' '. $Name .' ID:'. $LP_ID . "</option>";
+
+         $isEntry2= "Select * From sv_Lehrpersonen ";
+
+            $result2 = mysqli_query($con, $isEntry2);
+
+            while( $line3= mysqli_fetch_array($result2))
+
+            {
+
+                $Name = $line3['Nachname'];
+
+                $Vorname = $line3['Vorname'];
+				
+				$value= $line3['ID'];
+
+                     echo "<option>" . $Vorname .' '. $Name .' ID:'. $value . "</option>";
+
+            }
+
+         
+
+        
     
 
 			

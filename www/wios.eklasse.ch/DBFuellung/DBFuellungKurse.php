@@ -84,7 +84,7 @@ if( $_POST['Senden'])
     {
         $isEntryCreated=false;
         $isKursExisting=false;
-        for($x = 1; $x <= 16; $x++) {
+        for($x = 1; $x <= 30; $x++) {
 
             $Kurs = "Kurs" . "$x";
 
@@ -182,14 +182,14 @@ $result2 = mysqli_query($con, $isEntry2);
 		$ProfDash = explode("/", $Profil1);
 		
 		foreach ($ProfKomma as $val1) {
-            if ($val1==$Profil)
+            if (strtolower($val1)==strtolower($Profil))
 			{
 				$isProfil=1;
 			}
          }
 		
 		foreach ($ProfDash as $val2) {
-            if ($val2==$Profil)
+            if (strtolower($val2)==strtolower($Profil))
 			{
 				$isProfil=1;
 			}

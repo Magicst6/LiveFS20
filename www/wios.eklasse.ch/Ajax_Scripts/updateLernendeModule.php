@@ -187,14 +187,14 @@ while( $row5= mysqli_fetch_array($result1))
 		$ProfDash = explode("/", $Profil1);
 		
 		foreach ($ProfKomma as $val1) {
-            if ($val1==$Profil)
+            if (strtolower($val1)==strtolower($Profil))
 			{
 				$isProfil=1;
 			}
          }
 		
 		foreach ($ProfDash as $val2) {
-            if ($val2==$Profil)
+            if (strtolower($val2)==strtolower($Profil))
 			{
 				$isProfil=1;
 			}

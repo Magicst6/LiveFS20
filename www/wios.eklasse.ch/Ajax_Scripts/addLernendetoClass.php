@@ -155,7 +155,7 @@ for($x = 0; $x < $AnzahlSch; $x++)
                     echo '<td><input name="ID'.$x.'" style="width: 80px" type="text"  value='.$i.'  readonly/></td>';
                     echo '<td><input name="Nachname'.$x.'" style="width: 200px" type="text"  /></td>';
                     echo '<td><input name="Vorname'.$x.'" type="text" style="width: 200px" /></td>';
-                     echo '<td><select name="Profil' . $x . '" id="Profiles" required="required" type="text" style="width: 120px"  onchange="setVal(this.value)" >';
+                     echo '<td><select name="Profil' . $x . '" id="Profiles" type="text" style="width: 120px"  onchange="setVal(this.value)" >';
 			
 			  $isEntry= "Select Profil From sv_Profile";
 

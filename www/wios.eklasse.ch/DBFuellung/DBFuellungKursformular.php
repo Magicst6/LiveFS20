@@ -13,47 +13,79 @@ if($_POST['Senden'])
 
     $AnzahlKurse = $_POST['AnzahlKurse'];
 
-   
+   echo $AnzahlKurse.'           ';
 
-    for($x = 0; $x < $AnzahlKurse; $x++)
+    for($f = 0; $f < $AnzahlKurse; $f++)
 
     {
 
 
 
-        $KursID = $_POST['KursID1'.$x];
+        $KursID = $_POST['KursID1'.$f];
 
-        $Kursname = $_POST['Kursname1'.$x];
+        $Kursname = $_POST['Kursname1'.$f];
 
-        $Startdatum = $_POST['Startdatum1'.$x];
+        $Startdatum = $_POST['Startdatum1'.$f];
 
-        $Enddatum =$_POST['Enddatum1'.$x];
+        $Enddatum =$_POST['Enddatum1'.$f];
 
-        $Zimmer = $_POST['Zimmer1'.$x];
+        $Zimmer = $_POST['Zimmer1'.$f];
 
-        $Uhrzeit =$_POST['Uhrzeit1'.$x];
+        $Uhrzeit =$_POST['Uhrzeit1'.$f];
 		
-		 $Profil =$_POST['Profil1'.$x];
+		 $Profil =$_POST['Profil1'.$f];
 
-        
+         $Lehrperson1 =$_POST['Lehrperson1'.$f];
+		
+		  preg_match("/:(.*)/", $Lehrperson1, $output_array);
 
-        $ID = $_POST['ID1'.$x];
+        $LP_ID1=$output_array[1];
+
+        $ID = $_POST['ID1'.$f];
 
 
 
 //Daten in DB speichern
 
-        $sql_befehl = "UPDATE sv_Kurse SET KursID = '$KursID', Kursname = '$Kursname', Startdatum= '$Startdatum', Enddatum='$Enddatum', Zimmer= '$Zimmer', Uhrzeit='$Uhrzeit', Profil='$Profil' WHERE ID = '$ID' ";
+        $sql_befehl = "UPDATE sv_Kurse SET KursID = '$KursID', Kursname = '$Kursname', Startdatum= '$Startdatum', Enddatum='$Enddatum', Zimmer= '$Zimmer', Uhrzeit='$Uhrzeit', Profil='$Profil', Lehrperson='$LP_ID1' WHERE ID = '$ID' ";
 
 //echo $sql_befehl1;
 
-
+echo $sql_befehl;
 
             mysqli_query($con,$sql_befehl);
 
 		
 		
 
+    $isEntryLPKurse = "SELECT Kurs1, Kurs2, Kurs3, Kurs4, Kurs5, Kurs6, Kurs7, Kurs8, Kurs9,Kurs10,Kurs11,Kurs12,Kurs13,Kurs14,Kurs15,Kurs16,Kurs17, Kurs18, Kurs19, Kurs20, Kurs21, Kurs22, Kurs23, Kurs24, Kurs25,Kurs26,Kurs27,Kurs28,Kurs29,Kurs30 From sv_Lehrpersonen Where  ID='$LP_ID1' ";
+    $result = mysqli_query($con, $isEntryLPKurse);
+
+
+    while( $value= mysqli_fetch_array($result))
+    {
+        $isEntryCreated=false;
+        $isKursExisting=false;
+        for($x = 1; $x <= 30; $x++) {
+
+            $Kurs = "Kurs" . "$x";
+
+            $KursValue = $value[$Kurs];
+            if ($KursValue==$KursID)
+            {
+                $isKursExisting=true;
+            }
+
+            if ($KursValue == "" and !$isEntryCreated and !$isKursExisting)
+            {
+                $sql_befehlKurse = "UPDATE sv_Lehrpersonen SET $Kurs = '$KursID'  where ID ='$LP_ID1' ";
+
+// In die DB-Tabelle eintragen
+                mysqli_query($con, $sql_befehlKurse);
+                $isEntryCreated=true;
+            }
+        }
+    }
 
 
 
@@ -249,7 +281,7 @@ if($_POST['Senden'])
 
                     $isKursExisting=false;
 
-                    for($x = 1; $x <= 16; $x++) {
+                    for($x = 1; $x <= 30; $x++) {
 
 
 
@@ -326,7 +358,7 @@ if($_POST['Senden'])
 
                     $Start = date('Y-m-d H:i:s', strtotime($Start . ' + 7 days'));
 
-                    $isEntrySet = "Select Ferien1von,Ferien1bis,Ferien2von,Ferien2bis,Ferien3von,Ferien3bis,Ferien4von,Ferien4bis,Ferien5von,Ferien5bis From sv_Settings";
+                    $isEntrySet = "Select Ferien1von,Ferien1bis,Ferien2von,Ferien2bis,Ferien3von,Ferien3bis,Ferien4von,Ferien4bis,Ferien5von,Ferien5bis,Semesteranfang,Semesterende From sv_Settings";
 
                     $resultSet = mysqli_query($con, $isEntrySet);
 
@@ -338,14 +370,17 @@ if($_POST['Senden'])
 						 $ferien3bis= date('Y-m-d', strtotime($valueSet['Ferien3bis'].' + 1 days'));
 						 $ferien4bis= date('Y-m-d', strtotime($valueSet['Ferien4bis'].' + 1 days'));
 						 $ferien5bis= date('Y-m-d', strtotime($valueSet['Ferien5bis'].' + 1 days'));
+						$Semesteranfang= date('Y-m-d', strtotime($valueSet['Semesteranfang']));
+						 $Semesterende= date('Y-m-d', strtotime($valueSet['Semesterende']));
 						 
 
-                        if (($Start>=$valueSet['Ferien1von'] and $Start<=$ferien1bis) or ($Start>=$valueSet['Ferien2von'] and $Start<=$ferien2bis) or ($Start>=$valueSet['Ferien3von'] and $Start<=$ferien3bis) or ($Start>=$valueSet['Ferien4von'] and $Start<=$ferien4bis) or ($Start>=$valueSet['Ferien5von'] and $Start<=$ferien5bis)) {
-
-
+                        if (  ($Start>=$valueSet['Ferien1von'] and $Start<=$ferien1bis) or ($Start>=$valueSet['Ferien2von'] and $Start<=$ferien2bis) or ($Start>=$valueSet['Ferien3von'] and $Start<=$ferien3bis) or ($Start>=$valueSet['Ferien4von'] and $Start<=$ferien4bis) or ($Start>=$valueSet['Ferien5von'] and $Start<=$ferien5bis)) {
+                           
+                           
                             $isExisting = true;
 
-                        }//     echo "line already existing";
+							}
+                        //     echo "line already existing";
 
                     }
 
@@ -405,6 +440,8 @@ if($_POST['Senden'])
 
 
 
+
+
 $isEntry= "Select KursID, Klasse, Profil From sv_Kurse";
 $result1 = mysqli_query($con, $isEntry);
 while( $row5= mysqli_fetch_array($result1))
@@ -454,14 +491,14 @@ while( $row5= mysqli_fetch_array($result1))
 		$ProfDash = explode("/", $Profil1);
 		
 		foreach ($ProfKomma as $val1) {
-            if ($val1==$Profil)
+            if (strtolower($val1)==strtolower($Profil))
 			{
 				$isProfil=1;
 			}
          }
 		
 		foreach ($ProfDash as $val2) {
-            if ($val2==$Profil)
+            if (strtolower($val2)==strtolower($Profil))
 			{
 				$isProfil=1;
 			}

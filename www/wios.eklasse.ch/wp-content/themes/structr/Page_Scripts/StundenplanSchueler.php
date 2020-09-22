@@ -36,7 +36,7 @@ $result = mysqli_query($con, $isEntry);
 
 <select name="klasse" id="klasse" onchange="getKlasse(this.value)" required="required">
     <?php
-    $isEntry= "Select Klasse From sv_Lernende where Klasse like '%kv%'";
+    $isEntry= "Select Klasse From sv_Lernende ";
     $result1 = mysqli_query($con,$isEntry);
     $resultarr1 = array();
     echo "<option>" . $_GET['klasse'] . "</option>";

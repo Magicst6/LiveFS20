@@ -3700,7 +3700,7 @@ function pruefungerfassen() {
 	echo "<option>" . '-Select-' . "</option>";
 
 	while ( $linelp = mysqli_fetch_array( $resultlp ) ) {
-		for ( $x = 1; $x <= 16; $x++ ) {
+		for ( $x = 1; $x <= 30; $x++ ) {
 
 			$valuelp = $linelp[ 'Kurs' . $x ];
 			if ( $valuelp <> "" )echo "<option>" . $valuelp . "</option>";
@@ -5047,7 +5047,7 @@ reloadpage1();
 
 									{
 
-										for($x = 1; $x <= 16; $x++)
+										for($x = 1; $x <= 30; $x++)
 
 										{
 

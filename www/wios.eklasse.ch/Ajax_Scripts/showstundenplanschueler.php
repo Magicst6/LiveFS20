@@ -306,7 +306,7 @@ while( $value= mysqli_fetch_array($result))
 
     while( $value1= mysqli_fetch_array($result1))
     {
-        for($x = 1; $x <= 16; $x++)
+        for($x = 1; $x <= 30; $x++)
         {
 
             $Kurs = "Kurs"."$x";
