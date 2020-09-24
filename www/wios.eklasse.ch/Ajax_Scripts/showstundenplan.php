@@ -10,26 +10,50 @@ $semester = $_GET['k'];
 
 $datestart = $_GET['d'];
 
+
+    $isEntryZt= "Select * From sv_Zeiten ";
+
+    $resultZt = mysqli_query($con, $isEntryZt);
+
+
+
+
+
+
+
+    while( $value= mysqli_fetch_array($resultZt)) {
+		 $Zeit1= $value['Uhrzeit1'];
+		 $Zeit2= $value['Uhrzeit2'];
+	 $Zeit3= $value['Uhrzeit3'];
+	 $Zeit4= $value['Uhrzeit4'];
+	 $Zeit5= $value['Uhrzeit5'];
+	 $Zeit6= $value['Uhrzeit6'];
+	 $Zeit7= $value['Uhrzeit7'];
+	 $Zeit8= $value['Uhrzeit8'];
+	 $Zeit9= $value['Uhrzeit9'];
+	 $Zeit10= $value['Uhrzeit10'];
+	}
+
 for($y = 1; $y < 7; $y++) {
-    ${'Uhr1' . $y} = "08:15";
+    ${'Uhr1' . $y} = $Zeit1;
 
-    ${'Uhr2' . $y} = "09:05";
+    ${'Uhr2' . $y} = $Zeit2;
 
-    ${'Uhr3' . $y} = "10:10";
+    ${'Uhr3' . $y} = $Zeit3;
 
-    ${'Uhr4' . $y} = "11:00";
+    ${'Uhr4' . $y} = $Zeit4;
 
-    ${'Uhr5' . $y} = "11:45";
+    ${'Uhr5' . $y} = $Zeit5;
 
-    ${'Uhr6' . $y} = "13:15";
+    ${'Uhr6' . $y} = $Zeit6;
 
-    ${'Uhr7' . $y} = "14:05";
+    ${'Uhr7' . $y} = $Zeit7;
 
-    ${'Uhr8' . $y} = "15:10";
+    ${'Uhr8' . $y} = $Zeit8;
 
-    ${'Uhr9' . $y} = "16:00";
+    ${'Uhr9' . $y} = $Zeit9;
 
-    ${'Uhr10' . $y} = "16:45";
+    ${'Uhr10' . $y} = $Zeit10;
 
 }
 $test_datum = $datestart;

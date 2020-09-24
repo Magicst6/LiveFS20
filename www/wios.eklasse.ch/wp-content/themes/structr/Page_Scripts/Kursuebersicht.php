@@ -83,42 +83,39 @@
 			
 			 {
                 label: "ID:",
-                name: "sv_Kurse.ID"
+                name: "sv_Kurse_View.ID"
             },
 			{
                 label: "Klasse:",
-                name: "sv_Kurse.Klasse"
+                name: "sv_Kurse_View.Klasse"
             }, {
                 label: "Kursname:",
-                name: "sv_Kurse.Kursname"
+                name: "sv_Kurse_View.Kursname"
             },
 			
 			 {
                label: "KursID:",
-                name: "sv_Kurse.KursID"
+                name: "sv_Kurse_View.KursID"
 			 },
 			 {
-                label: "Tag:",
-                name: "sv_Kurse.Tag"
-            },
-			{
-                label: "Uhrzeit:",
-                name: "sv_Kurse.Uhrzeit"
-            },
+               label: "Stundenplankurs:",
+                name: "sv_Kurse_View.Stundenplan"
+			 },
+			
 			{
                 label: "Startdatum:",
-                name: "sv_Kurse.Startdatum",
+                name: "sv_Kurse_View.Startdatum",
 				type:"date"
 				
             },
 			{
                 label: "Enddatum:",
-                name: "sv_Kurse.Enddatum",
+                name: "sv_Kurse_View.Enddatum",
 				type:"date"
             },
 			{
                 label: "Profil:",
-                name: "sv_Kurse.Profil"
+                name: "sv_Kurse_View.Profil"
             },
 			{
                 label: "Lehrperson:",
@@ -188,7 +185,7 @@
 			
 			}
         }, 
-        order: [[ 1, 'asc' ]],
+        order: [[ 3, 'asc' ]],
         columns: [
             {
                 data: null,
@@ -197,17 +194,16 @@
                 orderable: false
             },
 			
-			{ data: "sv_Kurse.ID"},
-			{ data: "sv_Kurse.Klasse"},
-			{ data: "sv_Kurse.Kursname"},
-			{ data: "sv_Kurse.KursID"},
-			{ data: "sv_Kurse.Tag"},
-			{ data: "sv_Kurse.Uhrzeit"},
-			{ data: "sv_Kurse.Startdatum"},
-			{ data: "sv_Kurse.Enddatum"},
-			{ data: "sv_Kurse.Profil"},
+			{ data: "sv_Kurse_View.ID"},
+			{ data: "sv_Kurse_View.Klasse"},
+			{ data: "sv_Kurse_View.Kursname"},
+			{ data: "sv_Kurse_View.KursID"},
+			{ data: "sv_Kurse_View.Stundenplan"},
+			{ data: "sv_Kurse_View.Startdatum"},
+			{ data: "sv_Kurse_View.Enddatum"},
+			{ data: "sv_Kurse_View.Profil"},
 			{ data: "sv_Lehrpersonen.Nachname"},
-			{ data:  "sv_Kurse.ID",
+			{ data:  "sv_Kurse_View.ID",
          "render": function(data, type, row, meta){
             
                 data = '<button onclick=showoverview('+data+')>Kursteilnehmer</button>';
@@ -1039,8 +1035,7 @@ tr.shown td.details-control:before {
             <th>Klasse</th>
 			<th>Kursname</th>
 	        <th>KursID</th>
-			  <th>Tag</th>
-            <th>Uhrzeit</th>
+			   <th>Stundenplankurs</th>
 			<th>Startdatum</th>
 			  <th>Enddatum</th>
 			  <th>Profil</th>

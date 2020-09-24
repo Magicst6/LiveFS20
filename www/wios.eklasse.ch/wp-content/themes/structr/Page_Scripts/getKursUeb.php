@@ -23,21 +23,22 @@ use
     DataTables\Editor\ValidateOptions;
  
 // Build our Editor instance and process the data coming from _POST
-Editor::inst( $db, 'sv_Kurse' )
-    ->fields(
+Editor::inst( $db, 'sv_Kurse_View' )
+    ->readTable('sv_Kurse_View') 
+	->fields(
 	
-        Field::inst( 'sv_Kurse.ID' ),
-        Field::inst( 'sv_Kurse.Klasse' ),
-        Field::inst( 'sv_Kurse.Kursname' ),
-        Field::inst( 'sv_Kurse.KursID' ),
-	Field::inst( 'sv_Kurse.Uhrzeit' ),
+        Field::inst( 'sv_Kurse_View.ID' ),
+        Field::inst( 'sv_Kurse_View.Klasse' ),
+        Field::inst( 'sv_Kurse_View.Kursname' ),
+        Field::inst( 'sv_Kurse_View.KursID' ),
+	
        
            
-	 Field::inst( 'sv_Kurse.Startdatum' )
+	 Field::inst( 'sv_Kurse_View.Startdatum' )
 	  ->validator( Validate::dateFormat( 'Y-m-d' ) )
             ->getFormatter( Format::dateSqlToFormat( 'Y-m-d' ) )
             ->setFormatter( Format::dateFormatToSql('Y-m-d' ) ),
-	 Field::inst( 'sv_Kurse.Enddatum' )
+	 Field::inst( 'sv_Kurse_View.Enddatum' )
 	  ->validator( Validate::dateFormat( 'Y-m-d' ) )
             ->getFormatter( Format::dateSqlToFormat( 'Y-m-d' ) )
             ->setFormatter( Format::dateFormatToSql('Y-m-d' ) ),
@@ -46,12 +47,12 @@ Editor::inst( $db, 'sv_Kurse' )
     
       
 	
-	  Field::inst( 'sv_Kurse.Tag' ),
-	  Field::inst( 'sv_Kurse.Profil' ),
+	  Field::inst( 'sv_Kurse_View.Stundenplan' ),
+	  Field::inst( 'sv_Kurse_View.Profil' ),
 	  Field::inst( 'sv_Lehrpersonen.Nachname' )
 	  
 	)
 	
-	->leftJoin( 'sv_Lehrpersonen', 'sv_Lehrpersonen.ID', '=', 'sv_Kurse.Lehrperson' )
+	->leftJoin( 'sv_Lehrpersonen', 'sv_Lehrpersonen.ID', '=', 'sv_Kurse_View.Lehrperson' )
     ->process( $_POST )
     ->json();

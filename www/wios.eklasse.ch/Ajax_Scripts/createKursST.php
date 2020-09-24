@@ -9,7 +9,7 @@ $Kursname = $_GET[ 'k' ];
 $Lehrer = $_GET[ 'lp' ];
 $Zimmer = $_GET[ 'z' ];
 $Farbe = $_GET[ 'f' ];
-
+$Profil = $_GET[ 'p' ];
 
 
 		 $isdouble=0;
@@ -34,7 +34,7 @@ $Farbe = $_GET[ 'f' ];
             }
 
 if ($isdouble==0){
-$isEntry= "Insert Into sv_KurseStammdaten (KursKuerzel,Kursname,Farbe,Lehrer,Zimmer) VALUES ('$KursKuerzel','$Kursname','$Farbe','$Lehrer','$Zimmer') ";
+$isEntry= "Insert Into sv_KurseStammdaten (KursKuerzel,Kursname,Farbe,Lehrer,Zimmer,Profil) VALUES ('$KursKuerzel','$Kursname','$Farbe','$Lehrer','$Zimmer', '$Profil') ";
  mysqli_query( $con, $isEntry);
 }
 else echo "Das Kurskürzel gibt es bereits. Bitte ein anderes wählen.";

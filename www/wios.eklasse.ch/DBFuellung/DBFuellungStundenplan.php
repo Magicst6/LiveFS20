@@ -55,6 +55,7 @@ if( $_POST['Senden']) {
 							$Lehrer = $valuecol['Lehrer'];
 						$KursnameStamm= $valuecol['Kursname'];
 						$Zimmer= $valuecol['Zimmer'];
+						$Profil= $valuecol['Profil'];
 						//echo $KursnameStamm.'hhhhhhhhhhh';
 						  preg_match("/:(.*)/", $Lehrer, $output_array);
 
@@ -114,12 +115,12 @@ if( $_POST['Senden']) {
                                 mysqli_query($con, $sql_befehldel);
                             }
 
-                               $sql_befehl1 = "INSERT INTO sv_Kurse (KursID, Klasse, Uhrzeit, Tag, Startdatum, Farbe, FieldID,Stundenplan,Lehrperson, Kursname, Zimmer) VALUES ('$Kursname', '$Klassenname', '$UhrVal', '$Tag','$Datum1','$Color', '$FieldID','1','$LP_ID1','$KursnameStamm','$Zimmer')";
+                               $sql_befehl1 = "INSERT INTO sv_Kurse (KursID, Klasse, Uhrzeit, Tag, Startdatum, Farbe, FieldID,Stundenplan,Lehrperson, Kursname, Zimmer,Profil) VALUES ('$Kursname', '$Klassenname', '$UhrVal', '$Tag','$Datum1','$Color', '$FieldID','1','$LP_ID1','$KursnameStamm','$Zimmer','$Profil')";
 
                            mysqli_query($con, $sql_befehl1);
                         }else
                         {
-                               $sql_befehl2 = "UPDATE sv_Kurse SET  Startdatum='$Datum1', Farbe='$Color' , Uhrzeit='$UhrVal', Lehrperson='$LP_ID1' ,Kursname='$KursnameStamm', Zimmer='$Zimmer' Where Tag='$Tag' and FieldID='$FieldID'  and KursID='$Kursname' and Stundenplan='1'  ";
+                               $sql_befehl2 = "UPDATE sv_Kurse SET  Startdatum='$Datum1', Farbe='$Color' , Uhrzeit='$UhrVal', Lehrperson='$LP_ID1' ,Kursname='$KursnameStamm', Zimmer='$Zimmer', Profil='$Profil' Where Tag='$Tag' and FieldID='$FieldID'  and KursID='$Kursname' and Stundenplan='1'  ";
 
                            mysqli_query($con, $sql_befehl2);
                         }

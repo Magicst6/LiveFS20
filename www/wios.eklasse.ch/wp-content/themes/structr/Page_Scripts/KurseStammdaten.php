@@ -93,7 +93,7 @@ xmlhttp.ontimeout = function (e) {
 		   
 		  
 
-            xmlhttp.open("GET","/Ajax_Scripts/UpdateKursST.php?k="+document.getElementById("Kursname"+y).value + "&l="+document.getElementById("KursKuerzel"+y).value + "&m="+document.getElementById("ID"+y).value+ "&f="+farbe + "&z="+document.getElementById("Zimmer"+y).value+ "&lp="+document.getElementById("Lehrer"+y).value,true);
+            xmlhttp.open("GET","/Ajax_Scripts/UpdateKursST.php?k="+document.getElementById("Kursname"+y).value + "&l="+document.getElementById("KursKuerzel"+y).value + "&m="+document.getElementById("ID"+y).value+ "&f="+farbe + "&z="+document.getElementById("Zimmer"+y).value+ "&lp="+document.getElementById("Lehrer"+y).value + "&p="+document.getElementById("Profil"+y).value,true);
 
             xmlhttp.timeout = 4000; // time in milliseconds
 
@@ -150,7 +150,7 @@ var str=	document.getElementById("farbe").value;
             };
 		   
 		  xmlhttp
-            xmlhttp.open("GET","/Ajax_Scripts/createKursST.php?k="+document.getElementById("Kursname").value + "&l="+document.getElementById("KursKuerzel").value +  "&f="+farbe + "&z="+document.getElementById("Zimmer").value+ "&lp="+document.getElementById("Lehrer").value,true);
+            xmlhttp.open("GET","/Ajax_Scripts/createKursST.php?k="+document.getElementById("Kursname").value + "&l="+document.getElementById("KursKuerzel").value +  "&f="+farbe + "&z="+document.getElementById("Zimmer").value+ "&lp="+document.getElementById("Lehrer").value + "&p="+document.getElementById("Profil").value,true);
 
 		xmlhttp.timeout = 4000; // time in milliseconds
 
@@ -204,6 +204,8 @@ include 'db.php';
 
 			echo "<th width=100>".'Lehrer'. "</th>";
 
+            echo "<th width=40>".'Profil'. "</th>";
+
 	       echo "<th width=100>".'Zimmer'. "</th>";
             
             echo "<th width=60>".''."</th>";
@@ -233,6 +235,7 @@ include 'db.php';
 				$Lehrer=$value['Lehrer'];
 				$Farbe='#'.$FarbeDB;
 				$Zimmer=$value['Zimmer'];
+				$Profil=$value['Profil'];
 
 
 
@@ -300,6 +303,39 @@ include 'db.php';
    echo ' </select>
 				
 				</td>';
+				echo '<td><select name="Profil' . $y . '"  id="Profil' . $y . '"  type="text" style="width: 60px" value="' . $Profil . '"  >';
+			
+			  $isEntry= "Select Profil From sv_Profile";
+
+    $result1 = mysqli_query($con,$isEntry);
+
+
+echo "<option>$Profil</option>";
+
+
+    echo "<option></option>";
+
+
+
+    while( $line3= mysqli_fetch_array($result1))
+	{
+
+    
+
+
+            $value = $line3['Profil'];
+
+            if ($value<>"") echo "<option>" . $value . "</option>";
+
+
+
+        }
+
+    
+
+			
+			
+		echo '	</select></td>';
 				  echo '<td><input name="Zimmer'.$y.'"  id="Zimmer'.$y.'" style="width: 80px" type="text"  value="'.$Zimmer.'"  ></td>';
 				echo '<td><input name="Delete'.$y.'" onclick="del('.$y.')" type="button" value="Löschen"   style="width: 120px" ></td>';
 			
@@ -379,6 +415,39 @@ echo '<td><input name="Farbe"  id="farbe" style="width: 40px" type="color"  valu
         
 
    echo ' </select></td>';
+echo '<td><select name="Profil" id="Profil"  type="text" style="width: 60px" value=""  >';
+			
+			  $isEntry= "Select Profil From sv_Profile";
+
+    $result1 = mysqli_query($con,$isEntry);
+
+
+
+
+
+    echo "<option>--Select--</option>";
+
+
+
+    while( $line3= mysqli_fetch_array($result1))
+	{
+
+    
+
+
+            $value = $line3['Profil'];
+
+            if ($value<>"") echo "<option>" . $value . "</option>";
+
+
+
+        }
+
+    
+
+			
+			
+		echo '	</select></td>';
 echo '<td><input name="Zimmer"  id="Zimmer" style="width: 80px" type="text"  value=""  ></td>';
 		echo '<td><input name="Anlegen" onclick="create()" type="button" value="Erstellen"   style="width:120px" ></td>';
 			

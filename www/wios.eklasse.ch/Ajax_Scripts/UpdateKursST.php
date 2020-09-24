@@ -15,6 +15,7 @@ $Farbe = $_GET[ 'f' ];
 //echo $Farbe;
 $Lehrer = $_GET[ 'lp' ];
 $Zimmer = $_GET[ 'z' ];
+$Profil = $_GET[ 'p' ];
 
 
 
@@ -40,7 +41,7 @@ $Zimmer = $_GET[ 'z' ];
             }
 
 if ($isdouble<>1){
-$isEntry = "Update sv_KurseStammdaten SET KursKuerzel='$KursKuerzel', Kursname='$Kursname', Farbe='$Farbe', Lehrer='$Lehrer', Zimmer='$Zimmer'  Where ID='$ID'";
+$isEntry = "Update sv_KurseStammdaten SET KursKuerzel='$KursKuerzel', Kursname='$Kursname', Farbe='$Farbe', Lehrer='$Lehrer', Zimmer='$Zimmer', Profil='$Profil'  Where ID='$ID'";
  mysqli_query( $con, $isEntry);
 }
 else echo "Das Kurskürzel gibt es bereits. Bitte ein anderes wählen."
