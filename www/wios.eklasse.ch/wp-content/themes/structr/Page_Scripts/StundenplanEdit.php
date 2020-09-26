@@ -31,9 +31,28 @@
             }
         
 		
-function check(str){
-		
-		
+function check(str,tag,uhr){
+		//alert();
+		   if (window.XMLHttpRequest) {
+                    // code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp = new XMLHttpRequest();
+                } else {
+                    // code for IE6, IE5
+                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xmlhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                       if (this.responseText.length>10)
+						   {
+						  alert(this.responseText);
+						   }
+					}
+                };
+                xmlhttp.open("GET","/Ajax_Scripts/checkStundenplan.php?q="+str +"&k="+uhr+"&d="+tag + "&c="+document.getElementById("klasse").value,true);
+                xmlhttp.send();
+            
+	
+	
 	
 		if (/[^A-Za-z0-9\_]/.test(str))
 			{		

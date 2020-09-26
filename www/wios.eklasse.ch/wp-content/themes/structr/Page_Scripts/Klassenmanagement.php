@@ -571,7 +571,7 @@ var	editor1;
 	
 </script>
 <h3>Lernende in den Klassen</h3>
-
+(Bitte hier keine Änderungen vornehmen ohne den Support kontaktiert zu haben!)<br><br>
  Bestehende Klasse wählen:<br />
 
     <br>

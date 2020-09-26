@@ -5,11 +5,31 @@ include 'db.php';
 
 $y = 0;
 $ID = $_GET[ 'k' ];
-//$ID = $_GET[ 'k' ];
+$Klasse = $_GET[ 'l' ];
 
 
+$isEntryL= "Select * From sv_Lernende where ID='$ID' ";
+$resultL = mysqli_query($con, $isEntryL);
+while ($row = mysqli_fetch_array($resultL)) {
+
+$Vorname	=$row['Vorname'];
+	$Name	=$row['Name'];
+	$EMail  =$row['EMail'];
+}
+
+  $isEntryLM= "Select *  From sv_LernendeModule Where Name='$Name' and Vorname='$Vorname' and EMail='$EMail' and (Modul1='$Klasse' or Modul2='$Klasse' or Modul3='$Klasse' or Modul4='$Klasse' or Modul5='$Klasse' or Modul6='$Klasse' or Modul7='$Klasse' or Modul8='$Klasse' or Modul9='$Klasse' or Modul10='$Klasse' or Modul11='$Klasse' or Modul12='$Klasse')";
+
+    $resultLM = mysqli_query($con, $isEntryLM);
+    
+    while ($row1= mysqli_fetch_array($resultLM)) {
+		$LMID=$row1['ID'];
+	}
+	
 $isEntry = "Delete From sv_Lernende where ID ='$ID'";
 mysqli_query( $con, $isEntry );
+
+$isEntry1 = "Delete From sv_LernenderKurs where SchülerID ='$LMID' and Klasse ='$Klasse'";
+mysqli_query( $con, $isEntry1 );
 ?>
 
 <?php

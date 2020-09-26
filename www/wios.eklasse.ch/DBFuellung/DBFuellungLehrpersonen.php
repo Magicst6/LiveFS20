@@ -63,12 +63,52 @@ echo '<script type="text/javascript">alert("Ein Kurs wurde zwei verschiedenen Le
 }
 }
 if ($isdouble==0){
+	$isdouble1=0;
 for($x = 1; $x <= 30; $x++)
 {
 $Kurs="Kurs"."$x";
 
 $wert=$_POST[$Kurs];
+	
+	
+	   $isEntryCheck= "Select * From sv_Kurse where Lehrperson='$Lehrer' and KursID='$wert'";
 
+    $resultCheck = mysqli_query($con, $isEntryCheck);
+
+
+
+
+
+
+
+    while( $valueCheck= mysqli_fetch_array($resultCheck)) {
+		
+		 $isEntryCheck1= "Select * From sv_Kurse where Lehrperson='$Lehrer'";
+
+    $resultCheck1 = mysqli_query($con, $isEntryCheck1);
+
+
+
+        
+
+
+
+    while( $valueCheck1= mysqli_fetch_array($resultCheck1)) {
+		
+		//  echo $Lehrer;
+		
+		if (($wert<>$valueCheck1['KursID']) and  ($valueCheck['Uhrzeit']==$valueCheck1['Uhrzeit']) and ($valueCheck['Tag']==$valueCheck1['Tag']) )
+		{
+			echo "Kurs ".$wert." ist an diesem Tag(".$valueCheck['Tag'].") und dieser Uhrzeit(".$valueCheck['Uhrzeit'].") nicht möglich, da der Lehrer bereits einen Kurs zu diesem Zeitpunkt hat! Bitte korrigieren und aktion nochmals ausführen!";
+			
+     
+			$isdouble1=1;
+		}
+		
+		
+	}
+	}
+if ($isdouble1<>1){
 //Prüfen ob das Feld Kurs bereits befüllt ist und leer überschrieben werden muss
 
 $kursaktuell = "Select $Kurs, Nachname From sv_Lehrpersonen Where ID = '$Lehrer' ";
@@ -78,7 +118,7 @@ while( $line= mysqli_fetch_assoc($result3))
 
     $Lehrperson=$line['Nachname'];
     $dbwert = $line[$Kurs];
-    $isEntry3 = "Select KursID From sv_KurseAll where KursID='$wert'";
+    $isEntry3 = "Select KursID From sv_KurseAll where KursID='$dbwert'";
     $result3 = mysqli_query($con, $isEntry3);
 
     while( $value4= mysqli_fetch_array($result3))
@@ -152,13 +192,19 @@ else {
 //echo "Fehler: Eintrag unvollständig. ";
 
 
-}}}}
+}}}}}
 
 
 }
-
-?>
+if ($isdouble1==1){
 	
-	<script>window.location.href = "\ksdlpsc";</script>
+			
+			echo "<a href='/ksdlpsc/;'>[Zurück]</a>";
+	}
+
+	if ($isdouble1<>1){
+	echo '<script>window.location.href = "\ksdlpsc";</script>';
+	}
+	?>
 </body>
 </html>

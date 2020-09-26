@@ -425,7 +425,7 @@ echo '<td><select name="Profil" id="Profil"  type="text" style="width: 60px" val
 
 
 
-    echo "<option>--Select--</option>";
+    echo "<option></option>";
 
 
 
