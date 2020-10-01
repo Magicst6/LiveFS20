@@ -11,18 +11,37 @@ $semester = $_GET['k'];
 //echo $lid;
 
 
-  $isEntryZt= "Select * From sv_Zeiten ";
-
-    $resultZt = mysqli_query($con, $isEntryZt);
-
+ 
 
 
 
 $f=0;
 
 
+   
+
+for($y = 1; $y < 7; $y++) {
+	
+	if ($y==1) $Tag= 'Montag';
+		if ($y==2) $Tag= 'Dienstag';
+		if ($y==3) $Tag= 'Mittwoch';
+		if ($y==4) $Tag= 'Donnerstag';
+		if ($y==5) $Tag= 'Freitag';
+		if ($y==6) $Tag= 'Samstag';
+	
+	   $isEntryZt= "Select * From sv_Zeiten where Tag='$Tag'";
+
+    $resultZt = mysqli_query($con, $isEntryZt);
+
+
+
+
+
+
+
     while( $value= mysqli_fetch_array($resultZt)) {
-		 $Zeit1= $value['Uhrzeit1'];
+		
+		$Zeit1= $value['Uhrzeit1'];
 		 $Zeit2= $value['Uhrzeit2'];
 	 $Zeit3= $value['Uhrzeit3'];
 	 $Zeit4= $value['Uhrzeit4'];
@@ -33,8 +52,6 @@ $f=0;
 	 $Zeit9= $value['Uhrzeit9'];
 	 $Zeit10= $value['Uhrzeit10'];
 	}
-
-for($y = 1; $y < 7; $y++) {
     ${'Uhr1' . $y} = $Zeit1;
 
     ${'Uhr2' . $y} = $Zeit2;
@@ -118,7 +135,7 @@ if ($semester==$semDB){
     $entry = mysqli_query($con,$isEntry);
     while( $line2= mysqli_fetch_assoc($entry)) {
 		
-        $isEntry1 = "Select Uhrzeit1,Uhrzeit2,Uhrzeit3,Uhrzeit4,Uhrzeit5,Uhrzeit6,Uhrzeit7,Uhrzeit8,Uhrzeit9,Uhrzeit10 From $Zeiten";
+        $isEntry1 = "Select Uhrzeit1,Uhrzeit2,Uhrzeit3,Uhrzeit4,Uhrzeit5,Uhrzeit6,Uhrzeit7,Uhrzeit8,Uhrzeit9,Uhrzeit10 From $Zeiten where Tag='$Tag'";
         $entry1 = mysqli_query($con, $isEntry1);
         while ($line3 = mysqli_fetch_assoc($entry1)) {
 

@@ -1,0 +1,1 @@
+dt-button und $wpdt durch $mydb ersetzen in visualizer plugin nach update!!

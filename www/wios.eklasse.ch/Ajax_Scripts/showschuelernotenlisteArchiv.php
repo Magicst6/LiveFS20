@@ -258,6 +258,8 @@ input.err:focus{
     </style>
 	
 	<?php
+
+
 $pruefungen=$Semester.'_Pruefungen';
 
 $kurse=$Semester.'_Kurse';
@@ -295,6 +297,7 @@ if ($Kursnme<>'' && $Kursnme<>"-Select-") {
     $result = mysqli_query($con, $isEntry);
     
     while ($value1 = mysqli_fetch_array($result)) {
+		
         $isfilled = 0;
         $Vorname = $value1['Vorname'];
         $Name = $value1['Name'];
@@ -308,7 +311,7 @@ if ($Kursnme<>'' && $Kursnme<>"-Select-") {
 	
 	if (($value2['Nachname']==$value1['Name']) and ($value2['Vorname']==$value1['Vorname']))
 	{
-	 $isEntry1 = "SELECT Zeit From sv_Noten Where Name='$Pruefungsname' and KursID='$Kursnme' and SchuelerID='$ID' ORDER BY Zeit ASC ";
+	 $isEntry1 = "SELECT Zeit From $Noten Where Name='$Pruefungsname' and KursID='$Kursnme' and SchuelerID='$ID' ORDER BY Zeit ASC ";
 
             $result1 = mysqli_query($con, $isEntry1);
 		
@@ -325,7 +328,7 @@ if ($Kursnme<>'' && $Kursnme<>"-Select-") {
 				
 			}
 		
-
+	
 	
 if ($Zeit=='0000-00-00 00:00:00'){
 

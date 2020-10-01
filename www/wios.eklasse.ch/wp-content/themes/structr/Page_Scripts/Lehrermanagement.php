@@ -372,7 +372,7 @@ $(document).ready(function() {
          var i;
          var kurs=null;
 
-         for(i=1; i<17; i++){
+         for(i=1; i<31; i++){
              var Kursdt= data["Kurs"+i];
 
 
