@@ -430,7 +430,7 @@ document.getElementById("add").style.visibility = "hidden";
             margin: auto;
             padding: 20px;
             border: 1px solid #888;
-            width: 1400px;
+            width: 2400px;
         }
 
 

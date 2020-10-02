@@ -61,8 +61,10 @@
 	 var table;
 		var table1;
 	$(document).ready(function() {
+		
+		loadtable();
   
- 
+	});
 	//var data= [{"Note":"6","Name":"dsgs","Gewichtung":"0","Datum":"2019-06-16"},{"Note":"2","Name":"dsgs","Gewichtung":"0","Datum":"2019-06-16"},{"Note":"3.7","Name":"dsgs","Gewichtung":"25","Datum":"2019-06-16"}]  ;
 	
  
@@ -106,6 +108,7 @@
 //	  return note;
 //  };
 //  
+		function loadtable(){
 		var new_url= "/wp-content/themes/structr/Page_Scripts/GetLernendeModule.php?q="+document.getElementById("Kursname").value;
 			var new_url1= "/wp-content/themes/structr/Page_Scripts/GetLernende.php?q="+document.getElementById("Kursname").value;
                    
@@ -155,7 +158,7 @@
             "infoEmpty": "Keine Einträge",
             "infoPostFix": "",
             "infoFiltered": "(gefiltert aus insgesamt _MAX_ Einträgen)",
-            "loadingRecords": "keine Daten vorhanden oder es werden Daten geladen...",
+            "loadingRecords": "keine Daten vorhanden...",
             "lengthMenu": "Anzeigen von _MENU_ Einträgen",
             "paginate": {
                 "first": "Erste",
@@ -213,20 +216,20 @@
 //       tr.addClass('shown');
 //     }
 //  });
- 
+		}
 
 	
-		});
+	
 		
 function tableshow(){
-		var new_url= "/wp-content/themes/structr/Page_Scripts/GetLernendeModule.php?q="+document.getElementById("Kursname").value;
-	var new_url1= "/wp-content/themes/structr/Page_Scripts/GetLernende.php?q="+document.getElementById("Kursname").value;
+	//	var new_url= "/wp-content/themes/structr/Page_Scripts/GetLernendeModule.php?q="+document.getElementById("Kursname").value;
+	//var new_url1= "/wp-content/themes/structr/Page_Scripts/GetLernende.php?q="+document.getElementById("Kursname").value;
 	
 		
         getMailArray();            
-		
-	
-	table1.ajax.url( new_url1 ).load();
+		table1.destroy();
+	loadtable();
+	//table1.ajax.url( new_url1 ).load();
 }		
 	
 		

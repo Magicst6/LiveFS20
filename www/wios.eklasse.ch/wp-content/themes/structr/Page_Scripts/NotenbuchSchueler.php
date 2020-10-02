@@ -176,7 +176,7 @@
             "infoEmpty": "Keine Einträge",
             "infoPostFix": "",
             "infoFiltered": "(gefiltert aus insgesamt _MAX_ Einträgen)",
-            "loadingRecords": "keine Daten vorhanden oder es werden Daten geladen...",
+            "loadingRecords": "keine Daten vorhanden...",
             "lengthMenu": "Anzeigen von _MENU_ Einträgen",
             "paginate": {
                 "first": "Erste",
@@ -255,7 +255,7 @@
             "infoEmpty": "Keine Einträge",
             "infoPostFix": "",
             "infoFiltered": "(gefiltert aus insgesamt _MAX_ Einträgen)",
-            "loadingRecords": "keine Daten vorhanden oder es werden Daten geladen...",
+            "loadingRecords": "keine Daten vorhanden...",
             "lengthMenu": "Anzeigen von _MENU_ Einträgen",
             "paginate": {
                 "first": "Erste",

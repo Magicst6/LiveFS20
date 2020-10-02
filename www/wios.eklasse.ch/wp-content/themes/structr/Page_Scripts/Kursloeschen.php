@@ -1,6 +1,6 @@
 <br><br>
 <h3>Kurs löschen  (der Kurs wird komplett aus dem System entfernt)</h3>
-Sollte der Kurs einem Lehrer zugeordnet sein, bitte dies manuell ändern!<br><br>
+Sollte der Kurs einem Lehrer zugeordnet sein, bitte dies manuell bei <a href="/ksdlpsc">Kurse der Lehrperson</a> ändern!<br><br>
 Zu löschenden Kurs wählen:<br />
 
     <br>

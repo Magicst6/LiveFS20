@@ -137,7 +137,7 @@ tableshow();
             "infoEmpty": "Keine Einträge",
             "infoPostFix": "",
             "infoFiltered": "(gefiltert aus insgesamt _MAX_ Einträgen)",
-            "loadingRecords": "keine Daten vorhanden oder es werden Daten geladen...",
+            "loadingRecords": "keine Daten vorhanden...",
             "lengthMenu": "Anzeigen von _MENU_ Einträgen",
             "paginate": {
                 "first": "Erste",
@@ -217,7 +217,7 @@ tableshow();
             "infoEmpty": "Keine Einträge",
             "infoPostFix": "",
             "infoFiltered": "(gefiltert aus insgesamt _MAX_ Einträgen)",
-            "loadingRecords": "keine Daten vorhanden oder es werden Daten geladen...",
+            "loadingRecords": "keine Daten vorhanden...",
             "lengthMenu": "Anzeigen von _MENU_ Einträgen",
             "paginate": {
                 "first": "Erste",
@@ -377,7 +377,7 @@ tableshow();
             "infoEmpty": "Keine Einträge",
             "infoPostFix": "",
             "infoFiltered": "(gefiltert aus insgesamt _MAX_ Einträgen)",
-            "loadingRecords": "keine Daten vorhanden oder es werden Daten geladen...",
+            "loadingRecords": "keine Daten vorhanden...",
             "lengthMenu": "Anzeigen von _MENU_ Einträgen",
             "paginate": {
                 "first": "Erste",
@@ -457,7 +457,7 @@ tableshow();
             "infoEmpty": "Keine Einträge",
             "infoPostFix": "",
             "infoFiltered": "(gefiltert aus insgesamt _MAX_ Einträgen)",
-            "loadingRecords": "keine Daten vorhanden oder es werden Daten geladen...",
+            "loadingRecords": "keine Daten vorhanden...",
             "lengthMenu": "Anzeigen von _MENU_ Einträgen",
             "paginate": {
                 "first": "Erste",
@@ -2131,7 +2131,7 @@ Kurs:        <input id="Kurslb2" readonly><br><br>
             "infoEmpty": "Keine Einträge",
             "infoPostFix": "",
             "infoFiltered": "(gefiltert aus insgesamt _MAX_ Einträgen)",
-            "loadingRecords": "keine Daten vorhanden oder es werden Daten geladen...",
+            "loadingRecords": "keine Daten vorhanden...",
             "lengthMenu": "Anzeigen von _MENU_ Einträgen",
             "paginate": {
                 "first": "Erste",
@@ -2283,7 +2283,7 @@ window.location.href= "/notenbuch-archiv?q="+  encrypted + "&sem=" +  document.g
             "infoEmpty": "Keine Einträge",
             "infoPostFix": "",
             "infoFiltered": "(gefiltert aus insgesamt _MAX_ Einträgen)",
-            "loadingRecords": "keine Daten vorhanden oder es werden Daten geladen...",
+            "loadingRecords": "keine Daten vorhanden...",
             "lengthMenu": "Anzeigen von _MENU_ Einträgen",
             "paginate": {
                 "first": "Erste",
@@ -2428,7 +2428,7 @@ window.location.href= "/notenbuch-archiv?q="+  encrypted + "&sem=" +  document.g
             "infoEmpty": "Keine Einträge",
             "infoPostFix": "",
             "infoFiltered": "(gefiltert aus insgesamt _MAX_ Einträgen)",
-            "loadingRecords": "keine Daten vorhanden oder es werden Daten geladen...",
+            "loadingRecords": "keine Daten vorhanden...",
             "lengthMenu": "Anzeigen von _MENU_ Einträgen",
             "paginate": {
                 "first": "Erste",
@@ -2593,7 +2593,7 @@ window.location.href= "/notenbuch-archiv?q="+  encrypted + "&sem=" +  document.g
             "infoEmpty": "Keine Einträge",
             "infoPostFix": "",
             "infoFiltered": "(gefiltert aus insgesamt _MAX_ Einträgen)",
-            "loadingRecords": "keine Daten vorhanden oder es werden Daten geladen...",
+            "loadingRecords": "keine Daten vorhanden...",
             "lengthMenu": "Anzeigen von _MENU_ Einträgen",
             "paginate": {
                 "first": "Erste",
@@ -2739,7 +2739,7 @@ window.location.href= "/notenbuch-archiv?q="+  encrypted + "&sem=" +  document.g
             "infoEmpty": "Keine Einträge",
             "infoPostFix": "",
             "infoFiltered": "(gefiltert aus insgesamt _MAX_ Einträgen)",
-            "loadingRecords": "keine Daten vorhanden oder es werden Daten geladen...",
+            "loadingRecords": "keine Daten vorhanden...",
             "lengthMenu": "Anzeigen von _MENU_ Einträgen",
             "paginate": {
                 "first": "Erste",
