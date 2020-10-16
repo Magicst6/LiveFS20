@@ -32,7 +32,7 @@ $lkArch=$semester."_LernenderKurs";
 $notenArch=$semester."_Noten";
 
 
-    $isEntry = "Select * From sv_LernenderKurs where SchülerID='$ID' order by Nachname asc ";
+    $isEntry = "Select * From sv_LernenderKurs where SchuelerID='$ID' order by Nachname asc ";
 
 
 
@@ -53,7 +53,7 @@ $c=0;
 			
 		  'Vorname' => $line1['Vorname'],
 			 'Nachname' => $line1['Nachname'],
-			 'IDSchueler' => $line1['SchülerID'],
+			 'IDSchueler' => $line1['SchuelerID'],
 			 'Kursname' => $line1['KursID']
 			);
 

@@ -667,7 +667,7 @@ tableshow();
 	var str = data[ "SchuelerID" ];
 	
 		
-	editor1 . field( 'SchülerID' ) . def( str );
+	editor1 . field( 'SchuelerID' ) . def( str );
 	editor1 . field( 'Kursname' ) . def( document . getElementById( "Kursname" ) . value );
 	editor1 . submit();
 			
@@ -1747,7 +1747,7 @@ Kurs:        <input id="Kurslb2" readonly><br><br>
                 def: document.getElementById( "Kursname" ).value
 		},		
 				  {
-			 label: "SchülerID:",
+			 label: "SchuelerID:",
                 name: "SchuelerID",
                 type: "readonly",
               
@@ -1971,8 +1971,8 @@ Kurs:        <input id="Kurslb2" readonly><br><br>
                 def: document.getElementById( "Kursname" ).value
 		},		
 				  {
-			 label: "SchülerID:",
-                name: "SchülerID",
+			 label: "SchuelerID:",
+                name: "SchuelerID",
                 type: "readonly"
               
 		},			

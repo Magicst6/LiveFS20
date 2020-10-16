@@ -49,16 +49,16 @@ $c=0;
 	
 	$a=0;
     while ($line1 = mysqli_fetch_array($result)) {
-		$ID=$line1['SchülerID'];
+		$ID=$line1['SchuelerID'];
 		
 		$data0 = array(
 			
 		  'Vorname' => $line1['Vorname'],
 			 'Nachname' => $line1['Nachname'],
-			 'IDSchueler' => $line1['SchülerID']
+			 'IDSchueler' => $line1['SchuelerID']
 			);
           
-		$isEntryUpdNull = "UPDATE $lkArch SET Note1  = '',Note2  = '',Note3  = '',Note4  = '',Note5  = '',Note6  = '',Note7  = '',Note8  = '',Note9  = '' where SchülerID='$ID' and KursID ='$Kursname'";
+		$isEntryUpdNull = "UPDATE $lkArch SET Note1  = '',Note2  = '',Note3  = '',Note4  = '',Note5  = '',Note6  = '',Note7  = '',Note8  = '',Note9  = '' where SchuelerID='$ID' and KursID ='$Kursname'";
 	mysqli_query( $con, $isEntryUpdNull );	
 
 
@@ -123,39 +123,39 @@ $c=0;
 			if ($NoteAK){ 
 			switch ($a) {
     case 1:
-      $isEntryUpd = "UPDATE $lkArch SET Note1  = '$NoteAK' where SchülerID='$ID' and KursID ='$Kursname'";
+      $isEntryUpd = "UPDATE $lkArch SET Note1  = '$NoteAK' where SchuelerID='$ID' and KursID ='$Kursname'";
 	mysqli_query( $con, $isEntryUpd );	
         break;
     case 2:
-       $isEntryUpd = "UPDATE $lkArch SET Note2  = '$NoteAK' where SchülerID='$ID' and KursID ='$Kursname'";
+       $isEntryUpd = "UPDATE $lkArch SET Note2  = '$NoteAK' where SchuelerID='$ID' and KursID ='$Kursname'";
 	mysqli_query( $con, $isEntryUpd );	
         break;
     case 3:
-       $isEntryUpd = "UPDATE $lkArch SET Note3  = '$NoteAK' where SchülerID='$ID' and KursID ='$Kursname'";
+       $isEntryUpd = "UPDATE $lkArch SET Note3  = '$NoteAK' where SchuelerID='$ID' and KursID ='$Kursname'";
 	mysqli_query( $con, $isEntryUpd );	
         break;
 	case 4:
-      $isEntryUpd = "UPDATE $lkArch SET Note4  = '$NoteAK' where SchülerID='$ID' and KursID ='$Kursname'";
+      $isEntryUpd = "UPDATE $lkArch SET Note4  = '$NoteAK' where SchuelerID='$ID' and KursID ='$Kursname'";
 	mysqli_query( $con, $isEntryUpd );	
         break;
     case 5:
-       $isEntryUpd = "UPDATE $lkArch SET Note5  = '$NoteAK' where SchülerID='$ID' and KursID ='$Kursname'";
+       $isEntryUpd = "UPDATE $lkArch SET Note5  = '$NoteAK' where SchuelerID='$ID' and KursID ='$Kursname'";
 	mysqli_query( $con, $isEntryUpd );	
         break;
     case 6:
-       $isEntryUpd = "UPDATE $lkArch SET Note6  = '$NoteAK' where SchülerID='$ID' and KursID ='$Kursname'";
+       $isEntryUpd = "UPDATE $lkArch SET Note6  = '$NoteAK' where SchuelerID='$ID' and KursID ='$Kursname'";
 	mysqli_query( $con, $isEntryUpd );	
         break;
 	case 7:
-      $isEntryUpd = "UPDATE $lkArch SET Note7  = '$NoteAK' where SchülerID='$ID' and KursID ='$Kursname'";
+      $isEntryUpd = "UPDATE $lkArch SET Note7  = '$NoteAK' where SchuelerID='$ID' and KursID ='$Kursname'";
 	mysqli_query( $con, $isEntryUpd );	
         break;
     case 8:
-       $isEntryUpd = "UPDATE $lkArch SET Note8  = '$NoteAK' where SchülerID='$ID' and KursID ='$Kursname'";
+       $isEntryUpd = "UPDATE $lkArch SET Note8  = '$NoteAK' where SchuelerID='$ID' and KursID ='$Kursname'";
 	mysqli_query( $con, $isEntryUpd );	
         break;
     case 9:
-       $isEntryUpd = "UPDATE $lkArch SET Note9  = '$NoteAK' where SchülerID='$ID' and KursID ='$Kursname'";
+       $isEntryUpd = "UPDATE $lkArch SET Note9  = '$NoteAK' where SchuelerID='$ID' and KursID ='$Kursname'";
 	mysqli_query( $con, $isEntryUpd );	
         break;
 }

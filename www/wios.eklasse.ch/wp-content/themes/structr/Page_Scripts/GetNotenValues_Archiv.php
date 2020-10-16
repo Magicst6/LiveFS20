@@ -49,13 +49,13 @@ $c=0;
 	
 	$a=0;
     while ($line1 = mysqli_fetch_array($result)) {
-		$ID=$line1['SchülerID'];
+		$ID=$line1['SchuelerID'];
 		
 		$data0 = array(
 			
 		  'Vorname' => $line1['Vorname'],
 			 'Nachname' => $line1['Nachname'],
-			 'IDSchueler' => $line1['SchülerID']
+			 'IDSchueler' => $line1['SchuelerID']
 			);
 				
 

@@ -33,12 +33,12 @@ $dontFill=0;
 $Nachname= $row2['Name'];
 $Vorname= $row2['Vorname'];
 $SchuelerID= $row2['ID'];
-$isEntry4= "Select Vorname, Nachname, SchülerID, KursID, Datum  From sv_Abwesenheiten";
+$isEntry4= "Select Vorname, Nachname, SchuelerID, KursID, Datum  From sv_Abwesenheiten";
 $result4 = mysqli_query($con,$isEntry4);
 while ($row4 = mysqli_fetch_array($result4)) {
 $NachnameAbw= $row4['Nachname'];
 $VornameAbw= $row4['Vorname'];
-$ID= $row4['SchülerID'];
+$ID= $row4['SchuelerID'];
 $KursnameAbw =  $row4['KursID'];
 $StartdatumAbw =  $row4['Datum'];
 
@@ -53,7 +53,7 @@ $dontFill=1;
 
 
 if ($dontFill == 0){
-$sql_befehl = "INSERT INTO sv_Abwesenheiten (Nachname, Vorname, KursID, SchülerID, Datum) VALUES ('$Nachname', '$Vorname', '$Kursname', '$SchuelerID','$Startdatum')";
+$sql_befehl = "INSERT INTO sv_Abwesenheiten (Nachname, Vorname, KursID, SchuelerID, Datum) VALUES ('$Nachname', '$Vorname', '$Kursname', '$SchuelerID','$Startdatum')";
 mysqli_query($con,$sql_befehl);
 
 
@@ -93,19 +93,19 @@ $DatumKH=$row4['Datum'];
 $sql_befehl2 = "Update sv_Abwesenheiten SET $wert='$DatumKH' Where  KursID='$KursnameKH'";
 mysqli_query($con,$sql_befehl2);
 
-$isEntry5= "Select Vorname, Nachname, SchülerID, Kursname, Datum, Klasse, Kommentar, Abwesenheitsdauer  From sv_AbwesenheitenKompakt Where Datum='$DatumKH' and Kursname='$KursnameKH' ";
+$isEntry5= "Select Vorname, Nachname, SchuelerID, Kursname, Datum, Klasse, Kommentar, Abwesenheitsdauer  From sv_AbwesenheitenKompakt Where Datum='$DatumKH' and Kursname='$KursnameKH' ";
 $result5 = mysqli_query($con,$isEntry5);
 while ($row5 = mysqli_fetch_array($result5))
 {
 $NachnameAK=$row5['Nachname'];
 $VornameAK=$row5['Vorname'];
-$SchuelerIDAK=$row5['SchülerID'];
+$SchuelerIDAK=$row5['SchuelerID'];
 $KommentarAK=$row5['Kommentar'];
 $DauerAK=$row5['Abwesenheitsdauer'];
 $KursnameAK=$row5['Kursname'];
 $DatumAK=$row5['Datum'];
 
-$sql_befehl1 = "Update sv_Abwesenheiten SET $wert2='$DauerAK' , $wert3='$KommentarAK' Where  KursID='$KursnameKH' and SchülerID='$SchuelerIDAK' and  $wert='$DatumKH' ";
+$sql_befehl1 = "Update sv_Abwesenheiten SET $wert2='$DauerAK' , $wert3='$KommentarAK' Where  KursID='$KursnameKH' and SchuelerID='$SchuelerIDAK' and  $wert='$DatumKH' ";
 mysqli_query($con,$sql_befehl1);
 }
 $x++;

@@ -18,8 +18,18 @@ $Kursnme=$_GET['q'];
 $heute= $_GET['h'];
 $LektionenF=$_GET['j'];
 
-$Sg=$_GET['k'];
-	
+$Sg=$_GET['f'];
+
+
+echo '<br><br>';
+
+echo 'Datum des einzutragenden Kurses:';
+
+echo'<br><br>';
+
+echo '<input style="width: 145px;" name="date" id="date" type="date" value="'.$heute.'"  onchange="testdate(this.value)"  required="required" />';
+
+echo '<br><br>';
 
 
 if ($LektionenF){
@@ -145,25 +155,25 @@ while( $row5= mysqli_fetch_array($result1))
        
 		if ($isProfil==1 or $Profil==''){
 		
-            $isEntry4= "Select SchülerID, Vorname, Nachname, KursID From sv_LernenderKurs where KursID='$Kursnme'";
+            $isEntry4= "Select SchuelerID, Vorname, Nachname, KursID From sv_LernenderKurs where KursID='$Kursnme'";
             $result4 = mysqli_query($con, $isEntry4);
 
             while ($row4 = mysqli_fetch_array($result4)) {
 				$isfilled=0;
-                $ID= $row4['SchülerID'];
+                $ID= $row4['SchuelerID'];
                 $KursnameAbw =  $row4['KursID'];
                 $VornameAbw= $row4['Vorname'];
                 $NachnameAbw= $row4['Nachname'];
                 
                 if ($SchuelerID==$ID)
                 {
-$isEntry1 = "SELECT SchülerID, Kommentar, Abwesenheitsdauer,Datum From sv_AbwesenheitenKompakt Where Kursname='$Kursnme'";
+$isEntry1 = "SELECT SchuelerID, Kommentar, Abwesenheitsdauer,Datum From sv_AbwesenheitenKompakt Where Kursname='$Kursnme'";
 $result1 = mysqli_query($con, $isEntry1);
 
 while( $value2= mysqli_fetch_array($result1))
 {
 	
-if (($ID==$value2['SchülerID']) and ($value2['Datum']==$heute)){
+if (($ID==$value2['SchuelerID']) and ($value2['Datum']==$heute)){
 $y++;
 $z="Comment"."$y";
 $u="Dauer"."$y";
@@ -246,6 +256,7 @@ echo '<input name="count" id="count" type="hidden" value="'.$y.'">';
 mysqli_close($con);
 
 ?>
+
 
 
  

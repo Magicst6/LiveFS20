@@ -17,7 +17,7 @@ fclose ($handle);
 $y=0;
 
 
-$isEntry= "Select KursID From sv_LernenderKurs Where SchülerID = $Schueler";
+$isEntry= "Select KursID From sv_LernenderKurs Where SchuelerID = $Schueler";
 $result = mysqli_query($con,$isEntry);
 
 

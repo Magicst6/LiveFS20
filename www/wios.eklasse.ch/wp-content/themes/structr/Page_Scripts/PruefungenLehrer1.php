@@ -2381,9 +2381,9 @@ get_currentuserinfo();
 
 	$today = date( "Y-m-d" );
 
-	$delOlder = "Delete  From sv_KurseAll Where Datum < '$today' ";
+	//$delOlder = "Delete  From sv_KurseAll Where Datum < '$today' ";
 
-	mysqli_query( $con, $delOlder );
+	//mysqli_query( $con, $delOlder );
 
 
 

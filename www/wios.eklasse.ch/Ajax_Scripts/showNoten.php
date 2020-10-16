@@ -7,7 +7,7 @@ $Schueler=$_GET['s'];
     $Schueler=$output_array[1];
     if ($Schueler==""){$vr3=0;}
     else {$vr3= $Schueler;}
-    $isEntry = "SELECT * From sv_LernenderKurs Where KursID='$Kursname' AND SchülerID='$Schueler' ";
+    $isEntry = "SELECT * From sv_LernenderKurs Where KursID='$Kursname' AND SchuelerID='$Schueler' ";
     $result = mysqli_query($con, $isEntry);
     $y=0;
 echo "ets";

@@ -32,7 +32,7 @@ include "db.php";
 
 
 //Daten in DB speichern
-        $sql_befehl = "INSERT INTO sv_LernenderKurs (SchülerID,Nachname, Vorname, Profil,KursID) VALUES ('$SchuelerID', '$Nachname', '$Vorname', '$Profil','$Kursname' )";
+        $sql_befehl = "INSERT INTO sv_LernenderKurs (SchuelerID,Nachname, Vorname, Profil,KursID) VALUES ('$SchuelerID', '$Nachname', '$Vorname', '$Profil','$Kursname' )";
 //echo $sql_befehl1;
         if (("" == $Vorname) OR (""== $Nachname) ) {
             echo "Fehler: Eintrag unvollständig. Bitte neu beginnen!";

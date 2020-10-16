@@ -14,7 +14,7 @@ $Schueler=$output_array[1];
 
 $Kursname=$_GET['q'];
 
-$isEntry1= "Select SchülerID From sv_AbwesenheitenKompakt Where SchülerID = $Schueler";
+$isEntry1= "Select SchuelerID From sv_AbwesenheitenKompakt Where SchuelerID = $Schueler";
 
 $result1 = mysqli_query($con,$isEntry1);
 
@@ -30,7 +30,7 @@ $DauerGesamt=0;
 
 $KursnameGes=0;
 
-$isEntry2= "Select Abwesenheitsdauer,Kursname From sv_AbwesenheitenKompakt Where SchülerID = '$Schueler' Order By Kursname Asc";
+$isEntry2= "Select Abwesenheitsdauer,Kursname From sv_AbwesenheitenKompakt Where SchuelerID = '$Schueler' Order By Kursname Asc";
 
 $result2 = mysqli_query($con, $isEntry2);
 
@@ -52,13 +52,13 @@ while( $line4= mysqli_fetch_array($result2))
 
 
 
-        $isEntry5 = "Select Abwesenheit From sv_AbwesenheitenGesamt Where SchülerID = '$Schueler' and KursID= '$KursnameGes'";
+        $isEntry5 = "Select Abwesenheit From sv_AbwesenheitenGesamt Where SchuelerID = '$Schueler' and KursID= '$KursnameGes'";
 
         $result5 = mysqli_query($con, $isEntry5);
 
 
 
-        $sql_befehl2 = "UPDATE sv_AbwesenheitenGesamt SET Abwesenheit='$DauerGesamt' Where KursID='$KursnameGes' and SchülerID = '$Schueler'  ";
+        $sql_befehl2 = "UPDATE sv_AbwesenheitenGesamt SET Abwesenheit='$DauerGesamt' Where KursID='$KursnameGes' and SchuelerID = '$Schueler'  ";
 
         mysqli_query($con,$sql_befehl2);
 
@@ -77,12 +77,12 @@ while( $line4= mysqli_fetch_array($result2))
         $DauerGesamt = $line4['Abwesenheitsdauer'];
 
 
-        $isEntry5 = "Select Abwesenheit From sv_AbwesenheitenGesamt Where SchülerID = '$Schueler' and KursID= '$KursnameGes'";
+        $isEntry5 = "Select Abwesenheit From sv_AbwesenheitenGesamt Where SchuelerID = '$Schueler' and KursID= '$KursnameGes'";
 
         $result5 = mysqli_query($con, $isEntry5);
 
 
-        $sql_befehl2 = "UPDATE sv_AbwesenheitenGesamt SET Abwesenheit='$DauerGesamt' Where KursID='$KursnameGes' and SchülerID = '$Schueler'  ";
+        $sql_befehl2 = "UPDATE sv_AbwesenheitenGesamt SET Abwesenheit='$DauerGesamt' Where KursID='$KursnameGes' and SchuelerID = '$Schueler'  ";
 
         mysqli_query($con, $sql_befehl2);
 

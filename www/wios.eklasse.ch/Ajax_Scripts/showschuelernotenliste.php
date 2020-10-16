@@ -290,7 +290,7 @@ if ($Kursnme<>'' && $Kursnme<>"-Select-") {
   $isfilled=0;
 	 $Vorname = $value2['Vorname'];
         $Name = $value2['Nachname'];
-        $ID = $value2['SchülerID'];	
+        $ID = $value2['SchuelerID'];	
 		
 	
 	

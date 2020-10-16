@@ -1423,7 +1423,7 @@ Kurs:        <input id="Kurslb1" readonly><br><br>
                 def: document.getElementById( "Kursname" ).value
 		},		
 				  {
-			 label: "SchülerID:",
+			 label: "SchuelerID:",
                 name: "SchuelerID",
                 type: "readonly",
               

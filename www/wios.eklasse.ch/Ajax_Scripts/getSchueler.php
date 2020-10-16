@@ -68,7 +68,7 @@ echo "<option>" .'-Select-'. "</option>";
 	
 }else
 {
-$isEntry= "Select SchülerID From $TabLK Where KursID='$Kursname' order by Nachname ";
+$isEntry= "Select SchuelerID From $TabLK Where KursID='$Kursname' order by Nachname ";
 
 $result = mysqli_query($con,$isEntry);
 $resultarr = array();
@@ -76,7 +76,7 @@ $resultarr = array();
 
 while( $line2= mysqli_fetch_assoc($result))
 {
-    $resultarr[] = $line2['SchülerID'];
+    $resultarr[] = $line2['SchuelerID'];
 }
 $uniquearr = array_unique($resultarr);
 

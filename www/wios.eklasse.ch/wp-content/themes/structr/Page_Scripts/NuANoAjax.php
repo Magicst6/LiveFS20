@@ -42,11 +42,11 @@ while( $line6= mysqli_fetch_array($result6))
 
 $Kursname=$line6['KursID'];
 
-$SchuelerID=$line6['SchülerID'];
+$SchuelerID=$line6['SchuelerID'];
 
 $Abwesenheitsdauer='100000';
 
-$isEntry5 = "Select Abwesenheit From sv_AbwesenheitenGesamt Where SchülerID = '$SchuelerID' and KursID= '$Kursname'";
+$isEntry5 = "Select Abwesenheit From sv_AbwesenheitenGesamt Where SchuelerID = '$SchuelerID' and KursID= '$Kursname'";
 
 $result5 = mysqli_query($con, $isEntry5);
 
@@ -68,7 +68,7 @@ if ($Abwesenheitsdauer=='100000' )
 
 {
 
-$sql_befehl2 = "INSERT INTO sv_AbwesenheitenGesamt (Abwesenheit,KursID,SchülerID) VALUES ('0','$Kursname','$SchuelerID')";
+$sql_befehl2 = "INSERT INTO sv_AbwesenheitenGesamt (Abwesenheit,KursID,SchuelerID) VALUES ('0','$Kursname','$SchuelerID')";
 
 mysqli_query($con,$sql_befehl2);
 
@@ -234,7 +234,7 @@ mysqli_query($con,$sql_befehl2);
 
 
 
-        $isEntry= "Select KursID From sv_LernenderKurs Where SchülerID = $Schueler";
+        $isEntry= "Select KursID From sv_LernenderKurs Where SchuelerID = $Schueler";
 
         $result = mysqli_query($con,$isEntry);
 
@@ -292,7 +292,7 @@ mysqli_query($con,$sql_befehl2);
 
     <?php
 
-    $isEntry1= "Select SchülerID From sv_AbwesenheitenKompakt Where SchülerID = $Schueler";
+    $isEntry1= "Select SchuelerID From sv_AbwesenheitenKompakt Where SchuelerID = $Schueler";
 
     $result1 = mysqli_query($con,$isEntry1);
 
@@ -308,7 +308,7 @@ mysqli_query($con,$sql_befehl2);
 
     $KursnameGes=0;
 
-    $isEntry2= "Select Abwesenheitsdauer,Kursname From sv_AbwesenheitenKompakt Where SchülerID = '$Schueler' Order By Kursname Asc";
+    $isEntry2= "Select Abwesenheitsdauer,Kursname From sv_AbwesenheitenKompakt Where SchuelerID = '$Schueler' Order By Kursname Asc";
 
     $result2 = mysqli_query($con, $isEntry2);
 
@@ -330,13 +330,13 @@ mysqli_query($con,$sql_befehl2);
 
 
 
-    $isEntry5 = "Select Abwesenheit From sv_AbwesenheitenGesamt Where SchülerID = '$Schueler' and KursID= '$KursnameGes'";
+    $isEntry5 = "Select Abwesenheit From sv_AbwesenheitenGesamt Where SchuelerID = '$Schueler' and KursID= '$KursnameGes'";
 
     $result5 = mysqli_query($con, $isEntry5);
 
 
 
-    $sql_befehl2 = "UPDATE sv_AbwesenheitenGesamt SET Abwesenheit='$DauerGesamt' Where KursID='$KursnameGes' and SchülerID = '$Schueler'  ";
+    $sql_befehl2 = "UPDATE sv_AbwesenheitenGesamt SET Abwesenheit='$DauerGesamt' Where KursID='$KursnameGes' and SchuelerID = '$Schueler'  ";
 
     mysqli_query($con,$sql_befehl2);
 
@@ -358,7 +358,7 @@ mysqli_query($con,$sql_befehl2);
 
 
 
-    $isEntry5 = "Select Abwesenheit From sv_AbwesenheitenGesamt Where SchülerID = '$Schueler' and KursID= '$KursnameGes'";
+    $isEntry5 = "Select Abwesenheit From sv_AbwesenheitenGesamt Where SchuelerID = '$Schueler' and KursID= '$KursnameGes'";
 
     $result5 = mysqli_query($con, $isEntry5);
 
@@ -366,7 +366,7 @@ mysqli_query($con,$sql_befehl2);
 
 
 
-    $sql_befehl2 = "UPDATE sv_AbwesenheitenGesamt SET Abwesenheit='$DauerGesamt' Where KursID='$KursnameGes' and SchülerID = '$Schueler'  ";
+    $sql_befehl2 = "UPDATE sv_AbwesenheitenGesamt SET Abwesenheit='$DauerGesamt' Where KursID='$KursnameGes' and SchuelerID = '$Schueler'  ";
 
     mysqli_query($con,$sql_befehl2);
 

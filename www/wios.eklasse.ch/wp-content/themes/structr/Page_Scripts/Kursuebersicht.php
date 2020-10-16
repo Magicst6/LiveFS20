@@ -257,8 +257,8 @@
         }, 
         table: "#dtbl",
         fields: [ {
-                label: "SchülerID:",
-                name: "SchülerID",
+                label: "SchuelerID:",
+                name: "SchuelerID",
 			    type: "readonly"
             },			
 			{
@@ -343,7 +343,7 @@
                 className: 'select-checkbox',
                 orderable: false
             },
-			 { data: "SchülerID",
+			 { data: "SchuelerID",
 			  "render": function(data, type, row, meta){
             
                   document.getElementById("sid").value = data;
@@ -466,7 +466,7 @@
                 
 		},		
 				  {
-			 label: "SchülerID:",
+			 label: "SchuelerID:",
                 name: "sv_Noten.SchuelerID",
                 type: "readonly",
               
@@ -802,7 +802,7 @@ if ( table2 ) {
         <thead>
             <tr>
                 <th></th>
-				<th>SchülerID</th>
+				<th>SchuelerID</th>
                 <th>Vorname</th>
                 <th>Nachname</th>
 				<th>Klasse</th>

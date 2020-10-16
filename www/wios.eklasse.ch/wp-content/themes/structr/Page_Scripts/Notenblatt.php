@@ -69,7 +69,7 @@ $result = mysqli_query($con, $isEntry);
                 
 		},		
 				  {
-			 label: "SchülerID:",
+			 label: "SchuelerID:",
                 name: "sv_Noten.SchuelerID",
                 type: "readonly",
               
@@ -275,8 +275,8 @@ $result = mysqli_query($con, $isEntry);
                
 		},		
 				  {
-			 label: "SchülerID:",
-                name: "SchülerID",
+			 label: "SchuelerID:",
+                name: "SchuelerID",
                 type: "readonly"
               
 		},			

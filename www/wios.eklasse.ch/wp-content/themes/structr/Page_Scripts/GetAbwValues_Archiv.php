@@ -20,16 +20,16 @@ $semester=$_GET['s'];
 $Tab=$semester."_AbwesenheitenKompakt";
 				
 
-$isEntry = "Select * From $Tab where Kursname='$Kursname'  Group by SchülerID order by Nachname asc ";
+$isEntry = "Select * From $Tab where Kursname='$Kursname'  Group by SchuelerID order by Nachname asc ";
 $result = mysqli_query( $con, $isEntry );
 $events = array();
 
 while ( $line2 = mysqli_fetch_array( $result ) ) {
-	$ID = $line2[ 'SchülerID' ];
+	$ID = $line2[ 'SchuelerID' ];
 	$Vorname = $line2[ 'Vorname' ];
 	$Nachname = $line2[ 'Nachname' ];
 
-	$isEntry1 = "Select * From $Tab where SchülerID=$ID and Kursname ='$Kursname' Order by Datum asc ";
+	$isEntry1 = "Select * From $Tab where SchuelerID=$ID and Kursname ='$Kursname' Order by Datum asc ";
 	$result1 = mysqli_query( $con, $isEntry1 );
 	$abwges = 0;
 	$y = 0;

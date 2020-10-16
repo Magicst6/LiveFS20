@@ -5,14 +5,14 @@ $semester =$_GET['s'];
 
 $Tab="sv_LernenderKurs";
 
-$isEntry= "Select SchülerID From $Tab Where KursID='$Kursname' ";
+$isEntry= "Select SchuelerID From $Tab Where KursID='$Kursname' ";
 $result = mysqli_query($con,$isEntry);
 $resultarr = array();
 
 
 while( $line2= mysqli_fetch_assoc($result))
 {
-    $resultarr[] = $line2['SchülerID'];
+    $resultarr[] = $line2['SchuelerID'];
 }
 $uniquearr = array_unique($resultarr);
 

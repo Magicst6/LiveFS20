@@ -32,7 +32,7 @@ include 'db.php';
       
         while( $value5= mysqli_fetch_array($result5)){
 			
-			$ID=$value5['SchülerID'];
+			$ID=$value5['SchuelerID'];
 			
 			$KursID=$value5['KursID'];
 		 
@@ -67,7 +67,7 @@ include 'db.php';
 			$Schuelerschnitt=$Notengesamt/$Gewges;
 			if ($Schuelerschnitt>0){
 				//echo $Schuelerschnitt;
-			  $sql_befehl = "Update sv_LernenderKurs SET Notenschnitt='$Schuelerschnitt' Where  KursID='$KursID' and SchülerID='$ID'";
+			  $sql_befehl = "Update sv_LernenderKurs SET Notenschnitt='$Schuelerschnitt' Where  KursID='$KursID' and SchuelerID='$ID'";
                
                     mysqli_query($con, $sql_befehl);
                  
@@ -126,8 +126,8 @@ var	editor1;
                 name: "Klasse",
 			    type: "readonly"
             }, {
-                label: "SchülerID:",
-                name: "SchülerID"
+                label: "SchuelerID:",
+                name: "SchuelerID"
             },
 				{
                 label: "KursID:",
@@ -278,7 +278,7 @@ var	editor1;
             { data: "Vorname" },
             { data: "Nachname" },
 			{ data: "Klasse" },
-            { data: "SchülerID" },
+            { data: "SchuelerID" },
             { data: "KursID" },
 			{ data: "Notenschnitt" }
            
@@ -465,7 +465,7 @@ var	editor1;
                 <th>Vorname</th>
                 <th>Nachname</th>
 				<th>Klasse</th>
-                <th>SchülerID</th>
+                <th>SchuelerID</th>
 				<th>KursID</th>
 				<th>Notenschnitt</th>
             </tr>

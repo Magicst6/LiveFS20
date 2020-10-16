@@ -86,7 +86,7 @@ $wert=$_POST[$Note];
 
 
 
-$sql_befehl1 = "UPDATE sv_LernenderKurs SET $Note = '$wert' WHERE KursID = '$Kursname' AND SchülerID='$Schueler' ";
+$sql_befehl1 = "UPDATE sv_LernenderKurs SET $Note = '$wert' WHERE KursID = '$Kursname' AND SchuelerID='$Schueler' ";
 
 //echo $sql_befehl1;
 

@@ -43,7 +43,7 @@ Editor::inst( $db, 'sv_Noten' )
             ) ),
         Field::inst( 'sv_Noten.SchuelerID' )
 	 ->validator( Validate::notEmpty( ValidateOptions::inst()
-                ->message( 'SchülerID benötigt' )   ) ),
+                ->message( 'SchuelerID benötigt' )   ) ),
         Field::inst( 'sv_Noten.Name' ),
       
 	

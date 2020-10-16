@@ -11,7 +11,7 @@ include 'db.php';
 //$Lehrer=$output_array[1];
 
 $y=0;
-$Kursname='KV1.bk.WS19';
+$Kursname=$_GET['q'];
 $KlasseInput=$_GET['k'];
 $Lehrer=$_GET['l'];
 
@@ -20,7 +20,7 @@ $Lehrer=$_GET['l'];
 preg_match("/:(.*)/", $Lehrer, $output_array);
 $Lehrer=$output_array[1];
 
-$semester='WS19';
+$semester=$_GET['s'];
 $isEntry = "Select * From sv_Settings ";
 $result = mysqli_query($con, $isEntry);
 

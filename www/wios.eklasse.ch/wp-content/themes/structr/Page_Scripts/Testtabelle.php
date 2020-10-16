@@ -221,12 +221,12 @@ if ( $Kursname <> '' && $Kursname <> "-Select-" ) {
 
 
 
-	$isEntry2 = "SELECT  SchülerID From sv_LernenderKurs where KursID='$Kursname' ";
+	$isEntry2 = "SELECT  SchuelerID From sv_LernenderKurs where KursID='$Kursname' ";
 	$result2 = mysqli_query( $con, $isEntry2 );
 	$s = 0;
 	while ( $value0 = mysqli_fetch_array( $result2 ) ) {
 
-		$IDAK = $value0[ 'SchülerID' ];
+		$IDAK = $value0[ 'SchuelerID' ];
 
 		if ( $IDSchueler <> null ) {
 			$s++;
@@ -270,7 +270,7 @@ if ( $Kursname <> '' && $Kursname <> "-Select-" ) {
 					$Nameb = "Name" . $b;
 
 
-					$isEntry1 = "SELECT  $Noteb,$Dateb,$Nameb,$Gewb From sv_LernenderKurs where SchülerID='$IDAK' and KursID='$Kursname' ";
+					$isEntry1 = "SELECT  $Noteb,$Dateb,$Nameb,$Gewb From sv_LernenderKurs where SchuelerID='$IDAK' and KursID='$Kursname' ";
 					$result1 = mysqli_query( $con, $isEntry1 );
 
 					while ( $value1 = mysqli_fetch_array( $result1 ) ) {
@@ -322,7 +322,7 @@ if ( $Kursname == "alle Kurse" ) {
 
 
 
-	$isEntry2 = "SELECT  KursID From sv_LernenderKurs where SchülerID='$IDSchueler' ";
+	$isEntry2 = "SELECT  KursID From sv_LernenderKurs where SchuelerID='$IDSchueler' ";
 	$result2 = mysqli_query( $con, $isEntry2 );
 	$s = 0;
 	while ( $value0 = mysqli_fetch_array( $result2 ) ) {
@@ -357,7 +357,7 @@ echo "<h3>Gesamtnote:<h3>";
 			$Nameb = "Name" . $b;
 
 
-			$isEntry1 = "SELECT  $Noteb,$Dateb,$Nameb,$Gewb From sv_LernenderKurs where SchülerID='$IDSchueler' and KursID='$KursIDAK' ";
+			$isEntry1 = "SELECT  $Noteb,$Dateb,$Nameb,$Gewb From sv_LernenderKurs where SchuelerID='$IDSchueler' and KursID='$KursIDAK' ";
 			$result1 = mysqli_query( $con, $isEntry1 );
 
 			while ( $value1 = mysqli_fetch_array( $result1 ) ) {

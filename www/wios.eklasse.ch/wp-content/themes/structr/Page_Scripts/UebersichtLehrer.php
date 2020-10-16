@@ -135,7 +135,95 @@
 		var table1;
 	$(document).ready(function() {
   
- 
+    var calendar = $('#calendarklbu').fullCalendar({
+
+                editable:false,
+		   
+		   height:400,
+
+                defaultView:'listMonth',
+
+                header:{
+
+                    left:'prev,next today',
+
+                    center:'title',
+
+                    right:'month,agendaWeek,agendaDay,listMonth'
+
+                },
+
+                navLinks: true, // can click day/week names to navigate views
+
+                editable: false,
+
+                locale: 'de',
+
+                theme:'jquery-ui',
+
+                eventLimit: true, // allow "more" link when too many events
+
+                events:  "/wp-content/themes/structr/Page_Scripts/GetKlBuValues.php?q="+ document.getElementById('curruser').value,
+
+                eventTextColor: 'black',
+
+                selectable:true,
+
+		         displayEventTime : false,
+		   
+                selectHelper:true,
+  eventClick:function(event)
+
+                {
+                           document.getElementById('Kursnm').value=event.kursid;
+					
+					
+								
+							
+						
+								 if (window.XMLHttpRequest) {
+
+                        // code for IE7+, Firefox, Chrome, Opera, Safari
+
+                        xmlhttp = new XMLHttpRequest();
+
+                    } else {
+
+                        // code for IE6, IE5
+
+                        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+
+                    }
+
+                    xmlhttp.onreadystatechange = function () {
+
+                        if (this.readyState == 4 && this.status == 200) {
+
+                            document.getElementById("lernende").innerHTML = this.responseText;
+
+                        }
+
+                    };
+
+
+
+                    xmlhttp.open("GET", "/Ajax_Scripts/showlernendeLehrer.php?q=" + event.kursid +  "&h=" + event.datum +"&k="+document.getElementById("lehrer").value +"&j="+event.lektionen  , true);
+
+                   xmlhttp.send();
+
+					check();
+					
+                     window.location.hash = "lernende";
+                            },
+	eventRender: function (event, element) {
+    element.find('.fc-title').html(event.title);/*For Month,Day and Week Views*/
+    element.find('.fc-list-item-title').html(event.title);/*For List view*/
+}
+		   
+    
+		   
+                
+        });
 	//var data= [{"Note":"6","Name":"dsgs","Gewichtung":"0","Datum":"2019-06-16"},{"Note":"2","Name":"dsgs","Gewichtung":"0","Datum":"2019-06-16"},{"Note":"3.7","Name":"dsgs","Gewichtung":"25","Datum":"2019-06-16"}]  ;
 	
  
@@ -551,7 +639,7 @@ tr.shown td.details-control:before {
 
             };
 
-            xmlhttp.open("GET","/Ajax_Scripts/showlernendeLehrer.php?q="+str+"&k="+document.getElementById("lehrerklbu").value+"&h="+document.getElementById("date").value,true);
+            xmlhttp.open("GET","/Ajax_Scripts/showlernendeLehrer.php?q="+str+"&k="+document.getElementById("lehrerklbu").value+"&h="+document.getElementById("today").value,true);
 
             xmlhttp.send();
 
@@ -685,6 +773,20 @@ include 'db.php';
 
 
 
+
+
+$isEntrykl= "Select Klassenbuch From sv_Settings ";
+
+$resultkl = mysqli_query($con, $isEntrykl);
+
+
+
+while( $linekl= mysqli_fetch_assoc($resultkl))
+
+{
+
+$isKlBu=$linekl['Klassenbuch'];	
+}
 global $current_user;
 
 get_currentuserinfo();
@@ -773,13 +875,23 @@ while( $line2= mysqli_fetch_assoc($result))
 
 
 
-?>
-<br>
-<br>Kursname:<br>
 
-<select id="Kursnm" name="Kursnm" required="required"  onchange="test10(this.value)">
+	
+if ($isKlBu=="true"){
+	
+	
+echo 'Bitte den Termin des Kurses im Kalender anklicken, um das Klassenbuch auszufüllen!!';
+echo '<div id="calendarklbu"></div>';
+echo '<br><br>';
+echo 'Kursname:<br>';
+echo '<input id="Kursnm" name="Kursnm" required="required"  onchange="test10(this.value)" readonly=readonly>';
+	
+}	else {
+	echo '	<br><br>';
 
-    <?php
+echo '<select id="Kursnm" name="Kursnm" required="required"  onchange="test10(this.value)">';
+
+    
 
     include 'db.php';
 
@@ -831,21 +943,18 @@ while( $line2= mysqli_fetch_assoc($result))
 
     }
 
-    ?>
+    
 
 
 
-</select>
+echo '</select>';
+	}
+		?>
+		
+		
+	
+<input type="hidden" name="today" id="today" value="<?php echo $heute ?>" class="text ui-widget-content ui-corner-all" readonly >
 
-<br><br>
-
-Aktuelles Datum:
-
-<br><br>
-
-<input style="width: 145px;" name="date" id="date" type="date" value="<?php echo $heute;?>"  onchange="testdate(this.value)"  required="required" />
-
-<br><br>
 
 <div id="lernende"><b>Abwesenheiten werden hier eingetragen...</b></div>
 
@@ -3311,9 +3420,9 @@ include 'db.php';
 
 $today=date("Y-m-d");
 
-$delOlder= "Delete  From sv_KurseAll Where Datum < '$today' ";
+//$delOlder= "Delete  From sv_KurseAll Where Datum < '$today' ";
 
-mysqli_query($con,$delOlder);
+//mysqli_query($con,$delOlder);
 
 
 
@@ -5348,7 +5457,7 @@ reloadpage1();
 												def: document.getElementById( "Kursname" ).value
 										},		
 												  {
-											 label: "SchülerID:",
+											 label: "SchuelerID:",
 												name: "SchuelerID",
 												type: "readonly",
 

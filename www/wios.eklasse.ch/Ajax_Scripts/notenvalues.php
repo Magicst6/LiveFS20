@@ -29,9 +29,9 @@ Editor::inst( $db, 'sv_LernenderKurs' )
             ->validator( Validate::notEmpty( ValidateOptions::inst()
                 ->message( 'Nachname benötigt' )  
             ) ),
-        Field::inst( 'SchülerID' )
+        Field::inst( 'SchuelerID' )
 	 ->validator( Validate::notEmpty( ValidateOptions::inst()
-                ->message( 'SchülerID benötigt' )   ) ),
+                ->message( 'SchuelerID benötigt' )   ) ),
         Field::inst( 'Name1' ),
         Field::inst( 'Name2' ),
         Field::inst( 'Name3' ),

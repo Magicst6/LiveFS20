@@ -83,7 +83,7 @@ else {
 				
 			       $SID=$line1['ID'];
 			}
-			  $isEntryLK = "Select KursID From sv_LernenderKurs Where SchülerID =$SID";
+			  $isEntryLK = "Select KursID From sv_LernenderKurs Where SchuelerID =$SID";
             $resultLK = mysqli_query($con, $isEntryLK);
 
             while ($line6 = mysqli_fetch_array($resultLK)) {

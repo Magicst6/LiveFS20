@@ -102,7 +102,7 @@ echo $Note;
 
 
 
-$sql_befehl1 = "UPDATE sv_LernenderKurs SET Note$x = '$NoteWert', Name$x = '$NameWert' ,Gewichtung$x = '$GewichtungWert', Datum$x = '$DatumWert' WHERE KursID = '$Kursname' AND SchülerID='$Schueler' ";
+$sql_befehl1 = "UPDATE sv_LernenderKurs SET Note$x = '$NoteWert', Name$x = '$NameWert' ,Gewichtung$x = '$GewichtungWert', Datum$x = '$DatumWert' WHERE KursID = '$Kursname' AND SchuelerID='$Schueler' ";
 
 //echo $sql_befehl1;
 

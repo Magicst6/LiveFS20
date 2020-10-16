@@ -29,7 +29,7 @@ use
 
 	Editor::inst( $db, 'sv_LernenderKurs' )
     ->fields(
-	Field::inst( 'SchülerID' ),
+	Field::inst( 'SchuelerID' ),
         Field::inst( 'Vorname' )
             ->validator( Validate::notEmpty( ValidateOptions::inst()
                 ->message( 'Vorname muss angegeben werden' ) 

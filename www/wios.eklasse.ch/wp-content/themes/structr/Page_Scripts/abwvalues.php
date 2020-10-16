@@ -40,9 +40,9 @@ Editor::inst( $db, 'sv_AbwesenheitenKompakt' )
             ->validator( Validate::notEmpty( ValidateOptions::inst()
                 ->message( 'Kursname benötigt' )  
             ) ),
-        Field::inst( 'SchülerID' )
+        Field::inst( 'SchuelerID' )
 	 ->validator( Validate::notEmpty( ValidateOptions::inst()
-                ->message( 'SchülerID benötigt' )   ) ),
+                ->message( 'SchuelerID benötigt' )   ) ),
          Field::inst( 'Datum' )
 	  ->validator( Validate::dateFormat( 'Y-m-d' ) )
             ->getFormatter( Format::dateSqlToFormat( 'Y-m-d' ) )

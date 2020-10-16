@@ -112,7 +112,7 @@ $result = mysqli_query($con, $isEntry);
  
 	 
  
-        $isEntry4 = "SELECT * From $DBLK where Klasse='$Klasse'  group by SchülerID order by Nachname asc ";
+        $isEntry4 = "SELECT * From $DBLK where Klasse='$Klasse'  group by SchuelerID order by Nachname asc ";
 
         $result4 = mysqli_query($con,$isEntry4);
 
@@ -123,7 +123,7 @@ $result = mysqli_query($con, $isEntry);
 			
 			
 			
-			$ID=$value['SchülerID'];
+			$ID=$value['SchuelerID'];
 	
 			
 		
@@ -203,7 +203,7 @@ $result = mysqli_query($con, $isEntry);
         { 
 				  $h++;
 			$KursID=$value1['KursID'];
-			$isEntry5 = "SELECT * From $DBLK Where SchülerID=$ID  group by KursID ";
+			$isEntry5 = "SELECT * From $DBLK Where SchuelerID=$ID  group by KursID ";
 	
 			
         $result5 = mysqli_query($con,$isEntry5);

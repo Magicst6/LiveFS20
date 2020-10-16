@@ -193,14 +193,14 @@ function base64_decode(string){
 <?php
 	$Tab="sv_LernenderKurs";
 
-$isEntry= "Select SchülerID From $Tab Where KursID='$Kursname' ";
+$isEntry= "Select SchuelerID From $Tab Where KursID='$Kursname' ";
 $result = mysqli_query($con,$isEntry);
 $resultarr = array();
 
 
 while( $line2= mysqli_fetch_assoc($result))
 {
-    $resultarr[] = $line2['SchülerID'];
+    $resultarr[] = $line2['SchuelerID'];
 }
 $uniquearr = array_unique($resultarr);
 
@@ -244,7 +244,7 @@ echo "<option>" .'-Select-'. "</option>";
     $Schueler=$output_array[1];
     if ($Schueler==""){$vr3=0;}
     else {$vr3= $Schueler;}
-    $isEntry = "SELECT * From sv_LernenderKurs Where KursID='$Kursname' AND SchülerID='$Schueler' ";
+    $isEntry = "SELECT * From sv_LernenderKurs Where KursID='$Kursname' AND SchuelerID='$Schueler' ";
     $result = mysqli_query($con, $isEntry);
     $y=0;
     while( $value= mysqli_fetch_array($result))
@@ -370,7 +370,7 @@ echo '<div id="myModal'.$i.'" class="modal">
           
 
             include "db.php";
-            $isEntry = "SELECT * From sv_LernenderKurs Where KursID='$Kursname' AND SchülerID='$Schueler' ";
+            $isEntry = "SELECT * From sv_LernenderKurs Where KursID='$Kursname' AND SchuelerID='$Schueler' ";
             $result = mysqli_query($con, $isEntry);
             $y=0;
 

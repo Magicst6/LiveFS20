@@ -5,7 +5,7 @@ include 'db.php';
 $Kursname = $_GET[ 'q' ];
 ///$Kursname= 'KV3.rw.FS20';
 
-$isEntry = "Select SchülerID From sv_LernenderKurs where KursID='$Kursname'";
+$isEntry = "Select SchuelerID From sv_LernenderKurs where KursID='$Kursname'";
 
 $result = mysqli_query( $con, $isEntry );
 $EMailall = '';
@@ -13,7 +13,7 @@ while ( $line3 = mysqli_fetch_array( $result ) )
 
 {
 
-	$ID = $line3[ 'SchülerID' ];
+	$ID = $line3[ 'SchuelerID' ];
 
 
 	$isEntry1 = "Select EMail From sv_LernendeModule where ID='$ID'";

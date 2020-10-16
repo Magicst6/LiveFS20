@@ -399,7 +399,7 @@ while( $row5= mysqli_fetch_array($result1))
 		if ($isProfil==1 or $Profil==''){
 
 
-            $isEntry4= "Select SchülerID, Vorname, Nachname, KursID From sv_LernenderKurs";
+            $isEntry4= "Select SchuelerID, Vorname, Nachname, KursID From sv_LernenderKurs";
 
             $result4 = mysqli_query($con, $isEntry4);
 
@@ -407,7 +407,7 @@ while( $row5= mysqli_fetch_array($result1))
 
             while ($row4 = mysqli_fetch_array($result4)) {
 
-                $ID= $row4['SchülerID'];
+                $ID= $row4['SchuelerID'];
 
                 $KursnameAbw =  $row4['KursID'];
 
@@ -421,7 +421,7 @@ while( $row5= mysqli_fetch_array($result1))
 
                 {
 
-                    $sql_befehl = "Update sv_LernenderKurs SET Vorname='$Vorname', Nachname='$Nachname' Where SchülerID='$ID' and KursID='$Kursname'";
+                    $sql_befehl = "Update sv_LernenderKurs SET Vorname='$Vorname', Nachname='$Nachname' Where SchuelerID='$ID' and KursID='$Kursname'";
 
                     mysqli_query($con, $sql_befehl);
 
@@ -459,7 +459,7 @@ while( $row5= mysqli_fetch_array($result1))
 
             if ($dontFill == 0){
 
-                $sql_befehl = "INSERT INTO sv_LernenderKurs (KursID, SchülerID, Klasse, Vorname, Nachname) VALUES ('$Kursname', '$SchuelerID', '$Klasse', '$Vorname','$Nachname')";
+                $sql_befehl = "INSERT INTO sv_LernenderKurs (KursID, SchuelerID, Klasse, Vorname, Nachname) VALUES ('$Kursname', '$SchuelerID', '$Klasse', '$Vorname','$Nachname')";
 
                 mysqli_query($con, $sql_befehl);
 
@@ -582,7 +582,7 @@ while( $row5= mysqli_fetch_array($result1))
 
 
 
-            $isEntry4= "Select SchülerID, Vorname, Nachname, KursID From sv_LernenderKurs";
+            $isEntry4= "Select SchuelerID, Vorname, Nachname, KursID From sv_LernenderKurs";
 
             $result4 = mysqli_query($con, $isEntry4);
 
@@ -590,7 +590,7 @@ while( $row5= mysqli_fetch_array($result1))
 
             while ($row4 = mysqli_fetch_array($result4)) {
 
-                $ID= $row4['SchülerID'];
+                $ID= $row4['SchuelerID'];
 
                 $KursnameAbw =  $row4['KursID'];
 
@@ -604,7 +604,7 @@ while( $row5= mysqli_fetch_array($result1))
 
                 {
 
-                    $sql_befehl = "Update sv_LernenderKurs SET Vorname='$Vorname', Nachname='$Nachname' Where SchülerID='$ID' and KursID='$Kursname'";
+                    $sql_befehl = "Update sv_LernenderKurs SET Vorname='$Vorname', Nachname='$Nachname' Where SchuelerID='$ID' and KursID='$Kursname'";
 
                     mysqli_query($con, $sql_befehl);
 
@@ -642,7 +642,7 @@ while( $row5= mysqli_fetch_array($result1))
 
             if ($dontFill == 0 and strpos($Kursname, $Klasse) !== false){
 
-                $sql_befehl = "INSERT INTO sv_LernenderKurs (KursID, SchülerID, Klasse, Vorname, Nachname) VALUES ('$Kursname', '$SchuelerID', '$Klasse', '$Vorname','$Nachname')";
+                $sql_befehl = "INSERT INTO sv_LernenderKurs (KursID, SchuelerID, Klasse, Vorname, Nachname) VALUES ('$Kursname', '$SchuelerID', '$Klasse', '$Vorname','$Nachname')";
 
                 mysqli_query($con, $sql_befehl);
 

@@ -70,11 +70,11 @@ while ( $lineL = mysqli_fetch_array( $resultL ) ) {
 
 
 if ($semester==$semDB){
-    $isEntry = "Select * From sv_AbwesenheitenKompakt where SchülerID=$IDL  Group by Kursname ";
+    $isEntry = "Select * From sv_AbwesenheitenKompakt where SchuelerID=$IDL  Group by Kursname ";
 
 } else{
 
-    $isEntry = "Select * From $AbwArch where SchülerID=$IDL  Group by Kursname ";
+    $isEntry = "Select * From $AbwArch where SchuelerID=$IDL  Group by Kursname ";
 
 }
 
@@ -85,11 +85,11 @@ while ( $line2 = mysqli_fetch_array( $result ) ) {
 	$Kursname = $line2[ 'Kursname' ];
 
     if ($semester==$semDB){
-        $isEntry1 = "Select * From sv_AbwesenheitenKompakt where SchülerID=$IDL and Kursname ='$Kursname' Order by Datum asc ";
+        $isEntry1 = "Select * From sv_AbwesenheitenKompakt where SchuelerID=$IDL and Kursname ='$Kursname' Order by Datum asc ";
 
     } else{
 
-        $isEntry1 = "Select * From $AbwArch where SchülerID=$IDL and Kursname ='$Kursname' Order by Datum asc ";
+        $isEntry1 = "Select * From $AbwArch where SchuelerID=$IDL and Kursname ='$Kursname' Order by Datum asc ";
     }
 
 

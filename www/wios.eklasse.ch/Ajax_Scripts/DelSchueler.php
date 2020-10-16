@@ -28,7 +28,7 @@ $Vorname	=$row['Vorname'];
 $isEntry = "Delete From sv_Lernende where ID ='$ID'";
 mysqli_query( $con, $isEntry );
 
-$isEntry1 = "Delete From sv_LernenderKurs where SchülerID ='$LMID' and Klasse ='$Klasse'";
+$isEntry1 = "Delete From sv_LernenderKurs where SchuelerID ='$LMID' and Klasse ='$Klasse'";
 mysqli_query( $con, $isEntry1 );
 ?>
 

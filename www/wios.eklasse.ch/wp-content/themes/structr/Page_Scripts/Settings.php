@@ -52,7 +52,7 @@ form.submit();
 <?php
 
 include 'db.php';
-$isEntry = "SELECT Semesterkuerzel, Semesteranfang, Semesterende, Ferien1von, Ferien1bis, Ferien2von, Ferien2bis, Ferien3von, Ferien3bis, Ferien4von, Ferien4bis,Ferien5von, Ferien5bis From sv_Settings";
+$isEntry = "SELECT Semesterkuerzel, Semesteranfang, Semesterende, Ferien1von, Ferien1bis, Ferien2von, Ferien2bis, Ferien3von, Ferien3bis, Ferien4von, Ferien4bis,Ferien5von, Ferien5bis, Klassenbuch From sv_Settings";
 
 $result = mysqli_query($con, $isEntry);
 
@@ -88,6 +88,8 @@ while( $value= mysqli_fetch_array($result)) {
     $Ferien5von = $value['Ferien5von'];
 
     $Ferien5bis = $value['Ferien5bis'];
+	
+	$Klassenbuch = $value['Klassenbuch'];
 
 
 
@@ -162,11 +164,24 @@ while( $value= mysqli_fetch_array($result)) {
     <input name="Ferien5von"  id="f51" type="date" onclick="empty51()" value="<?php echo $Ferien5von ?>" />
     bis:
     <input name="Ferien5bis" id="f52" type="date" onclick="empty52()" value="<?php echo $Ferien5bis ?>" />
-    <br>
-    <br>
+    <br><br>
+	
+	_______________________________________________
+	<h4>Klassenbucheinstellungen</h4>
+	<? if ($Klassenbuch=="true")
+{
+	echo '<input type="checkbox" id="Klassenbuch" name="Klassenbuch"  value="true" checked>';
+} else{
+	echo '<input type="checkbox" id="Klassenbuch" name="Klassenbuch"  value="true" >';
+}
+	
+	?>
+	
+	 <label for="Klassenbuch"> Das Klassenbuch mit den Kursterminen verknüpfen</label><br>
+    <br><br>
     <input name="Senden" type="button" onClick="subm(this.form);" value="Einstellungen übernehmen"   /></form>
 
-
+     
 
 	
 	
@@ -175,6 +190,11 @@ while( $value= mysqli_fetch_array($result)) {
 
 <script>
 
+	 function test() {
+       alert();  
+		
+		 
+	 }
 	
 function dbbackup(){
 

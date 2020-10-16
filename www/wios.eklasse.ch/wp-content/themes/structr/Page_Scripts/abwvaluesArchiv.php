@@ -38,9 +38,9 @@ Editor::inst( $db, $semester.'_AbwesenheitenKompakt' )
             ->validator( Validate::notEmpty( ValidateOptions::inst()
                 ->message( 'Kursname benötigt' )  
             ) ),
-        Field::inst( 'SchülerID' )
+        Field::inst( 'SchuelerID' )
 	 ->validator( Validate::notEmpty( ValidateOptions::inst()
-                ->message( 'SchülerID benötigt' )   ) ),
+                ->message( 'SchuelerID benötigt' )   ) ),
          Field::inst( 'Datum' )
 	  ->validator( Validate::dateFormat( 'Y-m-d' ) )
             ->getFormatter( Format::dateSqlToFormat( 'Y-m-d' ) )
@@ -73,7 +73,7 @@ Editor::inst( $db, $semester.'_AbwesenheitenKompakt' )
        
     )
 	  
-	->where( 'SchülerID', $Schueler)
+	->where( 'SchuelerID', $Schueler)
     ->where( 'Kursname', $Kursname)
 	->process( $_POST )
     ->json();

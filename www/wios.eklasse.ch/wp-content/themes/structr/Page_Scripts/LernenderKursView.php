@@ -42,7 +42,7 @@ include 'db.php';
       
         while( $value5= mysqli_fetch_array($result5)){
 			
-			$ID=$value5['SchülerID'];
+			$ID=$value5['SchuelerID'];
 			
 			$KursID=$value5['KursID'];
 		 
@@ -77,7 +77,7 @@ include 'db.php';
 			$Schuelerschnitt=$Notengesamt/$Gewges;
 			if ($Schuelerschnitt>0){
 				//echo $Schuelerschnitt;
-			  $sql_befehl = "Update sv_LernenderKurs SET Notenschnitt='$Schuelerschnitt' Where  KursID='$KursID' and SchülerID='$ID'";
+			  $sql_befehl = "Update sv_LernenderKurs SET Notenschnitt='$Schuelerschnitt' Where  KursID='$KursID' and SchuelerID='$ID'";
                
                     mysqli_query($con, $sql_befehl);
                  
@@ -202,8 +202,8 @@ var editor; // use a global for the submit and return data rendering in the exam
         }, 
         table: "#dtbl",
         fields: [ {
-                label: "SchülerID:",
-                name: "SchülerID",
+                label: "SchuelerID:",
+                name: "SchuelerID",
 			    type: "readonly"
             },			
 			{
@@ -292,7 +292,7 @@ var editor; // use a global for the submit and return data rendering in the exam
                 className: 'select-checkbox',
                 orderable: false
             },
-			 { data: "SchülerID" },
+			 { data: "SchuelerID" },
             { data: "Vorname" },
             { data: "Nachname" },
 			{ data: "Klasse" },
@@ -744,7 +744,7 @@ Schüler dem ausgewählten Kurs hinzufügen:
         <thead>
             <tr>
                 <th></th>
-				<th>SchülerID</th>
+				<th>SchuelerID</th>
                 <th>Vorname</th>
                 <th>Nachname</th>
 				<th>Klasse</th>

@@ -31,11 +31,11 @@ preg_match( "/:(.*)/", $Lehrer, $output_array );
 $Lehrer = $output_array[ 1 ];
 
 if ($semester==$semDB || $semester==''){
-    $isEntry = "Select * From sv_AbwesenheitenKompakt where Kursname='$Kursname'  Group by SchülerID order by Nachname asc ";
+    $isEntry = "Select * From sv_AbwesenheitenKompakt where Kursname='$Kursname'  Group by SchuelerID order by Nachname asc ";
 
 } else{
 
-    $isEntry = "Select * From $AbwArch where Kursname='$Kursname'  Group by SchülerID order by Nachname asc ";
+    $isEntry = "Select * From $AbwArch where Kursname='$Kursname'  Group by SchuelerID order by Nachname asc ";
 
 }
 
@@ -44,15 +44,15 @@ $result = mysqli_query( $con, $isEntry );
 $events = array();
 
 while ( $line2 = mysqli_fetch_array( $result ) ) {
-	$ID = $line2[ 'SchülerID' ];
+	$ID = $line2[ 'SchuelerID' ];
 	$Vorname = $line2[ 'Vorname' ];
 	$Nachname = $line2[ 'Nachname' ];
     if ($semester==$semDB){
-        $isEntry1 = "Select * From sv_AbwesenheitenKompakt where SchülerID=$ID and Kursname ='$Kursname' Order by Datum asc ";
+        $isEntry1 = "Select * From sv_AbwesenheitenKompakt where SchuelerID=$ID and Kursname ='$Kursname' Order by Datum asc ";
 
     } else{
 
-        $isEntry1 = "Select * From $AbwArch where SchülerID=$ID and Kursname ='$Kursname' Order by Datum asc ";
+        $isEntry1 = "Select * From $AbwArch where SchuelerID=$ID and Kursname ='$Kursname' Order by Datum asc ";
 
     }
 
@@ -116,7 +116,7 @@ while ( $line2 = mysqli_fetch_array( $result ) ) {
 
 	
 	
-	$isEntryUpd = "UPDATE sv_LernenderKurs SET Abwesenheiten = '$abwges' where SchülerID='$SchID' and KursID ='$Kursname'";
+	$isEntryUpd = "UPDATE sv_LernenderKurs SET Abwesenheiten = '$abwges' where SchuelerID='$SchID' and KursID ='$Kursname'";
 	mysqli_query( $con, $isEntryUpd );	
 
 }

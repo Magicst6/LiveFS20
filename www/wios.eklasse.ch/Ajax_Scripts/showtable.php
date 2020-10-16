@@ -174,7 +174,7 @@ $issent=0;
         {
 			  echo "<tr>";
        
-			$ID=$value1['SchülerID'];
+			$ID=$value1['SchuelerID'];
 				
 			 $isEntry1 = "SELECT * From $DBLM Where ID='$ID'  ";
 
