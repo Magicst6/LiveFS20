@@ -415,7 +415,9 @@
                 {
                            document.getElementById('Kursnm').value=event.kursid;
 					
-						
+						 startevtime = $.fullCalendar.formatDate(event.start, "HH:mm");
+
+                    endevtime = $.fullCalendar.formatDate(event.end, "HH:mm");
 							
 						
 								 if (window.XMLHttpRequest) {
@@ -444,7 +446,7 @@
 
 
 
-                    xmlhttp.open("GET", "/Ajax_Scripts/showlernendeLehrer.php?q=" + event.kursid +  "&h=" + event.datum +"&k="+document.getElementById("lehrer").value +"&j="+event.lektionen  , true);
+                    xmlhttp.open("GET", "/Ajax_Scripts/showlernendeLehrer.php?q=" + event.kursid +  "&h=" + event.datum +"&k="+document.getElementById("lehrer").value +"&j="+event.lektionen +"&s="+startevtime +"&e="+endevtime  , true);
 
                    xmlhttp.send();
 

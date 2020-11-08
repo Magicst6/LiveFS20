@@ -175,6 +175,8 @@ $issent=0;
 			  echo "<tr>";
        
 			$ID=$value1['SchuelerID'];
+			
+		//	echo $ID;
 				
 			 $isEntry1 = "SELECT * From $DBLM Where ID='$ID'  ";
 
@@ -193,6 +195,7 @@ $issent=0;
             $Gewges=0;
 			for ($i=1;$i<=$z;$i++){
           $isEntry2 = "SELECT * From $DBNoten Where SchuelerID='$ID' and KursID='$KursID' and Name= '${'PrName' . $i}' order by Datum asc ";
+		//		echo $isEntry2;
           $isentall=$isEntry2.$isent1.$isent2;
           $result2 = mysqli_query($con,$isentall);
 
@@ -204,6 +207,8 @@ $issent=0;
           while( $value3= mysqli_fetch_array($result2))
            
 			{
+			 
+			  if($value3['Note']){
            $u++;
 		  $Note=$value3['Note'];
 			    $Gew=$value3['Gewichtung'];
@@ -219,13 +224,14 @@ $issent=0;
 			
 		 
 			
-		  }if ($u==0){
+		  }
+		  }
+				if ($u==0){
 			  echo '<td></td>';
 			  
 		echo '<td></td>';
 			  
 		  }
-			  
 			}
 			
 			$Schuelerschnitt=$Notengesamt/$Gewges;
@@ -253,10 +259,13 @@ $issent=0;
 		  
            while( $value4= mysqli_fetch_array($result))
            {
-			$y++;
+			
+			   if($value4['Note']){
+			   $y++;
 			$Noteschn=$value4['Note'];
 			
-			$NoteAll=$NoteAll+$Noteschn; 
+			$NoteAll=$NoteAll+$Noteschn;
+			   }
 	       }
 			
 		    $Schnitt="";

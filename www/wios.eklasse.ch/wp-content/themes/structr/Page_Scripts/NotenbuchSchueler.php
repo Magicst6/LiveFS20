@@ -151,12 +151,7 @@
 
 			},
 			columns: [ 
-				{
-					className: '',
-					defaultContent: '',
-					data: null,
-					orderable: false
-				},
+			
 				{
 					className: 'details-control',
 					defaultContent: '',
@@ -230,12 +225,7 @@
 
 			},
 			columns: [ 
-				 {
-					className: '',
-					defaultContent: '',
-					data: null,
-					orderable: false
-				},
+			
 				{
 					className: 'details-control',
 					defaultContent: '',
@@ -626,7 +616,6 @@ Wählen Sie das Semester aus :
 				<thead>
 					<tr>
 						<th></th>
-						<th></th>
 						<th>Kursname</th>
 						<th>Notenschnitt</th>
 					</tr>
@@ -649,7 +638,6 @@ Wählen Sie das Semester aus :
 			<table class="table table-striped table-hover datatables1">
 				<thead>
 					<tr>
-						<th></th>
 						<th></th>
 						<th>Kursname</th>
 						<th>Abwesenheiten Gesamt</th>

@@ -101,11 +101,11 @@
 			{
                 label: "Start:",
                 name: "Start",
-				type: "date"
+				
             }, {
                 label: "Ende:",
                 name: "Ende",
-				type: "date"
+				
             },
 			{
                 label: "Tag:",

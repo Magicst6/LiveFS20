@@ -10,7 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="/wp-content/themes/structr/Page_Scripts/DataTablesEditor/css/editor.dataTables.min.css">
 	<link rel="stylesheet" type="text/css" href="/wp-content/themes/structr/Page_Scripts/DataTablesEditor/css/editor.dataTables.min.css">
 	<link rel="stylesheet" type="text/css" href="/wp-content/themes/structr/Page_Scripts/DataTablesEditor/css/editor.dataTables.min.css">
-	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
 	
 	
@@ -19,7 +19,7 @@
 	<style type="text/css" class="init">
 
 	</style>
-	<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
 	<script type="text/javascript" language="javascript" src="/wp-content/themes/structr/Page_Scripts/DataTables-1.10.19/media/js/jquery.dataTables.js"></script>
 	<script type="text/javascript" language="javascript" src="/wp-content/themes/structr/Page_Scripts/DataTables-1.10.19/examples/resources/syntax/shCore.js"></script>
 	<script type="text/javascript" language="javascript" src="/wp-content/themes/structr/Page_Scripts/DataTables-1.10.19/examples/resources/demo.js"></script>
@@ -155,7 +155,7 @@ tableshow();
             "infoEmpty": "Keine Einträge",
             "infoPostFix": "",
             "infoFiltered": "(gefiltert aus insgesamt _MAX_ Einträgen)",
-            "loadingRecords": "keine Daten vorhanden oder es werden Daten geladen...",
+            "loadingRecords": "keine Daten vorhanden...",
             "lengthMenu": "Anzeigen von _MENU_ Einträgen",
             "paginate": {
                 "first": "Erste",
@@ -257,7 +257,7 @@ tableshow();
             "infoEmpty": "Keine Einträge",
             "infoPostFix": "",
             "infoFiltered": "(gefiltert aus insgesamt _MAX_ Einträgen)",
-            "loadingRecords": "keine Daten vorhanden oder es werden Daten geladen...",
+            "loadingRecords": "keine Daten vorhanden...",
             "lengthMenu": "Anzeigen von _MENU_ Einträgen",
             "paginate": {
                 "first": "Erste",
@@ -427,7 +427,7 @@ tableshow();
             "infoEmpty": "Keine Einträge",
             "infoPostFix": "",
             "infoFiltered": "(gefiltert aus insgesamt _MAX_ Einträgen)",
-            "loadingRecords": "keine Daten vorhanden oder es werden Daten geladen...",
+            "loadingRecords": "keine Daten vorhanden...",
             "lengthMenu": "Anzeigen von _MENU_ Einträgen",
             "paginate": {
                 "first": "Erste",
@@ -507,7 +507,7 @@ tableshow();
             "infoEmpty": "Keine Einträge",
             "infoPostFix": "",
             "infoFiltered": "(gefiltert aus insgesamt _MAX_ Einträgen)",
-            "loadingRecords": "keine Daten vorhanden oder es werden Daten geladen...",
+            "loadingRecords": "keine Daten vorhanden...",
             "lengthMenu": "Anzeigen von _MENU_ Einträgen",
             "paginate": {
                 "first": "Erste",
@@ -707,7 +707,7 @@ function neueNote( data ) {
 	 document.getElementById("Namecr").value = "";
 	 document.getElementById("Gewichtungcr").value = "";
 	 document.getElementById("Datumcr").value = "";
-			
+				reloadpage1();
 			      }
     }
 	
@@ -719,7 +719,8 @@ function neueNote( data ) {
 	 document.getElementById("Gewichtungcr").value = "";
 	 document.getElementById("Datumcr").value = "";
 		 
-		
+		reloadpage1();
+	
     }
 			
        
@@ -1074,7 +1075,7 @@ p.start-editing {
                 ]
         } );
     } );
-} );
+
 	
 function tableshowne() {
 	
@@ -1295,7 +1296,7 @@ Kursname:
 
     {
 
-        for($x = 1; $x <= 16; $x++)
+        for($x = 1; $x <= 30; $x++)
 
         {
 
@@ -1454,6 +1455,7 @@ Kurs:        <input id="Kurslb1" readonly><br><br>
             <p>Bitte hier eine neue Note eintragen..</p>
             
 			<input id="schid" type="hidden"  />
+		    Note:<br>
             <input id="Notecr" type="Text" onchange="iskomma(this)" required="required" />
             <br><br>
 			Prüfungsname:<br>
@@ -1464,9 +1466,10 @@ Kurs:        <input id="Kurslb1" readonly><br><br>
             <br><br>
 			Datum:<br>
             <input id="Datumcr" type="date"  required="required" />
-             <br><br>
+        <p id="messageNote"></p>    
+		<br><br>
             <input name="Speichern" type="button" value="Senden" onclick="sendNote()" />
-
+            
         <span class="close" onclick="reload.location()"  id="span2">&times;</span>
 
 
@@ -1594,7 +1597,7 @@ Kurs:        <input id="Kurslb1" readonly><br><br>
                 def: document.getElementById( "Kursname" ).value
 		},		
 				  {
-			 label: "SchülerID:",
+			 label: "SchuelerID:",
                 name: "SchuelerID",
                 type: "readonly",
               
@@ -1611,8 +1614,8 @@ Kurs:        <input id="Kurslb1" readonly><br><br>
                
             }, {
                 label: "Datum:",
-                name: "Datum",
-				 type: "date"
+                name: "Datum"
+				 
             }
 				
         ],i18n: {
@@ -1728,7 +1731,7 @@ Kurs:        <input id="Kurslb1" readonly><br><br>
             "infoEmpty": "Keine Einträge",
             "infoPostFix": "",
             "infoFiltered": "(gefiltert aus insgesamt _MAX_ Einträgen)",
-            "loadingRecords": "keine Daten vorhanden oder es werden Daten geladen...",
+            "loadingRecords": "keine Daten vorhanden...",
             "lengthMenu": "Anzeigen von _MENU_ Einträgen",
             "paginate": {
                 "first": "Erste",
@@ -1941,7 +1944,7 @@ window.location.href= "/notenbuch-lehrer?q=" + encrypted;
             "infoEmpty": "Keine Einträge",
             "infoPostFix": "",
             "infoFiltered": "(gefiltert aus insgesamt _MAX_ Einträgen)",
-            "loadingRecords": "keine Daten vorhanden oder es werden Daten geladen...",
+            "loadingRecords": "keine Daten vorhanden...",
             "lengthMenu": "Anzeigen von _MENU_ Einträgen",
             "paginate": {
                 "first": "Erste",
@@ -2072,7 +2075,7 @@ window.location.href= "/notenbuch-lehrer?q=" + encrypted;
             "infoEmpty": "Keine Einträge",
             "infoPostFix": "",
             "infoFiltered": "(gefiltert aus insgesamt _MAX_ Einträgen)",
-            "loadingRecords": "keine Daten vorhanden oder es werden Daten geladen...",
+            "loadingRecords": "keine Daten vorhanden...",
             "lengthMenu": "Anzeigen von _MENU_ Einträgen",
             "paginate": {
                 "first": "Erste",
@@ -2213,7 +2216,7 @@ window.location.href= "/notenbuch-lehrer?q=" + encrypted;
             "infoEmpty": "Keine Einträge",
             "infoPostFix": "",
             "infoFiltered": "(gefiltert aus insgesamt _MAX_ Einträgen)",
-            "loadingRecords": "keine Daten vorhanden oder es werden Daten geladen...",
+            "loadingRecords": "keine Daten vorhanden...",
             "lengthMenu": "Anzeigen von _MENU_ Einträgen",
             "paginate": {
                 "first": "Erste",
@@ -2351,7 +2354,7 @@ window.location.href= "/notenbuch-lehrer?q=" + encrypted;
             "infoEmpty": "Keine Einträge",
             "infoPostFix": "",
             "infoFiltered": "(gefiltert aus insgesamt _MAX_ Einträgen)",
-            "loadingRecords": "keine Daten vorhanden oder es werden Daten geladen...",
+            "loadingRecords": "keine Daten vorhanden...",
             "lengthMenu": "Anzeigen von _MENU_ Einträgen",
             "paginate": {
                 "first": "Erste",
@@ -2439,7 +2442,8 @@ function sendNote(){
 
 			}
 
-
+if ((document.getElementById("Notecr").value != "") && (document.getElementById("Namecr").value != "") && (document.getElementById("Gewichtungcr").value != "") && (document.getElementById("Datumcr").value != ""))
+	{
 			
 			xmlhttp.open( "GET", "/Ajax_Scripts/createNote.php?q=" + document.getElementById( "Kursname" ).value+"&k="+ document.getElementById("schid").value +"&l=" +document.getElementById("Notecr").value +"&m="+ document.getElementById("Namecr").value +"&n=" +document.getElementById("Gewichtungcr").value +"&o="+document.getElementById("Datumcr").value +"&p="+document.getElementById("UID").value, true );
 
@@ -2451,17 +2455,20 @@ function sendNote(){
 	 document.getElementById("Gewichtungcr").value = "";
 	 document.getElementById("Datumcr").value = "";
 	tableshow1();
+		
+		
     //do what you need here
 }, 2000);
 		
 	
-	
+	alert("Note eingetragen!!");
 	}
-
+}
         function getK() {
 
             alert();
         }
+	
 
         function getKursname(){
 
@@ -2506,11 +2513,12 @@ function sendNote(){
 
 
 <style>
-	.left {
+		.left {
   float: auto;
   width: auto;
   padding: 10px;
-  border: 2px solid #3e4ac9;
+			box-shadow: 10px 20px 30px grey;
+  border: 1px solid black;
   text-align: center;
 			overflow-y:auto;
 }
@@ -2520,7 +2528,7 @@ function sendNote(){
   padding: 10px;
   border: 0px solid;
   text-align: center;
-			overflow-y:auto;
+		overflow-y:auto;
 }
 }
 	body {

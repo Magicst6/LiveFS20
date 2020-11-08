@@ -18,6 +18,9 @@ $Kursnme=$_GET['q'];
 $heute= $_GET['h'];
 $LektionenF=$_GET['j'];
 
+$start= $_GET['s'];
+$end=$_GET['e'];
+
 $Sg=$_GET['f'];
 
 
@@ -29,9 +32,13 @@ echo'<br><br>';
 
 echo '<input style="width: 145px;" name="date" id="date" type="date" value="'.$heute.'"  onchange="testdate(this.value)"  required="required" />';
 
+echo '<br>';
+if ($start){ 
+echo 'Start:  <strong>'.$start.' Uhr</strong>';
+echo '<br>';
+echo 'Ende: <strong>'.$end.' Uhr</strong>';
+}
 echo '<br><br>';
-
-
 if ($LektionenF){
 		   $Lektionen=$LektionenF;
 	   }

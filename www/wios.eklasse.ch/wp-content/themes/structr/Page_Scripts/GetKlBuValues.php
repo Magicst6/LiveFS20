@@ -45,13 +45,16 @@ $Lehrer=$output_array[1];
 				
 			}
 				
-				$isEntry5 = "Select * From sv_KurseAll Where KursID='$KursID1' and Datum='$Datum1'  ";
+				$isEntry5 = "Select * From sv_KurseAll Where KursID='$KursID1' and Datum='$Datum1' order by Start ";
             $result5 = mysqli_query($con, $isEntry5);
                $z=0;
 
             while ($line5 = mysqli_fetch_array($result5)) {
+				if ($z==0){
+					$startday=$line5['Start'];
+				}
 				$z++;
-				
+				$endday=$line5['Ende'];
 			}
 				
 				
@@ -65,6 +68,7 @@ $Lehrer=$output_array[1];
 				if (!in_array($line2['Datum'], $Datum)){ 
 					
 					unset($KursID);}
+				
 				if (in_array($line2['Datum'], $Datum) and  in_array($line2['KursID'], $KursID) )
 				{
 				}
@@ -74,8 +78,8 @@ $Lehrer=$output_array[1];
                    'isent' => $isEntered,
 					'id' => $line2['ID'],
                     'title' => $line2['Kursname'] . " Klasse: " . $line2['Klasse'] . " Zimmer: " . $line2['Zimmer'] . " Eingetragen: <strong style='color:".$bcol."'>" . $isEntered. "</strong></p>",
-                    'start' => $line2['Start'],
-                    'end' => $line2['Ende'],
+                    'start' => $startday,
+                    'end' => $endday,
 					 'datum' => $line2['Datum'],
                     'textColor' => $bcol,
                     'backgroundColor' => $line2['Farbe'],

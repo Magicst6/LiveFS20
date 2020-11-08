@@ -43,15 +43,11 @@ Editor::inst( $db, 'sv_KurseAll' )
             ->getFormatter( Format::dateSqlToFormat( 'Y-m-d' ) )
             ->setFormatter( Format::dateFormatToSql('Y-m-d' ) ),
 	
-     Field::inst( 'Start' )
-	  ->validator( Validate::dateFormat( 'Y-m-d H:i:s' ) )
-            ->getFormatter( Format::dateSqlToFormat( 'Y-m-d H:i:s' ) )
-            ->setFormatter( Format::dateFormatToSql('Y-m-d H:i:s' ) ),
+     Field::inst( 'Start' ),
+	
 	
 	 Field::inst( 'Ende' )
-	  ->validator( Validate::dateFormat( 'Y-m-d H:i:s' ) )
-            ->getFormatter( Format::dateSqlToFormat( 'Y-m-d H:i:s' ) )
-            ->setFormatter( Format::dateFormatToSql('Y-m-d H:i:s' ) )
+	  
 	
 	
     )

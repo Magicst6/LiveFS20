@@ -43,12 +43,18 @@ var	editor1;
 	var table1;
 		$(document).ready(function() {
 			
-			//loadeditor1();
+			tableshow();
 		});
 			
 
 	
 	function tableshow(){
+		
+		 var urlParams = new URLSearchParams(window.location.search);
+		var Kursnameenc = urlParams.get('q');	
+		var Kursname = atob(Kursnameenc);
+		
+		document.getElementById( "Kursname" ).value=Kursname;
 			
 	if ( table1 ) {
 		table1.destroy();
@@ -57,12 +63,12 @@ var	editor1;
 	if ( editor1 ) {
 		editor1.destroy();
 	}
-		loadeditor1();
+		loadeditor1(Kursname);
 	}
 
   
 
-	function loadeditor1(){
+	function loadeditor1(Kursname){
 	
 	 // Activate an inline edit on click of a table cell
     /*$('#dtbl1').on( 'click', 'tbody td:not(:first-child)', function (e) {
@@ -75,7 +81,7 @@ var	editor1;
 		 ajax:{
             url:  "/wp-content/themes/structr/Page_Scripts/getlernendeModuleKw1.php",
             type: 'POST',
-            data: {'KID':  document.getElementById( "Kursname" ).value
+            data: {'KID':  Kursname
                   
 			}
         }, 
@@ -204,18 +210,24 @@ var	editor1;
         ajax:{
             url:  "/wp-content/themes/structr/Page_Scripts/getlernendeModuleKw1.php",
             type: 'POST',
-            data: {'KID':  document.getElementById( "Kursname" ).value
+            data: {'KID': Kursname
                  
 			}
         }, 
         order: [[ 1, 'asc' ]],
         columns: [
-            {
-                data: null,
-                defaultContent: '',
-                className: 'select-checkbox',
-                orderable: false
-            },
+             {
+        className      : 'select-checkbox',
+        defaultContent : '',
+        data           : '',
+        orderable      : false
+      },
+			 {
+        className      : 'details-control',
+        defaultContent : '',
+        data           : 'cb',
+        orderable      : false
+      },
 			 { data: "sv_LernendeModule.ID" },
             { data: "sv_LernendeModule.Vorname" },
             { data: "sv_LernendeModule.Name" },
@@ -233,11 +245,7 @@ var	editor1;
 		  },
 			{ data: "sv_LernendeModule.Profil" },
 			{ data: "sv_LernendeModule.Loginname" },
-			{ data: "sv_LernendeModule.Modul1" },
-			{ data: "sv_LernendeModule.Modul2" },
-			{ data: "sv_LernendeModule.Modul3" },
-			{ data: "sv_LernendeModule.Modul4" },
-			{ data: "sv_LernendeModule.Modul5" },
+			
 			
 			{ data:  "sv_LernendeModule.ID",
          "render": function(data, type, row, meta){
@@ -302,8 +310,45 @@ var	editor1;
         }            
     } );
 		
-	}
+		
+		
+	
+	$('#dtbl1 tbody').on('click', 'td.details-control', function () {
+     var tr  = $(this).closest('tr'),
+         row = table1.row(tr);
+    
+     if (row.child.isShown()) {
+       tr.next('tr').removeClass('details-row');
+       row.child.hide();
+       tr.removeClass('shown');
+     }
+     else {
+       row.child(format(row.index())).show();
+       tr.next('tr').addClass('details-row');
+       tr.addClass('shown');
+     }
+  });
 
+	
+} 
+
+
+ 
+	
+	function reloadpage1()
+{
+ 	 
+var Kursnme = document.getElementById( "Kursname" ).value;
+	
+var encrypted = btoa(Kursnme);
+	
+	
+//U2FsdGVkX18ZUVvShFSES21qHsQEqZXMxQ9zgHy+bu0=
+
+window.location.href= "/meine-lernenden?q=" + encrypted;
+
+}
+	
 	function showoverview(id){
 		
 		window.open(
@@ -329,6 +374,67 @@ var	editor1;
 			
 		
 }
+	
+	 function format (ind) {
+		 var modul=null;
+		 var data = table1.rows().data();
+		//alert(data[ind].sv_LernendeModule.Modul1);
+	  var i;  
+	  var kurs=null;
+	  
+	  for(i=1; i<10; i++){
+		switch(i){
+			case 1:		
+				modul=data[ind].sv_LernendeModule.Modul1;
+				break;
+				case 2:		
+				 modul=data[ind].sv_LernendeModule.Modul2;
+				break;
+				case 3:		
+				modul=data[ind].sv_LernendeModule.Modul3;
+				break;
+				case 4:		
+				modul=data[ind].sv_LernendeModule.Modul4;
+				break;
+			    case 5:		
+				modul=data[ind].sv_LernendeModule.Modul5;
+				break;
+				case 6:		
+				modul=data[ind].sv_LernendeModule.Modul6;
+				break;
+			    case 7:		
+				modul=data[ind].sv_LernendeModule.Modul7;
+				break;
+				case 8:		
+				modul=data[ind].sv_LernendeModule.Modul8;
+				break;
+				case 9:		
+				modul=data[ind].sv_LernendeModule.Modul9;
+				break;
+			 
+		}
+				var Kursdt= modul;
+		
+		 
+		if ((Kursdt)){
+	  var z=null;
+	 var z= '<div class="details-container"><table cellpadding="5" cellspacing="0" border="0" class="details-table">'
+            
+		  +'<tr>'+
+                  '<td class="title"  width="1%">Modul'+i+':</td>'+
+                  '<td  width="12%"">'+Kursdt+'</td>'+
+          '</table>'+   
+		    '</div>';
+		if (kurs==null){
+	       kurs=z;
+		}
+			else kurs=kurs+z;
+		  }
+		  
+  }
+	  
+	  return kurs;
+  }
 	
 </script>
 
@@ -384,7 +490,7 @@ while( $line2= mysqli_fetch_assoc($result))
 Kursname:
 <br>
  
-<select id="Kursname" name="Kursname" required="required"  onchange="tableshow()">
+<select id="Kursname" name="Kursname" required="required"  onchange="reloadpage1()">
 
     <?php
 
@@ -448,15 +554,68 @@ Kursname:
 	 button {
           color: white;
         }
+	
 	</style>
+	<style>
+.container {
+  margin-top: 15px;
+}
+.container .details-row td {
+  padding: 0;
+  margin: 0;
+}
 
+.details-container {
+  width: 100%;
+  height: 100%;
+  background-color: #FFF;
+  padding-top: 5px;
+}
+
+.details-table {
+  width: 100%;
+  background-color: #FFF;
+  margin: 5px;
+}
+
+.title {
+  font-weight: bold;
+}
+
+.iconSettings, td.details-control:before, tr.shown td.details-control:before {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  font-size: 12px;
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  font-family: 'Glyphicons Halflings';
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+
+td.details-control {
+  cursor: pointer;
+  text-align: center;
+}
+td.details-control:before {
+  content: '\2b';
+}
+
+tr.shown td.details-control:before {
+  content: '\2212';
+}
+	</style>
 
 
 
 <table id="dtbl1" class="display" cellspacing="0" width="100%">
         <thead>
             <tr>
-                <th></th>
+				<th></th>
+				<th>Module</th>
 				<th>ID</th>
                 <th>Vorname</th>
                 <th>Nachname</th>
@@ -464,11 +623,6 @@ Kursname:
 				<th>Email</th>
 				<th>Profil</th>
 				<th>Loginname</th>
-				<th>Modul1</th>
-				<th>Modul2</th>
-				<th>Modul3</th>
-				<th>Modul4</th>
-				<th>Modul5</th>
 				<th>Übersicht</th>
             </tr>
         </thead>

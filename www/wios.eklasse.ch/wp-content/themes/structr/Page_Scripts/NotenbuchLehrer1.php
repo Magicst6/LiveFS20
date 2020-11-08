@@ -10,7 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="/wp-content/themes/structr/Page_Scripts/DataTablesEditor/css/editor.dataTables.min.css">
 	<link rel="stylesheet" type="text/css" href="/wp-content/themes/structr/Page_Scripts/DataTablesEditor/css/editor.dataTables.min.css">
 	<link rel="stylesheet" type="text/css" href="/wp-content/themes/structr/Page_Scripts/DataTablesEditor/css/editor.dataTables.min.css">
-	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
 	
 	
@@ -19,7 +19,7 @@
 	<style type="text/css" class="init">
 
 	</style>
-	<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+	<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
 	<script type="text/javascript" language="javascript" src="/wp-content/themes/structr/Page_Scripts/DataTables-1.10.19/media/js/jquery.dataTables.js"></script>
 	<script type="text/javascript" language="javascript" src="/wp-content/themes/structr/Page_Scripts/DataTables-1.10.19/examples/resources/syntax/shCore.js"></script>
 	<script type="text/javascript" language="javascript" src="/wp-content/themes/structr/Page_Scripts/DataTables-1.10.19/examples/resources/demo.js"></script>
@@ -52,45 +52,50 @@
 
 </html> -->
 <?
+
+
+
+
 include 'db.php';
 $Kursnme=base64_decode($_GET['q']);
-$sem=$_GET['sem'];
 
 
-$lkArch=$sem.'_LernenderKurs';
-
-$select='Select Nachname, Note1, Note2,Note3, Note4, Note5, Note6, Note7, Note8, Note9 From ';
-$sel=' Where KursID="';
-$sel1=$Kursnme;
-$sel2= '"';
- $isEntryUpd1 = "UPDATE sv_postmeta SET meta_value  = '$select$lkArch$sel$sel1$sel2' where post_id='18106' and meta_key='visualizer-db-query' ";
+$select='Select Nachname, Note1, Note2,Note3, Note4, Note5, Note6, Note7, Note8, Note9 From sv_LernenderKurs Where KursID="';
+ $sel1=$Kursnme;
+		
+$sel2= '" ';
+ $isEntryUpd1 = "UPDATE sv_postmeta SET meta_value  = '$select$sel1$sel2' where post_id='18106' and meta_key='visualizer-db-query' ";
 	mysqli_query( $con1, $isEntryUpd1 );	
 
 
 
 
-$select='Select Nachname, Abwesenheiten From ';
-$sel=' Where KursID="';
+$select='Select Nachname, Abwesenheiten From sv_LernenderKurs Where KursID="';
  $sel1=$Kursnme;
 		
 $sel2= '" ';
- $isEntryUpd2 = "UPDATE sv_postmeta SET meta_value  = '$select$lkArch$sel$sel1$sel2' where post_id='18110' and meta_key='visualizer-db-query' ";
+ $isEntryUpd2 = "UPDATE sv_postmeta SET meta_value  = '$select$sel1$sel2' where post_id='18110' and meta_key='visualizer-db-query' ";
 	mysqli_query( $con1, $isEntryUpd2 );	
 
 ?>
 <script>
+	
+
+
+	
+	
+	
+	
+	
 	var table;
 	var table1;
 	var tableedit;
 	var editor;
-	var tableedit1;
-	var editor1;
 	var table2;
 	var table3;
 	$(document).ready(function() {
  var urlParams = new URLSearchParams(window.location.search);
-	
-
+		
 tableshow();    
 	
 	});
@@ -106,14 +111,7 @@ tableshow();
 
             dataSrc: ""
         },
-        columns: [ 
-			{
-            className: '',
-            defaultContent: '',
-            data: null,
-            orderable: false
-        },
-			{
+        columns: [ {
             className: 'details-control',
             defaultContent: '',
             data: null,
@@ -150,8 +148,7 @@ tableshow();
                 orderable: false,
                 title:'Neue Note erstellen'
             },
-        ],
-		"language": {
+        ], "language": {
             "decimal": ",",
             "thousands": ".",
             "info": "Anzeige _START_ bis _END_ von _TOTAL_ Einträgen",
@@ -201,6 +198,28 @@ tableshow();
     } );
     table1 = $( '.datatables1' ).DataTable( {
 
+		 responsive: {
+            details: {
+                display: $.fn.dataTable.Responsive.display.modal( {
+                    header: function ( row ) {
+                        var data = row.data();
+                        return 'Notenschnitt des Schülers';
+                    }
+                } ),
+                renderer: function ( api, rowIdx, columns ) {
+                    var data = $.map( columns, function ( col, i ) {
+						if (col.data != ''){
+                        return '<tr>'+
+                                '<td>'+col.title+':'+'</td> '+
+                                '<td>'+col.data+'</td>'+
+                            '</tr>';
+					}
+                    } ).join('');
+ 
+                    return $('<table/>').append( data );
+                }
+            }
+        },
 
         ajax: {
 
@@ -209,14 +228,7 @@ tableshow();
             dataSrc: ""
         },
 
-        columns: [ 
-			{
-                className: '',
-                defaultContent: '',
-                data: null,
-                orderable: false
-            },
-			{
+        columns: [ {
             className: 'details-control',
             defaultContent: '',
             data: null,
@@ -238,7 +250,7 @@ tableshow();
             }
 
 
-        ],"language": {
+        ], "language": {
             "decimal": ",",
             "thousands": ".",
             "info": "Anzeige _START_ bis _END_ von _TOTAL_ Einträgen",
@@ -343,19 +355,6 @@ tableshow();
             tr.addClass( 'shown' );
         }
     } );
-		    $( '.datatables1 tbody' ).on( 'click', 'td.details-control1', function () {
-        var tr = $( this ).closest( 'tr' ),
-            row = table.row( tr );
-
-
-
-        row.child( showAbwesenheiten( row.data() ) ).show();
-        tr.next( 'tr' ).addClass( 'details-row' );
-        tr.addClass( 'shown' );
-
-
-    } );
-
 
     }
 
@@ -364,20 +363,36 @@ tableshow();
         table = $( '.datatables' ).DataTable( {
 
 
+			 responsive: {
+            details: {
+                display: $.fn.dataTable.Responsive.display.modal( {
+                    header: function ( row ) {
+                        var data = row.data();
+                        return 'Abwesenheiten des Schülers';
+                    }
+                } ),
+                renderer: function ( api, rowIdx, columns ) {
+                    var data = $.map( columns, function ( col, i ) {
+						if (col.data != ''){
+                        return '<tr>'+
+                                '<td>'+col.title+':'+'</td> '+
+                                '<td>'+col.data+'</td>'+
+                            '</tr>';
+					}
+                    } ).join('');
+ 
+                    return $('<table/>').append( data );
+                }
+            }
+        },
+			
             ajax: {
 
                 url: new_url,
 
                 dataSrc: ""
             },
-            columns: [ 
-				{
-                className: 'details-control',
-                defaultContent: '',
-                data: null,
-                orderable: false
-            },
-				{
+            columns: [ {
                 className: 'details-control',
                 defaultContent: '',
                 data: null,
@@ -405,7 +420,7 @@ tableshow();
                 }
 
 
-            ],"language": {
+            ], "language": {
             "decimal": ",",
             "thousands": ".",
             "info": "Anzeige _START_ bis _END_ von _TOTAL_ Einträgen",
@@ -463,15 +478,7 @@ tableshow();
                 dataSrc: ""
             },
 
-            columns: [ 
-				{
-                className: '',
-                defaultContent: '',
-                data: null,
-                orderable: false,
-
-            },
-				{
+            columns: [ {
                 className: 'details-control',
                 defaultContent: '',
                 data: null,
@@ -493,7 +500,7 @@ tableshow();
                 }
 
 
-            ],"language": {
+            ], "language": {
             "decimal": ",",
             "thousands": ".",
             "info": "Anzeige _START_ bis _END_ von _TOTAL_ Einträgen",
@@ -676,67 +683,8 @@ tableshow();
 	 //When the user clicks on <span> (x), close the modal
      document.getElementById("span").onclick = function() {
        document.getElementById("myModal").style.display = "none";
-	reloadpage1();
-    }
-			
-      
-		
-		}
+		reloadpage1();
 	
-	function showAbwesenheiten( data ) {
-			
-		
-				
-
-		if ( tableedit1 ) {
-		tableedit1.destroy();
-	}
-	
-	if ( editor1 ) {
-		editor1.destroy();
-	}
-
-	
-		
-		loadtable1(data[ "SchuelerID" ]);
-	loadeditor1(data[ "SchuelerID" ]);
-		
-       tableedit1.clear()
-		.draw();
-
-	
-	
-
-	var str = data[ "SchuelerID" ];
-	
-		
-	editor1 . field( 'SchuelerID' ) . def( str );
-	editor1 . field( 'Kursname' ) . def( document . getElementById( "Kursname" ) . value );
-	editor1 . submit();
-			
-			
-
-	 document.getElementById("Schuelerlb1").value=data['Vorname'] +' '+data['Nachname'];
-				document.getElementById("Kurslb1").value = document.getElementById("Kursname").value; 
-	
-
-
-			document.getElementById("myModal3").style.display = "block"; 
-				
-		
-   // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == document.getElementById("myModal3")) {
-         document.getElementById("myModal3").style.display = "none";
-			
-        }
-    }
-	
-	 //When the user clicks on <span> (x), close the modal
-     document.getElementById("span3").onclick = function() {
-       document.getElementById("myModal3").style.display = "none";
-		
-	reloadpage1();
     }
 			
       
@@ -744,8 +692,8 @@ tableshow();
 		}
 
 function neueNote( data ) {
-			 document.getElementById("Schuelerlb2").value=data['Vorname'] +' '+data['Nachname'];
-				document.getElementById("Kurslb2").value = document.getElementById("Kursname").value; 
+			 document.getElementById("Schuelerlb1").value=data['Vorname'] +' '+data['Nachname'];
+				document.getElementById("Kurslb1").value = document.getElementById("Kursname").value; 
 
 			 document.getElementById("schid").value=data['IDSchueler'];
 				document.getElementById("myModal2").style.display = "block"; 
@@ -759,7 +707,7 @@ function neueNote( data ) {
 	 document.getElementById("Namecr").value = "";
 	 document.getElementById("Gewichtungcr").value = "";
 	 document.getElementById("Datumcr").value = "";
-			
+				reloadpage1();
 			      }
     }
 	
@@ -770,8 +718,9 @@ function neueNote( data ) {
 	 document.getElementById("Namecr").value = "";
 	 document.getElementById("Gewichtungcr").value = "";
 	 document.getElementById("Datumcr").value = "";
-		reloadpage1(); 
-		
+		 
+		reloadpage1();
+	
     }
 			
        
@@ -780,87 +729,6 @@ function neueNote( data ) {
 		
 		}
 		
-	function neueAbw( data ) {
-			
-		
-			
-				document.getElementById("Kurslb4").value = document.getElementById("Kursname").value; 
-
-			 
-		document.getElementById("Vorname").value=data['Vorname'];
-		document.getElementById("Nachname").value=data['Nachname'];
-				document.getElementById("myModal4").style.display = "block"; 
-		
-   // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == document.getElementById("myModal4")) {
- 
-			document.getElementById("myModal4").style.display = "none";
-			 document.getElementById("Datumcr").value = "";
-	 document.getElementById("Klassecr").value = "";
-	 document.getElementById("Kommentarcr").value = "";
-	 document.getElementById("KommentarVerwcr").value = "";
-			document.getElementById("Abwcr").value = "";
-	 document.getElementById("Lehrercr").value = "";
-	 document.getElementById("Entschcr").value = "";
-			
-			      }
-    }
-	
-	 //When the user clicks on <span> (x), close the modal
-     document.getElementById("span4").onclick = function() {
-       document.getElementById("myModal4").style.display = "none";
-	 document.getElementById("Datumcr").value = "";
-	 document.getElementById("Klassecr").value = "";
-	 document.getElementById("Kommentarcr").value = "";
-	 document.getElementById("KommentarVerwcr").value = "";
-			document.getElementById("Abwcr").value = "";
-	 document.getElementById("Lehrercr").value = "";
-	 document.getElementById("Entschcr").value = "";
-		reloadpage1(); 
-		
-    }
-		}
-	function neueAbw1()  {
-			
-		
-			
-				document.getElementById("Kurslb4").value = document.getElementById("Kursname").value; 
-
-			 
-		
-				document.getElementById("myModal4").style.display = "block"; 
-		
-   // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == document.getElementById("myModal4")) {
- 
-			document.getElementById("myModal4").style.display = "none";
-			 document.getElementById("Datumcr").value = "";
-	 document.getElementById("Klassecr").value = "";
-	 document.getElementById("Kommentarcr").value = "";
-	 document.getElementById("KommentarVerwcr").value = "";
-			document.getElementById("Abwcr").value = "";
-	 document.getElementById("Lehrercr").value = "";
-	 document.getElementById("Entschcr").value = "";
-			
-			      }
-    }
-	
-	 //When the user clicks on <span> (x), close the modal
-     document.getElementById("span4").onclick = function() {
-       document.getElementById("myModal4").style.display = "none";
-	 document.getElementById("Datumcr").value = "";
-	 document.getElementById("Klassecr").value = "";
-	 document.getElementById("Kommentarcr").value = "";
-	 document.getElementById("KommentarVerwcr").value = "";
-			document.getElementById("Abwcr").value = "";
-	 document.getElementById("Lehrercr").value = "";
-	 document.getElementById("Entschcr").value = "";
-	reloadpage1();	 
-		
-    }
-		}
 
 
 
@@ -910,8 +778,8 @@ function neueNote( data ) {
 		};
 
 
-		var new_url = "/wp-content/themes/structr/Page_Scripts/GetNotenValuesArchiv.php?q=" + document.getElementById( "Kursname" ).value + "&s=" + document.getElementById( "Semester" ).value;
-		var new_url1 = "/wp-content/themes/structr/Page_Scripts/GetAbwValuesArchiv.php?k=" + document.getElementById( "Kursname" ).value + "&s=" + document.getElementById( "Semester" ).value;
+		var new_url = "/wp-content/themes/structr/Page_Scripts/GetNotenValues.php?q=" + document.getElementById( "Kursname" ).value + "&s=" + document.getElementById( "semDB" ).value;
+		var new_url1 = "/wp-content/themes/structr/Page_Scripts/GetAbwValues.php?k=" + document.getElementById( "Kursname" ).value + "&s=" + document.getElementById( "semDB" ).value;
 
 
       
@@ -1105,34 +973,6 @@ p.start-editing {
 	tr.shown td.details-control2:before {
 		content: url(/plussmall.png);
 	}
-		.iconSettings,
-	td.details-control3:before,
-	tr.shown td.details-control3:before {
-		margin-top: 5px;
-		margin-bottom: 10px;
-		font-size: 12px;
-		position: relative;
-		top: 1px;
-		display: inline-block;
-		font-family: 'Glyphicons Halflings';
-		font-style: normal;
-		font-weight: 400;
-		line-height: 1;
-		-webkit-font-smoothing: antialiased;
-	}
-	
-	td.details-control3 {
-		cursor: pointer;
-		text-align: center;
-	}
-	
-	td.details-control3:before {
-		content: '+';
-	}
-	
-	tr.shown td.details-control3:before {
-		content:'-';
-	}
 
 </style>
 
@@ -1320,32 +1160,11 @@ function tableshowne() {
 		}
 
 	}
-
-
-
- 
 </script>
 
-	
-
-
-<html>
-<body>
-	
 <?php
 
-
 include 'db.php';
-$isEntry = "Select * From sv_Settings ";
-$result = mysqli_query($con, $isEntry);
-
-while ($line1 = mysqli_fetch_array($result)) {
-
-    $semDB=$line1['Semesterkuerzel'];
-
-}
-
-
 
 global $current_user;
 
@@ -1419,11 +1238,9 @@ while( $line2= mysqli_fetch_assoc($result))
     $Lehrer=$Vorname .' '.$Name .' ID:'. $value;
 
 }
-
 $UID=	$current_user->ID;
-  echo '<input  id="lehrerID" name="lehrer" readonly="readonly" type="hidden" value=":'. $value .'" />' ;
-
-	 echo '<input  id="UID" name="uid" readonly="readonly" type="hidden" value="'. $UID .'" />' ;
+ echo '<input  id="lehrerID" name="lehrer" readonly="readonly" type="hidden" value="'. $value .'" />' ;
+ echo '<input  id="UID" name="uid" readonly="readonly" type="hidden" value="'. $UID .'" />' ;
 		  $isEntry = "Select * From sv_Settings ";
 $result = mysqli_query($con, $isEntry);
 
@@ -1436,28 +1253,6 @@ $result = mysqli_query($con, $isEntry);
 ?>
 
 <br><br>
-	Semester:<br>
-<select id="Semester" name="Semester"  onchange="getLehrer(this.value)">
-	<option value="<? echo $sem;?>" selected><? echo $sem;?></option>
-    <?php
-
-    //Den aktuell eingeloggten Schüler anzeigen
-
-    $isEntry= "Select Semesterkuerzel From sv_SemesterArchiv";
-    $result = mysqli_query($con, $isEntry);
-    echo "<option>". $_GET['Semester']. "</option>";
-
-    while( $line3= mysqli_fetch_array($result))
-    {
-		
-    $Semester = $line3['Semesterkuerzel'];
-		if($Semester<>$semDB){
-    echo "<option>" . $Semester . "</option>";
-		}
-    }
-
-    ?>
-</select>
 
 
 <br><br>
@@ -1470,7 +1265,7 @@ Kursname:
 
     include 'db.php';
 
-    $lp=$sem.'_Lehrpersonen';
+    
 
     preg_match("/:(.*)/", $Lehrer, $output_array);
 
@@ -1486,13 +1281,13 @@ Kursname:
 
 
 
-    $isEntry= "Select Kurs1, Kurs2, Kurs3, Kurs4, Kurs5, Kurs6, Kurs7, Kurs8, Kurs9,Kurs10,Kurs11,Kurs12,Kurs13,Kurs14,Kurs15,Kurs16,Kurs17, Kurs18, Kurs19, Kurs20, Kurs21, Kurs22, Kurs23, Kurs24, Kurs25,Kurs26,Kurs27,Kurs28,Kurs29,Kurs30 From $lp Where ID = $Lehrer";
+    $isEntry= "Select Kurs1, Kurs2, Kurs3, Kurs4, Kurs5, Kurs6, Kurs7, Kurs8, Kurs9,Kurs10,Kurs11,Kurs12,Kurs13,Kurs14,Kurs15,Kurs16,Kurs17, Kurs18, Kurs19, Kurs20, Kurs21, Kurs22, Kurs23, Kurs24, Kurs25,Kurs26,Kurs27,Kurs28,Kurs29,Kurs30 From sv_Lehrpersonen Where ID = $Lehrer";
 
     $result = mysqli_query($con,$isEntry);
 
 
 
- echo "<option>" . $Kursnme . "</option>";
+ echo "<option>" . $sel1 . "</option>";
 
  
 
@@ -1522,7 +1317,8 @@ Kursname:
 
 
 </select>
-   
+
+
 <br><br>
 
 <?
@@ -1539,54 +1335,6 @@ while ($line1 = mysqli_fetch_array($result)) {
 ?>
 <input id="semDB" type="hidden" value="<? echo $semDB; ?>" >
 
-
-
-<script>
-	function getLehrer(str){
-
-    
-        if (str == "") {
-
-            document.getElementById("Kursname").innerHTML = "";
-
-            return;
-
-        } else {
-
-            if (window.XMLHttpRequest) {
-
-                // code for IE7+, Firefox, Chrome, Opera, Safari
-
-                xmlhttp = new XMLHttpRequest();
-
-            } else {
-
-                // code for IE6, IE5
-
-                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-
-            }
-
-            xmlhttp.onreadystatechange = function() {
-
-                if (this.readyState == 4 && this.status == 200) {
-
-                    document.getElementById("Kursname").innerHTML = this.responseText;
-
-                }
-
-            };
-
-            xmlhttp.open("GET","/Ajax_Scripts/getKursnameLehrer.php?s="+str+"&q="+ document.getElementById( "lehrer" ).value,true);
-
-            xmlhttp.send();
-
-        }
-
-    }
-	</script>
-
-
 <h1>Noten</h1>
 
 <div class="left">
@@ -1599,7 +1347,6 @@ while ($line1 = mysqli_fetch_array($result)) {
 			<table class="table table-striped table-hover datatables" width="1000px">
 				<thead>
 					<tr>
-						<th></th>
 						<th></th>
 						<th>ID</th>
 	                    <th>Nachname</th>
@@ -1620,9 +1367,8 @@ while ($line1 = mysqli_fetch_array($result)) {
 
 <br><br>
 <h1>Abwesenheiten</h1>
-<div class="left">
-	<button id="buttonAbw" onclick="neueAbw1()" >Neue Abwesenheit hinzufügen</button>
 
+<div class="left">
 <div class="container">
 	<div class="row">
 		<form class="col-md4"></form>
@@ -1633,13 +1379,10 @@ while ($line1 = mysqli_fetch_array($result)) {
 				<thead>
 					<tr>
 						<th></th>
-						<th></th>
 						<th>ID</th>
 	                    <th>Nachname</th>
 						<th>Vorname</th>
 						<th>Abwesenheiten Gesamt</th>
-						<th></th>
-						<th></th>
 					</tr>
 				</thead>
 				<tbody></tbody>
@@ -1650,7 +1393,7 @@ while ($line1 = mysqli_fetch_array($result)) {
 </div>
 
 
-<div id="myModal" class="modal" onhide="tableshow()">
+<div id="myModal" class="modal"  onhide="tableshow()">
 
     <!-- Modal content -->
     <div class="modal-content">
@@ -1660,7 +1403,8 @@ while ($line1 = mysqli_fetch_array($result)) {
 		
 		   
             <p>Unten werden die Noten des Schülers angezeigt. In die Tabelle klicken um die jeweilige Note zu bearbeiten</p>
-		<div class="leftn">
+		
+<div class="leftn">
 <div class="container">
 	<div class="row">
 		<form class="col-md4"></form>
@@ -1684,7 +1428,7 @@ while ($line1 = mysqli_fetch_array($result)) {
 		</div>
 	</div>
 </div>
-            
+		</div>          
       <span class="close"  id="span">&times;</span>
     
           
@@ -1692,55 +1436,7 @@ while ($line1 = mysqli_fetch_array($result)) {
            
           
     </div>
-  </div>
-</div>
-	
-	
-<div id="myModal3" class="modal" onhide="tableshow()">
 
-    <!-- Modal content -->
-    <div class="modal-content">
-		
-      Schüler:     <input id="Schuelerlb1"  readonly>
-	  Kurs:        <input id="Kurslb1" readonly><br><br>
-		
-		   
-                       <p>Unten werden die Abwesenheiten des Schülers angezeigt. In die Tabelle klicken um die jeweilige Abwesenheit zu bearbeiten. Doppelclick auf eine Zeile löscht diese.</p>
-			<div class="leftn">
-<div class="container">
-	<div class="row">
-		<form class="col-md4"></form>
-	</div>
-	<div class="row">
-		<div class="col md12">
-	<div class="table-responsive">
-			<table  class="table table-striped table-hover datatablesmod3">
-				<thead>
-					<tr>	
-						<th></th>
-						<th>Datum</th>
-	                    <th>Klasse</th>
-						<th>Kommentar</th>
-						<th>Kommentar Verwaltung</th>
-						<th>Abwesenheitsdauer</th>
-						<th>Lehrer</th>
-					</tr>
-				</thead>
-				<tbody></tbody>
-			</table>
-			</div>
-		</div>
-	</div>
-</div>
-            
-      <span class="close"  id="span3">&times;</span>
-    
-          
-
-        
-          
-    </div>
-	</div>
 </div>
 
 
@@ -1750,8 +1446,8 @@ while ($line1 = mysqli_fetch_array($result)) {
     <div class="modal-content">
        
 
-Schüler:     <input id="Schuelerlb2" readonly>                       
-Kurs:        <input id="Kurslb2" readonly><br><br>
+Schüler:     <input id="Schuelerlb1" readonly>                       
+Kurs:        <input id="Kurslb1" readonly><br><br>
             
           
 
@@ -1759,7 +1455,6 @@ Kurs:        <input id="Kurslb2" readonly><br><br>
             <p>Bitte hier eine neue Note eintragen..</p>
             
 			<input id="schid" type="hidden"  />
-		    Note:<br>
             <input id="Notecr" type="Text" onchange="iskomma(this)" required="required" />
             <br><br>
 			Prüfungsname:<br>
@@ -1773,112 +1468,15 @@ Kurs:        <input id="Kurslb2" readonly><br><br>
              <br><br>
             <input name="Speichern" type="button" value="Senden" onclick="sendNote()" />
 
-        <span class="close" onclick="reloadpage1()"  id="span2">&times;</span>
+        <span class="close" onclick="reload.location()"  id="span2">&times;</span>
 
 
         
     </div>
 
 </div>
-	
-	<div id="myModal4" class="modal">
-
-    <!-- Modal content -->
-    <div class="modal-content">
-       
-
-                 
-
-            
-          
-
-            
-            <p>Bitte hier eine neue Abwesenheit eintragen..</p>
-            
-			KursID:        <input id="Kurslb4" ><br><br>
-		    Vorname:<br>
-		    <input id="Vorname" type="Text"  />
-		    <br><br> 
-		    Nachname:<br>
-		    <input id="Nachname" type="Text"  />
-		    <br><br> 
-            Datum:<br>    
-		    <input id="Datum1cr" type="Date"  required="required" />
-            <br><br>
-			Klasse:<br>
-            <input id="Klassecr" type="Text"   />
-            <br><br>
-			Kommentar:<br>
-            <input id="Kommentarcr" type="Text"   />
-            <br><br>
-			Kommentar Verwaltung:<br>
-            <input id="KommentarVerwcr" type="Text"   />
-		 <br><br>
-		     Abwesenheitsdauer(Zahl der Lektionen):<br>
-            <input id="Abwcr" type="number"  required="required" />
-            <br><br>
-			Lehrer(->Max Muster ID:12):<br>
-            <input id="Lehrercr" type="Text"  />
-		 <br><br>
-		    Entschuldigt:<br>
-            <input id="Entschcr" type="Text"   />
-		 <br><br>
-             <br><br>
-            <input name="Speichern" type="button" value="Senden" onclick="sendAbw()" />
-
-        <span class="close" onclick="reloadpage1()"  id="span4">&times;</span>
-
-
-        
-    </div>
-
-</div>
-
 
 <script>
-	function getKursnameAll(str){
-
-      
-        if (str == "") {
-
-            document.getElementById("Kursname").innerHTML = "";
-
-            return;
-
-        } else {
-
-            if (window.XMLHttpRequest) {
-
-                // code for IE7+, Firefox, Chrome, Opera, Safari
-
-                xmlhttp = new XMLHttpRequest();
-
-            } else {
-
-                // code for IE6, IE5
-
-                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-
-            }
-
-            xmlhttp.onreadystatechange = function() {
-
-                if (this.readyState == 4 && this.status == 200) {
-
-                    document.getElementById("Kursname").innerHTML = this.responseText;
-
-                }
-
-            };
-
-            xmlhttp.open("GET","/Ajax_Scripts/getKursnameAll.php?s="+str,true);
-
-            xmlhttp.send();
-
-        }
-
-    }
-
 	
 	 function test(){
 
@@ -1907,7 +1505,7 @@ Kurs:        <input id="Kurslb2" readonly><br><br>
 
             };
 
-            xmlhttp.open("GET","/wp-content/themes/structr/Page_Scripts/GetNotenValuesArchiv.php?q=" +  document.getElementById( "Kursname" ).value + "&s=" + document.getElementById( "Semester" ).value,true);
+            xmlhttp.open("GET","/wp-content/themes/structr/Page_Scripts/GetNotenValues.php?q=" +  document.getElementById( "Kursname" ).value + "&s=" + document.getElementById( "semDB" ).value,true);
 
             xmlhttp.send();
 
@@ -1942,7 +1540,7 @@ Kurs:        <input id="Kurslb2" readonly><br><br>
 
             };
 
-            xmlhttp.open("GET","/wp-content/themes/structr/Page_Scripts/GetAbwValuesArchiv.php?k=" +  document.getElementById( "Kursname" ).value + "&s=" + document.getElementById( "Semester" ).value,true);
+            xmlhttp.open("GET","/wp-content/themes/structr/Page_Scripts/GetAbwValues.php?k=" +  document.getElementById( "Kursname" ).value + "&s=" + document.getElementById( "semDB" ).value,true);
 
             xmlhttp.send();
 
@@ -1970,18 +1568,20 @@ Kurs:        <input id="Kurslb2" readonly><br><br>
 }, 2000);
 		
 	}
+	
 		function loadeditor(str){	
+			
+			
 		
     editor = new $.fn.dataTable.Editor( {
         ajax: {
-            url: "/wp-content/themes/structr/Page_Scripts/notenvaluesArchiv.php",
+            url: "/wp-content/themes/structr/Page_Scripts/notenvalues.php",
             type: 'POST',
             data: {
               'SchIDnr': str,
-				'KID': document . getElementById( "Kursname" ) . value,
-				'UID': document . getElementById( "UID" ) . value,
-				
-				'sem': document . getElementById( "Semester" ) . value 
+				'KID': document . getElementById( "Kursname" ) . value ,
+				'UID': document . getElementById( "UID" ) . value 
+					
 				
 			
 			}
@@ -2016,8 +1616,7 @@ Kurs:        <input id="Kurslb2" readonly><br><br>
 				 
             }
 				
-        ],
-		 i18n: {
+        ],i18n: {
             remove: {
                 button: "Löschen",
                 title:  "Eintrag löschen",
@@ -2080,21 +1679,18 @@ Kurs:        <input id="Kurslb2" readonly><br><br>
 
 			dom: "Bfrtip",
         ajax:{
-            url: "/wp-content/themes/structr/Page_Scripts/notenvaluesArchiv.php",
+            url: "/wp-content/themes/structr/Page_Scripts/notenvalues.php",
             type: 'POST',
             data: {
                   'SchIDnr': str,
-					'KID': document . getElementById( "Kursname" ) . value, 
-				'UID': document . getElementById( "UID" ) . value,
-				'sem': document . getElementById( "Semester" ) . value 
-				
+				'KID': document . getElementById( "Kursname" ) . value ,
+				'UID': document . getElementById( "UID" ) . value 
 			
 			}
         }, 
 		
 				 columns: [
-         
-
+           
 				 {
                 data: null,
                 defaultContent: '',
@@ -2190,7 +1786,7 @@ Kurs:        <input id="Kurslb2" readonly><br><br>
                         fn: function () {
 							setTimeout(function(){
 		 
-	tableshow();
+	tableshow1();
     //do what you need here
 }, 2000);
                             editor
@@ -2211,7 +1807,7 @@ Kurs:        <input id="Kurslb2" readonly><br><br>
                         fn: function () {
 							setTimeout(function(){
 		 
-	tableshow();
+	tableshow1();
     //do what you need here
 }, 2000);
                             editor
@@ -2236,258 +1832,22 @@ Kurs:        <input id="Kurslb2" readonly><br><br>
 	
 	
 
-		
-		function loadeditor1(str){	
-			
-				
 	
+	function reloadpage()
+{
+ 	 
+var Kursnme = document.getElementById( "Kursname" ).value;
 	
-		
+var encrypted = btoa(Kursnme);
 	
-		
-    editor1 = new $.fn.dataTable.Editor( {
-        ajax: {
-            url: "/wp-content/themes/structr/Page_Scripts/abwvaluesArchiv.php",
-            type: 'POST',
-            data: {
-              'SchIDnr': str,
-				'KID': document . getElementById( "Kursname" ) . value, 
-				'sem': document . getElementById( "Semester" ) . value 
-				
-			
-			}
-        }, 
-		 
-        table: ".datatablesmod3",
-        fields: [ {
-			 label: "KursID:",
-                name: "Kursname",
-                type: "readonly",
-                def: document.getElementById( "Kursname" ).value
-		},		
-				  {
-			 label: "SchuelerID:",
-                name: "SchuelerID",
-                type: "readonly"
-              
-		},			
-				 { 
-                label: "Datum:",
-                name: "Datum",
-			    type: "date"
-            },
-				  {
-                label: "Klasse:",
-                name: "Klasse"
-            },{
-                label: "Kommentar:",
-                name: "Kommentar"
-            }, {
-                label: "Kommentar Verwaltung:",
-                name: "KommentVerw"
-               
-            }, {
-                label: "Abwesenheitsdauer:",
-                name: "Abwesenheitsdauer"
-				 
-            }, {
-                label: "Lehrer:",
-                name: "Lehrer"
-				 
-            }
-				
-        ],i18n: {
-            remove: {
-                button: "Löschen",
-                title:  "Eintrag löschen",
-                submit: "Endgültig Löschen",
-                confirm: {
-                    _: 'Sind Sie sicher, dass Sie die %d ausgwählten Zeilen löschen wollen?',
-                    1: 'Sind Sie sicher, dass Sie die ausgewählte Zeile löschen wollen?'
-                }
-            },
-            edit: {
-                button: "Bearbeiten",
-                title:  "Eintrag bearbeiten",
-                submit: "Änderungen speichern"
-            },
-            create: {
-                button: "Neuer Eintrag",
-                title:  "Neuen Eintrag anlegen",
-                submit: "Neuen Eintrag speichern"
-            },
-            datetime: {
-                    previous: 'Zurück',
-                    next:     'Weiter',
-                    months:   [ 'Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember' ],
-                    weekdays: [ 'So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa' ],
-                    amPm:     [ 'am', 'pm' ],
-                    unknown:  '-'
-            },
-            error: {            
-                    system: "Ein Systemfehler ist aufgetreten (<a target=\"_blank\" href=\"//datatables.net/tn/12\">Für mehr Informationen</a>)."
-            },
-            multi: {
-                    title: "Mehrere Werte",         
-                    info: "Die ausgewählten Elemente enthalten verschiedene Werte für das Feld. Um alle Elemente für diess Feld auf den gleichen Wert zu setzen, klicken Sie bitte hier. Ansonsten werden die Elemente ihren jeweiligen Wert behalten.",
-                    restore: "Änderungen rückgängig machen",
-                    noMulti: "Dieses Feld kann einzeln bearbeitet werden, aber nicht als Teil einer Gruppe."
-            },
-        }      
-    } );
-		
-		
-		  // Activate an inline edit on click of a table cell
-    $('.datatablesmod3').on( 'click', 'tbody td:not(:first-child)', function (e) {
-        editor1.inline( this, {
-            buttons: { label: '&gt;', fn: function () { this.submit();
-													  tableshow();
-													  
-													  } }
-        } );
-    } );
-		
- 
-	 
-	}
-	
-	
-	function loadtable1(str){
-			
-	
-	
-	
-		
-			tableedit1 = $( '.datatablesmod3' ).DataTable( {
-            
-
-			dom: "lBfrtip",
-        ajax:{
-            url: "/wp-content/themes/structr/Page_Scripts/abwvaluesArchiv.php",
-            type: 'POST',
-            data: {
-                  'SchIDnr': str,
-					'KID': document . getElementById( "Kursname" ) . value, 
-				'sem': document . getElementById( "Semester" ) . value 
-				
-			
-			}
-        }, 
-		
-				 columns: [
-           
-				 {
-                data: null,
-                defaultContent: '',
-                className: 'select-checkbox',
-                orderable: false
-            },
-
-
-	{
-					data: 'Datum'
-				
-				},
-					  {
-					      data: 'Klasse'
-						 
-				},
-					  {
-				
-						  data: 'Kommentar'
-						
-				},
-					 
-					  {
-		
-						  data: 'KommentVerw'
-						 
-				},
-					 {
-		
-						  data: 'Abwesenheitsdauer'
-						 
-				},
-					 {
-		
-						  data: 'Lehrer'
-						 
-				}
-			],
-			select: true,
-        
-        buttons: [
-           
-        ],
-				 "language": {
-            "decimal": ",",
-            "thousands": ".",
-            "info": "Anzeige _START_ bis _END_ von _TOTAL_ Einträgen",
-            "infoEmpty": "Keine Einträge",
-            "infoPostFix": "",
-            "infoFiltered": "(gefiltert aus insgesamt _MAX_ Einträgen)",
-            "loadingRecords": "keine Daten vorhanden...",
-            "lengthMenu": "Anzeigen von _MENU_ Einträgen",
-            "paginate": {
-                "first": "Erste",
-                "last": "Letzte",
-                "next": "Nächste",
-                "previous": "Zurück"
-            },
-            "processing": "Verarbeitung läuft ...",
-            "search": "Suche:",
-            "searchPlaceholder": "Suchbegriff",
-            "zeroRecords": "Keine Daten! Bitte ändern Sie Ihren Suchbegriff.",
-            "emptyTable": "Keine Daten vorhanden",
-            "aria": {
-                "sortAscending":  ": aktivieren, um Spalte aufsteigend zu sortieren",
-                "sortDescending": ": aktivieren, um Spalte absteigend zu sortieren"
-            },
-            //only works for built-in buttons, not for custom buttons
-            "buttons": {
-                "create": "Neu",
-                "edit": "Ändern",
-                "remove": "Löschen",
-                "copy": "Kopieren",
-                "csv": "CSV-Datei",
-                "excel": "Excel-Tabelle",
-                "pdf": "PDF-Dokument",
-                "print": "Drucken",
-                "colvis": "Spalten Auswahl",
-                "collection": "Auswahl",
-                "upload": "Datei auswählen...."
-            },
-            "select": {
-                "rows": {
-                    _: '%d Zeilen ausgewählt',
-                    0: 'Zeile anklicken um auszuwählen',
-                    1: 'Eine Zeile ausgewählt'
-                }
-            }
-        }            
-} );
-
-           
-        
-tableedit1
-        .on('dblclick', 'tbody tr', function () {
-    tableedit1.row( this ).delete();
+	test();
+	test1();
 	tableshow();
-} );
-  
-	
-	  
- 
-	
+//U2FsdGVkX18ZUVvShFSES21qHsQEqZXMxQ9zgHy+bu0=
 
+window.location.href= "/notenbuch-lehrer?q=" + encrypted;
 
 }
-	
-	
-
-	
-
-
 	function reloadpage1()
 {
  	 
@@ -2500,7 +1860,7 @@ var encrypted = btoa(Kursnme);
 	tableshow();
 //U2FsdGVkX18ZUVvShFSES21qHsQEqZXMxQ9zgHy+bu0=
 
-window.location.href= "/notenbuch-lehrer-archiv?q="+  encrypted + "&sem=" +  document.getElementById( "Semester" ).value ;
+window.location.href= "/notenbuch-lehrer?q=" + encrypted;
 
 }
 	 function tableshow() {
@@ -2521,13 +1881,14 @@ window.location.href= "/notenbuch-lehrer-archiv?q="+  encrypted + "&sem=" +  doc
 		 table.destroy();
 			 }
 
-		 var url3 = "/wp-content/themes/structr/Page_Scripts/GetNotenValuesArchiv.php?q=" + Kursname + "&s=" + document.getElementById( "Semester" ).value;
-		var url4 = "/wp-content/themes/structr/Page_Scripts/GetAbwValuesArchiv.php?k=" +Kursname + "&s=" + document.getElementById( "Semester" ).value;
+		 var url3 = "/wp-content/themes/structr/Page_Scripts/GetNotenValues.php?q=" + Kursname + "&s=" + document.getElementById( "semDB" ).value;
+		var url4 = "/wp-content/themes/structr/Page_Scripts/GetAbwValues.php?k=" +Kursname + "&s=" + document.getElementById( "semDB" ).value;
          $.fn.dataTable.ext.errMode = 'throw';
     table = $( '.datatables' ).DataTable( {
 
-        responsive:false,
+
 		
+		responsive:false,
         ajax: {
 
             url: url3,
@@ -2536,14 +1897,6 @@ window.location.href= "/notenbuch-lehrer-archiv?q="+  encrypted + "&sem=" +  doc
         },
         columns: [ 
 			
-			{
-            className: '',
-            defaultContent: '',
-            data: null,
-            orderable: false
-			
-        },
-
 			{
             className: 'details-control',
             defaultContent: '',
@@ -2582,8 +1935,7 @@ window.location.href= "/notenbuch-lehrer-archiv?q="+  encrypted + "&sem=" +  doc
                 orderable: false,
                 title:'Neue Note erstellen'
             },
-        ],
-		 "language": {
+        ],"language": {
             "decimal": ",",
             "thousands": ".",
             "info": "Anzeige _START_ bis _END_ von _TOTAL_ Einträgen",
@@ -2680,6 +2032,8 @@ window.location.href= "/notenbuch-lehrer-archiv?q="+  encrypted + "&sem=" +  doc
 		 
 		 table1 = $( '.datatables1' ).DataTable( {
 
+			responsive:false,
+
         ajax: {
 
             url: url4,
@@ -2687,18 +2041,8 @@ window.location.href= "/notenbuch-lehrer-archiv?q="+  encrypted + "&sem=" +  doc
             dataSrc: ""
         },
 
-			 responsive:false,
         columns: [ 
-			
-			
-			{
-            className: '',
-            defaultContent: '',
-            data: null,
-            orderable: false
-			
-
-        },
+		
 			{
             className: 'details-control',
             defaultContent: '',
@@ -2719,28 +2063,10 @@ window.location.href= "/notenbuch-lehrer-archiv?q="+  encrypted + "&sem=" +  doc
             },
             {
                 data: 'AbwesenheitenGesamt'
-            },
-				   {
-                className: 'details-control1',
-                defaultContent: '',
-                data: null,
-                orderable: false,
-                title:'Abwesenheiten bearbeiten'
-
-
-            },
-				  {
-                className: 'details-control2',
-                defaultContent: '',
-                data: null,
-                orderable: false,
-                title:'Neue Abwesenheit erstellen'
             }
 
 
-
-        ],
-			  "language": {
+        ],"language": {
             "decimal": ",",
             "thousands": ".",
             "info": "Anzeige _START_ bis _END_ von _TOTAL_ Einträgen",
@@ -2807,30 +2133,6 @@ window.location.href= "/notenbuch-lehrer-archiv?q="+  encrypted + "&sem=" +  doc
             tr.addClass( 'shown' );
         }
     } );
-		   $( '.datatables1 tbody' ).on( 'click', 'td.details-control1', function () {
-        var tr = $( this ).closest( 'tr' ),
-            row1 = table1.row( tr );
-
-
-
-        row1.child( showAbwesenheiten( row1.data() ) ).show();
-        tr.next( 'tr' ).addClass( 'details-row' );
-        tr.addClass( 'shown' );
-
-
-    } );
-		     $( '.datatables1 tbody' ).on( 'click', 'td.details-control2', function () {
-        var tr = $( this ).closest( 'tr' ),
-            row1 = table1.row( tr );
-
-
-
-        row1.child( neueAbw( row1.data() ) ).show();
-        tr.next( 'tr' ).addClass( 'details-row' );
-        tr.addClass( 'shown' );
-
-    } );
-
 
 		
 		 
@@ -2855,8 +2157,8 @@ window.location.href= "/notenbuch-lehrer-archiv?q="+  encrypted + "&sem=" +  doc
 		 table.destroy();
 			 }
 
-		 var url3 = "/wp-content/themes/structr/Page_Scripts/GetNotenValuesArchiv.php?q=" + "-Select-" + "&s=" + document.getElementById( "Semester" ).value;
-		var url4 = "/wp-content/themes/structr/Page_Scripts/GetAbwValuesArchiv.php?k=" + "-Select-" + "&s=" + document.getElementById( "Semester" ).value;
+		 var url3 = "/wp-content/themes/structr/Page_Scripts/GetNotenValues.php?q=" + "-Select-" + "&s=" + document.getElementById( "semDB" ).value;
+		var url4 = "/wp-content/themes/structr/Page_Scripts/GetAbwValues.php?k=" + "-Select-" + "&s=" + document.getElementById( "semDB" ).value;
          $.fn.dataTable.ext.errMode = 'throw';
     table = $( '.datatables' ).DataTable( {
 
@@ -2905,7 +2207,7 @@ window.location.href= "/notenbuch-lehrer-archiv?q="+  encrypted + "&sem=" +  doc
                 orderable: false,
                 title:'Neue Note erstellen'
             },
-        ], "language": {
+        ],"language": {
             "decimal": ",",
             "thousands": ".",
             "info": "Anzeige _START_ bis _END_ von _TOTAL_ Einträgen",
@@ -2951,9 +2253,6 @@ window.location.href= "/notenbuch-lehrer-archiv?q="+  encrypted + "&sem=" +  doc
                 }
             }
         }            
-		
-		
-		
 
     } );
   
@@ -3022,6 +2321,7 @@ window.location.href= "/notenbuch-lehrer-archiv?q="+  encrypted + "&sem=" +  doc
 			
 
         },
+
 			{
             className: 'details-control',
             defaultContent: '',
@@ -3042,25 +2342,10 @@ window.location.href= "/notenbuch-lehrer-archiv?q="+  encrypted + "&sem=" +  doc
             },
             {
                 data: 'AbwesenheitenGesamt'
-            }, {
-                className: 'details-control1',
-                defaultContent: '',
-                data: null,
-                orderable: false,
-                title:' Abwesenheiten Bearbeiten'
+            }
 
 
-            },
-				  {
-                className: 'details-control2',
-                defaultContent: '',
-                data: null,
-                orderable: false,
-                title:'Neue Abwesenheit erstellen'
-            },
-
-
-        ], "language": {
+        ],"language": {
             "decimal": ",",
             "thousands": ".",
             "info": "Anzeige _START_ bis _END_ von _TOTAL_ Einträgen",
@@ -3106,8 +2391,6 @@ window.location.href= "/notenbuch-lehrer-archiv?q="+  encrypted + "&sem=" +  doc
                 }
             }
         }            
-			
-
 
 
     } );
@@ -3130,30 +2413,7 @@ window.location.href= "/notenbuch-lehrer-archiv?q="+  encrypted + "&sem=" +  doc
         }
     } );
 
-		   $( '.datatables1 tbody' ).on( 'click', 'td.details-control1', function () {
-        var tr = $( this ).closest( 'tr' ),
-            row1 = table1.row( tr );
-
-
-
-        row1.child( showAbwesenheiten( row1.data() ) ).show();
-        tr.next( 'tr' ).addClass( 'details-row' );
-        tr.addClass( 'shown' );
-
-
-    } );
-		   $( '.datatables1 tbody' ).on( 'click', 'td.details-control2', function () {
-        var tr = $( this ).closest( 'tr' ),
-            row1 = table1.row( tr );
-
-
-
-        row1.child( neueAbw( row1.data() ) ).show();
-        tr.next( 'tr' ).addClass( 'details-row' );
-        tr.addClass( 'shown' );
-
-    } );
-
+		
 		 
 		
     }
@@ -3180,59 +2440,18 @@ function sendNote(){
 
 			}
 
-if ((document.getElementById("Notecr").value != "") && (document.getElementById("Namecr").value != "") && (document.getElementById("Gewichtungcr").value != "") && (document.getElementById("Datumcr").value != ""))
-	{
+
 			
-			xmlhttp.open( "GET", "/Ajax_Scripts/createNoteArchiv.php?q=" + document.getElementById( "Kursname" ).value+"&k="+ document.getElementById("schid").value +"&l=" +document.getElementById("Notecr").value +"&m="+ document.getElementById("Namecr").value +"&n=" +document.getElementById("Gewichtungcr").value +"&o="+document.getElementById("Datumcr").value+"&s="+document.getElementById("Semester").value +"&p="+document.getElementById("UID").value, true );
+			xmlhttp.open( "GET", "/Ajax_Scripts/createNote.php?q=" + document.getElementById( "Kursname" ).value+"&k="+ document.getElementById("schid").value +"&l=" +document.getElementById("Notecr").value +"&m="+ document.getElementById("Namecr").value +"&n=" +document.getElementById("Gewichtungcr").value +"&o="+document.getElementById("Datumcr").value +"&p="+document.getElementById("UID").value, true );
 
 			xmlhttp.send();
-	
-	
 	
 	setTimeout(function(){
 		 document.getElementById("Notecr").value = "";
 	 document.getElementById("Namecr").value = "";
 	 document.getElementById("Gewichtungcr").value = "";
 	 document.getElementById("Datumcr").value = "";
-	tableshow();
-    //do what you need here
-}, 2000);
-		
-		alert('Note eingetragen!!');
-	}
-	}
-	
-	function sendAbw(){
-		
-	if ( window.XMLHttpRequest ) {
-
-				// code for IE7+, Firefox, Chrome, Opera, Safari
-
-				xmlhttp = new XMLHttpRequest();
-
-			} else {
-
-				// code for IE6, IE5
-
-				xmlhttp = new ActiveXObject( "Microsoft.XMLHTTP" );
-
-			}
-
-
-		
-			xmlhttp.open( "GET", "/Ajax_Scripts/createAbwArchiv.php?q=" + document.getElementById( "Kursname" ).value+  "&l=" +document.getElementById("Vorname").value + "&m=" + document.getElementById("Nachname").value+ "&n=" +document.getElementById("Datum1cr").value + "&o=" +document.getElementById("Klassecr").value +"&p=" + document.getElementById("Kommentarcr").value + "&j=" + document.getElementById("KommentarVerwcr").value + "&r=" + document.getElementById("Abwcr").value + "&u=" + document.getElementById("Lehrercr").value +"&t="+document.getElementById("Entschcr").value+ "&s=" + document.getElementById("Semester").value, true );
-            	
-			xmlhttp.send();
-	
-	setTimeout(function(){
-		  document.getElementById("Datumcr").value = "";
-	 document.getElementById("Klassecr").value = "";
-	 document.getElementById("Kommentarcr").value = "";
-	 document.getElementById("KommentarVerwcr").value = "";
-			document.getElementById("Abwcr").value = "";
-	 document.getElementById("Lehrercr").value = "";
-	 document.getElementById("Entschcr").value = "";
-	tableshow();
+	tableshow1();
     //do what you need here
 }, 2000);
 		
@@ -3277,7 +2496,7 @@ if ((document.getElementById("Notecr").value != "") && (document.getElementById(
 
             };
 
-            xmlhttp.open("GET","/Ajax_Scripts/getKursnameLehrer.php?q="+ document.getElementById('lehrer').value + "&s="  +  document.getElementById('Semester').value,true);
+            xmlhttp.open("GET","/Ajax_Scripts/getKursnameLehrer.php?q="+ document.getElementById('lehrer').value + "&s="  +  document.getElementById('semester').value,true);
 
             xmlhttp.send();
 
@@ -3287,15 +2506,12 @@ if ((document.getElementById("Notecr").value != "") && (document.getElementById(
 </script>
 
 
-
-	
 <style>
 	.left {
   float: auto;
   width: auto;
   padding: 10px;
-			box-shadow: 10px 20px 30px grey;
-  border: 1px solid black;
+  border: 2px solid #3e4ac9;
   text-align: center;
 			overflow-y:auto;
 }
@@ -3305,19 +2521,9 @@ if ((document.getElementById("Notecr").value != "") && (document.getElementById(
   padding: 10px;
   border: 0px solid;
   text-align: center;
-		overflow-y:auto;
+			overflow-y:auto;
 }
-	body {
-		font-family: "Dosis", "Helvetica Neue", sans-serif;
-		color: #232323;
-	}
-	
-	#calendar {
-		max-width: 900px;
-		margin: 0 auto;
-	}
-
-
+}
 	body {
 		font-family: "Dosis", "Helvetica Neue", sans-serif;
 		color: #232323;
@@ -3329,3 +2535,4 @@ if ((document.getElementById("Notecr").value != "") && (document.getElementById(
 	}
 
 </style>
+

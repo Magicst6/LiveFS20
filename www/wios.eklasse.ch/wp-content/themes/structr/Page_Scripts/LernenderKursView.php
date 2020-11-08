@@ -649,9 +649,10 @@ Kursname:
 </select>
 
 <br><br>
+<br><br>
 
-Schüler dem ausgewählten Kurs hinzufügen:
-<br>
+<h4>Schüler dem ausgewählten Kurs hinzufügen:</h4>
+
  <?
 
 					

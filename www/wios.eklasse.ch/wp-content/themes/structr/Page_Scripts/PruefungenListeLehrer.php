@@ -1085,8 +1085,8 @@ p.start-editing {
   float: auto;
   width: auto;
   padding: 10px;
-  border: 2px solid #3e4ac9;
-  text-align: center;
+  border: 1px solid black;
+	box-shadow: 10px 20px 30px grey;  text-align: center;
 			overflow-y:auto;
 }
 	.leftn {

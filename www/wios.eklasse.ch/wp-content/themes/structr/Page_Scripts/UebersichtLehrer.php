@@ -178,7 +178,9 @@
                            document.getElementById('Kursnm').value=event.kursid;
 					
 					
-								
+							 startevtime = $.fullCalendar.formatDate(event.start, "HH:mm");
+
+                    endevtime = $.fullCalendar.formatDate(event.end, "HH:mm");	
 							
 						
 								 if (window.XMLHttpRequest) {
@@ -207,7 +209,7 @@
 
 
 
-                    xmlhttp.open("GET", "/Ajax_Scripts/showlernendeLehrer.php?q=" + event.kursid +  "&h=" + event.datum +"&k="+document.getElementById("lehrer").value +"&j="+event.lektionen  , true);
+                    xmlhttp.open("GET", "/Ajax_Scripts/showlernendeLehrer.php?q=" + event.kursid +  "&h=" + event.datum +"&k="+document.getElementById("lehrer").value +"&j="+event.lektionen +"&s="+startevtime+ "&e="+endevtime , true);
 
                    xmlhttp.send();
 
@@ -528,7 +530,8 @@ tr.shown td.details-control:before {
   float: auto;
   width: auto;
   padding: 10px;
-  border: 2px solid #3e4ac9;
+		box-shadow: 10px 20px 30px grey;
+  border: 2px solid #000000;
   text-align: center;
 }
 	.leftn {
@@ -536,6 +539,7 @@ tr.shown td.details-control:before {
   width: auto;
   padding: 10px;
   border: 0px solid;
+	
   text-align: center;
 }
 	.leftn2 {
@@ -3902,7 +3906,7 @@ function pruefungerfassen() {
 </div>
 
 <br><br>
-	 <div class="left">
+	 <div id="Notenbuch" class="left">
 										  <?
 
 
@@ -5731,7 +5735,7 @@ reloadpage1();
 								//	test1();
 									tableshow();
 								//U2FsdGVkX18ZUVvShFSES21qHsQEqZXMxQ9zgHy+bu0=
-	                               window.location.href= "/uebersichtlehrer?q=" + encrypted;
+	                               window.location.href= "/uebersichtlehrer?q=" + encrypted+"#Notenbuch";
 
 								}
 									 function tableshow() {
@@ -6405,7 +6409,7 @@ reloadpage1();
 								  float: auto;
 								  width: 100%;
 								  padding: 5px;
-								  border: 2px solid #3e4ac9;
+								  border: 1px solid black;
 								  text-align: center;
 											overflow-y:auto;
 								}
