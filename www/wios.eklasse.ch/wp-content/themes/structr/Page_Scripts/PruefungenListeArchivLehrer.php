@@ -988,11 +988,12 @@ p.start-editing {
             text-decoration: none;
             cursor: pointer;
         }
-	    .left {
+	   	.left {
   float: auto;
   width: auto;
   padding: 10px;
-  border: 2px solid #3e4ac9;
+			
+  border: 1px solid black;
   text-align: center;
 			overflow-y:auto;
 }

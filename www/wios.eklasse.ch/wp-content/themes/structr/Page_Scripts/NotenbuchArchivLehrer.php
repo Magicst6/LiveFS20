@@ -3294,7 +3294,7 @@ if ((document.getElementById("Notecr").value != "") && (document.getElementById(
   float: auto;
   width: auto;
   padding: 10px;
-			box-shadow: 10px 20px 30px grey;
+			
   border: 1px solid black;
   text-align: center;
 			overflow-y:auto;

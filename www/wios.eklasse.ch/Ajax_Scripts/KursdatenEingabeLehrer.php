@@ -135,7 +135,7 @@ echo "<option>$Profil</option>";
 				
 				$value= $line3['ID'];
 
-                     echo "<option>" . $Vorname .' '. $Name .' ID:'. $value . "</option>";
+             //        echo "<option>" . $Vorname .' '. $Name .' ID:'. $value . "</option>";
 
             }
 

@@ -47,10 +47,11 @@ if( $_POST['Senden']) {
                 
 				 $isEntry10 = "Select * From sv_KurseStammdaten where KursKuerzel='$Kursname0' ";
                     $result10 = mysqli_query($con, $isEntry10);
-                    
+                    $n=0;
                     while ($valuecol = mysqli_fetch_array($result10)) {
 						
-				
+				 $n++;
+						
 				$Color = '#'.$valuecol['Farbe'];
 							$Lehrer = $valuecol['Lehrer'];
 						$KursnameStamm= $valuecol['Kursname'];
@@ -61,6 +62,7 @@ if( $_POST['Senden']) {
 
         $LP_ID1=$output_array[1];
 					}
+				
 						$FieldID= $x.$y;
                 if ($Kursname0==""){
                     $isEntry2 = "Select KursID From sv_Kurse where FieldID='$FieldID' and Tag='$Tag' and Klasse='$Klassenname' ";
@@ -114,15 +116,18 @@ if( $_POST['Senden']) {
 
                                 mysqli_query($con, $sql_befehldel);
                             }
-
+                               if($n!=0){
                                $sql_befehl1 = "INSERT INTO sv_Kurse (KursID, Klasse, Uhrzeit, Tag, Startdatum, Farbe, FieldID,Stundenplan,Lehrperson, Kursname, Zimmer,Profil) VALUES ('$Kursname', '$Klassenname', '$UhrVal', '$Tag','$Datum1','$Color', '$FieldID','1','$LP_ID1','$KursnameStamm','$Zimmer','$Profil')";
 
                            mysqli_query($con, $sql_befehl1);
+							   }
                         }else
                         {
+							if($n!=0){
                                $sql_befehl2 = "UPDATE sv_Kurse SET  Startdatum='$Datum1', Farbe='$Color' , Uhrzeit='$UhrVal', Lehrperson='$LP_ID1' ,Kursname='$KursnameStamm', Zimmer='$Zimmer', Profil='$Profil' Where Tag='$Tag' and FieldID='$FieldID'  and KursID='$Kursname' and Stundenplan='1'  ";
 
                            mysqli_query($con, $sql_befehl2);
+							}
                         }
                         
                         unset($Kursname0);

@@ -73,6 +73,10 @@ $Lehrer=$output_array[1];
 				{
 				}
 				else{
+					if ($line2['Lektionen']){
+						$z=$line2['Lektionen'];
+					}
+						
                 $data[] = array(
 					'lektionen' => $z,
                    'isent' => $isEntered,

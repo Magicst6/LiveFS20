@@ -52,7 +52,7 @@
 	
 	
 	
-        echo '  <strong>Hier die Noten in den Prüfungen des Kurses:</strong>
+        echo '  <strong>Hier die Noten der Schüler in diesem Kurs:</strong>
 	<br>';
 
 

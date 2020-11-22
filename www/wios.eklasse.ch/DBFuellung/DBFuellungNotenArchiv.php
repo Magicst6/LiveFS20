@@ -18,8 +18,20 @@ if ($_POST['Senden']) {
     $Comment=$_POST['Comment'];
 		$Semester=$_POST['Semester'];
 	echo $Semester;
-	$pruefungen=$Semester.'_Pruefungen';
+	
+	
+ $isEntry2 = "Select Semesterkuerzel From sv_Settings";
+    $result2 = mysqli_query($con, $isEntry2);
 
+    while ($value3 = mysqli_fetch_array($result2)) {
+        $SemesterkuerzelDB = $value3['Semesterkuerzel'];
+    }
+	if ($Semester==$SemesterkuerzelDB){
+		$pruefungen='sv_Pruefungen';
+	}
+	else{
+	$pruefungen=$Semester.'_Pruefungen';
+	}
 $kurse=$Semester.'_Kurse';
 $LM=$Semester.'_LernendeModule';
 $Noten=$Semester.'_Noten';

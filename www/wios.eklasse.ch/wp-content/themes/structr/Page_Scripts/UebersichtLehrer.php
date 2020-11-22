@@ -530,7 +530,7 @@ tr.shown td.details-control:before {
   float: auto;
   width: auto;
   padding: 10px;
-		box-shadow: 10px 20px 30px grey;
+	
   border: 2px solid #000000;
   text-align: center;
 }

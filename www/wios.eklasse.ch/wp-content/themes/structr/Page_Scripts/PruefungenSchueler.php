@@ -1419,11 +1419,11 @@ include 'db.php';
 
 
 
-$today=date("Y-m-d");
+//$today=date("Y-m-d");
 
-$delOlder= "Delete  From sv_KurseAll Where Datum < '$today' ";
+//$delOlder= "Delete  From sv_KurseAll Where Datum < '$today' ";
 
-mysqli_query($con,$delOlder);
+//mysqli_query($con,$delOlder);
 
 
 
@@ -1432,7 +1432,7 @@ mysqli_query($con,$delOlder);
 <p>
   <input name="myBtn1" id="myBtn1" type="button" value="Termine per Mail senden"  />
 </p>
-<p>&nbsp; </p>
+
 <div id="myModal1" class="modal">
 
     <!-- Modal content -->
@@ -1441,7 +1441,7 @@ mysqli_query($con,$delOlder);
 <br>
 <br>Bitte die Mailadresse eingeben:   <input name="Mail" type="email" id="Mail" />    <input name="Button1" type="button" value="Mail versenden" onclick="Mail()" />
 
-<br><br><br>
+<br>
 <div id='status'></div>
 
         <span class="close" id="span1">&times;</span>
@@ -1452,8 +1452,8 @@ mysqli_query($con,$delOlder);
 
 </div>
 
-
-
+Auf den Termin im Kalender klicken, um die Lernziele der Prüfung anzusehen!
+<br><br><br>
 <div id='calendar'></div>
 
 <div id='respond'></div>

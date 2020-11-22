@@ -164,7 +164,46 @@ $wochentag= $wochentage[$wochentagz];
 
         $ID = $_POST['ID1'.$f];
 
+			
+		 $isEntryLPKurse1 = "SELECT Lehrperson From sv_Kurse Where  KursID='$KursID' ";
+    $resultK = mysqli_query($con, $isEntryLPKurse1);
+
+
+    while( $valueK= mysqli_fetch_array($resultK))
+    {
+		$LP_IDB=$valueK['Lehrperson'];
+	}
+		
+		
+		 $isEntryLPKurse = "SELECT Kurs1, Kurs2, Kurs3, Kurs4, Kurs5, Kurs6, Kurs7, Kurs8, Kurs9,Kurs10,Kurs11,Kurs12,Kurs13,Kurs14,Kurs15,Kurs16,Kurs17, Kurs18, Kurs19, Kurs20, Kurs21, Kurs22, Kurs23, Kurs24, Kurs25,Kurs26,Kurs27,Kurs28,Kurs29,Kurs30 From sv_Lehrpersonen Where  ID='$LP_IDB' ";
+    $result = mysqli_query($con, $isEntryLPKurse);
+
+
+    while( $value= mysqli_fetch_array($result))
+    {
+        $isEntryCreated=false;
+        $isKursExisting=false;
+        for($x = 1; $x <= 30; $x++) {
+
+            $Kurs = "Kurs" . "$x";
+
+            $KursValue = $value[$Kurs];
+            if ($KursValue==$KursID)
+            {
+                
+            
+
            
+                $sql_befehlKurse = "UPDATE sv_Lehrpersonen SET $Kurs = ''  where ID ='$LP_IDB' ";
+			}
+// In die DB-Tabelle eintragen
+                mysqli_query($con, $sql_befehlKurse);
+                $isEntryCreated=true;
+            }
+        }
+    
+
+
 
 //Daten in DB speichern
 
@@ -255,6 +294,8 @@ echo $sql_befehl;
         $Uhr=$valueStundenplan['Uhrzeit'];
 
         $Farbe=$valueStundenplan['Farbe'];
+		
+		$LP_IDK=$valueStundenplan['Lehrperson'];
 
         $time= null;
 
@@ -416,7 +457,7 @@ echo $sql_befehl;
 
                             $LP_ID = $value['ID'];
 
-                            $Lehrperson = $value['Nachname'];
+                           $Lehrperson = $value['Nachname'];
 
                         }
 
@@ -432,8 +473,23 @@ echo $sql_befehl;
 
                 }
 
+				
+			/*	$isEntryLPKurse1 = "SELECT Nachname From sv_Lehrpersonen Where ID='$LP_IDK'" ;
+
+                $result1 = mysqli_query($con, $isEntryLPKurse1);
 
 
+
+                $LP_ID=0;
+
+                $Lehrperson="";
+
+                while( $value2= mysqli_fetch_array($result1))
+
+                {
+					$Lehrperson=$value2['Nachname'];
+				}
+*/
                 if (!$isExisting) {
 
                     $sql_befehl = "INSERT INTO sv_KurseAll (Kursname, KursID, Tag, Klasse, LP_ID,Datum, Start, Ende, Lehrperson,Farbe,Zimmer, Stundenplan ) VALUES ('$Kursname','$KursID','$Tag','$Klasse','$LP_ID','$Datum','$Start','$End','$Lehrperson','$Farbe','$Zimmer', 1)";

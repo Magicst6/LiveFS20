@@ -177,6 +177,7 @@ xmlhttp.ontimeout = function (e) {
 
 
 </script>
+Bitte keine Sonderzeichen(+ , * , . ,...) im Kurskürzel verwenden!! <br>
 
 <div id="farbediv"></div>
 
