@@ -1552,7 +1552,10 @@ $today=date("Y-m-d");
 
     }
 
-
+	.fc-list-item-title:hover{
+  background:lightgrey;
+		 cursor: pointer;
+}
 
 </style>
 

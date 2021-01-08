@@ -1126,6 +1126,10 @@ function getcolor(str1){
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
+			.fc-list-item-title:hover{
+  background:lightgrey;
+		 cursor: pointer;
+}
         body {}
 
         /* The Modal (background) */

@@ -81,7 +81,7 @@ $Lehrer=$output_array[1];
 					'lektionen' => $z,
                    'isent' => $isEntered,
 					'id' => $line2['ID'],
-                    'title' => $line2['Kursname'] . " Klasse: " . $line2['Klasse'] . " Zimmer: " . $line2['Zimmer'] . " Eingetragen: <strong style='color:".$bcol."'>" . $isEntered. "</strong></p>",
+                    'title' => "<ax>".$line2['Kursname'] . " Klasse: " . $line2['Klasse'] . " Zimmer: " . $line2['Zimmer'] . " Eingetragen: <a style='color:".$bcol."'>" . $isEntered. "</a></ax>",
                     'start' => $startday,
                     'end' => $endday,
 					 'datum' => $line2['Datum'],

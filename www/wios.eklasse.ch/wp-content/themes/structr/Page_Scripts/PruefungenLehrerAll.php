@@ -1193,6 +1193,10 @@ while( $line2= mysqli_fetch_assoc($result))
     <style>
         body {}
 
+			.fc-list-item-title:hover{
+  background:lightgrey;
+		 cursor: pointer;
+}
         /* The Modal (background) */
         .modal{
             display: none; /* Hidden by default */

@@ -717,4 +717,12 @@ echo '</select>';
 <br><br>
 
 
+<style>
+	ax {
+    }
 
+	.fc-list-item-title:hover{
+  background:lightgrey;
+		 cursor: pointer;
+}
+</style>

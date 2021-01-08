@@ -1679,7 +1679,10 @@ text = text.replace(/&/g, '§§§');
 
     }
 
-
+	.fc-list-item-title:hover{
+  background:lightgrey;
+		 cursor: pointer;
+}
 
     #calendar {
 

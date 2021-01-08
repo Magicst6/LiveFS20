@@ -134,6 +134,7 @@
 	 var table;
 		var table1;
 	$(document).ready(function() {
+		
   
     var calendar = $('#calendarklbu').fullCalendar({
 
@@ -155,7 +156,7 @@
 
                 navLinks: true, // can click day/week names to navigate views
 
-                editable: false,
+                editable: true,
 
                 locale: 'de',
 
@@ -166,13 +167,22 @@
                 events:  "/wp-content/themes/structr/Page_Scripts/GetKlBuValues.php?q="+ document.getElementById('curruser').value,
 
                 eventTextColor: 'black',
+		
+		        cursor: 'pointer',
 
                 selectable:true,
 
 		         displayEventTime : false,
 		   
                 selectHelper:true,
-  eventClick:function(event)
+		
+		eventMouseover: function(calEvent, domEvent) {
+		
+		},
+	
+		
+		
+		eventClick:function(event)
 
                 {
                            document.getElementById('Kursnm').value=event.kursid;
@@ -220,8 +230,9 @@
 	eventRender: function (event, element) {
     element.find('.fc-title').html(event.title);/*For Month,Day and Week Views*/
     element.find('.fc-list-item-title').html(event.title);/*For List view*/
-}
-		   
+
+	}
+		
     
 		   
                 
@@ -6656,6 +6667,14 @@ while( $line2= mysqli_fetch_assoc($result))
 </form>&nbsp;
 
 <style>
+	ax:hover {
+		background:lightgrey;
+    cursor: pointer; }
+
+	
+
+	
+	
 .insertframe{
     font-family: arial, sans-serif;
     width: 80%;

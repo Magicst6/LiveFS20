@@ -158,7 +158,7 @@ $isEntryLK= "Select * From sv_LernendeModule where ID='$sid' ";
     $entry = mysqli_query($con,$isEntry);
     while( $line2= mysqli_fetch_assoc($entry)) {
 		
-        $isEntry1 = "Select Uhrzeit1,Uhrzeit2,Uhrzeit3,Uhrzeit4,Uhrzeit5,Uhrzeit6,Uhrzeit7,Uhrzeit8,Uhrzeit9,Uhrzeit10 From $Zeiten where Tag='$Tag'";
+        $isEntry1 = "Select Uhrzeit1,Uhrzeit2,Uhrzeit3,Uhrzeit4,Uhrzeit5,Uhrzeit6,Uhrzeit7,Uhrzeit8,Uhrzeit9,Uhrzeit10 From $ZeitStdpln where Tag='$Tag' and Semester='$semester' and (Klasse='$Klasse1' or Klasse='$Klasse2' or Klasse='$Klasse3' or Klasse='$Klasse4' or Klasse='$Klasse5' or Klasse='$Klasse6' or Klasse='$Klasse7' or Klasse='$Klasse8' or Klasse='$Klasse9' or Klasse='$Klasse10' or Klasse='$Klasse11' or Klasse='$Klasse12')";
         $entry1 = mysqli_query($con, $isEntry1);
         while ($line3 = mysqli_fetch_assoc($entry1)) {
 
@@ -167,13 +167,23 @@ $isEntryLK= "Select * From sv_LernendeModule where ID='$sid' ";
                 $Uhrzeit = "Uhrzeit" . "$z";
                 $UhrzeitV = $line3[$Uhrzeit];
 				 
-					 if ($UhrzeitV == $line2['Uhrzeit'] and $line2['Uhrzeit']<>"" and substr($line2['KursID'], -4)==$semester) {
+					 if ($UhrzeitV == $line2['Uhrzeit'].":00" and $line2['Uhrzeit']<>"" and substr($line2['KursID'], -4)==$semester) {
                  
 					$Uhr = ${'Uhr' . $z . $y} = $line2['Uhrzeit'];
 					//echo $line2['Uhrzeit'];$f++;
 					//echo $f;
                     preg_match("/\.(.*?)\./", $line2['KursID'], $output_array);
-                    ${'Kurs' . $z . $y} = $output_array[1];
+						 $l2KID=$line2['KursID'];
+						$isEntryLK = "Select * From sv_LernenderKurs where KursID='$l2KID' and SchuelerID='$sid'"; 
+						  $entryLK = mysqli_query($con,$isEntryLK);
+						 $LKID='';
+    while( $lineLK= mysqli_fetch_assoc($entryLK)) {
+		
+		$LKID=$lineLK['KursID'];
+	
+	}
+              if ($LKID){    
+					${'Kurs' . $z . $y} = $output_array[1];
                     ${'KName' . $z . $y} = $line2['Kursname'];
                       
                     $isEntry12 = "Select Startdatum,Farbe From $KurseDB Where (Klasse='$Klasse1' or Klasse='$Klasse2' or Klasse='$Klasse3' or Klasse='$Klasse4' or Klasse='$Klasse5' or Klasse='$Klasse6' or Klasse='$Klasse7' or Klasse='$Klasse8' or Klasse='$Klasse9' or Klasse='$Klasse10' or Klasse='$Klasse11' or Klasse='$Klasse12')  and Tag='$Tag' and Uhrzeit='$Uhr '";
@@ -184,6 +194,7 @@ $isEntryLK= "Select * From sv_LernendeModule where ID='$sid' ";
                         ${'col' . $z . $y} = $line31['Farbe'];
 
                     }
+			  }
                 }
             }
 
@@ -444,12 +455,23 @@ while( $value= mysqli_fetch_array($result))
         $Kursname=$value['Kursname'];
         $Startdatum=$value['Startdatum'];
         preg_match("/\.(.*?)\./", $value['KursID'], $output_array);
-        $KursID=$output_array[1];
+         $l2KID=$value['KursID'];
+						$isEntryLK = "Select * From sv_LernenderKurs where KursID='$l2KID' and SchuelerID='$sid'"; 
+						  $entryLK = mysqli_query($con,$isEntryLK);
+						 $LKID='';
+    while( $lineLK= mysqli_fetch_assoc($entryLK)) {
+		
+		$LKID=$lineLK['KursID'];
+	
+	}
+              if ($LKID){    
+		
+		$KursID=$output_array[1];
         $Farbe= $value['Farbe'];
         $Name=$y;
         echo '<input type="text" name='.$y.' style="width: 50px; height: 39px;background-color:'.$Farbe.'"; readonly >        <b>  Kursname: </b> '.$Kursname.' |   <b>  Kürzel: </b> '.$KursID.'        |    <b>Lehrer:</b> '.$VornameLehrer.'  '.$NachnameLehrer.'   |    <b>Startdatum des Kurses:</b> '.$Startdatum.'<br/>';
     }
 }
 	}
-
+	}
 ?>

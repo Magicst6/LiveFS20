@@ -342,20 +342,24 @@ for($y = 1; $y < 7; $y++)   {
 //Daten in DB speichern
 
     $isEntry = "Select * From sv_Kurse Where Lehrperson='$lid' and Tag='$Tag' ";
-
+	$isStdpln=0;
     $entry = mysqli_query($con,$isEntry);
     while( $line2= mysqli_fetch_assoc($entry)) {
-        $isEntry1 = "Select Uhrzeit1,Uhrzeit2,Uhrzeit3,Uhrzeit4,Uhrzeit5,Uhrzeit6,Uhrzeit7,Uhrzeit8,Uhrzeit9,Uhrzeit10 From sv_Zeiten where Tag='$Tag'";
+		
+		
+        $isEntry1 = "Select Uhrzeit1,Uhrzeit2,Uhrzeit3,Uhrzeit4,Uhrzeit5,Uhrzeit6,Uhrzeit7,Uhrzeit8,Uhrzeit9,Uhrzeit10 From sv_ZeitenStundenplan where Tag='$Tag' and Semester='$semester' ";
         $entry1 = mysqli_query($con, $isEntry1);
-        while ($line3 = mysqli_fetch_assoc($entry1)) {
-
+        while ($line4 = mysqli_fetch_assoc($entry1)) {
+                   $Klasse=$line4['Klasse'];
+			
+			
             for ($z = 1; $z <= 10; $z++) {
                 $Uhrzeit = "Uhrzeit" . "$z";
 				 
-                $UhrzeitV = $line3[$Uhrzeit];
+                $UhrzeitV = $line4[$Uhrzeit];
                     
-                if ($UhrzeitV == $line2['Uhrzeit'] and $line2['Uhrzeit']<>"" )  {
-                  //  echo "test";
+                if ($UhrzeitV == $line2['Uhrzeit'].":00" and $line2['Uhrzeit']<>"" )  {
+                  // echo "test";
 					$Uhr = ${'Uhr' . $z . $y} = $line2['Uhrzeit'];
                     preg_match("/\.(.*?)\./", $line2['KursID'], $output_array);
                     ${'Kurs' . $z . $y} = $line2['KursID'];
@@ -364,24 +368,36 @@ for($y = 1; $y < 7; $y++)   {
                     $isEntry1 = "Select Startdatum,Farbe From sv_Kurse Where Lehrperson='$lid' and Tag='$Tag' and Uhrzeit='$Uhr '";
                     $entry1 = mysqli_query($con, $isEntry1);
                     while ($line3 = mysqli_fetch_assoc($entry1)) {
-				
+						$Kursname=$line3['KursID'];
+					  $Kursarr = explode('.', $Kursname);
+                   $Klassenname=$Kursarr[0];
+						//echo $Klassenname;
+						if ($Klasse==$Klassenname)
+						{
+							$isStdpln=1;
 						${'Date' . $z . $y} = $line3['Startdatum'];
 						
                        
                         ${'col' . $z . $y} = $line3['Farbe'];
-
+						}
                     }
                 }
             }
 
 
         }
-    }
+   
+
+        
+    
     unset(${'Kurs'.$z.$y});
     unset(${'Date'.$z.$y});
     unset(${'col'.$z.$y});
 
-}
+
+	
+	}
+	}
 
 ?>
 
@@ -411,7 +427,7 @@ for($y = 1; $y < 7; $y++)   {
 
     <tr>
 
-        <td class="auto-style1" style="width: 22px;"><input style="width: 70px; height: 39px;" name="Uhr11" type="time" value="<?php echo $Uhr11;?>" />
+        <td class="auto-style1" style="width: 22px;"><input style="width: 70px; height: 39px;" name="Uhr11" type="time" value="<?php echo $Uhr11;?>"  />
         <td class="auto-style1" style="width: 22px;"><select  style="width: 149px; height: 39px;" name="Text11" onchange="check(this.value,'Montag','<?php echo $Uhr11;?>')" type="text" value="<?php echo $Kurs11;?>"  />
 			
 			  <? $isEntry2= "Select KursID From sv_Kurse where  Lehrperson='$lid'  Group by KursID"; echo "<option>" . $Kurs11 . "</option>";
@@ -427,7 +443,7 @@ for($y = 1; $y < 7; $y++)   {
 			
 			
 			<input style="width: 145px;" name="Date11"    type="date" value="<?php echo $Date11;?>" /></td>
-		<td class="auto-style1" style="width: 22px;"><input style="width: 70px; height: 39px;" name="Uhr12" type="time" value="<?php echo $Uhr12;?>" />
+		<td class="auto-style1" style="width: 22px;"><input style="width: 70px; height: 39px;" name="Uhr12" type="time" value="<?php echo $Uhr12;?>"  />
         <td class="auto-style1" style="width: 163px;"><select  style="width: 149px; height: 39px;" name="Text12" onchange="check(this.value,'Dienstag','<?php echo $Uhr12;?>')" type="text" value="<?php echo $Kurs12;?>"  />
 			
 			   <? $isEntry2= "Select KursID From sv_Kurse where  Lehrperson='$lid' Group by KursID"; echo "<option>" . $Kurs12 . "</option>";
@@ -441,7 +457,7 @@ for($y = 1; $y < 7; $y++)   {
 			 echo "<option></option>";
 		?></select>
 			<input style="width: 145px;" name="Date12" type="date" value="<?php echo $Date12;?>" /></td>
-        <td class="auto-style1" style="width: 22px;"><input style="width: 70px; height: 39px;" name="Uhr13" type="time" value="<?php echo $Uhr13;?>" />
+        <td class="auto-style1" style="width: 22px;"><input style="width: 70px; height: 39px;" name="Uhr13" type="time" value="<?php echo $Uhr13;?>"  />
         <td class="auto-style1" style="width: 184px;"><select  style="width: 149px; height: 39px;" name="Text13" onchange="check(this.value,'Mittwoch','<?php echo $Uhr13;?>')" type="text" value="<?php echo $Kurs13;?>"  />
 			
 		  <? $isEntry2= "Select KursID From sv_Kurse  where Lehrperson='$lid' Group by KursID"; echo "<option>" . $Kurs13 . "</option>";
@@ -455,7 +471,7 @@ for($y = 1; $y < 7; $y++)   {
 			 echo "<option></option>";
 		?></select>
 			<input style="width: 145px;" name="Date13" type="date" value="<?php echo $Date13;?>" /></td>
-        <td class="auto-style1" style="width: 22px;"><input style="width: 70px; height: 39px;" name="Uhr14" type="time" value="<?php echo $Uhr14;?>" />
+        <td class="auto-style1" style="width: 22px;"><input style="width: 70px; height: 39px;" name="Uhr14" type="time" value="<?php echo $Uhr14;?>"  />
         <td class="auto-style1" style="width: 201px;"><select  style="width: 149px; height: 39px;" name="Text14" onchange="check(this.value,'Donnerstag','<?php echo $Uhr14;?>')" type="text" value="<?php echo $Kurs14;?>"  />
 			
 			  <? $isEntry2= "Select KursID From sv_Kurse where where Lehrperson='$lid' Group by KursID"; echo "<option>" . $Kurs14 . "</option>";
@@ -469,7 +485,7 @@ for($y = 1; $y < 7; $y++)   {
 			 echo "<option></option>";
 		?></select>
 			<input style="width: 145px;" name="Date14" type="date" value="<?php echo $Date14;?>" /></td>
-        <td class="auto-style1" style="width: 22px;"><input style="width: 70px; height: 39px;" name="Uhr15" type="time" value="<?php echo $Uhr15;?>" />
+        <td class="auto-style1" style="width: 22px;"><input style="width: 70px; height: 39px;" name="Uhr15" type="time" value="<?php echo $Uhr15;?>"  />
         <td class="auto-style1" style="width: 182px;"><select  style="width: 149px; height: 39px;" name="Text15" onchange="check(this.value,'Freitag','<?php echo $Uhr15;?>')" type="text" value="<?php echo $Kurs15;?>"  />
 			 <? $isEntry2= "Select KursID From sv_Kurse where  Lehrperson='$lid' Group by KursID"; echo "<option>" . $Kurs15 . "</option>";
             $result2 = mysqli_query($con, $isEntry2);
@@ -482,7 +498,7 @@ for($y = 1; $y < 7; $y++)   {
 			 echo "<option></option>";
 		?></select>
 			<input style="width: 145px;" name="Date15" type="date" value="<?php echo $Date15;?>" /></td>
-        <td class="auto-style1" style="width: 22px;"><input style="width: 70px; height: 39px;" name="Uhr16" type="time" value="<?php echo $Uhr16;?>" />
+        <td class="auto-style1" style="width: 22px;"><input style="width: 70px; height: 39px;" name="Uhr16" type="time" value="<?php echo $Uhr16;?>"  />
         <td class="auto-style1" style="width: 229px;"><select  style="width: 149px; height: 39px;" name="Text16" onchange="check(this.value,'Samstag','<?php echo $Uhr16;?>')" type="text" value="<?php echo $Kurs16;?>"  />
 			  <? $isEntry2= "Select KursID From sv_Kurse where Lehrperson='$lid' Group by KursID"; echo "<option>" . $Kurs16 . "</option>";
             $result2 = mysqli_query($con, $isEntry2);
@@ -497,7 +513,7 @@ for($y = 1; $y < 7; $y++)   {
 			<input style="width: 145px;" name="Date16" type="date" value="<?php echo $Date16;?>" /></td>
     </tr>
     <tr>
-        <td class="auto-style1" style="width: 22px;"><input style="width: 70px; height: 39px;" name="Uhr21" type="time" value="<?php echo $Uhr21;?>" />
+        <td class="auto-style1" style="width: 22px;"><input style="width: 70px; height: 39px;" name="Uhr21" type="time" value="<?php echo $Uhr21;?>"  />
         <td class="auto-style1" style="width: 22px;"><select  style="width: 149px; height: 39px;" name="Text21" onchange="check(this.value,'Montag','<?php echo $Uhr21;?>')" type="text" value="<?php echo $Kurs21;?>"  />
 			
 			  <? $isEntry2= "Select KursID From sv_Kurse where Lehrperson='$lid' Group by KursID"; echo "<option>" . $Kurs21 . "</option>";
@@ -511,7 +527,7 @@ for($y = 1; $y < 7; $y++)   {
 			 echo "<option></option>";
 		?></select>
 			<input style="width: 145px;" name="Date21" type="date" value="<?php echo $Date21;?>" /></td>
-        <td class="auto-style1" style="width: 22px;"><input style="width: 70px; height: 39px;" name="Uhr22" type="time" value="<?php echo $Uhr22;?>" />
+        <td class="auto-style1" style="width: 22px;"><input style="width: 70px; height: 39px;" name="Uhr22" type="time" value="<?php echo $Uhr22;?>"  />
         <td class="auto-style1" style="width: 163px;"><select  style="width: 149px; height: 39px;" name="Text22" onchange="check(this.value,'Dienstag','<?php echo $Uhr22;?>')" type="text" value="<?php echo $Kurs22;?>"  />
 			
 			  <? $isEntry2= "Select KursID From sv_Kurse where Lehrperson='$lid' Group by KursID"; echo "<option>" . $Kurs22 . "</option>";
@@ -525,7 +541,7 @@ for($y = 1; $y < 7; $y++)   {
 			 echo "<option></option>";
 		?></select>
 			<input style="width: 145px;" name="Date22" type="date" value="<?php echo $Date22;?>" /></td>
-        <td class="auto-style1" style="width: 22px;"><input style="width: 70px; height: 39px;" name="Uhr23" type="time" value="<?php echo $Uhr23;?>" />
+        <td class="auto-style1" style="width: 22px;"><input style="width: 70px; height: 39px;" name="Uhr23" type="time" value="<?php echo $Uhr23;?>"  />
         <td class="auto-style1" style="width: 184px;"><select  style="width: 149px; height: 39px;" name="Text23" onchange="check(this.value,'Mittwoch','<?php echo $Uhr23;?>')" type="text" value="<?php echo $Kurs23;?>"  />
 			
 		  <? $isEntry2= "Select KursID From sv_Kurse where Lehrperson='$lid' Group by KursID"; echo "<option>" . $Kurs23 . "</option>";
@@ -539,7 +555,7 @@ for($y = 1; $y < 7; $y++)   {
 			 echo "<option></option>";
 		?></select>
 			<input style="width: 145px;" name="Date23" type="date" value="<?php echo $Date23;?>" /></td>
-        <td class="auto-style1" style="width: 22px;"><input style="width: 70px; height: 39px;" name="Uhr24" type="time" value="<?php echo $Uhr24;?>" />
+        <td class="auto-style1" style="width: 22px;"><input style="width: 70px; height: 39px;" name="Uhr24" type="time" value="<?php echo $Uhr24;?>"  />
         <td class="auto-style1" style="width: 201px;"><select  style="width: 149px; height: 39px;" name="Text24" onchange="check(this.value,'Donnerstag','<?php echo $Uhr24;?>')" type="text" value="<?php echo $Kurs24;?>"  />
 			
 			  <? $isEntry2= "Select KursID From sv_Kurse where Lehrperson='$lid' Group by KursID"; echo "<option>" . $Kurs24 . "</option>";
@@ -553,7 +569,7 @@ for($y = 1; $y < 7; $y++)   {
 			 echo "<option></option>";
 		?></select>
 			<input style="width: 145px;" name="Date24" type="date" value="<?php echo $Date24;?>" /></td>
-        <td class="auto-style1" style="width: 22px;"><input style="width: 70px; height: 39px;" name="Uhr25" type="time" value="<?php echo $Uhr25;?>" />
+        <td class="auto-style1" style="width: 22px;"><input style="width: 70px; height: 39px;" name="Uhr25" type="time" value="<?php echo $Uhr25;?>"  />
         <td class="auto-style1" style="width: 182px;"><select  style="width: 149px; height: 39px;" name="Text25" onchange="check(this.value,'Freitag','<?php echo $Uhr25;?>')" type="text" value="<?php echo $Kurs25;?>"  />
 			  <? $isEntry2= "Select KursID From sv_Kurse where Lehrperson='$lid' Group by KursID"; echo "<option>" . $Kurs25 . "</option>";
             $result2 = mysqli_query($con, $isEntry2);
@@ -566,7 +582,7 @@ for($y = 1; $y < 7; $y++)   {
 			 echo "<option></option>";
 		?></select>
 			<input style="width: 145px;" name="Date25" type="date" value="<?php echo $Date25;?>" /></td>
-        <td class="auto-style1" style="width: 22px;"><input style="width: 70px; height: 39px;" name="Uhr26" type="time" value="<?php echo $Uhr26;?>" />
+        <td class="auto-style1" style="width: 22px;"><input style="width: 70px; height: 39px;" name="Uhr26" type="time" value="<?php echo $Uhr26;?>"  />
         <td class="auto-style1" style="width: 229px;"><select  style="width: 149px; height: 39px;" name="Text26" onchange="check(this.value,'Samstag','<?php echo $Uhr26;?>')" type="text" value="<?php echo $Kurs26;?>"  />
 			  <? $isEntry2= "Select KursID From sv_Kurse where Lehrperson='$lid' Group by KursID"; echo "<option>" . $Kurs26 . "</option>";
             $result2 = mysqli_query($con, $isEntry2);
@@ -581,7 +597,7 @@ for($y = 1; $y < 7; $y++)   {
 			<input style="width: 145px;" name="Date26" type="date" value="<?php echo $Date26;?>" /></td>
     </tr>
     <tr>
-        <td class="auto-style1" style="width: 22px;"><input style="width: 70px; height: 39px;" name="Uhr31" type="time" value="<?php echo $Uhr31;?>" />
+        <td class="auto-style1" style="width: 22px;"><input style="width: 70px; height: 39px;" name="Uhr31" type="time" value="<?php echo $Uhr31;?>"  />
         <td class="auto-style1" style="width: 22px;"><select  style="width: 149px; height: 39px;" name="Text31" onchange="check(this.value,'Montag','<?php echo $Uhr31;?>')" type="text" value="<?php echo $Kurs31;?>"  />
 			  <? $isEntry2= "Select KursID From sv_Kurse where Lehrperson='$lid' Group by KursID"; echo "<option>" . $Kurs31 . "</option>";
             $result2 = mysqli_query($con, $isEntry2);
@@ -594,7 +610,7 @@ for($y = 1; $y < 7; $y++)   {
 			 echo "<option></option>";
 		?></select>
 			<input style="width: 145px;" name="Date31" type="date" value="<?php echo $Date31;?>" /></td>
-        <td class="auto-style1" style="width: 22px;"><input style="width: 70px; height: 39px;" name="Uhr32" type="time" value="<?php echo $Uhr32;?>" />
+        <td class="auto-style1" style="width: 22px;"><input style="width: 70px; height: 39px;" name="Uhr32" type="time" value="<?php echo $Uhr32;?>"  />
         <td class="auto-style1" style="width: 163px;"><select  style="width: 149px; height: 39px;" name="Text32" onchange="check(this.value,'Dienstag','<?php echo $Uhr32;?>')" type="text" value="<?php echo $Kurs32;?>"  />
 			  <? $isEntry2= "Select KursID From sv_Kurse where Lehrperson='$lid' Group by KursID"; echo "<option>" . $Kurs32 . "</option>";
             $result2 = mysqli_query($con, $isEntry2);
@@ -607,7 +623,7 @@ for($y = 1; $y < 7; $y++)   {
 			 echo "<option></option>";
 		?></select>
 			<input style="width: 145px;" name="Date32" type="date" value="<?php echo $Date32;?>" /></td>
-        <td class="auto-style1" style="width: 22px;"><input style="width: 70px; height: 39px;" name="Uhr33" type="time" value="<?php echo $Uhr33;?>" />
+        <td class="auto-style1" style="width: 22px;"><input style="width: 70px; height: 39px;" name="Uhr33" type="time" value="<?php echo $Uhr33;?>"  />
         <td class="auto-style1" style="width: 184px;"><select  style="width: 149px; height: 39px;" name="Text33" onchange="check(this.value,'Mittwoch','<?php echo $Uhr33;?>')" type="text" value="<?php echo $Kurs33;?>"  />
 			  <? $isEntry2= "Select KursID From sv_Kurse where Lehrperson='$lid' Group by KursID"; echo "<option>" . $Kurs33 . "</option>";
             $result2 = mysqli_query($con, $isEntry2);
@@ -633,7 +649,7 @@ for($y = 1; $y < 7; $y++)   {
 			 echo "<option></option>";
 		?></select>
 			<input style="width: 145px;" name="Date34" type="date" value="<?php echo $Date34;?>" /></td>
-        <td class="auto-style1" style="width: 22px;"><input style="width: 70px; height: 39px;" name="Uhr35" type="time" value="<?php echo $Uhr35;?>" />
+        <td class="auto-style1" style="width: 22px;"><input style="width: 70px; height: 39px;" name="Uhr35" type="time" value="<?php echo $Uhr35;?>"/>
         <td class="auto-style1" style="width: 182px;"><select  style="width: 149px; height: 39px;" name="Text35" onchange="check(this.value,'Freitag','<?php echo $Uhr35;?>')" type="text" value="<?php echo $Kurs35;?>"  />
 			  <? $isEntry2= "Select KursID From sv_Kurse where Lehrperson='$lid' Group by KursID"; echo "<option>" . $Kurs35 . "</option>";
             $result2 = mysqli_query($con, $isEntry2);
@@ -1030,7 +1046,7 @@ for($y = 1; $y < 7; $y++)   {
 			 echo "<option></option>";
 		?></select>
 			<input style="width: 145px;" name="Date83" type="date" value="<?php echo $Date83;?>" /></td>
-        <td class="auto-style1" style="width: 22px;"><input style="width: 70px; height: 39px;" name="Uhr84" type="time" value="<?php echo $Uhr84;?>" />
+        <td class="auto-style1" style="width: 22px;"><input style="width: 70px; height: 39px;" name="Uhr84" type="time" value="<?php echo $Uhr84;?>"/>
         <td class="auto-style1" style="width: 201px;"><select  style="width: 149px; height: 39px;" name="Text84" onchange="check(this.value,'Donnerstag','<?php echo $Uhr84;?>')" type="text" value="<?php echo $Kurs84;?>"  />
 			
 			   <? $isEntry2= "Select KursID From sv_Kurse where Lehrperson='$lid' Group by KursID"; echo "<option>" . $Kurs84 . "</option>";

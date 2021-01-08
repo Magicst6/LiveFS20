@@ -238,7 +238,7 @@ $result = mysqli_query($con, $isEntry);
 		  $Note=$value3['Note'];
 			    $Gew=$value3['Gewichtung'];
 			  
-			  if ($Gew>0)
+			  if ($Gew>0 && $Note)
 			  {
 			  $Notengesamt=$Notengesamt+$Note*$Gew;
 			  $Gewges=$Gewges+$Gew;

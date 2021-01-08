@@ -85,7 +85,24 @@ if ($lp_id) {
                    
 				}
 
-	
+		$isEntryNoten= "Select * From sv_Pruefungen Where KursID='$kursid'";
+
+    $resultNoten = mysqli_query($con, $isEntryNoten);
+
+
+$isExisting=0;
+    while( $valueN= mysqli_fetch_array($resultNoten))
+
+    {
+		$Name=$valueN['Pruefungsname'];
+		// echo $Name;
+	 if (($Name==$pruefungsname) and ($Name!=$NamePr) ){
+		
+		 $isExisting=1;
+	 }	
+	}
+
+		if (!$isExisting){
 
     $query = "UPDATE sv_Pruefungen  SET  Pruefungsname='$pruefungsname', Gewichtung= '$gewichtung' , Datum='$datum', Datum='$datum', Kursname= '$kursname', Start='$start', Ende='$end' ,KursID= '$kursid', Klasse='$klasse', Zimmer='$zimmer',Lehrperson= '$lehrperson', LP_ID='$lp_id', Farbe='$farbe',Lernziele='$lernziele'  WHERE id='$id'";
 
@@ -108,9 +125,15 @@ if ($lp_id) {
 						   $sql_befehl = "UPDATE sv_Noten SET Name='$pruefungsname',Gewichtung='$gewichtung',Datum='$datum' Where KursID='$kursid' and Name='$NamePr'";
                     
                                mysqli_query($con, $sql_befehl);
+					
+					
                         }
-
-                    
+echo "Prüfung editiert!";
+		}
+	else {
+			echo "<script> alert('Prüfungsname bereits vorhanden!');</script>";
+			echo "Prüfungsname bereits vorhanden!";
+		}
 
 
 }

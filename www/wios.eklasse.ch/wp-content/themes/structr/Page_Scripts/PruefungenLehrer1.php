@@ -1165,7 +1165,7 @@ get_currentuserinfo();
 												xmlhttp.open( "GET", "/wp-content/themes/structr/Page_Scripts/updatePrueftermin.php?q=" + title.val() + "&k=" + startCustdate.val() + "T" + startCusttime.val() + "&g=" + endCustdate.val() + "T" + endCusttime.val() + "&f=" + event.id + "&kursid=" + document.getElementById( 'kursid1' ).value + "&zimmer=" + document.getElementById( 'zimmer1' ).value + "&l=" + document.getElementById( 'lehrperson1' ).value + "&color=" + document.getElementById( 'farbe' ).value.substring( 1, 7 ) + "&gewichtung=" + document.getElementById( 'gewicht1' ).value + "&lernziele=" + text, true );
 
 												xmlhttp.send();
-  alert( "Prüfungsdaten gespeichert" );
+  alert( "Prüfungsdaten gespeichert - Bitte Statusmeldung unten beachten!" );
 
 
 												dialog.dialog( "close" );
@@ -1178,7 +1178,7 @@ get_currentuserinfo();
 												calendar.fullCalendar( 'refetchEvents' );
 											}
 
-											rl();
+											//rl();
 										},
 
 										"Löschen": function () {
@@ -1429,7 +1429,7 @@ get_currentuserinfo();
 
 							xmlhttp.send();
 
-                           alert( "Prüfungsdaten gespeichert" );
+                           alert( "Prüfungsdaten erfasst - bitte Statusmeldung beachten!!" );
 
 							dialog.dialog( "close" );
 
@@ -1984,7 +1984,10 @@ get_currentuserinfo();
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style>
 		body {}
-		
+			.fc-list-item-title:hover{
+  background:lightgrey;
+		 cursor: pointer;
+}
 		/* The Modal (background) */
 		.modal {
 			display: none; /* Hidden by default */

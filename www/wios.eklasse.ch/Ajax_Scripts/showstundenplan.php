@@ -335,21 +335,23 @@ for($y = 1; $y < 7; $y++)   {
 
 	
 //Daten in DB speichern
-
+$isStdpln=0;
     $isEntry = "Select KursID,Uhrzeit From sv_Kurse Where Klasse='$Klasse' and Tag='$Tag' ";
 
+	
     $entry = mysqli_query($con,$isEntry);
     while( $line2= mysqli_fetch_assoc($entry)) {
-        $isEntry1 = "Select Uhrzeit1,Uhrzeit2,Uhrzeit3,Uhrzeit4,Uhrzeit5,Uhrzeit6,Uhrzeit7,Uhrzeit8,Uhrzeit9,Uhrzeit10 From sv_Zeiten Where Tag='$Tag'  ";
+        $isEntry1 = "Select Uhrzeit1,Uhrzeit2,Uhrzeit3,Uhrzeit4,Uhrzeit5,Uhrzeit6,Uhrzeit7,Uhrzeit8,Uhrzeit9,Uhrzeit10 From sv_ZeitenStundenplan Where Tag='$Tag' and Klasse='$Klasse' and Semester='$semester' ";
         $entry1 = mysqli_query($con, $isEntry1);
         while ($line3 = mysqli_fetch_assoc($entry1)) {
+			
 
             for ($z = 1; $z <= 10; $z++) {
                 $Uhrzeit = "Uhrzeit" . "$z";
 				
                 $UhrzeitV = $line3[$Uhrzeit];
 
-                if ($UhrzeitV == $line2['Uhrzeit'] and $line2['Uhrzeit']<>"" and substr($line2['KursID'], -4)==$semester)  {
+                if ($UhrzeitV == $line2['Uhrzeit'].":00" and $line2['Uhrzeit']<>"" and substr($line2['KursID'], -4)==$semester)  {
                     $Uhr = ${'Uhr' . $z . $y} = $line2['Uhrzeit'];
                     preg_match("/\.(.*?)\./", $line2['KursID'], $output_array);
                     ${'Kurs' . $z . $y} = $output_array[1];
@@ -367,16 +369,16 @@ for($y = 1; $y < 7; $y++)   {
                     }
                 }
             }
-
-
-        }
-    }
+           $isStdpln=1;
+        
+		
+	}
     unset(${'Kurs'.$z.$y});
     unset(${'Date'.$z.$y});
     unset(${'col'.$z.$y});
 
 }
-
+}
 ?>
 
 

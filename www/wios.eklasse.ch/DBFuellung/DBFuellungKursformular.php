@@ -9,8 +9,16 @@ if($_POST['Senden'])
 {
 
     $Klasse = $_POST['klasse'];
+	
+	 $Lehrer = $_POST['lehrer'];
+	
+	  preg_match("/:(.*)/", $Lehrer, $output_array);
 
-
+        $LP_ID=$output_array[1];
+ 
+	echo $LP_ID;
+ 
+	echo $Klasse;
     $AnzahlKurse = $_POST['AnzahlKurse'];
 
   // echo $AnzahlKurse.'  ';
@@ -257,16 +265,25 @@ echo $sql_befehl;
 
     }
 
-    $sql_befehl_del = "Delete From sv_KurseAll where Stundenplan = 1 AND Klasse ='$Klasse'";
-
-
+		if ($Klasse)
+{		
+    $sql_befehl_del = "Delete From sv_KurseAll where Stundenplan = 1 and Klasse='$Klasse'";
+		}
+	if ($LP_ID)
+{		
+    $sql_befehl_del = "Delete From sv_KurseAll where Stundenplan = 1 and LP_ID='$LP_ID'";
+		}
 
 // In die DB-Tabelle eintragen
 
     mysqli_query($con, $sql_befehl_del);
 
-    $isEntryStundenplan= "Select * From sv_Kurse where Klasse = '$Klasse' ";
-
+		if ($LP_ID){
+    $isEntryStundenplan= "Select * From sv_Kurse where Lehrperson='$LP_ID' ";
+		}
+			if ($Klasse){
+    $isEntryStundenplan= "Select * From sv_Kurse where Klasse='$Klasse' ";
+		}
     $resultStundenplan = mysqli_query($con, $isEntryStundenplan);
 
 

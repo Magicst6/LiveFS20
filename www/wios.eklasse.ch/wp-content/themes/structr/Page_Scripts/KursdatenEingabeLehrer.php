@@ -146,7 +146,7 @@ str =  str[1];
     ?>
 
 </select>
-	
+	<input name="hlpid" id="HLP_ID" type="hidden" value="<? echo $value;?>" > 
 	
 	<?php
 	

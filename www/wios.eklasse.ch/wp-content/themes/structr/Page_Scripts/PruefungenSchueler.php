@@ -1171,7 +1171,10 @@ while( $line2= mysqli_fetch_assoc($result))
  <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         body {}
-
+	.fc-list-item-title:hover{
+  background:lightgrey;
+		 cursor: pointer;
+}
         /* The Modal (background) */
        /* The Modal (background) */
         .modal{

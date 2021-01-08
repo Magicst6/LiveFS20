@@ -135,16 +135,16 @@ if ($semester==$semDB){
     $entry = mysqli_query($con,$isEntry);
     while( $line2= mysqli_fetch_assoc($entry)) {
 		
-        $isEntry1 = "Select Uhrzeit1,Uhrzeit2,Uhrzeit3,Uhrzeit4,Uhrzeit5,Uhrzeit6,Uhrzeit7,Uhrzeit8,Uhrzeit9,Uhrzeit10 From $Zeiten where Tag='$Tag'";
+        $isEntry1 = "Select Uhrzeit1,Uhrzeit2,Uhrzeit3,Uhrzeit4,Uhrzeit5,Uhrzeit6,Uhrzeit7,Uhrzeit8,Uhrzeit9,Uhrzeit10 From  $ZeitStdpln where Tag='$Tag' and Semester='$semester'";
         $entry1 = mysqli_query($con, $isEntry1);
-        while ($line3 = mysqli_fetch_assoc($entry1)) {
-
+        while ($line4 = mysqli_fetch_assoc($entry1)) {
+ $Klasse=$line4['Klasse'];
             for ($z = 1; $z <= 10; $z++) {
 				 
                 $Uhrzeit = "Uhrzeit" . "$z";
-                $UhrzeitV = $line3[$Uhrzeit];
+                $UhrzeitV = $line4[$Uhrzeit];
 				 
-					 if ($UhrzeitV == $line2['Uhrzeit'] and $line2['Uhrzeit']<>"" and substr($line2['KursID'], -4)==$semester) {
+					 if ($UhrzeitV == $line2['Uhrzeit'].":00" and $line2['Uhrzeit']<>"" and substr($line2['KursID'], -4)==$semester) {
                  
 					$Uhr = ${'Uhr' . $z . $y} = $line2['Uhrzeit'];
 					//echo $line2['Uhrzeit'];$f++;
@@ -156,10 +156,16 @@ if ($semester==$semDB){
                     $isEntry12 = "Select Startdatum,Farbe From $KurseDB Where Lehrperson='$lid' and Tag='$Tag' and Uhrzeit='$Uhr '";
                     $entry12 = mysqli_query($con, $isEntry12);
                     while ($line31 = mysqli_fetch_assoc($entry12)) {
+							$Kursname=$line31['KursID'];
+					  $Kursarr = explode('.', $Kursname);
+                   $Klassenname=$Kursarr[0];
+						//echo $Klassenname;
+						if ($Klasse==$Klassenname)
+						{
 						//echo "test";
                         ${'Date' . $z . $y} = $line31['Startdatum'];
                         ${'col' . $z . $y} = $line31['Farbe'];
-
+						}
                     }
                 }
             }
