@@ -40,7 +40,28 @@ if($Mail==$LoginnameMail and $Lernender<>$ID)
 }
 		}
 if (!$isExisting){
-    $sql_befehl = "Update  sv_Lernende Set Loginname='$LoginnameReal', User_ID='$LoginnameID', EMAIL='$LoginnameMail' Where Name='$Name' and Vorname='$Vorname' ";
+    $isEntry2 = "SELECT * From sv_LernendeModule where ID='$Lernender'  Order by Name";
+
+        $result2 = mysqli_query($con,$isEntry2);
+
+        while( $value2= mysqli_fetch_array($result2)){
+			$Modul1=$value2['Modul1'];
+			$Modul2=$value2['Modul2'];
+			$Modul3=$value2['Modul3'];
+			$Modul4=$value2['Modul4'];
+			$Modul5=$value2['Modul5'];
+			$Modul6=$value2['Modul6'];
+			$Modul7=$value2['Modul7'];
+			$Modul8=$value2['Modul8'];
+			$Modul9=$value2['Modul9'];
+			$Modul10=$value2['Modul10'];
+			$Modul11=$value2['Modul11'];
+			$Modul12=$value2['Modul12'];
+			
+			
+		}
+	
+	$sql_befehl = "Update  sv_Lernende Set Loginname='$LoginnameReal', User_ID='$LoginnameID', EMAIL='$LoginnameMail' Where Name='$Name' and Vorname='$Vorname' and(Klasse='$Modul1' or Klasse='$Modul2' or Klasse='$Modul3' or Klasse='$Modul3' or Klasse='$Modul4' or Klasse='$Modul5' or Klasse='$Modul6' or Klasse='$Modul7' or  Klasse='$Modul8' or Klasse='$Modul9' or Klasse='$Modul10' or Klasse='$Modul11' or Klasse='$Modul12')  ";
     //echo $sql_befehl5;
     if  (""== $Lernender)  {
         //echo "Fehler: Eintrag unvollständig. ";
@@ -54,7 +75,7 @@ if (!$isExisting){
 
     }
 
-$sql_befehl1 = "Update  sv_LernendeModule Set Loginname='$LoginnameReal', User_ID='$LoginnameID', EMAIL='$LoginnameMail' Where Name='$Name' and Vorname='$Vorname'";
+$sql_befehl1 = "Update  sv_LernendeModule Set Loginname='$LoginnameReal', User_ID='$LoginnameID', EMAIL='$LoginnameMail' Where ID='$Lernender'";
     //echo $sql_befehl5;
     if  (""== $Lernender)  {
         //echo "Fehler: Eintrag unvollständig. ";
