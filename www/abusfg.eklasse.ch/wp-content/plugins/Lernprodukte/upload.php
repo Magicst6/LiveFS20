@@ -10,13 +10,15 @@ $beschr=$_POST['beschr'];
 $Text=$_POST['lpText'];
 $komment=$_POST['komment'];
 $ID=$_POST['ID'];
+$Bewertung=$_POST['bew'];
 
 
 
+//echo $ID;
 
 if($ID){
 	include('db.php');
-	 $sql_befehlT = "UPDATE Lernprodukte SET TEXT='$Text', Kommentar='$komment',Beschreibung='$beschr' Where ID='$ID'";
+	 $sql_befehlT = "UPDATE Lernprodukte SET TEXT='$Text', Kommentar='$komment',Beschreibung='$beschr', Bewertung='$Bewertung' Where ID='$ID'";
     
 mysqli_query($con,$sql_befehlT);
 	
@@ -35,7 +37,7 @@ $uploadOk = 1;
 
 $FileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
-echo $target_file;
+//echo $target_file;
 
 //echo $FileType;
 
@@ -44,14 +46,17 @@ echo $target_file;
 if (file_exists($target_file)) {
 
     echo "Sorry, file already exists.";
+	
 
-    $uploadOk = 0;
+			
+    
+	$uploadOk = 0;
 
 }
 
 // Check file size
 
-if ($_FILES["fileToUpload"]["size"] > 5000000) {
+if ($_FILES["fileToUpload"]["size"] > 50000000) {
 
     echo "Sorry, your file is too large.";
 
@@ -81,7 +86,7 @@ if ($uploadOk == 0) {
 
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
 
-        echo "The file " . basename($_FILES["fileToUpload"]["name"]) . " has been uploaded.";
+        echo "Die Datei " . $_FILES["fileToUpload"]["name"] . " wurde hochgeladen!";
 
     } else {
 
@@ -92,10 +97,11 @@ if ($uploadOk == 0) {
 
 }
 
-
+if ($uploadOk == 1 ){
+	
 $targetURL="/wp-content/plugins/Lernprodukte/".$target_file;
 
-echo  '<a href='.$targetURL.'>Link</a>';
+//echo  '<a href='.$targetURL.'>Link</a>';
 	include('db.php');
 
 $datum=date("Y-m-d H:i:s");
@@ -107,6 +113,7 @@ $datum=date("Y-m-d H:i:s");
     $sql_befehl2 = "INSERT INTO Lernprodukte (Datum,User_ID,URL,Vorname,Nachname,Loginname,EMAIL,Beschreibung,TEXT ) VALUES ('$datum','$uid','$targetURL','$vorname','$name','$login','$mail','$beschr','$Text')";
     
 mysqli_query($con,$sql_befehl2);
+}
 }
 else{
 	

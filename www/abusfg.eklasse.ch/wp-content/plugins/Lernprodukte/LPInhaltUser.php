@@ -464,16 +464,23 @@
    // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
         if (event.target == document.getElementById("myModal1sm")) {
+						var result = confirm("Möchten Sie das Fenster wirklich schließen? Der geschriebene Text geht verloren!");
+if (result) {
+    //Logic to de
          document.getElementById("myModal1sm").style.display = "none";
-			
+}
         }
     }
 	
 	 //When the user clicks on <span> (x), close the modal
      document.getElementById("span1sm").onclick = function() {
+		 			var result = confirm("Möchten Sie das Fenster wirklich schließen? Der geschriebene Text geht verloren!");
+if (result) {
+    //Logic to de
        document.getElementById("myModal1sm").style.display = "none";
-
-    }
+}
+    
+	 }
 	}
 	else {
 			
@@ -483,13 +490,19 @@
    // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
         if (event.target == document.getElementById("myModal1")) {
+						var result = confirm("Möchten Sie das Fenster wirklich schließen? Der geschriebene Text geht verloren!");
+if (result) {
+    //Logic to de
          document.getElementById("myModal1").style.display = "none";
-			
+}
         }
     }
 	
 	 //When the user clicks on <span> (x), close the modal
      document.getElementById("span1").onclick = function() {
+		 			var result = confirm("Möchten Sie das Fenster wirklich schließen? Der geschriebene Text geht verloren!");
+if (result) {
+    //Logic to de
        document.getElementById("myModal1").style.display = "none";
 
     }
@@ -597,7 +610,7 @@ $.ajax({
             },
 });
 	  
-	 myVarsm = setTimeout(refreshTablesm, 2000);
+	 myVarsm = setTimeout(refreshTablesm, 4000);
 	   }
 		   	else
 				{

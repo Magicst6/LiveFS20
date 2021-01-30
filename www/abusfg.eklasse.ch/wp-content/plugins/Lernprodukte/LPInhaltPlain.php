@@ -142,7 +142,12 @@ $(document).ready(function() {
                 },
                 clearText: "Clear",
                 noImageText: 'keine Datei'
-            }
+            },
+			{
+               label: "Bewertung:",
+                name: "Bewertung"
+			
+			 }
 		
         ],
 		  i18n: {
@@ -204,18 +209,25 @@ $(document).ready(function() {
 	document.getElementById("ID").value = table2P.cell(rowIdxKP,0).data(); 
 				
 				document.getElementById("beschrTKP").value = table2P.cell(rowIdxKP,1).data(); 
+					document.getElementById("bewP").value = table2P.cell(rowIdxKP,8).data(); 
 	document.getElementById("myModalTP").style.display = 'block'; 
 	 window.onclick = function(event) {
         if (event.target == document.getElementById("myModalTP")) {
+						var result = confirm("Möchten Sie das Fenster wirklich schließen? Der geschriebene Text geht verloren!");
+if (result) {
+    //Logic to de
          document.getElementById("myModalTP").style.display = "none";
-			
+}
         }
     }
 	
 	 //When the user clicks on <span> (x), close the modal
      document.getElementById("spanTP").onclick = function() {
+		 			var result = confirm("Möchten Sie das Fenster wirklich schließen? Der geschriebene Text geht verloren!");
+if (result) {
+    //Logic to de
        document.getElementById("myModalTP").style.display = "none";
-		 
+}
 	
     }
 	 
@@ -277,7 +289,9 @@ $(document).ready(function() {
                 title: "Korrektur"
             },
 	
-          	{ data: "Loginname" }
+          	{ data: "Loginname" },
+			{ data: "Bewertung" }
+			
         ],
         select: {
             style:    'os',
@@ -388,8 +402,12 @@ $(document).ready(function() {
                 },
                 clearText: "Clear",
                 noImageText: 'keine Datei'
-            }
-		
+            },
+			{
+               label: "Bewertung:",
+                name: "Bewertung"
+			
+			 }
         ],
 		  i18n: {
             remove: {
@@ -450,19 +468,26 @@ $(document).ready(function() {
 				 tinymce.get('kommentP').setContent(table2P.cell(rowIdxKsmP,5).data() );
 			document.getElementById("ID").value = table2P.cell(rowIdxKsmP,0).data(); 
 				document.getElementById("beschrTKP").value = table2P.cell(rowIdxKsmP,1).data(); 
+				document.getElementById("bewP").value = table2P.cell(rowIdxKsmP,8).data(); 
 	document.getElementById("myModalTP").style.display = 'block'; 
 	 window.onclick = function(event) {
         if (event.target == document.getElementById("myModalTP")) {
+						var result = confirm("Möchten Sie das Fenster wirklich schließen? Der geschriebene Text geht verloren!");
+if (result) {
+    //Logic to de
          document.getElementById("myModalTP").style.display = "none";
-			
+}
         }
     }
 	
 	 //When the user clicks on <span> (x), close the modal
      document.getElementById("spanTP").onclick = function() {
+		 			var result = confirm("Möchten Sie das Fenster wirklich schließen? Der geschriebene Text geht verloren!");
+if (result) {
+    //Logic to de
        document.getElementById("myModalTP").style.display = "none";
 		 
-	
+}
     }
 	 
 	
@@ -491,7 +516,7 @@ $(document).ready(function() {
 			
 			}
         }, 
-        order: [[ 5, 'desc' ]],
+        order: [[ 6, 'desc' ]],
 		 autoWidth: false,
 		 responsive:true,
         columns: [
@@ -522,13 +547,16 @@ $(document).ready(function() {
                 title: "Korrektur"
             },
 				{ data: "Loginname" },
-			{ data: "Datum"},
+			{ data: "Bewertung"},
+			{ data: "Datum"}
+			
+			
 		
           
         ],
 		 'columnDefs' : [
         //hide the second & fourth column
-        { 'visible': false, 'targets': [5] }
+        { 'visible': false, 'targets': [6] }
     ],
         select: {
             style:    'os',
@@ -566,17 +594,17 @@ $(document).ready(function() {
 		 var fd = new FormData();
         var textP = tinymce.get('lernproduktTextkorrP').getContent();
 	  var kommentP =tinymce.get('kommentP').getContent();
+			var bewP = document.getElementById("bewP").value;
 	  var ID = document.getElementById("ID").value;
 	 
 	   var beschrTKP = document.getElementById("beschrTKP").value;
 	  
 	  
-	   if (beschrTKP!=''){
 	  
         fd.append('lpText',textP);
 	   fd.append('komment',kommentP);
 	  fd.append('ID',ID);
-	 
+	  fd.append('bew',bewP);
 	   fd.append('beschr',beschrTKP);
 
 
@@ -597,19 +625,30 @@ $.ajax({
 	  
 	 myVarTK = setTimeout(refreshTableTKmP, 2000);
 			 document.getElementById("myModalTP").style.display = "none";
-		   
-		    }
-		   else
-				{
-					
-					alert('Bitte das Feld Beschreibung ausfüllen!');
-					
-				}
 			
 		}
 		
 		function refreshTableTKmP(){
-		  if ( tablesmP ) {
+	
+		
+  
+		
+		
+	
+			if(window.innerWidth>800){
+				 if ( table2P ) {
+		table2P.destroy();
+	}
+	
+	if ( editorP ) {
+		editorP.destroy();
+	}
+				var searchValP=table2P.search(this.value);
+				  tableloadKP();
+				table2P.search(searchValP).draw();
+			}
+			else{
+					  if ( tablesmP ) {
 		tablesmP.destroy();
 	}
 	
@@ -617,22 +656,11 @@ $.ajax({
 		editorsmP.destroy();
 	}
 		
-		
-  
-		 if ( table2P ) {
-		table2P.destroy();
-	}
-	
-	if ( editorP ) {
-		editorP.destroy();
-	}
-		
-	
-			if(window.innerWidth>800){
-				  tableloadKP();
-			}
-			else{
+			var searchValsmP=tablesmP.search(this.value);
+				
 					  tableloadKsmP();
+				tablesmP.search(searchValsmP).draw();
+			
 			}	
 			
 			alert('Aktion ausgeführt. Bitte überprüfen Sie den Upload in der Tabelle!');
@@ -677,13 +705,14 @@ get_currentuserinfo();
           <tr>
            
             <th class="small-col" >ID</th>
-			  <th class="norm-col">Beschreibung</th>
+			  <th class="big-col">Beschreibung</th>
             <th class="big-col">TEXT</th>
 			<th class="norm-col">Datum</th>
 	        <th class="norm-col">URL</th>
 			 <th class="norm-col">Kommentar</th>
 			<th class="norm-col">Korrektur</th>
 		    <th  class="norm-col">Lernender</th>
+			  <th  class="small-col">Bewertung</th>
 			<!-- <th>Datei</th> -->
           </tr>
         </thead>
@@ -717,13 +746,12 @@ get_currentuserinfo();
       <table class="table table-striped table-hover datatablessmP">
         <thead>
           <tr>
-           
-             
 			  <th class="norm-colsm">Beschreibung</th>
             <th class="big-colsm">TEXT</th>
 	        <th class="norm-colsm">URL</th>
 			<th class="norm-colsm">Korrektur</th>
 			  <th class="norm-colsm">Lernender</th>
+			  <th class="small-col">Bew.</th>
 			<!-- <th>Datei</th> -->
           </tr>
         </thead>
@@ -756,7 +784,11 @@ Beschreibung*:<br>
    <textarea id="lernproduktTextkorrP"  height="400px"  ></textarea><br><br>
 			Kommentar:<br>
 			<textarea id="kommentP"  height="100px"  ></textarea><br>
+			<br><br>
+			Bewertung:<br>
+			<input id="bewP"><br><br>
      <input type="button" value="Text hochladen" name="submit1P" onClick="uploadTKP()">
+			
 </form>
 <br><br>
 

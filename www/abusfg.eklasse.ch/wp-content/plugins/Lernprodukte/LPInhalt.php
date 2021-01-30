@@ -143,7 +143,12 @@ $(document).ready(function() {
                 },
                 clearText: "Clear",
                 noImageText: 'keine Datei'
-            }
+            },
+			{
+               label: "Bewertung:",
+                name: "Bewertung"
+			
+			 }
 		
         ],
 		  i18n: {
@@ -202,21 +207,27 @@ $(document).ready(function() {
 			
       tinymce.get('lernproduktTextkorr').setContent(table2.cell(rowIdxK,2).data() );
 	   tinymce.get('komment').setContent(table2.cell(rowIdxK,5).data() );
-	document.getElementById("ID").value = table2.cell(rowIdxK,0).data(); 
-				
+	document.getElementById("bew").value = table2.cell(rowIdxK,8).data(); 
 				document.getElementById("beschrTK").value = table2.cell(rowIdxK,1).data(); 
 	document.getElementById("myModalT").style.display = 'block'; 
 	 window.onclick = function(event) {
         if (event.target == document.getElementById("myModalT")) {
+			var result = confirm("Möchten Sie das Fenster wirklich schließen? Der geschriebene Text geht verloren!");
+if (result) {
+    //Logic to delete the item
+
          document.getElementById("myModalT").style.display = "none";
-			
+}
         }
     }
 	
 	 //When the user clicks on <span> (x), close the modal
      document.getElementById("spanT").onclick = function() {
+		 			var result = confirm("Möchten Sie das Fenster wirklich schließen? Der geschriebene Text geht verloren!");
+if (result) {
+    //Logic to de
        document.getElementById("myModalT").style.display = "none";
-		 
+}
 	
     }
 	 
@@ -278,7 +289,8 @@ $(document).ready(function() {
                 title: "Korrektur"
             },
 	
-          	{ data: "Loginname" }
+          	{ data: "Loginname" },
+			{data: "Bewertung"}
         ],
         select: {
             style:    'os',
@@ -389,7 +401,12 @@ $(document).ready(function() {
                 },
                 clearText: "Clear",
                 noImageText: 'keine Datei'
-            }
+            },
+			{
+               label: "Bewertung:",
+                name: "Bewertung"
+			
+			 }
 		
         ],
 		  i18n: {
@@ -451,19 +468,27 @@ $(document).ready(function() {
 				 tinymce.get('komment').setContent(table2.cell(rowIdxKsm,5).data() );
 			document.getElementById("ID").value = table2.cell(rowIdxKsm,0).data(); 
 				document.getElementById("beschrTK").value = table2.cell(rowIdxKsm,1).data(); 
+				document.getElementById("bew").value = table2.cell(rowIdxKsm,8).data(); 
+				 
 	document.getElementById("myModalT").style.display = 'block'; 
 	 window.onclick = function(event) {
         if (event.target == document.getElementById("myModalT")) {
-         document.getElementById("myModalT").style.display = "none";
-			
+         			var result = confirm("Möchten Sie das Fenster wirklich schließen? Der geschriebene Text geht verloren!");
+if (result) {
+    //Logic to de
+			document.getElementById("myModalT").style.display = "none";
+}
         }
     }
 	
 	 //When the user clicks on <span> (x), close the modal
      document.getElementById("spanT").onclick = function() {
+		 			var result = confirm("Möchten Sie das Fenster wirklich schließen? Der geschriebene Text geht verloren!");
+if (result) {
+    //Logic to de
        document.getElementById("myModalT").style.display = "none";
 		 
-	
+}
     }
 	 
 	
@@ -492,7 +517,7 @@ $(document).ready(function() {
 			
 			}
         }, 
-        order: [[ 5, 'desc' ]],
+        order: [[ 6, 'desc' ]],
 		 autoWidth: false,
 		 responsive:true,
         columns: [
@@ -523,13 +548,14 @@ $(document).ready(function() {
                 title: "Korrektur"
             },
 				{ data: "Loginname" },
+			{ data: "Bewertung" },
 			{ data: "Datum"},
 		
           
         ],
 		 'columnDefs' : [
         //hide the second & fourth column
-        { 'visible': false, 'targets': [5] }
+        { 'visible': false, 'targets': [6] }
     ],
         select: {
             style:    'os',
@@ -571,15 +597,21 @@ $(document).ready(function() {
    // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
         if (event.target == document.getElementById("myModalsm")) {
+						var result = confirm("Möchten Sie das Fenster wirklich schließen? Der geschriebene Text geht verloren!");
+if (result) {
+    //Logic to de
          document.getElementById("myModalsm").style.display = "none";
-			
+}
         }
     }
 	
 	 //When the user clicks on <span> (x), close the modal
      document.getElementById("spansm").onclick = function() {
+		 	var result = confirm("Möchten Sie das Fenster wirklich schließen? Der geschriebene Text geht verloren!");
+if (result) {
+    //Logic to de
        document.getElementById("myModalsm").style.display = "none";
-	
+}
     }
 		
 		}
@@ -590,15 +622,21 @@ $(document).ready(function() {
    // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
         if (event.target == document.getElementById("myModal")) {
+						var result = confirm("Möchten Sie das Fenster wirklich schließen? Der geschriebene Text geht verloren!");
+if (result) {
+    //Logic to de
          document.getElementById("myModal").style.display = "none";
-			
+}
         }
     }
 	
 	 //When the user clicks on <span> (x), close the modal
      document.getElementById("span").onclick = function() {
+		 			var result = confirm("Möchten Sie das Fenster wirklich schließen? Der geschriebene Text geht verloren!");
+if (result) {
+    //Logic to de
        document.getElementById("myModal").style.display = "none";
-	
+}
     }
 		
 				
@@ -617,15 +655,15 @@ $(document).ready(function() {
         var text = tinymce.get('lernproduktTextkorr').getContent();
 	  var komment =tinymce.get('komment').getContent();
 	  var ID = document.getElementById("ID").value;
-	 
+	 var bew = document.getElementById("bew").value;
 	   var beschrTK = document.getElementById("beschrTK").value;
 	  
-	  if (beschrTK!=''){
+	  
 	  
         fd.append('lpText',text);
 	   fd.append('komment',komment);
 	  fd.append('ID',ID);
-	 
+	  fd.append('bew',bew);
 	   fd.append('beschr',beschrTK);
 
 
@@ -646,13 +684,9 @@ $.ajax({
 	  
 	 myVarTK = setTimeout(refreshTableTKm, 2000);
 			 document.getElementById("myModalT").style.display = "none";
-	  }
-			else
-				{
-					
-					alert('Bitte das Feld Beschreibung ausfüllen!');
-					
-				}
+			
+			
+			
   }
      function refreshTableTK(){
 		  if ( tablesm ) {
@@ -678,7 +712,9 @@ $.ajax({
 				  tableloadK();
 		
 					  tableloadKsm();
-				
+		
+   		
+		 
   }
 		
 		function refreshTableTKm(){
@@ -700,9 +736,14 @@ $.ajax({
 		editor.destroy();
 	}
 		
+			var searchVal=table2.search(this.value);
+			var searchValsm=tablesm.search(this.value);
 				  tableloadK();
 			
+			
 					  tableloadKsm();
+			table2.search(searchVal).draw();
+			tablesm.search(searchValsm).draw();
 				
 			
 			alert('Aktion ausgeführt. Bitte überprüfen Sie den Upload in der Tabelle!');
@@ -748,13 +789,14 @@ get_currentuserinfo();
           <tr>
            
             <th class="small-col" >ID</th>
-			  <th class="norm-col">Beschreibung</th>
+			  <th class="big-col">Beschreibung</th>
             <th class="big-col">TEXT</th>
 			<th class="norm-col">Datum</th>
 	        <th class="norm-col">URL</th>
 			 <th class="norm-col">Kommentar</th>
 			<th class="norm-col">Korrektur</th>
 		    <th  class="norm-col">Lernender</th>
+			  <th  class="small-col">Bewertung</th>
 			<!-- <th>Datei</th> -->
           </tr>
         </thead>
@@ -797,6 +839,7 @@ get_currentuserinfo();
 	        <th class="norm-colsm">URL</th>
 			<th class="norm-colsm">Korrektur</th>
 			  <th class="norm-colsm">Lernender</th>
+			   <th class="norm-colsm">Bew.</th>
 			<!-- <th>Datei</th> -->
           </tr>
         </thead>
@@ -830,6 +873,9 @@ Beschreibung*:<br>
    <textarea id="lernproduktTextkorr"  height="400px"  ></textarea><br><br>
 			Kommentar:<br>
 			<textarea id="komment"  height="100px"  ></textarea><br>
+			<br><br>
+			Bewertung:<br>
+			<input id="bew"><br><br>
      <input type="button" value="Text hochladen" name="submit10" onClick="uploadTK()">
 </form>
 <br><br>
@@ -878,6 +924,7 @@ button:active {
 	.norm-col {
   width: 10% !important;
 }
+
 	
 	.big-colsm {
   width: 10% !important;

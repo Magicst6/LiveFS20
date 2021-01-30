@@ -195,9 +195,10 @@ if (r == true) {
 				
 			
 				document.getElementById("beschrT").value = table4.cell(rowIdx,1).data(); 
+	r.destroy();
 				
 } else {
-  
+  r.destroy();
 } 
 		
 			}
@@ -418,9 +419,10 @@ if (r == true) {
 				
 			
 				document.getElementById("beschrTsm").value = table4sm.cell(rowIdxsm,0).data(); 
+		r.destroy();
 				
 } else {
-  
+  r.destroy();
 } 
 			}
     } );
@@ -519,15 +521,21 @@ if (r == true) {
    // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
         if (event.target == document.getElementById("myModal2sm")) {
+						var result = confirm("Möchten Sie das Fenster wirklich schließen? Der geschriebene Text geht verloren!");
+if (result) {
+    //Logic to de
          document.getElementById("myModal2sm").style.display = "none";
-			
+}
         }
     }
 	
 	 //When the user clicks on <span> (x), close the modal
      document.getElementById("span2sm").onclick = function() {
+		 			var result = confirm("Möchten Sie das Fenster wirklich schließen? Der geschriebene Text geht verloren!");
+if (result) {
+    //Logic to de
        document.getElementById("myModal2sm").style.display = "none";
-
+}
     }
 	}
 	else {
@@ -538,15 +546,21 @@ if (r == true) {
    // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
         if (event.target == document.getElementById("myModal2")) {
+						var result = confirm("Möchten Sie das Fenster wirklich schließen? Der geschriebene Text geht verloren!");
+if (result) {
+    //Logic to de
          document.getElementById("myModal2").style.display = "none";
-			
+}
         }
     }
 	
 	 //When the user clicks on <span> (x), close the modal
      document.getElementById("span2").onclick = function() {
+		 			var result = confirm("Möchten Sie das Fenster wirklich schließen? Der geschriebene Text geht verloren!");
+if (result) {
+    //Logic to de
        document.getElementById("myModal2").style.display = "none";
-
+}
     }
 	 }
      

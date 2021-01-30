@@ -44,6 +44,15 @@
 
 	<script src="https://cdn.tiny.cloud/1/p4y59yu91l1ttdi8h066ovomyunbzi9p44zqccnlmn9ly5ge/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
+	tinymce.init({
+        selector: '#lernproduktTextkorrPa',
+		  readonly : 0,
+		  menubar: true,
+		  height:600,
+			plugins: 'print preview paste importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount imagetools textpattern noneditable help charmap quickbars emoticons',
+			toolbar: 'undo redo | bold italic underline strikethrough  | outdent indent |  numlist bullist | forecolor backcolor removeformat | wordcount| charmap emoticons | fullscreen  preview print  |  image media   link',
+			quickbars_selection_toolbar: 'forecolor backcolor strikethrough superscript subscript removeformat wordcount',
+      });
 		tinymce.init({
         selector: '#lernproduktTextkorrP',
 		  readonly : 0,
@@ -73,6 +82,15 @@
       });
 	tinymce.init({
         selector: '#kommentP',
+		  readonly : 0,
+		  menubar: false,
+		  height:200,
+		plugins: 'print preview paste importcss searchreplace autolink autosave save directionality code visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount imagetools textpattern noneditable help charmap quickbars emoticons',
+		toolbar: 'wordcount | undo redo | bold italic underline strikethrough  |fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist | forecolor backcolor removeformat | wordcount| charmap emoticons | fullscreen  preview print  |  image media   link',
+		quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 blockquote quickimage quicktable | wordcount',
+      });
+	tinymce.init({
+        selector: '#kommentPa',
 		  readonly : 0,
 		  menubar: false,
 		  height:200,

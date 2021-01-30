@@ -199,9 +199,9 @@ if (r1 == true) {
 				
 			
 				document.getElementById("beschrT1").value = table5.cell(rowIdx1,1).data(); 
-				
+				r1.destroy();
 } else {
-  
+  r1.destroy();
 } 
 		
 			}
@@ -422,9 +422,9 @@ if (r2 == true) {
 				
 			
 				document.getElementById("beschrT1sm").value = table5sm.cell(rowIdx1sm,0).data(); 
-				
+			r2.destroy();	
 } else {
-  
+  r2.destroy();
 } 
 			}
     } );
@@ -561,6 +561,7 @@ $.ajax({
 				}
 
   }
+		
      function refreshTableT1(){
 		  if ( table5 ) {
 		table5.destroy();
@@ -570,10 +571,12 @@ $.ajax({
 		editor3.destroy();
 	}
 		
-		tableload4();
+		
 		 alert('Aktion ausgeführt. Bitte überprüfen Sie den Upload in der Tabelle!');
+		 tableload4();
   }
 	 
+		
 		function uploadT1sm(){
 
 
@@ -632,8 +635,10 @@ $.ajax({
 		editor3sm.destroy();
 	}
 		
-		tableload5();
+		
 		 alert('Aktion ausgeführt. Bitte überprüfen Sie den Upload in der Tabelle!');
+		
+		 tableload5();
   }
 		
 	 	
@@ -742,7 +747,7 @@ Beschreibung*:<br>
 	  fd.append('name',name);
 	  fd.append('vorname',vorname);
 	   fd.append('beschr',beschr1);
-
+  $('.msg').text('Datei wird hochgeladen...');
 
 $.ajax({
             url: '/wp-content/plugins/Lernprodukte/upload.php',
@@ -750,16 +755,15 @@ $.ajax({
             data: fd,
             contentType: false,
             processData: false,
-            success: function(response){
-                if(response != 0){
+            success: function(data){
+                
+					$('.msg').text(data);
                    
-                }else{
-                    alert('file not uploaded');
-                }
+               refreshTable1()
             },
 });
 	  
-	 myVar1 = setTimeout(refreshTable1, 2000);
+	
   }
 	 
 		   else
@@ -778,10 +782,15 @@ $.ajax({
 		editor3.destroy();
 	}
 		
-		tableload4();
+		
 		 alert('Aktion ausgeführt. Bitte überprüfen Sie den Upload in der Tabelle!');
+		  
+			 tableload4();
   }
 	
+		
+		
+		
 	 
 		function upload1sm(){
 
@@ -806,6 +815,11 @@ $.ajax({
 	  fd.append('vorname',vorname);
 	   fd.append('beschr',beschr1sm);
 
+		  
+		                 
+             $('.msg').text('Datei wird hochgeladen...');       
+                  
+                  
 
 $.ajax({
             url: '/wp-content/plugins/Lernprodukte/upload.php',
@@ -813,16 +827,14 @@ $.ajax({
             data: fd,
             contentType: false,
             processData: false,
-            success: function(response){
-                if(response != 0){
-                   
-                }else{
-                    alert('file not uploaded');
-                }
+             success: function(data){
+                
+					$('.msg').text(data);
+                   refreshTable1sm();
             },
 });
 	  
-	 myVarsm1 = setTimeout(refreshTable1sm, 2000);
+	
 		  }
 		   else
 				{
@@ -842,10 +854,15 @@ $.ajax({
 		editor3sm.destroy();
 	}
 		
-		tableload5();
+		
 		 alert('Aktion ausgeführt. Bitte überprüfen Sie den Upload in der Tabelle!');
+		 
+		 tableload5();
   }
 	 
+	
+	 
+	
 		function showTable6() {
 			
 		
@@ -895,6 +912,8 @@ Beschreibung*:<br>
 			
     <input type="file" name="fileToUpload1" id="fileToUpload1" required="required"><br>
     <input type="button" value="Datei hochladen" name="submit6" onClick="upload1()">
+	                        <div class="msg"></div>
+                  
 
 </form>
 <br><br>

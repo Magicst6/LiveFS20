@@ -3,6 +3,8 @@
 
 	
 	
+	
+	
 <!--
 			<div class="demo-html width=50%"></div>
 			<table id="example" class="display" style="width:50%">
@@ -19,253 +21,59 @@
 			
 </html>-->
 	
+	
+	
+	
 	<script>
-		let options1 = {
+	
+
+		
+	let optionsPa = {
     "sScrollX": "100%",
     "sScrollXInner": "110%",
     "bScrollCollapse": true,
     "colReorder": true
-		};
-	
-  var editor1; // use a global for the submit and return data rendering in the examples
- var table3;
-	var table1;
-	var table;
-		var table3sm;
-		var editor1sm;
-	
-		$(document).ready(function() {
-		
- $(document).ready(function() {
-    $('.datatables1').dataTable(options1);
+};
+  var editorPa; // use a global for the submit and return data rendering in the examples
+ var table2Pa;
+	var table1a;
+	var tablea;
+		var tablesmPa;
+		 
+		 var editorsmPa;
+  $( document ).ready(function() {
+    
+
+
+$(document).ready(function() {
+    $('.datatablesPa').dataTable(optionsPa);
 });
-			
-			if(window.innerWidth>800){
-			tableload();
-			}
-			else{
-				tableload1();
-			}	
-			
-	
-			
+	       
 
-		});
-	  function tableload(){
-		
-    editor1 = new $.fn.dataTable.Editor( {
-        ajax: { url: "/Datatables/DataTablesEditor/AjaxScripts/getLPUEdit.php",
+
+			
+				  tableloadKPa();
+			
+					  tableloadKsmPa();
+				
+			
+	  });
+	  
+	  
+		function tableloadKPa(){
+    editorPa = new $.fn.dataTable.Editor( {
+        ajax: { url: "/Datatables/DataTablesEditor/AjaxScripts/getLPEditAll.php",
             type: 'POST',
             data: {
                   
-				'user': document.getElementById("userid").value
+				
 				
 			}
         },
 		  language: {
             "url": "https://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/German.json"
         },
-        table: ".datatables1",
-        fields: [ 
-               
-			
-			 {
-                label: "ID:",
-                name: "ID"
-            },
-			{
-                label: "Beschreibung:",
-                name: "Beschreibung"	
-            },
-			{
-                label: "Text:",
-                name: "TEXT",
-				type: "readonly"
-            }, {
-                label: "Datum:",
-                name: "Datum",
-				type: "readonly"
-				
-				
-            },
-			{
-                label: "URL:",
-                name: "URL",
-				type: "readonly"
-				
-            }, 
-			{
-                label: "Kommentar:",
-                name: "Kommentar",
-				type: "readonly"
-            },
-			{
-                label: "Nachname:",
-                name: "Nachname",
-				type: "hidden"
-            },
-			 {
-               label: "Vorname:",
-                name: "Vorname",
-				type: "hidden"
-			 }
-			, {
-                label: "User_ID:",
-                name: "User_ID",
-				type: "hidden"
-            },
-			 {
-               label: "Loginname:",
-                name: "Loginname"
-			 },
-			{
-               label: "E-Mail:",
-                name: "EMAIL",
-				type: "hidden"
-			 },
-			{
-                label: "Korrigierte Datei:",
-                name: "Datei",
-                type: "upload",
-                display: function ( file_id ) {
-                     return '<a href="'+editor1.file( 'files', file_id ).web_path+'" target=”_blank”>"'+editor1.file( 'files', file_id ).web_path+'"</a>' ;                },
-                clearText: "Clear",
-                noImageText: 'keine Datei',
-				type: "readonly"
-            }
-		
-        ],
-		  i18n: {
-            remove: {
-                button: "Löschen",
-                title:  "Eintrag löschen",
-                submit: "Endgültig Löschen",
-                confirm: {
-                    _: 'Sind Sie sicher, dass Sie die %d ausgwählten Zeilen löschen wollen?',
-                    1: 'Sind Sie sicher, dass Sie die ausgewählte Zeile löschen wollen?'
-                }
-            },
-            edit: {
-                button: "Bearbeiten",
-                title:  "Eintrag bearbeiten",
-                submit: "Änderungen speichern"
-            },
-            create: {
-                button: "Neuer Eintrag",
-                title:  "Neuen Eintrag anlegen",
-                submit: "Neuen Eintrag speichern"
-            },
-            datetime: {
-                    previous: 'Zurück',
-                    next:     'Weiter',
-                    months:   [ 'Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember' ],
-                    weekdays: [ 'So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa' ],
-                    amPm:     [ 'am', 'pm' ],
-                    unknown:  '-'
-            },
-            error: {            
-                    system: "Ein Systemfehler ist aufgetreten (<a target=\"_blank\" href=\"//datatables.net/tn/12\">Für mehr Informationen</a>)."
-            },
-            multi: {
-                    title: "Mehrere Werte",         
-                    info: "Die ausgewählten Elemente enthalten verschiedene Werte für das Feld. Um alle Elemente für diess Feld auf den gleichen Wert zu setzen, klicken Sie bitte hier. Ansonsten werden die Elemente ihren jeweiligen Wert behalten.",
-                    restore: "Änderungen rückgängig machen",
-                    noMulti: "Dieses Feld kann einzeln bearbeitet werden, aber nicht als Teil einer Gruppe."
-            },
-        }      
-    } );
- 
-    // Activate an inline edit on click of a table cell
-    $('.datatables1').on( 'click', 'tbody td:not(:first-child)', function (e) {
-        editor1.inline( this, {
-            buttons: { label: '&gt;', fn: function () { this.submit(); } }
-        } );
-    } );
-  $.fn.dataTable.ext.errMode = 'throw';
-     table3 = $('.datatables1').DataTable( {
-		   "language": {
-            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/German.json"
-        },
-        dom: "lBfrtip",
-        ajax:     { 
-			url: "/Datatables/DataTablesEditor/AjaxScripts/getLPUEdit.php",
-            type: 'POST',
-            data: {
-                  
-				
-				'user': document.getElementById("userid").value
-			
-			}
-        }, 
-        order: [[ 3, 'desc' ]],
-		  autoWidth: false,
-        columns: [
-       
-			{ data: "ID"},
-			{ data: "Beschreibung"},
-			{ data: "TEXT"},
-			
-			{ data: "Datum"},
-			{data: "URL", "name": "URL",
-        fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
-            if(oData.URL) {
-                $(nTd).html("<a href="+oData.URL+" target=”_blank”>"+oData.URL+"</a>");
-            }
-        }
-			},
-            { data: "Kommentar"},
-			
-			{
-                data: "Datei",
-                render: function ( file_id ) {
-                    return file_id ?
-                       '<a href="'+editor1.file( 'files', file_id ).web_path+'" target=”_blank”>"'+editor1.file( 'files', file_id ).web_path+'" </a>' :
-                        null;
-                },
-                defaultContent: "keine Datei",
-                title: "Korrektur"
-            }
-	
-          
-        ],
-
-        select: {
-            style:    'os',
-            selector: 'td:first-child'
-        },
-        buttons: [
-            { extend: "create", editor: editor1, text:"Neues Lernprodukt" },
-            { extend: "edit",   editor: editor1, text:"Lernprodukt bearbeiten" },
-            { extend: "remove", editor: editor1, text:"Lernprodukt löschen" },
-			 {
-                extend: 'collection',
-                text: 'Export',
-                buttons: [
-                    'copy',
-                    'excel',
-                    'csv',
-                    'pdf',
-                    'print'
-                ]
-            }
-        ]
-    } );
-	  }
-		  function tableload1(){
-			
-			 editor1sm = new $.fn.dataTable.Editor( {
-        ajax: { url: "/Datatables/DataTablesEditor/AjaxScripts/getLPUEdit.php",
-            type: 'POST',
-            data: {
-                  
-				'user': document.getElementById("userid").value
-				
-			}
-        },
-		  language: {
-            "url": "https://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/German.json"
-        },
-        table: ".datatables1sm",
+        table: ".datatablesPa",
         fields: [ 
                
 			
@@ -281,24 +89,26 @@
                 label: "Text:",
                 name: "TEXT",
 				type: "textarea"
-            }, {
+            }, 
+			{
+                label: "Kommentar:",
+                name: "Kommentar",
+				type: "textarea"
+            },
+			{
                 label: "Datum:",
                 name: "Datum",
+				
 				type: "readonly"
+				
 				
 				
             },
 			{
                 label: "URL:",
                 name: "URL",
-				type: "readonly"
-				
+				type: "readonly"  
             }, 
-			{
-                label: "Kommentar:",
-                name: "Kommentar",
-				type: "readonly"
-            },
 			{
                 label: "Nachname:",
                 name: "Nachname",
@@ -307,7 +117,7 @@
 			 {
                label: "Vorname:",
                 name: "Vorname",
-				type: "hidden"
+				 type: "hidden"
 			 }
 			, {
                 label: "User_ID:",
@@ -328,11 +138,16 @@
                 name: "Datei",
                 type: "upload",
                 display: function ( file_id ) {
-                     return '<a href="'+editor1sm.file( 'files', file_id ).web_path+'" target=”_blank”>"'+editor1sm.file( 'files', file_id ).web_path+'"</a>' ;                },
+                    return  '<a href="'+editorPa.file( 'files', file_id ).web_path+'" target=”_blank”>"'+editorPa.file( 'files', file_id ).web_path+'"</a>';
+                },
                 clearText: "Clear",
-                noImageText: 'keine Datei',
-				type: "readonly"
-            }
+                noImageText: 'keine Datei'
+            },
+			{
+               label: "Bewertung:",
+                name: "Bewertung"
+			
+			 }
 		
         ],
 		  i18n: {
@@ -376,74 +191,119 @@
     } );
  
     // Activate an inline edit on click of a table cell
-    $('.datatables1sm').on( 'click', 'tbody td:not(:first-child)', function (e) {
-        editor1sm.inline( this, {
-            buttons: { label: '&gt;', fn: function () { this.submit(); } }
-        } );
+    $('.datatablesPa').on( 'click', 'tbody td:not(:first-child)', function (e) {
+       rk='';
+					var colIdxKPa = table2Pa
+        .cell( this )
+        .index().column;
+		 var rowIdxKPa = table2Pa
+        .cell( this )
+        .index().row;
+		
+		if (colIdxKPa == 2 )
+			{
+				
+			
+      tinymce.get('lernproduktTextkorrPa').setContent(table2Pa.cell(rowIdxKPa,2).data() );
+	   tinymce.get('kommentPa').setContent(table2Pa.cell(rowIdxKPa,5).data() );
+	document.getElementById("ID").value = table2Pa.cell(rowIdxKPa,0).data(); 
+				
+				document.getElementById("beschrTKPa").value = table2Pa.cell(rowIdxKPa,1).data(); 
+					document.getElementById("bewPa").value = table2Pa.cell(rowIdxKPa,8).data(); 
+	document.getElementById("myModalTPa").style.display = 'block'; 
+	 window.onclick = function(event) {
+        if (event.target == document.getElementById("myModalTPa")) {
+						var result = confirm("Möchten Sie das Fenster wirklich schließen? Der geschriebene Text geht verloren!");
+if (result) {
+    //Logic to de
+         document.getElementById("myModalTPa").style.display = "none";
+}
+        }
+    }
+	
+	 //When the user clicks on <span> (x), close the modal
+     document.getElementById("spanTPa").onclick = function() {
+		 			var result = confirm("Möchten Sie das Fenster wirklich schließen? Der geschriebene Text geht verloren!");
+if (result) {
+    //Logic to de
+       document.getElementById("myModalTPa").style.display = "none";
+}
+	
+    }
+	 
+	
+
+	
+	
+	
+				
+
+		
+			}
+       
     } );
   $.fn.dataTable.ext.errMode = 'throw';
-     table3sm = $('.datatables1sm').DataTable( {
+     table2Pa = $('.datatablesPa').DataTable( {
 		   "language": {
             "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/German.json"
         },
         dom: "lBfrtip",
         ajax:     { 
-			url: "/Datatables/DataTablesEditor/AjaxScripts/getLPUEdit.php",
+			url: "/Datatables/DataTablesEditor/AjaxScripts/getLPEditAll.php",
             type: 'POST',
             data: {
                   
 				
-				'user': document.getElementById("userid").value
+				
 			
 			}
         }, 
-        order: [[ 4, 'desc' ]],
-		  autoWidth: false,
+        order: [[ 3, 'desc' ]],
+		 autoWidth: false,
+		 responsive:true,
         columns: [
-       
+         
 			
+			{ data: "ID"},
 			{ data: "Beschreibung"},
 			{ data: "TEXT"},
-			
-			
-			{data: "URL", "name": "URL",
+			{ data: "Datum"},
+			{data: "URL", "name": "URL","innerWidth": "10%",
         fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
             if(oData.URL) {
                 $(nTd).html("<a href="+oData.URL+" target=”_blank”>"+oData.URL+"</a>");
             }
-        }
+        },
+			
 			},
-         
+ 			{ data: "Kommentar"},
+		
 			{
                 data: "Datei",
                 render: function ( file_id ) {
                     return file_id ?
-                       '<a href="'+editor1sm.file( 'files', file_id ).web_path+'" target=”_blank”>"'+editor1sm.file( 'files', file_id ).web_path+'" </a>' :
+                        '<a href="'+editorPa.file( 'files', file_id ).web_path+'" target=”_blank”>"'+editorPa.file( 'files', file_id ).web_path+'"</a>' :
                         null;
                 },
                 defaultContent: "keine Datei",
                 title: "Korrektur"
             },
 	
-          { data: "Datum"}
-		
-          
+          	{ data: "Loginname" },
+			{ data: "Bewertung" }
+			
         ],
-		 'columnDefs' : [
-        //hide the second & fourth column
-        { 'visible': false, 'targets': [4] }
-   
-        ],
-
         select: {
             style:    'os',
             selector: 'td:first-child'
         },
         buttons: [
-            { extend: "create", editor: editor1sm, text:"Neuer Eintrag" },
-            { extend: "edit",   editor: editor1sm, text:"Eintrag bearbeiten" },
-            { extend: "remove", editor: editor1sm, text:"Eintrag löschen" },
-			 {
+            { extend: "create", editor: editorPa, text:"Neues Lernprodukt" },
+            { extend: "edit",   editor: editorPa, text:"Lernprodukt bearbeiten" },
+            { extend: "remove", editor: editorPa, text:"Lernprodukt löschen" },
+			   
+             
+                {
                 extend: 'collection',
                 text: 'Export',
                 buttons: [
@@ -454,202 +314,357 @@
                     'print'
                 ]
             }
+          
+                    
+        
+		]
+    } );
+		}
+ 
+      function tableloadKsmPa(){
+			
+	   editorsmPa = new $.fn.dataTable.Editor( {
+        ajax: { url: "/Datatables/DataTablesEditor/AjaxScripts/getLPEditAll.php",
+            type: 'POST',
+            data: {
+                  
+				
+				
+			}
+        },
+		  language: {
+            "url": "https://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/German.json"
+        },
+        table: ".datatablessmPa",
+        fields: [ 
+               
+			
+			 {
+                label: "ID:",
+                name: "ID"
+            },
+			{
+                label: "Beschreibung:",
+                name: "Beschreibung"	
+            },
+			{
+                label: "Text:",
+                name: "TEXT",
+				type: "textarea"
+            }, 
+			{
+                label: "Kommentar:",
+                name: "Kommentar",
+				type: "textarea"
+            },
+			{
+                label: "Datum:",
+                name: "Datum",
+				type: "readonly"
+				
+				
+            },
+			{
+                label: "URL:",
+                name: "URL",
+				type: "readonly"  
+            }, 
+			{
+                label: "Nachname:",
+                name: "Nachname",
+				type: "hidden"
+            },
+			 {
+               label: "Vorname:",
+                name: "Vorname",
+				 type: "hidden"
+			 }
+			, {
+                label: "User_ID:",
+                name: "User_ID",
+				type: "hidden"
+            },
+			 {
+               label: "Loginname:",
+                name: "Loginname"
+			 },
+			{
+               label: "E-Mail:",
+                name: "EMAIL",
+				type: "hidden"
+			 },
+			{
+                label: "Korrigierte Datei:",
+                name: "Datei",
+                type: "upload",
+                display: function ( file_id ) {
+                    return  '<a href="'+editorsmPa.file( 'files', file_id ).web_path+'" target=”_blank”>"'+editorsmPa.file( 'files', file_id ).web_path+'"</a>';
+                },
+                clearText: "Clear",
+                noImageText: 'keine Datei'
+            },
+			{
+               label: "Bewertung:",
+                name: "Bewertung"
+			
+			 }
+        ],
+		  i18n: {
+            remove: {
+                button: "Löschen",
+                title:  "Eintrag löschen",
+                submit: "Endgültig Löschen",
+                confirm: {
+                    _: 'Sind Sie sicher, dass Sie die %d ausgwählten Zeilen löschen wollen?',
+                    1: 'Sind Sie sicher, dass Sie die ausgewählte Zeile löschen wollen?'
+                }
+            },
+            edit: {
+                button: "Bearbeiten",
+                title:  "Eintrag bearbeiten",
+                submit: "Änderungen speichern"
+            },
+            create: {
+                button: "Neuer Eintrag",
+                title:  "Neuen Eintrag anlegen",
+                submit: "Neuen Eintrag speichern"
+            },
+            datetime: {
+                    previous: 'Zurück',
+                    next:     'Weiter',
+                    months:   [ 'Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember' ],
+                    weekdays: [ 'So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa' ],
+                    amPm:     [ 'am', 'pm' ],
+                    unknown:  '-'
+            },
+            error: {            
+                    system: "Ein Systemfehler ist aufgetreten (<a target=\"_blank\" href=\"//datatables.net/tn/12\">Für mehr Informationen</a>)."
+            },
+            multi: {
+                    title: "Mehrere Werte",         
+                    info: "Die ausgewählten Elemente enthalten verschiedene Werte für das Feld. Um alle Elemente für diess Feld auf den gleichen Wert zu setzen, klicken Sie bitte hier. Ansonsten werden die Elemente ihren jeweiligen Wert behalten.",
+                    restore: "Änderungen rückgängig machen",
+                    noMulti: "Dieses Feld kann einzeln bearbeitet werden, aber nicht als Teil einer Gruppe."
+            },
+        }      
+    } );
+ 
+	  
+		
+		$('.datatablessmPa').on( 'click', 'tbody td:not(:first-child)', function (e) {
+       
+							var colIdxKsmPa = tablesmPa
+        .cell( this )
+        .index().column;
+		 var rowIdxKsmPa = tablesmPa
+        .cell( this )
+        .index().row;
+		
+		if (colIdxKsmPa == 1 )
+			{
+				
+			
+    tinymce.get('lernproduktTextkorrPa').setContent(table2Pa.cell(rowIdxKsmPa,2).data() );
+				 tinymce.get('kommentPa').setContent(table2Pa.cell(rowIdxKsmPa,5).data() );
+			document.getElementById("ID").value = table2Pa.cell(rowIdxKsmPa,0).data(); 
+				document.getElementById("beschrTKPa").value = table2Pa.cell(rowIdxKsmPa,1).data(); 
+				document.getElementById("bewPa").value = table2Pa.cell(rowIdxKsmPa,8).data(); 
+	document.getElementById("myModalTPa").style.display = 'block'; 
+	 window.onclick = function(event) {
+        if (event.target == document.getElementById("myModalTPa")) {
+						var result = confirm("Möchten Sie das Fenster wirklich schließen? Der geschriebene Text geht verloren!");
+if (result) {
+    //Logic to de
+         document.getElementById("myModalTPa").style.display = "none";
+}
+        }
+    }
+	
+	 //When the user clicks on <span> (x), close the modal
+     document.getElementById("spanTPa").onclick = function() {
+		 			var result = confirm("Möchten Sie das Fenster wirklich schließen? Der geschriebene Text geht verloren!");
+if (result) {
+    //Logic to de
+       document.getElementById("myModalTPa").style.display = "none";
+}
+	
+    }
+	 
+	
+	
+	
+	
+	  
+				
+
+		
+			}
+    } );
+  $.fn.dataTable.ext.errMode = 'throw';
+     tablesmPa = $('.datatablessmPa').DataTable( {
+		   "language": {
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/German.json"
+        },
+        dom: "lBfrtip",
+        ajax:     { 
+			url: "/Datatables/DataTablesEditor/AjaxScripts/getLPEditAll.php",
+            type: 'POST',
+            data: {
+                  
+				
+				
+			
+			}
+        }, 
+        order: [[ 6, 'desc' ]],
+		 autoWidth: false,
+		 responsive:true,
+        columns: [
+         
+			
+		
+			{ data: "Beschreibung"},
+			{ data: "TEXT"},
+			
+			{data: "URL", "name": "URL","innerWidth": "10%",
+        fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
+            if(oData.URL) {
+                $(nTd).html("<a href="+oData.URL+" target=”_blank”>"+oData.URL+"</a>");
+            }
+        },
+			
+			},
+ 			
+		
+			{
+                data: "Datei",
+                render: function ( file_id ) {
+                    return file_id ?
+                        '<a href="'+editorsmPa.file( 'files', file_id ).web_path+'" target=”_blank”>"'+editorsmPa.file( 'files', file_id ).web_path+'"</a>' :
+                        null;
+                },
+                defaultContent: "keine Datei",
+                title: "Korrektur"
+            },
+				{ data: "Loginname" },
+			{ data: "Bewertung"},
+			{ data: "Datum"}
+			
+			
+		
+          
+        ],
+		 'columnDefs' : [
+        //hide the second & fourth column
+        { 'visible': false, 'targets': [6] }
+    ],
+        select: {
+            style:    'os',
+            selector: 'td:first-child'
+        },
+        buttons: [
+            { extend: "create", editor: editorsmPa, text:"Neuer Eintrag" },
+            { extend: "edit",   editor: editorsmPa, text:"Eintrag bearbeiten" },
+            { extend: "remove", editor: editorsmPa, text:"Eintrag löschen" },
+			    {
+                extend: 'collection',
+                text: 'Export',
+                buttons: [
+                    'copy',
+                    'excel',
+                    'csv',
+                    'pdf',
+                    'print'
+                ]
+            }
+               
         ]
     } );
-
+  }
  
- 
-        }
+        
 		
-		function showTable1() {
 			
-	if(window.innerWidth<800){
-		
-	
-	
 
-				document.getElementById("myModal1sm").style.display = "block"; 
-		
-   // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == document.getElementById("myModal1sm")) {
-						var result = confirm("Möchten Sie das Fenster wirklich schließen?");
-if (result) {
-    //Logic to de
-         document.getElementById("myModal1sm").style.display = "none";
-}
-        }
-    }
-	
-	 //When the user clicks on <span> (x), close the modal
-     document.getElementById("span1sm").onclick = function() {
-		 			var result = confirm("Möchten Sie das Fenster wirklich schließen?");
-if (result) {
-    //Logic to de
-       document.getElementById("myModal1sm").style.display = "none";
-}
-    }
-	}
-	else {
-			
-			
-				document.getElementById("myModal1").style.display = "block"; 
-		
-   // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == document.getElementById("myModal1")) {
-						var result = confirm("Möchten Sie das Fenster wirklich schließen?");
-if (result) {
-    //Logic to de
-         document.getElementById("myModal1").style.display = "none";
-}
-        }
-    }
-	
-	 //When the user clicks on <span> (x), close the modal
-     document.getElementById("span1").onclick = function() {
-		 			var result = confirm("Möchten Sie das Fenster wirklich schließen?");
-if (result) {
-    //Logic to de
-       document.getElementById("myModal1").style.display = "none";
-}
-    }
-	 }
-      
-		
-		}
-  function upload(){
-	  
+
+		function uploadTKPa(){
 
 
             
-		 var fd = new FormData();
-        var files = $('#fileToUpload')[0].files[0];
-	  var loginname =document.getElementById("loginname").value;
-	  var EMail = document.getElementById("EMail").value;
-	  var uid = document.getElementById("uid").value;
-	  var name = document.getElementById("name").value;
-	  var vorname = document.getElementById("vorname").value;
-	   var beschr = document.getElementById("beschr").value;
+		 var fda= new FormData();
+        var textPa = tinymce.get('lernproduktTextkorrPa').getContent();
+	  var kommentPa =tinymce.get('kommentPa').getContent();
+			var bewPa = document.getElementById("bewPa").value;
+	  var ID = document.getElementById("ID").value;
 	 
-	  if (beschr!=''){
-	  	
+	   var beschrTKPa = document.getElementById("beschrTKPa").value;
 	  
-        fd.append('fileToUpload',files);
-	   fd.append('uid',uid);
-	  fd.append('loginname',loginname);
-	  fd.append('EMail',EMail);
-	  fd.append('name',name);
-	  fd.append('vorname',vorname);
-	   fd.append('beschr',beschr);
+	  
+	  
+        fda.append('lpText',textPa);
+	   fda.append('komment',kommentPa);
+	  fda.append('ID',ID);
+	  fda.append('bew',bewPa);
+	   fda.append('beschr',beschrTKPa);
 
-$('.msg').text('Datei wird hochgeladen...');
-$.ajax({
-            url: '/wp-content/plugins/Lernprodukte/upload.php',
-            type: 'post',
-            data: fd,
-            contentType: false,
-            processData: false,
-             success: function(data){
-                
-					$('.msg').text(data);
-                   refreshTable();
-            },
-});
-	  
-	
-	  }
-	  else
-				{
-					
-					alert('Bitte das Feld Beschreibung ausfüllen!');
-					
-				}
-  }
-		
-     function refreshTable(){
-		  if ( table3 ) {
-		table3.destroy();
-	}
-	
-	if ( editor1 ) {
-		editor1.destroy();
-	}
-		
-	 alert('Aktion ausgeführt. Bitte überprüfen Sie den Upload in der Tabelle!');
-		  
-		  tableload();
-  }
-	 
-	
-	 
-	
-	 
-		function uploadsm(){
-
-
-            
-		 var fd = new FormData();
-        var files = $('#fileToUploadsm')[0].files[0];
-	  var loginname =document.getElementById("loginname").value;
-	  var EMail = document.getElementById("EMail").value;
-	  var uid = document.getElementById("uid").value;
-	  var name = document.getElementById("name").value;
-	  var vorname = document.getElementById("vorname").value;
-	   var beschrsm = document.getElementById("beschrsm").value;
-	  
-	  
-	  if (beschrsm!=''){
-	  	
-	  
-        fd.append('fileToUpload',files);
-	   fd.append('uid',uid);
-	  fd.append('loginname',loginname);
-	  fd.append('EMail',EMail);
-	  fd.append('name',name);
-	  fd.append('vorname',vorname);
-	   fd.append('beschr',beschrsm);
- $('.msg').text('Datei wird hochgeladen...'); 
 
 $.ajax({
             url: '/wp-content/plugins/Lernprodukte/upload.php',
             type: 'post',
-            data: fd,
+            data: fda,
             contentType: false,
             processData: false,
-            
-           success: function(data){
-                
-					$('.msg').text(data);
-                   refreshTablesm();
+            success: function(response){
+                if(response != 0){
+                   
+                }else{
+                    //alert('file not uploaded');
+                }
             },
 });
 	  
-	
-	  }
-		   else
-				{
-					
-					alert('Bitte das Feld Beschreibung ausfüllen!');
-					
-				}
+	 myVarTKa = setTimeout(refreshTableTKmPa, 2000);
+			 document.getElementById("myModalTPa").style.display = "none";
+			
 		}
-     function refreshTablesm(){
-		  if ( table3sm ) {
-		table3sm.destroy();
+		
+		function refreshTableTKmPa(){
+	
+		
+  
+		
+		
+	
+			if(window.innerWidth>800){
+				 if ( table2Pa ) {
+		table2Pa.destroy();
 	}
 	
-	if ( editor1sm ) {
-		editor1sm.destroy();
+	if ( editorPa ) {
+		editorPa.destroy();
 	}
-		 alert('Aktion ausgeführt. Bitte überprüfen Sie den Upload in der Tabelle!');
-		   tableload1();
+				var searchValPa=table2Pa.search(this.value);
+				  tableloadKPa();
+				table2Pa.search(searchValPa).draw();
+			}
+			else{
+					  if ( tablesmPa ) {
+		tablesmPa.destroy();
+	}
+	
+	if ( editorsmPa ) {
+		editorsmPa.destroy();
+	}
 		
+			var searchValsmPa=tablesmPa.search(this.value);
+				
+					  tableloadKsmPa();
+				tablesmPa.search(searchValsmPa).draw();
+			
+			}	
+			
+			alert('Aktion ausgeführt. Bitte überprüfen Sie den Upload in der Tabelle!');
   }
-	 
-	
-	
-		
 		
 	</script>
 	
@@ -660,39 +675,18 @@ get_currentuserinfo();
 	
 	//echo $current_user->ID;
 	?>
+	
+	 <input type="hidden" name="ID" id="ID">		
+			
+			
 
-<button id="showTable" onClick="showTable1()">Datei hochladen</button>	
+
+
 	
-<input id="userid" type="hidden" value="<? echo $current_user->ID; ?>"	>
-	
-<div id="myModal1" class="modal1" >
+	<div id="myModalPa"  >
 
     <!-- Modal content -->
-    <div class="modal-content1">
-		<span class="close"  id="span1">&times;</span>
-		<h3>Hier können Sie Ihre Lernprodukte hochladen</h3>
-		
-
-		
-<form action="" method="post" enctype="multipart/form-data">
-Beschreibung*:<br>
-		<input name="beschr" id="beschr" type=text  width=200px  required="required">
-		<br><br>
-		
-		
-		
-    Wählen Sie die hochzuladende Datei aus:*<br><br>
-	 <input type="hidden" name="uid" id="uid" value="<? echo $current_user->ID;?>">		
-			<input type="hidden" name="loginname" id="loginname" value="<? echo $current_user->user_login;?>">	
-			<input type="hidden" name="EMail" id="EMail" value="<? echo $current_user->user_email;?>">	
-			<input type="hidden" name="name" id="name" value="<? echo $current_user->user_lastname;?>">	
-			<input type="hidden" name="vorname" id="vorname" value="<? echo $current_user->user_firstname;?>">	
-			
-    <input type="file" name="fileToUpload" id="fileToUpload" required="required"><br>
-    <input type="button" value="Datei hochladen" name="submit" onClick="upload()">
-	<div class="msg"></div>
-
-</form>
+    
 <br><br>
 
 
@@ -700,24 +694,25 @@ Beschreibung*:<br>
 <br><br>
 
 <h1>Lernprodukte</h1>
-<div class="container">
+<div class="container" >
   <div class="row">
     <form class="col-md4"></form>
   </div>
   <div class="row">
     <div class="col md12">
-      <table class="table table-striped table-hover datatables1">
+      <table class="table table-striped table-hover datatablesPa"  >
         <thead>
           <tr>
            
-            <th class="small-col1">ID</th>
-			  <th class="norm-col1">Beschreibung</th>
-            <th class="big-col1">TEXT</th>
-			<th class="norm-col1">Datum</th>
-	        <th class="norm-col1">URL</th>
-			<th class="norm-col1">Kommentar</th>
-			   <th class="norm-col1">Korrekturdatei</th>
-		  
+            <th class="small-col" >ID</th>
+			  <th class="big-col">Beschreibung</th>
+            <th class="big-col">TEXT</th>
+			<th class="norm-col">Datum</th>
+	        <th class="norm-col">URL</th>
+			 <th class="norm-col">Kommentar</th>
+			<th class="norm-col">Korrektur</th>
+		    <th  class="norm-col">Lernender</th>
+			  <th  class="small-col">Bewertung</th>
 			<!-- <th>Datei</th> -->
           </tr>
         </thead>
@@ -727,69 +722,115 @@ Beschreibung*:<br>
   </div>
 </div>
 
-		
+			
 	</div>
-	</div>
-	
-	<div id="myModal1sm" class="modal1" >
+  
+
+		<div id="myModalsmPa" >
 
     <!-- Modal content -->
-    <div class="modal-content1">
-		<span class="close"  id="span1sm">&times;</span>
+    
+<br><br>
+
+
+
+<br><br>
+
+<h1>Lernprodukte</h1>
+<div class="container" >
+  <div class="row">
+    <form class="col-md4"></form>
+  </div>
+  <div class="row">
+    <div class="col md12">
+      <table class="table table-striped table-hover datatablessmPa">
+        <thead>
+          <tr>
+			  <th class="norm-colsm">Beschreibung</th>
+            <th class="big-colsm">TEXT</th>
+	        <th class="norm-colsm">URL</th>
+			<th class="norm-colsm">Korrektur</th>
+			  <th class="norm-colsm">Lernender</th>
+			  <th class="small-col">Bew.</th>
+			<!-- <th>Datei</th> -->
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+			
+	</div>
+ 
+
+		<div id="myModalTPa" class="modal" >
+
+    <!-- Modal content -->
+    <div class="modal-content">
+		<span class="close"  id="spanTPa">&times;</span>
 		<h3>Hier können Sie Ihre Lernprodukte hochladen</h3>
 		<form action="" method="post" enctype="multipart/form-data">
 Beschreibung*:<br>
-		<input name="beschrsm" id="beschrsm" width=200px  type=text required="required">
+		<input name="beschrTKPa" id="beschrTKPa" type=text width=200px  required="required">
 		<br><br>
 		
 		
 		
-    Wählen Sie die hochzuladende Datei aus:*<br><br>
+    Hier der Text des Schülers:<br><br>
 	
 			
-    <input type="file" name="fileToUploadsm" id="fileToUploadsm" required="required"><br>
-     <input type="button" value="Datei hochladen" name="submit1" onClick="uploadsm()">
+   <textarea id="lernproduktTextkorrPa"  height="400px"  ></textarea><br><br>
+			Kommentar:<br>
+			<textarea id="kommentPa"  height="100px"  ></textarea><br>
+			<br><br>
+			Bewertung:<br>
+			<input id="bewPa"><br><br>
+     <input type="button" value="Text hochladen" name="submit1Pa" onClick="uploadTKPa()">
+			
 </form>
 <br><br>
 
 
 
-<br><br>
 
-<h1>Lernprodukte</h1>
-<div class="container">
-  <div class="row">
-    <form class="col-md4"></form>
-  </div>
-  <div class="row">
-    <div class="col md12">
-      <table class="table table-striped table-hover datatables1sm">
-        <thead>
-          <tr>
-           
-           
-			  <th class="norm-col1sm">Beschreibung</th>
-			  <th class="big-col1sm">TEXT</th>
-	        <th class="norm-col1sm">URL</th>
-			   <th class="norm-col1sm">Korrekturdatei</th>
-		  
-			<!-- <th>Datei</th> -->
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
-    </div>
-  </div>
-</div>
 
 		
 	</div>
 	</div>
-
+	
 	
 </form>&nbsp;
+<script>
+if (window.innerWidth > 800)
+		{
+
+			
+				document.getElementById("myModalPa").style.display = "block"; 
+		
+  
+   
+       document.getElementById("myModalsmPa").style.display = "none";
+	
+    }
+		
+		
+			else{
+				
+				document.getElementById("myModalsmPa").style.display = "block"; 
+	
+         document.getElementById("myModalPa").style.display = "none";
+			
+        }
+  
+		
+		 </script>
+ 
 <style>
-		 button {
+	
+         
+	 button {
      	background-color:#e91e63;
 	border-radius:28px;
 	border:0x solid #18ab29;
@@ -808,36 +849,44 @@ button:active {
 	top:1px;
 		 
         }
+        
 	
 	
 	</style>
 <style>
         body {}
 
-	.big-col1 {
+	.big-col {
   width: 20% !important;
 }
-	.norm-col1 {
+	.norm-col {
   width: 10% !important;
 }
-	.big-col1sm {
-  width: 14% !important;
+	
+	.big-colsm {
+  width: 10% !important;
 }
-	.norm-col1sm {
+	.norm-colsm {
   width: 8% !important;
 }
 
-		.small-col1 {
+		.small-col {
   width: 5% !important;
 }
-table.datatables1{
-  table-layout:fixed;
+	.twidth {
+  width: 80% !important;
 }
-	table.datatables1sm{
+table.datatablesPa{
   table-layout:fixed;
+	
 }
-         
-		.modal1{
+	
+	table.datatablessmPa{
+  table-layout:fixed;
+	
+}
+
+.modal{
             display: none; /* Hidden by default */
             position: fixed; /* Stay in place */
             z-index: 1; /* Sit on top */
@@ -855,7 +904,7 @@ table.datatables1{
         /* Modal Content */
        
 		
-		.modal-content1 {
+		.modal-content {
             background-color: #fefefe;
             margin: auto;
             padding: 10px;
@@ -863,10 +912,10 @@ table.datatables1{
             max-width: 1200px;
 			border-radius: 7px !important; 
 			width: 98%; /* Full width */
+			
            height:auto;
 }
         }
-
 
 
         /* The Close Button */
@@ -883,6 +932,7 @@ table.datatables1{
             text-decoration: none;
             cursor: pointer;
         }
+	
         button {
           color: white;
         }
